@@ -1,1 +1,1 @@
-# gccn
+# Global Covid Certificate Network
