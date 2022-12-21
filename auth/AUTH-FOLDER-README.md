@@ -1,0 +1,1 @@
+# Auth folder usage text
