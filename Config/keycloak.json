@@ -5,13 +5,13 @@
   "resource": "GCCN",
   "verify-token-audience": true,
   "credentials": {
-    "secret": "c87MyGJRdo4wAPMkCAlXH6RGCf14yyEk"
+    "secret": "NEEDS_TO_BE_UPDATED"
   },
   "use-resource-role-mappings": true,
   "confidential-port": 0,
   "policy-enforcer": {},
   "admin": {
-    "username": "maggie_realm_admin",
-    "password": "4321"
+    "username": "NEEDS_TO_BE_UPDATED",
+    "password": "NEEDS_TO_BE_UPDATED"
   }
 }

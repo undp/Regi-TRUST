@@ -6,7 +6,7 @@
     "options": {}
   },
   "TRAIN": {
-    "baseUrl": "https://essif.iao.fraunhofer.de",
+    "baseUrl": "NEEDS_TO_BE_UPDATED",
     "trustListRoutes": "/tspa/api/v1/gccn/",
     "trustList": "/trustregistry/",
     "trustListDetailed": "/trustlist/country/tsp/",
@@ -18,13 +18,13 @@
     "user": "max-reviewer",
     "pass": "max-reviewer",
     "client_id": "GCCN",
-    "client_secret": "7YP1xb193cXIHsYKP4sDsnE8MCFFJPcy",
+    "client_secret": "NEEDS_TO_BE_UPDATED",
     "scope": "openid"
   },
   "Notifications": {
-    "host": "smtpout.secureserver.net",
+    "host": "NEEDS_TO_BE_UPDATED",
     "port": 80,
-    "username": "info@symsoftsolutions.net",
-    "password": "Symsoft_123"
+    "username": "NEEDS_TO_BE_UPDATED",
+    "password": "NEEDS_TO_BE_UPDATED"
   }
 }
