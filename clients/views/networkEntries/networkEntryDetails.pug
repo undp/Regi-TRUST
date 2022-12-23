@@ -1,0 +1,47 @@
+extend ../layout
+
+block content
+    .container#review-page(style='min-height:80vh')
+        .page-heading.mt-5.mb-5
+            h1 Network Entry
+
+        .card.mb-5
+            h2.card-header Participating Entity Information
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Organization Details
+                    .px-2
+                        each val, key in json.TSPInformation
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                
+                .card-content-item
+                    h3.mb-3 Organization Address
+                    .px-2
+                        each val, key in json.TSPContacts  
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        .card.mb-5
+            h2.card-header Submitter
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Contact Information
+                    .px-2
+                        each val, key in json.Submitter
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        .card.mb-5
+            h2.card-header Services
+            .p-4
+                each service, i in json.TSPServices
+                    h3 #{service['Name:']}
+                    .card-content.p-2
+                        .card-content-item
+                            h4.mb-3 Service Details
+                            .px-2
+                                each val, key in service
+                                    <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                        .card-content-item
+                            h4.mb-3 Service Operations Agent
+                            .px-2
+                                each val, key in json.ServiceOpsAgents[i]
+                                    <p><strong class="pe-2">!{key}</strong> !{val}</p>

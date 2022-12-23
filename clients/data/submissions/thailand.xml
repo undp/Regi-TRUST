@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TrustServiceStatusList xmlns="http://uri.etsi.org/02231/v2#" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02231/v2/additionaltypes#" xmlns:ns5="http://uri.etsi.org/TrstSvc/SvcInfoExt/eSigDir-1999-93-EC-TrustedList/#" xmlns:ns6="http://uri.etsi.org/01903/v1.4.1#" TSLTag="http://uri.etsi.org/19612/TSLTag">
+	<SchemeInformation>
+		<TSLVersionIdentifier>1</TSLVersionIdentifier>
+		<TSLSequenceNumber>1</TSLSequenceNumber>
+		<TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/GCCN-POC</TSLType>
+		<SchemeOperatorName>
+			<Name xml:lang="en">GCCN Directory POC</Name>
+		</SchemeOperatorName>
+		<SchemeOperatorAddress>
+			<PostalAddresses>
+				<PostalAddress xml:lang="en">
+					<StreetAddress>Market Street</StreetAddress>
+					<Locality>San Francisco</Locality>
+					<PostalCode>94104-5401</PostalCode>
+					<CountryName>US</CountryName>
+				</PostalAddress>
+			</PostalAddresses>
+			<ElectronicAddress>
+				<URI xml:lang="en">mailto:johnw.cci@lfph.io</URI>
+			</ElectronicAddress>
+		</SchemeOperatorAddress>
+		<SchemeName>
+			<Name xml:lang="en">Trust Scheme of the GCCN Directory</Name>
+		</SchemeName>
+		<SchemeInformationURI>
+			<URI xml:lang="en">https://TRAIN/interoperability/GCCN-Directory</URI>
+		</SchemeInformationURI>
+		<SchemeTypeCommunityRules>
+			<URI xml:lang="en">https://TrustScheme_TRAIN.example.com/en/gccn-dir-rules.html</URI>
+		</SchemeTypeCommunityRules>
+		<SchemeTerritory>EU</SchemeTerritory>
+		<PolicyOrLegalNotice>
+			<TSLLegalNotice xml:lang="en">The applicable legal framework for the present trusted list is TBD. Valid legal notice text must be created.</TSLLegalNotice>
+		</PolicyOrLegalNotice>
+		<ListIssueDateTime>2021-12-15T00:00:00Z</ListIssueDateTime>
+		<NextUpdate>
+			<dateTime>2021-12-15T00:00:00Z</dateTime>
+		</NextUpdate>
+	</SchemeInformation>
+	<TrustServiceProviderList>
+		<TrustServiceProvider>
+			<TSPInformation>
+				<TSPName>
+					<Name xml:lang="en">Thailand Ministry of Public Health</Name>
+				</TSPName>
+				<TSPRole xml:lang="en">Issuer</TSPRole>
+				<TSPLegalName>
+					<Name xml:lang="en">Thailand Ministry of Public Health</Name>
+				</TSPLegalName>
+				<TSPTradeName>
+					<Name xml:lang="en">Thailand Ministry of Public Health</Name>
+				</TSPTradeName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<TSPEntityIdentifierName>
+							<Name xml:lang="en">MOH LEI</Name>
+						</TSPEntityIdentifierName>
+						<TSPEntityIdentifierType xml:lang="en">LEI</TSPEntityIdentifierType>
+						<TSPEntityIdentifierValue xml:lang="en">LEICode ISO 17442</TSPEntityIdentifierValue>
+						<TSPEntityIdentifierURI xml:lang="en">https://if_theres_a_link</TSPEntityIdentifierURI>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPAddress>
+					<PostalAddresses>
+						<PostalAddress xml:lang="en">
+							<Locality>Thailand Locale</Locality>
+							<StreetAddress>Park 5</StreetAddress>
+							<Locality>Thailand Locale</Locality>
+							<PostalCode>2511 VX</PostalCode>
+							<CountryName>TH</CountryName>
+						</PostalAddress>
+					</PostalAddresses>
+					<ElectronicAddress>
+						<URI xml:lang="en">https://www.tsp-provider-website/en/index.htm</URI>
+						<URI xml:lang="en">mailto:info@tsp-provider-website.en</URI>
+					</ElectronicAddress>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI xml:lang="en">https://www.government.th/topics/coronavirus-covid-19</URI>
+				</TSPInformationURI>
+				<TSPAgentList>
+					<TSPAgent>
+						<TSPAgentName>
+							<Name xml:lang="en">Agent Name 1</Name>
+						</TSPAgentName>
+						<TSPAgentAddress>
+							<PostalAddresses>
+								<PostalAddress xml:lang="en">
+									<Locality>Thailand Locale</Locality>
+									<StreetAddress>Park 5</StreetAddress>
+									<Locality>Thailand Locale</Locality>
+									<PostalCode>2511 VX</PostalCode>
+									<CountryName>TH</CountryName>
+								</PostalAddress>
+							</PostalAddresses>
+							<ElectronicAddress>
+								<URI xml:lang="en">https://www.tsp-provider-website/en/index.htm</URI>
+								<URI xml:lang="en">mailto:info@tsp-provider-website.en</URI>
+							</ElectronicAddress>
+						</TSPAgentAddress>
+					</TSPAgent>
+				</TSPAgentList>
+				<TSPQualifierList>
+					<TSPQualifier xml:lang="en">
+						<Name>GICS Code</Name>
+						<Value>1234567</Value>
+						<QualifierURI>https://www.tsp-qualifier-resolvable/en/index.htm</QualifierURI>
+					</TSPQualifier>
+				</TSPQualifierList>
+			</TSPInformation>
+			<TSPServices>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>https://train.trust-scheme.de/schema/gccn-schema.json</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name xml:lang="en">Thailand MOH Corona Check Application Coordination</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<X509Certificate>https://verifier-api.coronacheck.nl/v4/verifier/public_keys</X509Certificate>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>http://gccndirlookup.essif.trust-scheme.en/ServiceTypes/Servicestatus/active/</ServiceStatus>
+						<StatusStartingTime>2021-12-15T00:00:00Z</StatusStartingTime>
+						<SchemeServiceDefinition>https://github.com/minvws/nl-covid19-coronacheck-app-coordination</SchemeServiceDefinition>
+						<ServiceSupplyPoint>https://www.npkd.nl/masterlist.html</ServiceSupplyPoint>
+						<ServiceDefintionURI>https://www.example-textdesccriptionrequired</ServiceDefintionURI>
+						<AdditionalServiceInformation>
+							<ServiceCredentialTypes>
+								<KeyType>X.509</KeyType>
+							</ServiceCredentialTypes>
+							<ServiceGovernanceURI>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32021R0953</ServiceGovernanceURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+				</TSPService>
+			</TSPServices>
+		</TrustServiceProvider>
+	</TrustServiceProviderList>
+</TrustServiceStatusList>

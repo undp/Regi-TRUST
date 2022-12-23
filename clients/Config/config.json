@@ -1,0 +1,30 @@
+{
+  "MongoDB": {
+    "hostname": "127.0.0.1",
+    "PORT": "27017",
+    "dbName": "GCCN",
+    "options": {}
+  },
+  "TRAIN": {
+    "baseUrl": "*****TO_BE_UPDATED*****",
+    "trustListRoutes": "/tspa/api/v1/gccn/",
+    "trustList": "/trustregistry/",
+    "trustListDetailed": "/trustlist/country/tsp/",
+    "tspDetail": "/trustlist/tsp/individual/",
+    "publishTrustList": "/trustlist/publish/",
+    "clientTrustScheme": "gccn-pilot-test.train.trust-scheme.de",
+    "verifier": "/atvtrain_vc/api/v1/gccn/verifier",
+    "tokenEndpoint": "/auth/realms/GCCN_Realm/protocol/openid-connect/token",
+    "user": "max-reviewer",
+    "pass": "max-reviewer",
+    "client_id": "GCCN",
+    "client_secret": "*****TO_BE_UPDATED*****",
+    "scope": "openid"
+  },
+  "Notifications": {
+    "host": "*****TO_BE_UPDATED*****",
+    "port": 80,
+    "username": "*****TO_BE_UPDATED*****",
+    "password": "*****TO_BE_UPDATED*****"
+  }
+}
