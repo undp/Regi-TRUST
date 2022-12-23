@@ -1,0 +1,7 @@
+html(lang='en')
+    body     
+        h1 GCCN Trust Registry Network
+        h2 A new registry entry has been submitted for review
+        p=`Your registry entry submission for ${entityName} was ${reviewStatus} by a registry reviewer${reviewStatus === 'Accepted' ? ' and the entry was added to the registry' : ''}. `
+            a(href=submissionReviewLink) Click here
+            span  to view the submission.

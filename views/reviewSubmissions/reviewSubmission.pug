@@ -1,0 +1,79 @@
+extend ../layout
+
+block content
+    .container#review-page(style='min-height:80vh')
+        -
+            let status = submission.ReviewInfo.ReviewStatus
+
+            if(status === 'accepted')
+                status = 'Accepted'
+
+            else if(status === 'declined')
+                status = 'Declined'
+
+            else status = ''
+        -
+        .page-heading.mt-5.mb-5
+            h1 Network Entry Submission #{status ? "- " + status : ""}
+            if !status
+                a.btn.btn-lg.submitBtn(href=`/review-submissions/submission/${submission._id}/edit`)
+                    svg(xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 20 20")
+                        path(d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z")
+                    span  Edit
+
+        if(submission.ReviewInfo.ReviewStatus !== 'pending')
+            .p-3
+                h2.mb-3 Review Information
+                .p-3
+                    <p><strong class="pe-2">Review Status:</strong> !{submission.ReviewInfo.ReviewStatus}</p>
+                    if roles.includes('Registry_reviewer')
+                        <p><strong class="pe-2">Reviewer Username:</strong> !{submission.ReviewInfo.Reviewer.Username}</p>
+                    - let statusDateTime = new Date(parseInt(submission.ReviewInfo.StatusStartingTime, 10))
+                    <p><strong class="pe-2">Date Reviewed:</strong> !{statusDateTime.toLocaleString()}</p>
+
+        .card.mb-5
+            h2.card-header Participating Entity Information
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Organization Details
+                    .px-2
+                        each val, key in submission.TSPInformation
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                
+                .card-content-item
+                    h3.mb-3 Organization Address
+                    .px-2
+                        each val, key in submission.TSPContacts  
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        .card.mb-5
+            h2.card-header Submitter
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Contact Information
+                    .px-2
+                        each val, key in submission.Submitter
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        .card.mb-5
+            h2.card-header Services
+            .p-4
+                each service, i in submission.TSPServices
+                    h3 #{service['Name:']}
+                    .card-content.p-2
+                        .card-content-item
+                            h4.mb-3 Service Details
+                            .px-2
+                                each val, key in service
+                                    <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                        .card-content-item
+                            h4.mb-3 Service Operations Agent
+                            .px-2
+                                each val, key in submission.ServiceOpsAgents[i]
+                                    <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        if(roles.includes('Registry_reviewer') && submission.ReviewInfo.ReviewStatus === 'pending')
+            .review-buttons.p-4.mb-5
+                    a.btn.btn-lg.submitBtn(href='/review-submissions/submission/' + submission._id + '/accept') Accept Submission
+                    a.btn.btn-lg.btn-link(href='/review-submissions/submission/' + submission._id + '/decline') Reject Submission
+                

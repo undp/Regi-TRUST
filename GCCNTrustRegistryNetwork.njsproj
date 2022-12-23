@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>GCCNTrustRegistryNetwork</Name>
+    <RootNamespace>GCCNTrustRegistryNetwork</RootNamespace>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>d1868c54-b88f-478a-a40c-83506c53d050</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>app.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="app.js" />
+    <Content Include="Auth\keycloak.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="data\formFields.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="data\MongoDB\config.json" />
+    <Content Include="data\MongoDB\mongoose.js" />
+    <Content Include="data\MongoDB\session.js" />
+    <Content Include="data\MongoDB\TSPSchema.js" />
+    <Content Include="data\publishTrustListXMLSpecification.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="data\publishTrustListXMLSpecification.xml" />
+    <Content Include="data\selectLists.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="data\submissionFormatting\submissionFormatting.js" />
+    <Content Include="data\submissions\example-nation.xml" />
+    <Content Include="data\submissions\gccn-registry.xml" />
+    <Content Include="data\submissions\thailand.xml" />
+    <Content Include="Auth\keycloak.json" />
+    <Content Include="data\TRAIN\trainApiService.js" />
+    <Content Include="data\TRAIN\trainConfig.json" />
+    <Content Include="notifications\config.json" />
+    <Content Include="notifications\emailService.js" />
+    <Content Include="notifications\emailTemplates\receivedSubmission.pug" />
+    <Content Include="notifications\emailTemplates\submissionReviewed.pug" />
+    <Content Include="notifications\emailTemplates\submissionUpdated.pug" />
+    <Content Include="public\fonts\Metropolis-Bold.woff2" />
+    <Content Include="public\fonts\Metropolis-Regular.woff2" />
+    <Content Include="public\fonts\Metropolis-SemiBold.woff2" />
+    <Content Include="routes\auth\auth.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\reviewSubmissions\reviewSubmissions.js">
+      <SubType>Code</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\gccn2 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\gccn3 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\gccn6 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\GCCNNetwork - Web Deploy.pubxml" />
+    <Content Include="views\form\editNetworkEntrySubmission.pug" />
+    <Content Include="views\form\includes\formFieldsRenderer.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\form\submissionError.pug" />
+    <Content Include="views\loggedIn.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\networkEntries\verificationResult.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\networkEntries\verifyNetworkEntry.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\reviewSubmissions\reviewError.pug" />
+    <Content Include="views\reviewSubmissions\reviewSubmission.pug" />
+    <Content Include="views\reviewSubmissions\reviewSubmissionsList.pug" />
+    <Content Include="web.config">
+      <SubType>Code</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\gccn - Web Deploy.pubxml" />
+    <Content Include="routes\form\networkEntrySubmission.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\index.js" />
+    <Content Include="routes\networkEntries\networkEntries.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\users.js" />
+    <Content Include="package.json" />
+    <Content Include="public\stylesheets\main.css" />
+    <Content Include="README.md" />
+    <Content Include="views\form\networkEntrySubmission.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\index.pug" />
+    <Content Include="views\layout.pug" />
+    <Content Include="views\error.pug" />
+    <Content Include="views\networkEntries\networkEntriesList.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\networkEntries\networkEntryDetails.pug">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\MongoDB\" />
+    <Folder Include="data\submissionFormatting\" />
+    <Folder Include="data\submissions\" />
+    <Folder Include="Auth\" />
+    <Folder Include="data\TRAIN\" />
+    <Folder Include="notifications\" />
+    <Folder Include="notifications\emailTemplates\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="public\" />
+    <Folder Include="public\fonts\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="routes\" />
+    <Folder Include="routes\form\" />
+    <Folder Include="routes\networkEntries\" />
+    <Folder Include="routes\auth\" />
+    <Folder Include="routes\reviewSubmissions\" />
+    <Folder Include="views\" />
+    <Folder Include="views\form\" />
+    <Folder Include="views\form\includes\" />
+    <Folder Include="views\networkEntries\" />
+    <Folder Include="views\reviewSubmissions\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

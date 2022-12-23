@@ -1,0 +1,17 @@
+{
+  "realm": "GCCN_Realm",
+  "auth-server-url": "http://127.0.0.1:8080/",
+  "ssl-required": "external",
+  "resource": "GCCN",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "c87MyGJRdo4wAPMkCAlXH6RGCf14yyEk"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0,
+  "policy-enforcer": {},
+  "admin": {
+    "username": "maggie_realm_admin",
+    "password": "4321"
+  }
+}

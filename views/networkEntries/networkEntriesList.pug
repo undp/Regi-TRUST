@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css')
+  .container.mb-5(style='min-height:80vh;')
+    h1.mt-5.mb-5 Network Entries
+    .hello
+      table#network-entries-table.display
+
+block scripts
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+  script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js')
+  script. 
+    $(document).ready(function() {
+        $('#network-entries-table').DataTable( {
+            data: !{json},
+            columns: [
+                {
+                  title: "Trusted Service Provider Name",
+                  data: "TrustServiceProvider.TSPInformation.TSPName", 
+                  render: function(data, type, row, meta){
+                    return `<a href="/network-entries/details/${row.TrustServiceProvider.UID}">${data}</a>`;
+                  }
+                },
+                {
+                  title: "Trust Scheme",
+                  data: "TrustServiceProvider.TSPInformation.TrustSchemeName" 
+                }
+            ],
+            initComplete: function(){
+              var $table = $('table.dataTable');
+              $table.wrap('<div class="table-responsive" style="clear:both;"></div>');
+              $table.css('width', '100%');
+            }
+        });
+    });
+    
