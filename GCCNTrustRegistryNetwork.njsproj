@@ -31,9 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
-    <Content Include="Auth\keycloak.js">
+    <Content Include="auth\AUTH-FOLDER-README.md" />
+    <Content Include="auth\keycloak.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="clients\CLIENTS-FOLDER-README.md" />
+    <Content Include="config\config.json" />
+    <Content Include="config\keycloak.json" />
     <Content Include="data\formFields.js">
       <SubType>Code</SubType>
     </Content>
@@ -52,9 +56,9 @@
     <Content Include="data\submissions\example-nation.xml" />
     <Content Include="data\submissions\gccn-registry.xml" />
     <Content Include="data\submissions\thailand.xml" />
-    <Content Include="Auth\keycloak.json" />
     <Content Include="data\TRAIN\trainApiService.js" />
     <Content Include="data\TRAIN\trainConfig.json" />
+    <Content Include="dns-zone-mgr\DNS-ZONE-MGR-README.md" />
     <Content Include="notifications\config.json" />
     <Content Include="notifications\emailService.js" />
     <Content Include="notifications\emailTemplates\receivedSubmission.pug" />
@@ -73,6 +77,50 @@
     <None Include="Properties\PublishProfiles\gccn3 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\gccn6 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\GCCNNetwork - Web Deploy.pubxml" />
+    <Content Include="TRAIN\.project" />
+    <Content Include="TRAIN\Dockerfile" />
+    <Content Include="TRAIN\LICENSE" />
+    <Content Include="TRAIN\pom.xml" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\exceptions\InvalidStatusCodeException.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\exceptions\UnknownInterfaceVersion.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\models\JsonDaneCertificateFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\models\JsonSchemesFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\models\JsonTrustListPublicationFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\models\JsonTrustSchemesFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\publication\v1PublicationManagerFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\zone\v1ZoneManagerFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\json\JsonDaneCertificate.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\json\JsonError.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\json\JsonSchemes.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\json\JsonTrustListPublication.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\json\JsonTrustSchemes.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\publication\misc\Base16.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\publication\PublicationManager.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\publication\Signer.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\zone\ZoneManager.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\api\VersionFactory.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\controller\Controller.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\models\IJsonDaneCertificate.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\models\IJsonSchemes.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\models\IJsonTrustListPublication.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\models\IJsonTrustSchemes.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\publication\IPublicationManager.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\zone\IZoneManager.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\keycloak\config\KeycloakConfiguration.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\keycloak\config\KeycloakSecurityConfig.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\services\LogServices.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\services\PublicationService.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\services\QueryService.java" />
+    <Content Include="TRAIN\src\main\java\com\train\tspagccn\TspaGccnApplication.java" />
+    <Content Include="TRAIN\src\main\resources\application.properties" />
+    <Content Include="TRAIN\src\main\resources\commons-logging.properties" />
+    <Content Include="TRAIN\src\main\resources\config.properties" />
+    <Content Include="TRAIN\src\main\resources\log4j.properties" />
+    <Content Include="TRAIN\src\main\resources\public\gccn-registry-test.train.trust-scheme.de.xml" />
+    <Content Include="TRAIN\src\main\resources\public\index.html" />
+    <Content Include="TRAIN\src\main\resources\public\newGCCNTrustlist.xml" />
+    <Content Include="TRAIN\src\test\java\com\train\tspagccn\TspaGccnApplicationTests.java" />
+    <Content Include="TRAIN\TRAIN-FOLDER-README.md" />
     <Content Include="views\form\editNetworkEntrySubmission.pug" />
     <Content Include="views\form\includes\formFieldsRenderer.pug">
       <SubType>Code</SubType>
@@ -119,12 +167,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="clients\" />
+    <Folder Include="config\" />
     <Folder Include="data\" />
     <Folder Include="data\MongoDB\" />
     <Folder Include="data\submissionFormatting\" />
     <Folder Include="data\submissions\" />
-    <Folder Include="Auth\" />
+    <Folder Include="auth\" />
     <Folder Include="data\TRAIN\" />
+    <Folder Include="dns-zone-mgr\" />
     <Folder Include="notifications\" />
     <Folder Include="notifications\emailTemplates\" />
     <Folder Include="Properties\" />
@@ -139,6 +190,40 @@
     <Folder Include="routes\networkEntries\" />
     <Folder Include="routes\auth\" />
     <Folder Include="routes\reviewSubmissions\" />
+    <Folder Include="TRAIN\" />
+    <Folder Include="TRAIN\src\" />
+    <Folder Include="TRAIN\src\main\" />
+    <Folder Include="TRAIN\src\main\java\" />
+    <Folder Include="TRAIN\src\main\java\com\" />
+    <Folder Include="TRAIN\src\main\java\com\train\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\exceptions\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\models\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\publication\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\factory\zone\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\models\json\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\publication\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\publication\misc\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\api\v1\zone\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\controller\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\models\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\publication\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\interfaces\zone\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\keycloak\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\keycloak\config\" />
+    <Folder Include="TRAIN\src\main\java\com\train\tspagccn\services\" />
+    <Folder Include="TRAIN\src\main\resources\" />
+    <Folder Include="TRAIN\src\main\resources\public\" />
+    <Folder Include="TRAIN\src\test\" />
+    <Folder Include="TRAIN\src\test\java\" />
+    <Folder Include="TRAIN\src\test\java\com\" />
+    <Folder Include="TRAIN\src\test\java\com\train\" />
+    <Folder Include="TRAIN\src\test\java\com\train\tspagccn\" />
     <Folder Include="views\" />
     <Folder Include="views\form\" />
     <Folder Include="views\form\includes\" />

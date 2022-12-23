@@ -1,4 +1,4 @@
-const config = require('../../Config/config.json').TRAIN
+const config = require('../../config/config.json').TRAIN
 const axios = require('axios')
 const { json } = require('body-parser')
 

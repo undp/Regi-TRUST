@@ -14,7 +14,7 @@ var auth = require('./routes/auth/auth');
 var networkSubmissionForm = require('./routes/form/NetworkEntrySubmission');
 var reviewSubmissions = require('./routes/reviewSubmissions/reviewSubmissions');
 var networkEntries = require('./routes/networkEntries/networkEntries');
-const { getRoles } = require('./Auth/keycloak');
+const { getRoles } = require('./auth/keycloak');
 
 var app = express();
 

@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var SubmissionModel = require('../../data/MongoDB/mongoose').SubmissionModel;
-var { checkAuthorized, getRoles, getUserId, redirect } = require('../../Auth/keycloak');
+var { checkAuthorized, getRoles, getUserId, redirect } = require('../../auth/keycloak');
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 const { notifySubmissionReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService')

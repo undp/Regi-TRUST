@@ -1,7 +1,7 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
-var { getRoles } = require('../../Auth/keycloak')
+var { getRoles } = require('../../auth/keycloak')
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting')
 
 var trainApi = require('../../data/TRAIN/trainApiService');

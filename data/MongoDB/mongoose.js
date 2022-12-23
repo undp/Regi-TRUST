@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {hostname, PORT, dbName, options} = require('../../Config/config.json').MongoDB
+const {hostname, PORT, dbName, options} = require('../../config/config.json').MongoDB
 const Schema = mongoose.Schema
 
 const initMongo = async () => {

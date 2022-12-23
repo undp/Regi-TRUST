@@ -1,6 +1,6 @@
 'use strict';
 var express = require('express');
-const { getRoles } = require('../Auth/keycloak');
+const { getRoles } = require('../auth/keycloak');
 var router = express.Router();
 
 /* GET home page. */

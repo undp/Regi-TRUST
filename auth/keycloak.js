@@ -1,6 +1,6 @@
 var OidcHelper = require('openid-client-helper')
 var jwt = require('jsonwebtoken')
-const keycloak = require('../Config/keycloak.json')
+const keycloak = require('../config/keycloak.json')
 const  axios = require('axios')
 
 const realmUrl = keycloak['auth-server-url'] + 'realms/' + keycloak['realm']

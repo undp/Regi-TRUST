@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
-const smtp = require('../Config/config.json').Notifications
+const smtp = require('../config/config.json').Notifications
 const pug = require('pug')
-const { getReviewerEmails } = require('../Auth/keycloak')
+const { getReviewerEmails } = require('../auth/keycloak')
 
 const templatePath = './notifications/emailTemplates/'
 const linkBaseUrl = process.env.DNS || `http://localhost:${process.env.PORT}/`

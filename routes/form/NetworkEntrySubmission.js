@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var formJSON = require('../../data/formFields');
-var { checkAuthorized, getRoles, getUserId } = require('../../Auth/keycloak');
+var { checkAuthorized, getRoles, getUserId } = require('../../auth/keycloak');
 var { SubmissionModel } = require('../../data/MongoDB/mongoose');
 var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewSubmission, notifySubmissionUpdated } = require('../../notifications/emailService')

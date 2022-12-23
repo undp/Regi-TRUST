@@ -1,5 +1,5 @@
 var router = require('express').Router()
-var { checkAuthorized, authorize, redirect, deauthorize } = require('../../Auth/keycloak')
+var { checkAuthorized, authorize, redirect, deauthorize } = require('../../auth/keycloak')
 
 router.get('/', authorize())
 
