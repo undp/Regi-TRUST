@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container.mb-5(style='min-height:80vh;')
+    h1.mt-5.mb-5 Verify Network Entry
+    form(method='post', action='/network-entries/verify')
+      .row
+        .col-sm-8
+          .mb-4
+            label.form-label(for='Issuer Name') Issuer Name:
+            input.form-control.form-control-lg(type = 'text', name = 'IssuerName', id = 'Issuer Name')
+      .row
+        .col-sm-8
+          .mb-4
+            label.form-label(for='Trust Scheme Pointers') Trust Scheme Pointer:
+            input.form-control.form-control-lg(type = 'text', name = 'TrustSchemePointer', id = 'Trust Scheme Pointer')
+      .mb-4
+        button.btn.btn-lg.me-3.navigateBtn.mb-2(type='submit', name='SubmitType', value='Previous') Verify

@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .container.mb-5(style='min-height:80vh;')
+    h1.mt-5.mb-5=TrustSchemePointer
+    .card.verification-result
+      .card-header Verification Result
+      .card-body
+        dl.row
+          dt.col-sm-3 Verification Status:
+          dd.col-sm-9 Failed
+          dt.col-sm-3 Trust Scheme Pointer:
+          dd.col-sm-9=TrustSchemePointer
+          dt.col-sm-3 Found Trust Scheme:
+          dd.col-sm-9 None
+          dt.col-sm-3 Found Trust List:
+          dd.col-sm-9 None
+          dt.col-sm-3 Found Issuer:
+          dd.col-sm-9 None

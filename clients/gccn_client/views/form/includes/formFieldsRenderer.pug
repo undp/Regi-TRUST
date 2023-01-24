@@ -1,0 +1,236 @@
+-
+  //- adds saved data to the list of attributes for a component so that the data will be populated on the HTML field
+  function addSavedData(component, attributes){
+    let keyChain =  component.Key.split('[')
+    keyChain = keyChain.map(key => {
+      if(key.charAt(key.length - 1) === ']')
+        key = key.slice(0, -1)
+
+      return key
+    })
+    
+    let value = formData
+
+    for (let i = 0; i < keyChain.length && value; i++) {
+      if(value[keyChain[i]])
+        value = value[keyChain[i]] 
+
+      else value = false
+    }
+    
+    if(value){
+      attributes.value=value;
+    }
+  }
+
+  function addValidationAttribute(component, attributes){
+    if(component.Validation && component.Validation.Required)
+      attributes.required = 'required';
+  }
+
+  function getLabel(component){
+    if(component.Validation && component.Validation.Required)
+      return component.Label + ' <span class="text-danger">*</span>';
+    else
+      return component.Label;
+  }
+
+  var valIdNum = 0
+
+mixin RenderLabel(field)
+  if field.Label
+    label.form-label(for=field.Key) !{getLabel(field)}
+
+mixin RenderLegend(field)
+  .fieldset-label
+    legend.form-label=field.Label 
+    +RenderTooltip(field)
+
+mixin RenderTooltip(component)
+  if component.Tooltip
+    button.btn.btn-link.p-0.tooltip-icon.mx-2(type='button' data-bs-container='body' data-bs-toggle='popover' data-bs-trigger='focus' data-bs-placement='top' data-bs-html='true' title=`<strong>${component.Label}</strong><br>` data-bs-content=`${component.Tooltip}`) ?
+
+mixin RenderText(field)
+  .mb-4
+    +RenderLabel(field)
+    +RenderTooltip(field)
+    - var attributes = {type: 'text', name: field.Key, id: field.Key };
+    - addSavedData(field, attributes);
+    - addValidationAttribute(field, attributes);
+    input.form-control.form-control-lg&attributes(attributes)
+
+mixin RenderURL(field)
+  .mb-4
+    +RenderLabel(field)
+    +RenderTooltip(field)
+    - var attributes = {type: 'url', name: field.Key, id: field.Key };
+    - addSavedData(field, attributes);
+    - addValidationAttribute(field, attributes);
+    input.form-control.form-control-lg&attributes(attributes)
+
+mixin RenderEmail(field)
+  .mb-4
+    +RenderLabel(field)
+    +RenderTooltip(field)
+    - var attributes = {type: 'email', name: field.Key, id: field.Key };
+    - addSavedData(field, attributes);
+    - addValidationAttribute(field, attributes);
+    input.form-control.form-control-lg&attributes(attributes)
+
+mixin RenderTel(field)
+  .mb-4
+    +RenderLabel(field)
+    +RenderTooltip(field)
+    - var attributes = {type: 'tel', name: field.Key, id: field.Key };
+    - addSavedData(field, attributes);
+    - addValidationAttribute(field, attributes);
+    input.form-control.form-control-lg&attributes(attributes)
+
+mixin RenderTextArea(field)
+  .mb-4
+    +RenderLabel(field)
+    +RenderTooltip(field)
+    - var attributes = {name: field.Key, id: field.Key, rows: '5' };
+    - var valContainer = {}
+    - addSavedData(field, valContainer)
+    - addValidationAttribute(field, attributes);
+    textarea.form-control.form-control-lg&attributes(attributes)=valContainer.value
+
+mixin RenderCheckBox(field)
+  fieldset.mb-4
+    +RenderLegend(field)
+    - var valContainer = {}
+    - addSavedData(field, valContainer)
+    .container-object
+      input(type='hidden', value=null, name=field.Key+'[]')
+      each value in field.Values
+        - valIdNum++
+        .form-check
+          input.form-check-input(type='checkbox', value=value.Value, id='cb-val-'+valIdNum, name=field.Key+'[]', checked=(valContainer.value && valContainer.value.includes(value.Value)))
+          label.form-check-label(for='cb-val-'+valIdNum)=value.Label
+
+mixin RenderRadio(field)
+  fieldset.mb-4
+      +RenderLegend(field)
+      - var valContainer = {}
+      - addSavedData(field, valContainer)
+      .container-object
+        each value in field.Values
+          -valIdNum++
+          .form-radio
+              input.form-radio-input(type='radio', value=value.Value, id='rb-val-'+valIdNum, name=field.Key, checked=(valContainer.value===value.Value))
+              label.form-radio-label(for='rb-val-'+valIdNum)=value.Label
+
+mixin RenderSelect(field) 
+  .mb-4
+    +RenderLabel(field)
+    +RenderTooltip(field)
+    - var attributes = {name:field.Key, id:field.Key}
+    - var valContainer = {}
+    - addSavedData(field, valContainer)
+    - addValidationAttribute(field, attributes)
+    select.form-select.form-select-lg&attributes(attributes)
+      option
+      each option in field.Values
+        -let selected = option.Value===valContainer.value
+        option(value=option.Value, selected=selected)=option.Label
+
+mixin RenderHidden(field)
+    input.form-hidden-input(type='hidden', value=field.Value, id=field.Key, name=field.Key)
+  
+//- Edit Grid is a multi-value container. ie. users can enter values for 0 or more objects. 
+mixin RenderEditGrid(component)
+  .mb-4
+    +RenderLabel(component)
+    +RenderTooltip(component)
+    - var valContainer = {}
+    - addSavedData(component, valContainer)
+    - if(!valContainer.value) valContainer.value = [{}]
+    .edit-grid-container(id=component.Key)
+      each row, i in valContainer.value
+        fieldset.edit-grid-object.px-2(data-index=i)
+          legend.ms-2.text-secondary=component.EntityLabel
+          .edit-grid-fields.container-object.px-2
+            +RenderGridRow(component, i)
+            .text-right
+              button.btn.btn-sm.btn-link.removeBtn(type='button')
+                svg(xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 16 16")
+                  path(d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z")
+                  path(fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z")
+
+      .text-center
+        button.btn.btn-med.addBtn.mt-3(type='button')
+          svg(xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16")
+            path(fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z")
+          span  Add !{component.EntityLabel}
+
+mixin RenderGridRow(component, row)
+  .grid-row
+    each field,i in component.Components
+        -fieldCopy = Object.assign({}, field)
+        -fieldCopy.Key = component.Key + '[' + row + '][' + field.Key + ']'
+        .grid-row-component
+          +RenderComponent(fieldCopy)
+
+mixin RenderInlineFields(component)
+  .mb-4 
+    fieldset
+      +RenderLegend(component)
+      .container-object
+        .grid-row
+          each field in component.Components 
+            -fieldCopy = Object.assign({}, field)
+            -fieldCopy.Key = component.Key + '[' + field.Key + ']';
+            .grid-row-component
+              +RenderComponent(fieldCopy)
+
+mixin RenderWrapper(component)
+  each field in component.Components
+      -fieldCopy = Object.assign({}, field);
+      if(field.Key)
+        -fieldCopy.Key = component.Key + '[' + field.Key + ']';
+      else 
+        -fieldCopy.Key = component.Key
+      +RenderComponent(fieldCopy)
+
+mixin RenderFieldset(component)
+  fieldset.mb-4
+    +RenderLegend(component)
+    .container-object.py-1.px-1
+      .fieldset-container.py-1.px-3
+        +RenderWrapper(component)
+
+mixin RenderComponent(component)
+  case component.Type
+    when 'Text'
+      case component.SubType
+        when 'Text'
+          +RenderText(component)
+        when 'URL'
+          +RenderURL(component)
+        when 'Email'
+          +RenderEmail(component)
+        when 'Tel'
+          +RenderTel(component)
+        default
+          div Component is not configured at this time.
+    when 'TextArea'
+      +RenderTextArea(component)
+    when 'CheckBox'
+      +RenderCheckBox(component)
+    when 'Radio'
+        +RenderRadio(component)
+    when 'Select'
+      +RenderSelect(component)
+    when 'Hidden'
+      +RenderHidden(component)
+    when 'EditGrid'
+      +RenderEditGrid(component)  
+    when 'InlineFields'
+      +RenderInlineFields(component)
+    when 'Wrapper'
+      +RenderWrapper(component)
+    when 'Fieldset'
+      +RenderFieldset(component)
+    default 
+      div Component is not configured at this time.
