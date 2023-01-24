@@ -1,6 +1,6 @@
 # Digital Trust Infrastructure for Discovery and Validation
 
-# Project Introduction
+## Project Introduction
 
 The Digital TRUST Infrastructure for Discovery and Validation (DigiTRUST) project, sponsored by and hosted at the United Nation Development Programme (UNDP), is intended to develop and provide a suite of tools to enable the discovery and validation of trusted services by leveraging existing Internet infrastructures of the Domain Name System (DNS) and its security extensions. 
 
