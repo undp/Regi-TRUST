@@ -58,6 +58,7 @@ const putRegistryEntry = async (entry) => {
     }
 
     const response = await axios(options)
+        .catch(err => false)
 
     return response
 }
