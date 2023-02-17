@@ -1,2 +1,2 @@
 # GCCNTrustRegistryNetwork
-Node Version Used: 16.14.0
+Node Version Used: 16.14.
