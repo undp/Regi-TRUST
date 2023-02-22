@@ -1,1 +1,1 @@
-# Global Covid-19 Certificate Network
+# Global Covid-19 Certificate Network.
