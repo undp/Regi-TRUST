@@ -1,7 +1,5 @@
 
 
-=======
-
 ## Digital Trust Infrastructure for Discovery and Validation (Regi-TRUST)
 
 ### Project Introduction 
