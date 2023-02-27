@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer')
 const smtp = require('../Config/config.json').Notifications
 const pug = require('pug')
 const { getReviewerEmails } = require('../Auth/keycloak')
+const fs = require('fs')
 
 const templatePath = './notifications/emailTemplates/'
 const linkBaseUrl = process.env.DNS || `http://localhost:${process.env.PORT}/`
@@ -21,7 +22,16 @@ const mailCallback = (err, info) => {
     if(err)
         console.error(err)
 
-    else console.log(info)
+    else {
+        console.log(info)
+        logNotification(info.envelope.to[0])
+    }
+}
+
+const logNotification = (recipient) => {
+    const line = `\n${new Date().toLocaleString()} -- Email sent to ${recipient}`
+    
+    fs.appendFile('./logs/emailNotifLog.txt', line, err => { if(err) console.error(err) })
 }
 
 const notifyNewSubmission = async (entityName, submissionId) => {

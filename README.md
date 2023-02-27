@@ -1,4 +1,7 @@
 
+
+=======
+
 ## Digital Trust Infrastructure for Discovery and Validation (Regi-TRUST)
 
 ### Project Introduction 
@@ -34,3 +37,4 @@ More information about the [pilot projects] (https://drive.google.com/file/d/1tO
 3. Development of v1.0 policy and governance guidelines
 UNDP launched a four-week open consultation to identify the key governance attributes, drivers, and considerations – from the scope of governance, governance structures and related considerations, to the role of governance in scaling the network. We aim to develop policy and governance guidelines for COVID-19 certificate/public health emergency that could be extended to other uses of Regi-TRUST.
 More information about the [governance consultation] (https://www.sparkblue.org/Regi-TRUST)
+

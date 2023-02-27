@@ -1,11 +1,12 @@
 var OidcHelper = require('openid-client-helper')
 var jwt = require('jsonwebtoken')
 const keycloak = require('../Config/keycloak.json')
+const client = require('../Config/config.json').Client
 const  axios = require('axios')
 
 const realmUrl = keycloak['auth-server-url'] + 'realms/' + keycloak['realm']
 const adminUrl = keycloak['auth-server-url'] + 'admin/realms/' + keycloak['realm']
-const clientUrl = 'http://localhost:1337/'
+const clientUrl = client.hostname
 
 const issuerMetadata = {
     issuer: realmUrl,
