@@ -1,5 +1,6 @@
 var OidcHelper = require('openid-client-helper')
 var jwt = require('jsonwebtoken')
+const config = require('../Config/config.json')
 const keycloak = require('../Config/keycloak.json')
 const client = require('../Config/config.json').Client
 const  axios = require('axios')
@@ -108,8 +109,8 @@ const _getAdminToken = async () => {
             grant_type: "password",
             client_id: clientMetadata.client_id,
             client_secret: clientMetadata.client_secret,
-            username: keycloak.admin.username,
-            password: keycloak.admin.password
+            username: config.Admin.username,
+            password: config.Admin.password
         },
         url: issuerMetadata.token_endpoint //keycloak['auth-server-url'] + 'realms/master/protocol/openid-connect/token'
     }

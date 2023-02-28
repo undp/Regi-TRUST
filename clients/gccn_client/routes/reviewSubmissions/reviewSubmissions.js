@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var SubmissionModel = require('../../data/MongoDB/mongoose').SubmissionModel;
-var { checkAuthorized, getRoles, getUserId, redirect } = require('../../Auth/keycloak');
+var { checkAuthorized, getRoles, getUserId, getAuthorization } = require('../../Auth/keycloak');
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 const { notifySubmissionReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService')
@@ -52,7 +52,7 @@ router.get('/submission/:id/accept', checkAuthorized(['Registry_reviewer']), asy
     let submission = await SubmissionModel.findById(req.params.id)
     
     accepted = await submitReview(req.params.id, getUserId(req), "accepted")
-    accepted = accepted ? await trainApi.putRegistryEntry(submission) : accepted
+    accepted = accepted ? await trainApi.putRegistryEntry(submission, getAuthorization({req})?.tokenSet?.access_token) : accepted
 
     if(!accepted)
         return res.render('./reviewSubmissions/reviewError', {

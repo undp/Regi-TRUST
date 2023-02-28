@@ -46,8 +46,8 @@ const getTspDetail = async (uid) => {
     return tsp
 }
 
-const putRegistryEntry = async (entry) => {
-    const token = await getBearerToken()
+const putRegistryEntry = async (entry, token) => {
+    //const token = await getBearerToken()
 
     const endpoint = trustListRoutes + config.publishTrustList + config.clientTrustScheme
     const options = {
