@@ -9,9 +9,5 @@
   },
   "use-resource-role-mappings": true,
   "confidential-port": 0,
-  "policy-enforcer": {},
-  "admin": {
-    "username": "*****TO_BE_UPDATED*****",
-    "password": "*****TO_BE_UPDATED*****"
-  }
+  "policy-enforcer": {}
 }

@@ -1,5 +1,9 @@
 {
-	"Client" : {
+  "Admin": {
+    "username": "*****TO_BE_UPDATED*****",
+    "password": "*****TO_BE_UPDATED*****"
+  },
+  "Client" : {
     "hostname": "*****TO_BE_UPDATED*****"
   },
   "MongoDB": {
@@ -16,13 +20,7 @@
     "tspDetail": "/trustlist/tsp/individual/",
     "publishTrustList": "/trustlist/publish/",
     "clientTrustScheme": "gccn-pilot-test.train.trust-scheme.de",
-    "verifier": "/atvtrain_vc/api/v1/gccn/verifier",
-    "tokenEndpoint": "/auth/realms/GCCN_Realm/protocol/openid-connect/token",
-    "user": "max-reviewer",
-    "pass": "max-reviewer",
-    "client_id": "GCCN",
-    "client_secret": "*****TO_BE_UPDATED*****",
-    "scope": "openid"
+    "verifier": "/atvtrain_vc/api/v1/gccn/verifier"
   },
   "Notifications": {
     "host": "*****TO_BE_UPDATED*****",
