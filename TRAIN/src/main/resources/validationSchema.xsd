@@ -1,0 +1,293 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="TrustServiceStatusList">
+        <xs:complexType>
+            <xs:sequence>
+            	<!-- choice allows any order. Min and Max Occurs define number of elements iside. -->
+            	<xs:choice minOccurs="2" maxOccurs="2" >
+            	<!-- allow only one SchemeInformation element  and one TrustServiceProviderList element-->
+	            	<xs:element name="SchemeInformation">
+	                    <xs:complexType>
+	                        <xs:sequence>
+	                        <!-- allows any order, 13 and only 13 elements -->
+	                        	<xs:choice minOccurs="13" maxOccurs="13">
+		                            <xs:element type="xs:string" name="TSLVersionIdentifier"/>
+		                            <xs:element type="xs:string" name="TSLSequenceNumber"/>
+		                            <xs:element type="xs:string" name="TSLType">
+		                            </xs:element>
+		                            <xs:element name="SchemeOperatorName">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                        <xs:element type="xs:string" name="Name"/>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+		                            <xs:element name="SchemeOperatorAddress">
+		                                <xs:complexType>
+		                                    <xs:sequence maxOccurs="unbounded">
+		                                    	<xs:choice>
+			                                        <xs:element name="PostalAddresses">
+			                                            <xs:complexType>
+			                                                <xs:sequence>
+			                                                    <xs:element name="PostalAddress">
+			                                                        <xs:complexType>
+			                                                            <xs:sequence>
+			                                                                <xs:element type="xs:string" name="StreetAddress"/>
+			                                                                <xs:element type="xs:string" name="Locality"/>
+			                                                                <xs:element type="xs:string" name="PostalCode"/>
+			                                                                <xs:element type="xs:string" name="CountryName"/>
+			                                                            </xs:sequence>
+			                                                        </xs:complexType>
+			                                                    </xs:element>
+			                                                </xs:sequence>
+			                                            </xs:complexType>
+			                                        </xs:element>
+			                                        <xs:element name="ElectronicAddress">
+			                                            <xs:complexType>
+			                                                <xs:sequence>
+			                                                    <xs:element type="xs:string" name="URI">
+			                                                    </xs:element>
+			                                                </xs:sequence>
+			                                            </xs:complexType>
+			                                        </xs:element>
+		                                        </xs:choice>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+		                            <xs:element name="SchemeName">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                        <xs:element type="xs:string" name="Name"/>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+		                            <xs:element name="SchemeInformationURI">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                        <xs:element type="xs:string" name="URI">
+		                                        </xs:element>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+		                            <xs:element name="SchemeTypeCommunityRules">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                        <xs:element type="xs:string" name="URI">
+		                                        </xs:element>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+		                            <xs:element type="xs:string" name="SchemeTerritory"/>
+		                            <xs:element name="PolicyOrLegalNotice">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                        <xs:element type="xs:string" name="TSLLegalNotice"/>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+		                            <xs:element type="xs:string" name="PointersToOtherTSL"/>
+		                            <xs:element type="xs:string" name="ListIssueDateTime">
+		                            </xs:element>
+		                            <xs:element name="NextUpdate">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                        <xs:element type="xs:string" name="dateTime">
+		                                        </xs:element>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+	                            </xs:choice>
+	                        </xs:sequence>
+	                    </xs:complexType>
+	                </xs:element>
+	                <xs:element name="TrustServiceProviderList">
+	                    <xs:complexType>
+	                        <xs:sequence>
+	                        	<!-- any number of TSPs -->
+	                        	<xs:choice minOccurs="0" maxOccurs="unbounded">
+		                            <xs:element maxOccurs="unbounded" name="TrustServiceProvider">
+		                                <xs:complexType>
+		                                    <xs:sequence>
+		                                    	<xs:choice minOccurs="6" maxOccurs="6">
+			                                        <xs:element type="xs:string" name="UID"/>
+			                                        <xs:element name="TSPServices">
+			                                            <xs:complexType>
+			                                                <xs:sequence>
+			                                                	<xs:choice minOccurs="0" maxOccurs="unbounded">
+				                                                    <xs:element name="TSPService">
+				                                                        <xs:complexType>
+				                                                            <xs:sequence>
+				                                                            	<xs:choice  minOccurs="9" maxOccurs="9">
+					                                                                <xs:element type="xs:string" name="ServiceDefinitionURI"/>
+					                                                                <xs:element type="xs:string" name="ServiceName"/>
+					                                                                <xs:element type="xs:string" name="ServiceCurrentStatus"/>
+					                                                                <xs:element name="AdditionalServiceInformation">
+					                                                                    <xs:complexType>
+					                                                                        <xs:sequence>
+					                                                                        	<xs:choice maxOccurs="3">
+						                                                                            <xs:element name="ServiceIssuedCredentialTypes">
+						                                                                                <xs:complexType>
+						                                                                                    <xs:sequence>
+						                                                                                        <xs:element type="xs:string" name="CredentialType"/>
+						                                                                                    </xs:sequence>
+						                                                                                </xs:complexType>
+						                                                                            </xs:element>
+						                                                                            <xs:element type="xs:string" name="ServiceGovernanceURI"/>
+						                                                                            <xs:element type="xs:string" name="ServiceBusinessRulesURI"/>
+					                                                                            </xs:choice>
+					                                                                        </xs:sequence>
+					                                                                    </xs:complexType>
+					                                                                </xs:element>
+					                                                                <xs:element type="xs:string" name="StatusStartingTime"/>
+					                                                                <xs:element name="OpsAgent">
+					                                                                    <xs:complexType>
+					                                                                        <xs:sequence>
+					                                                                            <xs:element name="Address">
+					                                                                                <xs:complexType>
+					                                                                                    <xs:sequence>
+				                                                                                        	<xs:choice  minOccurs="2" maxOccurs="2">
+						                                                                                        <xs:element name="PostalAddress">
+						                                                                                            <xs:complexType>
+						                                                                                                <xs:sequence>
+						                                                                                                	<xs:choice  minOccurs="6" maxOccurs="6">
+							                                                                                                    <xs:element type="xs:string" name="State"/>
+							                                                                                                    <xs:element type="xs:string" name="Country"/>
+							                                                                                                    <xs:element type="xs:string" name="PostalCode"/>
+							                                                                                                    <xs:element type="xs:string" name="City"/>
+							                                                                                                    <xs:element type="xs:string" name="StreetAddress2"/>
+							                                                                                                    <xs:element type="xs:string" name="StreetAddress1"/>
+						                                                                                                	</xs:choice>
+						                                                                                                </xs:sequence>
+						                                                                                            </xs:complexType>
+						                                                                                        </xs:element>
+					                                                                                        	<xs:element type="xs:string" name="ElectronicAddress"/>
+				                                                                                        	</xs:choice>
+					                                                                                    </xs:sequence>
+					                                                                                </xs:complexType>
+					                                                                            </xs:element>
+					                                                                            <xs:element type="xs:string" name="Name"/>
+					                                                                        </xs:sequence>
+					                                                                    </xs:complexType>
+					                                                                </xs:element>
+					                                                                <xs:element name="ServiceDigitalIdentity">
+					                                                                    <xs:complexType>
+					                                                                        <xs:sequence>
+					                                                                        	<xs:choice  minOccurs="2" maxOccurs="2">
+						                                                                            <xs:element type="xs:string" name="KeyType"/>
+						                                                                            <xs:element type="xs:string" name="Value"/>
+					                                                                        	</xs:choice>
+					                                                                        </xs:sequence>
+					                                                                    </xs:complexType>
+					                                                                </xs:element>
+					                                                                <xs:element type="xs:string" name="ServiceTypeIdentifier"/>
+					                                                                <xs:element type="xs:string" name="ServiceSupplyPoint"/>
+				                                                            	</xs:choice>
+				                                                            </xs:sequence>
+				                                                        </xs:complexType>
+				                                                    </xs:element>
+			                                                    </xs:choice>
+			                                                </xs:sequence>
+			                                            </xs:complexType>
+			                                        </xs:element>
+			                                        <xs:element type="xs:string" name="TSPCurrentStatus"/>
+			                                        <xs:element type="xs:string" name="StatusStartingTime"/>
+			                                        <xs:element name="SubmitterInfo">
+			                                            <xs:complexType>
+			                                                <xs:sequence>
+			                                                    <xs:element name="Address">
+			                                                        <xs:complexType>
+			                                                            <xs:sequence>
+			                                                                <xs:element name="PostalAddress">
+			                                                                    <xs:complexType>
+			                                                                        <xs:sequence>
+			                                                                            <xs:element type="xs:string" name="State"/>
+			                                                                            <xs:element type="xs:string" name="Country"/>
+			                                                                            <xs:element type="xs:string" name="PostalCode"/>
+			                                                                            <xs:element type="xs:string" name="City"/>
+			                                                                            <xs:element type="xs:string" name="StreetAddress2"/>
+			                                                                            <xs:element type="xs:string" name="StreetAddress1"/>
+			                                                                        </xs:sequence>
+			                                                                    </xs:complexType>
+			                                                                </xs:element>
+			                                                                <xs:element type="xs:string" name="ElectronicAddress"/>
+			                                                            </xs:sequence>
+			                                                        </xs:complexType>
+			                                                    </xs:element>
+			                                                    <xs:element type="xs:string" name="Name"/>
+			                                                </xs:sequence>
+			                                            </xs:complexType>
+			                                        </xs:element>
+			                                        <xs:element name="TSPInformation">
+			                                            <xs:complexType>
+			                                                <xs:sequence>
+			                                                    <xs:element type="xs:string" name="OtherTSL"/>
+			                                                    <xs:element name="Address">
+			                                                        <xs:complexType>
+			                                                            <xs:sequence>
+			                                                                <xs:element name="PostalAddress">
+			                                                                    <xs:complexType>
+			                                                                        <xs:sequence>
+			                                                                            <xs:element type="xs:string" name="State"/>
+			                                                                            <xs:element type="xs:string" name="Country"/>
+			                                                                            <xs:element type="xs:string" name="PostalCode"/>
+			                                                                            <xs:element type="xs:string" name="City"/>
+			                                                                            <xs:element type="xs:string" name="StreetAddress2"/>
+			                                                                            <xs:element type="xs:string" name="StreetAddress1"/>
+			                                                                        </xs:sequence>
+			                                                                    </xs:complexType>
+			                                                                </xs:element>
+			                                                                <xs:element type="xs:string" name="ElectronicAddress"/>
+			                                                            </xs:sequence>
+			                                                        </xs:complexType>
+			                                                    </xs:element>
+			                                                    <xs:element type="xs:string" name="TSPName"/>
+			                                                    <xs:element type="xs:string" name="TrustSchemeName"/>
+			                                                    <xs:element name="TSPCertificationList">
+			                                                        <xs:complexType>
+			                                                            <xs:sequence>
+			                                                                <xs:element  maxOccurs="unbounded" name="TSPCertification">
+			                                                                    <xs:complexType>
+			                                                                        <xs:sequence>
+			                                                                            <xs:element type="xs:string" name="Type"/>
+			                                                                            <xs:element type="xs:string" name="Value"/>
+			                                                                        </xs:sequence>
+			                                                                    </xs:complexType>
+			                                                                </xs:element>
+			                                                            </xs:sequence>
+			                                                        </xs:complexType>
+			                                                    </xs:element>
+			                                                    <xs:element name="TSPEntityIdentifierList">
+			                                                        <xs:complexType>
+			                                                            <xs:sequence>
+			                                                                <xs:element maxOccurs="unbounded" name="TSPEntityIdentifier">
+			                                                                    <xs:complexType>
+			                                                                        <xs:sequence>
+			                                                                            <xs:element type="xs:string" name="Type"/>
+			                                                                            <xs:element type="xs:string" name="Value"/>
+			                                                                        </xs:sequence>
+			                                                                    </xs:complexType>
+			                                                                </xs:element>
+			                                                            </xs:sequence>
+			                                                        </xs:complexType>
+			                                                    </xs:element>
+			                                                    <xs:element type="xs:string" name="TSPLegalName"/>
+			                                                    <xs:element type="xs:string" name="TSPLegalBasis"/>
+			                                                    <xs:element type="xs:string" name="TSPRole"/>
+			                                                    <xs:element type="xs:string" name="TSPKeywords"/>
+			                                                    <xs:element type="xs:string" name="TSPInformationURI"/>
+			                                                </xs:sequence>
+			                                            </xs:complexType>
+			                                        </xs:element>
+		                                    	</xs:choice>
+		                                    </xs:sequence>
+		                                </xs:complexType>
+		                            </xs:element>
+	                       		</xs:choice>
+	                        </xs:sequence>
+	                    </xs:complexType>
+	                </xs:element>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="TSLTag" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

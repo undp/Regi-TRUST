@@ -25,7 +25,7 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     http
       .authorizeRequests()
       .antMatchers("/api/v1/gccn/truslist/publish/{TrustSchemeName}")
-      .hasAnyRole("reviewer")
+      .hasAnyRole("Registry_reviewer")
       .anyRequest()
       .permitAll();
     http.csrf().disable();
