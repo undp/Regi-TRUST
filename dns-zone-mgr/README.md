@@ -1,4 +1,4 @@
-# DNS ZoneManager fro Regi-TRUST
+# DNS ZoneManager for Regi-TRUST
 
 Zone Manager setup for the project [Regi-TRUST](https://github.com/undp/Regi-TRUST)
 
