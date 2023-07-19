@@ -5,18 +5,15 @@ import com.nimbusds.jose.shaded.json.JSONArray;
 import com.train.tspagccn.api.VersionFactory;
 import com.train.tspagccn.api.exceptions.InvalidStatusCodeException;
 import com.train.tspagccn.api.exceptions.UnknownInterfaceVersion;
-import com.train.tspagccn.api.v1.models.json.JsonDaneCertificate;
 import com.train.tspagccn.api.v1.models.json.JsonTrustListPublication;
 import com.train.tspagccn.interfaces.publication.IPublicationManager;
 import com.train.tspagccn.interfaces.zone.IZoneManager;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
@@ -27,9 +24,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-import org.apache.commons.codec.digest.DigestUtils;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.logging.Log;
@@ -41,6 +49,7 @@ import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.jdom2.transform.JDOMSource;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -77,7 +86,7 @@ public class Controller {
     mZoneManager.setConfiguration(mConfig);
     mPublicationManager.setConfiguration(mConfig);
     // System.out.println("reached here");
-    mLog.info("Reached here");
+    mLog.info("zone and publication manager configured with config.properties");
   }
 
   /*
@@ -118,11 +127,12 @@ public class Controller {
       JsonTrustListPublication pub = new JsonTrustListPublication();
       // String localTestPublishUrl =
       // "http://localhost:8000/tspa/api/v1/gccn/trustregistry/";
-      String localTestPublishUrl =
-        "https://essif.iao.fraunhofer.de/tspa/api/v1/gccn/trustregistry/";
+      // String localTestPublishUrl =
+      // "https://essif.iao.fraunhofer.de/tspa/api/v1/gccn/trustregistry/";
       // String localTestPublishUrl =
       // "https://essif.trust-scheme.de/tspa/api/v1/gccn/trustregistry/";
-      pub.setUrl(localTestPublishUrl + schemeName);
+      String publishUrlBase = mConfig.getString("publishUrlBase");
+      pub.setUrl(publishUrlBase + "/gccn/trustregistry/" + schemeName);
 
       // JsonDaneCertificate dane = new JsonDaneCertificate();
       // dane.setData(certEncoded.toUpperCase());
@@ -152,7 +162,7 @@ public class Controller {
     } catch (InvalidStatusCodeException e) {
       mLog.error(e.getMessage(), e);
       return new ResponseEntity<String>(
-        "Error " + e.getCode(),
+        "Error. " + e.getMessage() + "with code: " + e.getCode(),
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     }
@@ -203,7 +213,6 @@ public class Controller {
     // --> convert the Json request body into XML format
     JSONObject jsonBody = new JSONObject(body);
     String xmlTsp = XML.toString(jsonBody);
-    mLog.info(xmlTsp);
 
     // --> prevent multiple entries for the same TSP
     String uid = jsonBody.getJSONObject("TrustServiceProvider").getString("UID");
@@ -229,6 +238,16 @@ public class Controller {
     // --> add new TSP to whole xml structure
     tspListElement.addContent(rootE.detach());
 
+    // --> validate the final XML against XSD schema
+
+    /*
+     * mLog.info("Performing validation before publishing..."); String
+     * validationResponse = isValidXML("xsd", trustRegistry); if (validationResponse
+     * != "OK") { mLog.info("Validation failed"); return new ResponseEntity<String>(
+     * "Request body failed schema validation. \n " + validationResponse,
+     * HttpStatus.BAD_REQUEST ); }
+     */
+
     // --> Publish the updated XML to the server
     String outputter = new XMLOutputter(Format.getPrettyFormat())
     .outputString(trustRegistry);
@@ -239,7 +258,7 @@ public class Controller {
   }
 
   /**
-   * (2) Returns a simplified list of TSPs in schemeName registry: {
+   * (2) GET a simplified list of TSPs in schemeName registry: {
    * "TrustListEntries": [ { "TSPName": "string", "TrustSchemeName": "string" } ]
    * }
    *
@@ -259,7 +278,6 @@ public class Controller {
     mLog.info(
       "--------------- GET SIMPLIFIED LIST OF TSPs IN A TRUST REGISTRY ---------------"
     );
-
     // --> Get the XML file as JDOM document
     Document trustRegistry;
     try {
@@ -286,16 +304,16 @@ public class Controller {
     // Extract all TSPs in the trust scheme and list them in json format
     List<Element> list = tspListElement.getChildren("TrustServiceProvider");
     for (Element tsp : list) {
+      String UID = tsp.getChild("UID").getValue();
       String tspName = tsp.getChild("TSPInformation").getChild("TSPName").getValue();
       String tspTrustSchemeName = tsp
         .getChild("TSPInformation")
         .getChild("TrustSchemeName")
         .getValue();
-      String uid = tsp.getChild("UID").getValue();
       JSONObject trustListEntry = new JSONObject();
+      trustListEntry.put("UID", UID);
       trustListEntry.put("TSPName", tspName);
       trustListEntry.put("TrustSchemeName", tspTrustSchemeName);
-      trustListEntry.put("UID", uid);
       tspArray.appendElement(trustListEntry);
     }
     jsonResponse.put("trustListEntries", tspArray);
@@ -305,7 +323,7 @@ public class Controller {
   }
 
   /**
-   * (3) Returns a list of full detailed TSPs in the trust registry schemeName.
+   * (3) GET a list of full detailed TSPs in the trust registry schemeName.
    *
    * @throws JSONException
    */
@@ -373,8 +391,8 @@ public class Controller {
   }
 
   /**
-   * (4) Delivers the details of an individual TSP. It returns the same json
-   * object that was used as body in the PUT (publish) request.
+   * (4) GET the details of an individual TSP. It returns the same json object
+   * that was used as body in the PUT (publish) request.
    *
    * @throws JSONException
    */
@@ -425,6 +443,10 @@ public class Controller {
         .body("TSP with UID " + uid + " not found.");
     } else {
       // Here: return the json object of currentTSP
+      mLog.info(
+        "--> Current ID taken directly from the XML: " +
+        currentTSP.getChild("UID").getValue()
+      );
       String outputter = new XMLOutputter(Format.getPrettyFormat())
       .outputString(currentTSP);
       JSONObject xmlJSONObj;
@@ -433,7 +455,7 @@ public class Controller {
         xmlJSONObj = XML.toJSONObject(outputter);
         int PRETTY_PRINT_INDENT_FACTOR = 4;
         jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
-        System.out.println(jsonPrettyPrintString);
+        // System.out.println(jsonPrettyPrintString);
       } catch (JSONException je) {
         System.out.println(je.toString());
         return ResponseEntity
@@ -545,27 +567,33 @@ public class Controller {
       buildManager(mApiVersion);
       // String signed = mPublicationManager.signTrustList(data);
       mPublicationManager.publishTrustList(schemeName, data);
-      X509Certificate cert = mPublicationManager.extractSignature(data);
-      mLog.debug(cert);
-      mLog.debug(Arrays.toString(cert.getEncoded()));
-      String certEncoded = DigestUtils.sha256Hex(cert.getEncoded());
+
+      // Throwing error in extractSignature: The node is empty. To be checked.
+      // 27.02.2023
+      // X509Certificate cert = mPublicationManager.extractSignature(data);
+      // mLog.debug(cert);
+      // mLog.debug(Arrays.toString(cert.getEncoded()));
+      // String certEncoded = DigestUtils.sha256Hex(cert.getEncoded());
 
       JsonTrustListPublication pub = new JsonTrustListPublication();
       // pub.setUrl("http://localhost:8000/api/v1/scheme/" + schemeName);
-      pub.setUrl("https://essif.iao.fraunhofer.de/tspa/api/v1/scheme/" + schemeName);
-      // pub.setUrl("https://essif.trust-scheme.de/tspa/api/v1/scheme/" + schemeName);
+      // pub.setUrl("https://essif.iao.fraunhofer.de/tspa/api/v1/scheme/" +
+      // schemeName);
+      // where the trust list XML is located (can be accessed directly from browser)
+      String publishUrlBase = mConfig.getString("publishUrlBase");
+      pub.setUrl(publishUrlBase + "/scheme/" + schemeName);
 
-      JsonDaneCertificate dane = new JsonDaneCertificate();
-      dane.setData(certEncoded.toUpperCase());
-      dane.setUsage("dane-ee");
-      dane.setSelector("cert");
-      dane.setMatching("sha256");
-
-      pub.setCertificate(dane);
-
-      if (!pub.verify()) {
-        throw new IOException();
-      }
+      // JsonDaneCertificate dane = new JsonDaneCertificate();
+      // dane.setData(certEncoded.toUpperCase());
+      // dane.setUsage("dane-ee");
+      // dane.setSelector("cert");
+      // dane.setMatching("sha256");
+      //
+      // pub.setCertificate(dane);
+      //
+      // if (!pub.verify()) {
+      // throw new IOException();
+      // }
 
       Gson gson = new Gson();
       String zoneData = gson.toJson(pub);
@@ -573,13 +601,10 @@ public class Controller {
     } catch (UnknownInterfaceVersion unknownInterfaceVersion) {
       mLog.error(unknownInterfaceVersion.getMessage(), unknownInterfaceVersion);
       return Response.serverError().entity("Failed to build API interface").build();
-    } catch (
-      IOException
-      | SAXException
-      | XPathExpressionException
-      | CertificateEncodingException
-      | ParserConfigurationException e
-    ) {
+    } catch (IOException e) {
+      // removed exceptions: | SAXException | XPathExpressionException |
+      // CertificateEncodingException | ParserConfigurationException |
+      // CertificateException
       mLog.error(e.getMessage(), e);
       return Response
         .serverError()
@@ -588,11 +613,73 @@ public class Controller {
     } catch (InvalidStatusCodeException e) {
       mLog.error(e.getMessage(), e);
       return Response.status(e.getCode()).entity(e.getCustomErrorMessage()).build();
-    } catch (CertificateException e) {
-      e.printStackTrace();
     }
 
     return Response.ok().build();
+  }
+
+  /*
+   * Helper function to validate a XML file against a defined XSD trust list
+   * scheme.
+   */
+  private static String isValidXML(String xsdPath, Document xmlDocument) {
+    // parse an XML document into a DOM tree
+    DocumentBuilder parser;
+    org.w3c.dom.Document document;
+    try {
+      parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
+      // Option 1, convert the JDOM xml document into a file
+      // XMLOutputter outputter = new XMLOutputter();
+      // String docString = outputter.outputString(xmlDocument);
+      // InputStream inputstream = new ByteArrayInputStream(docString.toByteArray());
+
+      // This is to convert JDOM xml document into an InputStream to then be parsed
+      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      Source xmlSource = new JDOMSource(xmlDocument);
+      Result outputTarget = new StreamResult(outputStream);
+      try {
+        TransformerFactory
+          .newInstance()
+          .newTransformer()
+          .transform(xmlSource, outputTarget);
+      } catch (TransformerException | TransformerFactoryConfigurationError e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+        return e.getLocalizedMessage();
+      }
+      InputStream inputstreamFromXMLdoc = new ByteArrayInputStream(
+        outputStream.toByteArray()
+      );
+
+      document = parser.parse(inputstreamFromXMLdoc); // receives an InsputStream
+      // document = parser.parse(new File("xmlPath")); // receives an InsputStream
+      // create a SchemaFactory capable of understanding WXS schemas
+      SchemaFactory factory = SchemaFactory.newInstance(
+        XMLConstants.W3C_XML_SCHEMA_NS_URI
+      );
+
+      // load a WXS schema, represented by a Schema instance
+      // Source schemaFile = new StreamSource(new File(xsdPath));
+      Source schemaFile = new StreamSource(
+        new File("./src/main/resources/validationSchema.xsd")
+      );
+      Schema schema = factory.newSchema(schemaFile);
+
+      // create a Validator instance, which can be used to validate an instance
+      // document
+      Validator validator = schema.newValidator();
+      validator.validate(new DOMSource(document));
+      System.out.println("Schema validation OK.");
+      return "OK";
+    } catch (SAXException | IOException e) {
+      System.err.println("Validation exception. " + e.getLocalizedMessage());
+      return e.getLocalizedMessage();
+    } catch (ParserConfigurationException e) {
+      System.err.println("Validation exception. " + e.getLocalizedMessage());
+      // e.printStackTrace();
+      return e.getLocalizedMessage();
+    }
   }
 
   /* Not used */
@@ -700,7 +787,7 @@ public class Controller {
     @PathVariable("TrustSchemeName") String trustSchemeName,
     @PathVariable("UID") String UID,
     @RequestBody String body
-    //  @RequestHeader String Authorization add before commit.
+    // @RequestHeader String Authorization add before commit.
   )
     throws JDOMException, IOException, JSONException {
     mLog.info("------- PUT REQUEST TO ADD NEW TSP TO TRUST REGISTRY --------");

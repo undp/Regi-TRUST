@@ -5,7 +5,11 @@ import com.train.tspagccn.api.exceptions.InvalidStatusCodeException;
 import com.train.tspagccn.api.v1.models.json.JsonTrustListPublication;
 import com.train.tspagccn.interfaces.zone.IZoneManager;
 import java.io.IOException;
-import okhttp3.*;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -71,6 +75,7 @@ public class ZoneManager implements IZoneManager {
     RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, service);
 
     Request request = buildRestPutRequest(endpoint, body);
+    mLog.info(request);
 
     int statusCode = sendRequest(request);
 

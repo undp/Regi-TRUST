@@ -1,0 +1,10 @@
+[Unit]
+Description=ZoneManager
+After=network.target
+
+[Service]
+ExecStart=/usr/lib/zonemgr/zonemanager.py --database sqlite:////var/lib/zonemgr/zones.db server -e lightest 127.0.0.1:8008
+
+[Install]
+WantedBy=multi-user.target
+
