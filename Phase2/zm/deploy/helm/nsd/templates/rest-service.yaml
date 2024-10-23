@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nsd-service.fullname" . }}-rest
+  labels:
+    {{- include "nsd-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.rest.type }}
+  ports:
+    - port: {{ .Values.service.rest.externalPort }}
+      targetPort: {{ .Values.service.rest.containerPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "nsd-service.selectorLabels" . | nindent 4 }}

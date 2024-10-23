@@ -1,0 +1,19 @@
+{
+  "zones": [
+    {
+      "id": "zoneid",
+      "apex": "zoneapex",
+      "schemes": [
+        {
+          "name": "schemeName",
+          "subSchemes": [
+            {
+              "subscheme": "subSchemeName",
+              "trustListDid": "did"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

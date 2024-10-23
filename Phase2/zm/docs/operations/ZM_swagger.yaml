@@ -1,0 +1,199 @@
+securityDefinitions:
+  jwt_auth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization:
+      Bearer {token}"'
+paths:
+  /status:
+    get:
+      description: Get zone manager service status
+      tags:
+      - Health Check
+      responses:
+        '200':
+          description: Status and healthcheck
+          schema:
+            $ref: '#/definitions/StatusResponse'
+        '401':
+          description: Unauthorized, not valid token
+  /names/{scheme_name}/trust-list:
+    delete:
+      description: Delete trust list pointer
+      tags:
+      - Trust Lists (DIDs)
+      security:
+      - jwt_auth: []
+      responses:
+        '204':
+          description: Pointer to trust list removed
+        '401':
+          description: Unauthorized, not valid token
+        '404':
+          description: Not found
+    get:
+      description: Get trust list pointer
+      security:
+      - jwt_auth: []
+      tags:
+      - Trust Lists (DIDs)
+      responses:
+        '200':
+          description: Trust list pointer
+        '401':
+          description: Unauthorized, not valid token
+        '404':
+          description: Not found. Non existing trust list framework
+    put:
+      description: Publish trust list pointer
+      tags:
+      - Trust Lists (DIDs)
+      security:
+      - jwt_auth: []
+      responses:
+        '200':
+          description: Publish trust list pointer
+          schema:
+            $ref: '#/definitions/TrustListResponse'
+        '401':
+          description: Unauthorized, not valid token
+  /names/{scheme_name}/schemes:
+    delete:
+      description: Delete trust list framework
+      tags:
+      - Schemes (Trust Frameworks)
+      security:
+      - jwt_auth: []
+      responses:
+        '204':
+          description: Pointer to trust framework removed
+        '401':
+          description: Unauthorized, not valid token
+        '404':
+          description: Not found. Non-existing framework
+    get:
+      description: Get trust Framework pointer
+      tags:
+      - Schemes (Trust Frameworks)
+      security:
+      - jwt_auth: []
+      responses:
+        '200':
+          description: Trust Framework pointer
+          schema:
+            $ref: '#/definitions/SchemesResponse'
+        '401':
+          description: Unauthorized, not valid token
+        '404':
+          description: Not found. Non existing trust Framework
+    put:
+      description: Publish trust Framework pointer
+      tags:
+      - Schemes (Trust Frameworks)
+      security:
+      - jwt_auth: []
+      responses:
+        '200':
+          description: Trust Framework pointer publication
+          schema:
+            $ref: '#/definitions/SchemesResponse'
+        '401':
+          description: Unauthorized, not valid token
+  /view-zone:
+    get:
+      description: Visualization of zone
+      tags:
+      - View Zone
+      security:
+      - jwt_auth: []
+      responses:
+        '200':
+          description: Zone visualization
+          schema:
+            $ref: '#/definitions/ViewZoneResponse'
+        '401':
+          description: Unauthorized, not valid token
+info:
+  title: Eclipse XFSC TRAIN DNS Trustzone Manager...
+  version: 1.0.0
+swagger: '2.0'
+definitions:
+  Dependencies:
+    type: object
+    properties:
+      Zone_Manager_server_status:
+        type: string
+      Database_status:
+        type: string
+      NSD_server_status:
+        type: string
+  StatusResponse:
+    type: object
+    properties:
+      zone:
+        type: string
+      status:
+        type: string
+      dependencies:
+        $ref: '#/definitions/Dependencies'
+  SubScheme:
+    type: object
+    properties:
+      subscheme:
+        type: string
+      trustListDid:
+        type: string
+    required:
+    - subscheme
+    - trustListDid
+  Scheme:
+    type: object
+    properties:
+      name:
+        type: string
+      subSchemes:
+        type: array
+        items:
+          $ref: '#/definitions/SubScheme'
+    required:
+    - name
+    - subSchemes
+  Zone:
+    type: object
+    properties:
+      id:
+        type: string
+      apex:
+        type: string
+      schemes:
+        type: array
+        items:
+          $ref: '#/definitions/Scheme'
+    required:
+    - apex
+    - id
+    - schemes
+  ViewZoneResponse:
+    type: object
+    properties:
+      zones:
+        type: array
+        items:
+          $ref: '#/definitions/Zone'
+    required:
+    - zones
+  SchemesResponse:
+    type: object
+    properties:
+      schemes:
+        type: array
+        items:
+          type: string
+  TrustListResponse:
+    type: object
+    properties:
+      did:
+        type: string
+    required:
+    - did

@@ -1,0 +1,116 @@
+# Default values for tcr-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: nsd-ui-service
+replicaCount: 1
+
+image:
+#  repository: gitlab.eclipse.org/eclipse/xfsc/train/trusted-content-resolver/-/harbor/repositories/train/trusted-content-resolver-service
+  repository: node-654e3bca7fbeeed18f81d7c7.ps-xaas.io/train/dns-zone-manager-ui
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "master"
+
+#imagePullSecrets: []
+#nameOverride: ""
+fullnameOverride: "nsd-ui-service"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: 
+  allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  containerPort: 80
+
+ingress:
+  dns:
+    namespace: 'train'
+  enabled: true
+  className: nginx
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+  hosts:
+    - host: zonemgr.train1.xfsc.dev
+      paths:
+        - path: /ui
+          pathType: Prefix
+    - host: nsd-ui-server.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: ingress-zonemgr-secret
+      hosts:
+        - zonemgr.train1.xfsc.dev
+
+   
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - nsd-service
+          topologyKey: "kubernetes.io/hostname"
+          
+restartPolicy: Always
+
+application:
+  properties:
+    zonemgr_url: <zonemgr URL>
+    oidc_issuer_url: <oidc_issuer_url>
+    oidc_client_id: your client id
+    oidc_client_secret: your client secret
+    oidc_scopes: "openid email profile"
+    ui_host: your ui host
+    cookie_secret: a cookie secret
+    node_tls_reject_unauthorized: "1"
+    app_base_url_path: "/ui"
+    configmap:
+      name: nsd-ui-configmap

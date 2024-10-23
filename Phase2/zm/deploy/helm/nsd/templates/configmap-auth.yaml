@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nsd-config-auth
+data: 
+  auth.conf: |
+    ISSUER_URL = {{.Values.application.properties.authConfigFileContent.ISSUER_URL}}
+    CLIENT_ID = {{.Values.application.properties.authConfigFileContent.CLIENT_ID}}
+    ALLOW_UNSAFE_SSL = {{.Values.application.properties.authConfigFileContent.ALLOW_UNSAFE_SSL}}

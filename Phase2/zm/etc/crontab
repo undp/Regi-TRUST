@@ -1,0 +1,1 @@
+5 0 * * * /usr/lib/zonemgr/zonemanager.py --database sqlite:////var/lib/zonemgr/zones.db resign

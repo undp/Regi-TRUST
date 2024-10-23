@@ -1,0 +1,132 @@
+# Default values for tcr-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: nsd-service
+replicaCount: 1
+
+image:
+#  repository: gitlab.eclipse.org/eclipse/xfsc/train/trusted-content-resolver/-/harbor/repositories/train/trusted-content-resolver-service
+  repository: node-654e3bca7fbeeed18f81d7c7.ps-xaas.io/train/dns-zone-manager-nsd
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "master"
+
+#imagePullSecrets: []
+#nameOverride: ""
+fullnameOverride: "nsd-service"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: 
+  allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  rest:
+    type: ClusterIP
+    externalPort: 16001
+    containerPort: 16001
+  dns:
+    type: LoadBalancer
+    externalPort: 53
+    containerPort: 53
+
+ingress:
+  dns:
+    namespace: 'train'
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.allow-http: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+  hosts:
+    - host: zonemgr.train1.xfsc.dev
+      paths:
+        - path: /
+          pathType: Prefix
+    - host: nsd-server.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: 
+    - secretName: ingress-zonemgr-secret
+      hosts:
+        - zonemgr.train1.xfsc.dev
+   
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+probes:
+  path: /status
+  initialDelaySeconds: 30
+  periodSeconds: 30
+  timeoutSeconds: 5
+
+volumes:
+  size: 1Gi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - nsd-service
+          topologyKey: "kubernetes.io/hostname"
+          
+restartPolicy: Always
+
+application:
+  properties:
+    zoneConfig: 
+      TF_DOMAIN_NAME: your_federation_zone
+      TF_DOMAIN_IP: 1.2.3.4
+      PRIMARY_SERVER_NSD: nameserver1_for_your_federation_zone
+      PRIMARY_SERVER_IP: 1.2.3.4
+      SECONDARY_SERVER_1_NSD: nameserver2_for_your_federation_zone
+      SECONDARY_SERVER_1_IP: 1.2.3.4
+      SECONDARY_SERVER_2_NSD: nameserver3_for_your_federation_zone
+      SECONDARY_SERVER_2_IP: 1.2.3.4
+    authConfigFileContent:
+      ISSUER_URL: "<your issuer>"
+      CLIENT_ID: "<your allowed client/audience>"
+      ALLOW_UNSAFE_SSL: "false"
+

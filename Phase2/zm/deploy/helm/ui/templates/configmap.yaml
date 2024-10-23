@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.application.properties.configmap.name }}
+data:
+  ZONEMGR_URL: {{ .Values.application.properties.zonemgr_url }}
+  OIDC_ISSUER_URL: {{ .Values.application.properties.oidc_issuer_url }}
+  OIDC_CLIENT_ID: {{ .Values.application.properties.oidc_client_id }}
+  OIDC_CLIENT_SECRET: {{ .Values.application.properties.oidc_client_secret }}
+  OIDC_SCOPES: {{ .Values.application.properties.oidc_scopes }}
+  UI_HOST: {{ .Values.application.properties.ui_host }}
+  COOKIE_SECRET: {{ .Values.application.properties.cookie_secret }}
+  NODE_TLS_REJECT_UNAUTHORIZED: {{ .Values.application.properties.node_tls_reject_unauthorized }}
+  APP_BASE_URL_PATH: {{ .Values.application.properties.app_base_url_path }}
