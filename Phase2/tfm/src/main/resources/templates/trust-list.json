@@ -1,0 +1,44 @@
+{
+  "TrustServiceStatusList": {
+    "FrameworkInformation": {
+      "TSLVersionIdentifier": "1",
+      "TSLSequenceNumber": "1",
+      "TSLType": "http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC",
+      "FrameworkOperatorName": {
+        "Name": "Federation 1"
+      },
+      "FrameworkOperatorAddress": {
+        "PostalAddresses": {
+          "PostalAddress": [
+            {
+              "StreetAddress": "Hauptsrasse",
+              "Locality": "Stuttgart",
+              "PostalCode": "70563",
+              "CountryName": "DE"
+            }
+          ]
+        },
+        "ElectronicAddress": {
+          "URI": "mailto:admin@federation1.de"
+        }
+      },
+      "FrameworkName": {
+        "Name": "federation1.train.trust-Framework.de"
+      },
+      "FrameworkInformationURI": {
+        "URI": "https://TRAIN/interoperability/federation-Directory"
+      },
+      "FrameworkAuditURI": {
+        "URI": "https://TRAIN/interoperability/Audit"
+      },
+      "FrameworkTypeCommunityRules": {
+        "URI": "https://TrustFramework_TRAIN.example.com/en/federation1-dir-rules.html"
+      },
+      "FrameworkScope": "EU",
+      "PolicyOrLegalNotice": {
+        "TSLLegalNotice": "The applicable legal framework for the present trusted list is TBD. Valid legal notice text will be created."
+      },
+      "ListIssueDateTime": "2023-12-15T00:00:00Z"
+    }
+  }
+}

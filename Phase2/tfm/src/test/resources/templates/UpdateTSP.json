@@ -1,0 +1,77 @@
+{
+  "TrustServiceProvider":{
+      "UUID": "8271fcbf-0622-4415-b8b1-34ad74215dc7",
+	  "TSPName": "XYZ Gmbh",
+	  "TSPTradeName": "XYZ Gmbh",
+	  "TSPInformation": {
+		"Address": {
+		  "ElectronicAddress": "info@companya.de",
+		  "PostalAddress": {
+			"City": "Siegen",
+			"Country": "DE",
+			"PostalCode": "22222",
+			"State": "NRW",
+			"StreetAddress1": "Hauptsr",
+			"StreetAddress2": "054"
+		  }
+		},
+		"TSPCertificationList":{
+		"TSPCertification": [
+		  {
+			"Type": "ISO:9002",
+			"Value": "4356546745"
+		  },
+		  {
+			"Type": "EU-VAT",
+			"Value": "4356546745"
+		  }
+		]
+		},
+		"TSPEntityIdentifierList": {
+		  "TSPEntityIdendifier":[ {
+			"Type": "vLEI",
+			"Value": "3453654764"
+		  },
+		  {
+			"Type": "VAT",
+			"Value": "3453654764"
+		  }
+		  ]
+		},
+		"TSPInformationURI": "string"
+	  },
+	  "TSPServices": {
+		"TSPService": [{
+		  "ServiceName": "Federation Notary",
+		  "ServiceTypeIdentifier": "string",
+		  "ServiceCurrentStatus": "string",
+		  "StatusStartingTime": "string",
+		  "ServiceDefinitionURI": "string",
+		  "ServiceDigitalIdentity": {
+			"DigitalId":{
+			  "X509Certificate": "sgdhfgsfhdsgfhsgfs",
+			  "DID": "did:web:essif.iao.fraunhofer.de"
+			}
+		  },
+		  "AdditionalServiceInformation": {
+			"ServiceBusinessRulesURI": "string",
+			"ServiceGovernanceURI": "string",
+			"ServiceIssuedCredentialTypes":{
+				"CredentialType": [
+			  {
+				"Type": "string"
+			  },
+			  {
+				"Type": "string"
+			  }
+			]
+			},
+			"ServiceContractType": "string",
+			"ServicePolicySet": "string",
+			"ServiceSchemaURI": "string",
+			"ServiceSupplyPoint": "string"
+		  }
+		}
+	  ]}
+	}
+}

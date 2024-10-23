@@ -1,0 +1,77 @@
+{
+    "TrustServiceProvider":{
+        "UUID": 1,
+        "TSPName": "CompanyaA Gmbh",
+        "TSPTradeName": "CompanyaA Gmbh",
+        "TSPInformation": {
+          "Address": {
+            "ElectronicAddress": "info@companya.de",
+            "PostalAddress": {
+              "City": "Stuttgart",
+              "Country": "DE",
+              "PostalCode": "11111",
+              "State": "BW",
+              "StreetAddress1": "Hauptsr",
+              "StreetAddress2": "071"
+            }
+          },
+          "TSPCertificationList":{
+          "TSPCertification": [
+            {
+              "Type": "ISO:9001",
+              "Value": "4356546745"
+            },
+            {
+              "Type": "EU-VAT",
+              "Value": "4356546745"
+            }
+          ]
+          },
+          "TSPEntityIdentifierList": {
+            "TSPEntityIdendifier":[ {
+              "Type": "vLEI",
+              "Value": "3453654764"
+            },
+            {
+              "Type": "VAT",
+              "Value": "3453654764"
+            }
+            ]
+          },
+          "TSPInformationURI": "string"
+        },
+        "TSPServices": {
+          "TSPService": [{
+            "ServiceName": "Federation Notary",
+            "ServiceTypeIdentifier": "string",
+            "ServiceCurrentStatus": "string",
+            "StatusStartingTime": "string",
+            "ServiceDefinitionURI": "string",
+            "ServiceDigitalIdentity": {
+              "DigitalId":{
+                "X509Certificate": "sgdhfgsfhdsgfhsgfs",
+                "DID": "did:web:essif.iao.fraunhofer.de"
+              }
+            },
+            "AdditionalServiceInformation": {
+              "ServiceBusinessRulesURI": "string",
+              "ServiceGovernanceURI": "string",
+              "ServiceIssuedCredentialTypes":{
+                  "CredentialType": [
+                {
+                  "Type": "string"
+                },
+                {
+                  "Type": "string"
+                }
+              ]
+              },
+              "ServiceContractType": "string",
+              "ServicePolicySet": "string",
+              "ServiceSchemaURI": "string",
+              "ServiceSupplyPoint": "string"
+            }
+          }
+        ]}
+      }
+  }

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TrustServiceStatusList>
+  <FrameworkInformation>
+    <TSLVersionIdentifier>1</TSLVersionIdentifier>
+    <TSLSequenceNumber>1</TSLSequenceNumber>
+    <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
+    <FrameworkOperatorName>
+      <Name>Sacred Heart Hospital</Name>
+    </FrameworkOperatorName>
+    <FrameworkOperatorAddress>
+      <PostalAddresses>
+        <PostalAddress>
+          <StreetAddress>Hauptstrasse 11</StreetAddress>
+          <Locality>Berlin</Locality>
+          <PostalCode>10785</PostalCode>
+          <CountryName>DE</CountryName>
+        </PostalAddress>
+      </PostalAddresses>
+      <ElectronicAddress>
+        <URI>mailto:admin@sh-hospital.de</URI>
+      </ElectronicAddress>
+    </FrameworkOperatorAddress>
+    <FrameworkName>
+      <Name>train.sh-hospital.de</Name>
+    </FrameworkName>
+    <FrameworkInformationURI>
+      <URI>https://sh-hospital.de/TRAIN/interoperability/federation-directory</URI>
+    </FrameworkInformationURI>
+	<FrameworkAuditURI>
+      <URI>https://sh-hospital.de/TRAIN/interoperability/Audit</URI>
+    </FrameworkAuditURI>
+    <FrameworkTypeCommunityRules>
+      <URI>https://sh-hospital.de/TRAIN/en/federation1-dir-rules.html</URI>
+    </FrameworkTypeCommunityRules>
+    <FrameworkScope>Partcipant Trust List</FrameworkScope>
+    <PolicyOrLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is TBD. Valid legal notice text will be created.</TSLLegalNotice>
+    </PolicyOrLegalNotice>
+    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+  </FrameworkInformation>
+  <TrustServiceProviderList>
+	   <TrustServiceProvider>
+		 <UUID>2339377</UUID>
+		 <TSPName>Laboratory diagnostics</TSPName>
+		 <TSPTradeName>Healtsense Laboratory Diagnostics Gmbh</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>admin@healthsense.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Berlin</City>
+                  <Country>DE</Country>
+                  <PostalCode>10785</PostalCode>
+                  <StreetAddress1>Hauptstrasse 11</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE912314869</Value>
+               </TSPCertification>
+			   <TSPCertification>                  
+                     <Type>DIN EN ISO 15189</Type>
+					 <Value>D-PL-17452-04-00</Value>
+               </TSPCertification>
+			   <TSPCertification>                  
+                     <Type>DIN EN ISO 9001</Type>
+                     <Value>D-PL-13792-04-00</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPEntityIdentifierList>
+               <TSPEntityIdendifier>
+					 <Type>LEI</Type>
+                     <Value>344821993YY72E4FBC42</Value>
+               </TSPEntityIdendifier>
+            </TSPEntityIdentifierList>
+            <TSPInformationURI>https://healthsense.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Covid-19 Testing</ServiceName>
+				<ServiceTypeIdentifier>did:web:cov19.healthsense.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:cov19.healthsense.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://cov19.healthsense.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://cov19.healthsense.de/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+						<CredentialType>
+							<Type>Covid-19 Test Certificate</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://cov19.healthsense.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://cov19.healthsense.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://cov19.healthsense.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://cov19.healthsense.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			     <TSPService>
+				<ServiceName>Comprehensive Metabolic Panel</ServiceName>
+				<ServiceTypeIdentifier>did:web:cmp.healthsense.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>345example</X509Certificate>
+						<DID>did:web:cmp.healthsense.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://cmp.healthsense.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://cmp.healthsense.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://cmp.healthsense.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://cmp.healthsense.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://cmp.healthsense.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://cmp.healthsense.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	  <TrustServiceProvider>
+		 <UUID>3251835</UUID>
+		 <TSPName>Fire Department Emergency Services</TSPName>
+		 <TSPTradeName>Fire Department</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>info@ber-firedept.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Berlin</City>
+                  <Country>DE</Country>
+                  <PostalCode>10710</PostalCode>
+                  <StreetAddress1>Pariser Platz 6</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE199299919</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPInformationURI>https://ber-firedept.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Emergency Warning Data</ServiceName>
+				<ServiceTypeIdentifier>did:web:warnings.ber-firedept.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:warnings.ber-firedept.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://warnings.ber-firedept.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://warnings.ber-firedept.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://warnings.ber-firedept.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://warnings.ber-firedept.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://warnings.ber-firedept.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://warnings.ber-firedept.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			    <TSPService>
+				<ServiceName>Emergency Resources Monitoring Data</ServiceName>
+				<ServiceTypeIdentifier>did:web:resources.ber-firedept.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:resources.ber-firedept.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://resources.ber-firedept.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://resources.ber-firedept.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://resources.ber-firedept.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://resources.ber-firedept.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://resources.ber-firedept.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://resources.ber-firedept.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+						    <TSPService>
+				<ServiceName>Real Time Incident and Operations Data</ServiceName>
+				<ServiceTypeIdentifier>did:web:rtd.ber-firedept.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:rtd.ber-firedept.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://rtd.ber-firedept.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://rtd.ber-firedept.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://rtd.ber-firedept.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://rtd.ber-firedept.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://rtd.ber-firedept.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://rtd.ber-firedept.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	   </TrustServiceProviderList>
+</TrustServiceStatusList>

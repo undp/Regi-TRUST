@@ -1,0 +1,126 @@
+#Add did method, id needed for URI publishing
+resolverdriver:
+  didmethods:
+    - "did:web:"
+    - "did:key:"
+    - "did:jolo:"
+
+#Add your IPFS Multiadress ("/ip4/{your.ipv4}/tcp/5001")
+tspa:
+  ipfs:
+    rcp:
+      api: /ip4/{your.ipv4}/tcp/5001
+
+server:
+  port: "${TRAIN_TSPA_SERVER_PORT:16003}"
+
+spring:
+  application:
+    name: trust-framework-administration-authority
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        name: trust-framework-administration-authority
+      #
+      reload:
+        enabled: true
+  mvc:
+    log-request-details: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test
+  data:
+    mongodb:
+      host: localhost
+      port: 26003
+      database: mydatabase
+
+springdoc:
+  api-docs:
+    path: /api/docs
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    eu.xfsc.train.tspa: DEBUG
+
+zonemanager:
+  Address: "https://testtrain.trust-scheme.de"
+  token-server-url: "https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test/protocol/openid-connect/token"
+  grant-type: "client_credentials"
+  client-id: "xfsctest"
+  client-secret: "ec8CvNq771IX1pX0jwaeJJ204p172Seg"
+  query:
+    status: true
+
+trustlist:
+  vc:
+    hashAlgo: sha2-256
+    issuer: did:web:essif.iao.fraunhofer.de
+    proof:
+      signaturesuit: JsonWebSignature2020
+    jwt:
+      kid: did:web:essif.iao.fraunhofer.de#yaHbNw6nj4Pn3nGPHyyTqP-QHXYNJIpkA37PrIOND4c
+    signature:
+      algo: EdDSA
+    #signer type INTERNAL or TSA
+    signer:
+      type: "TSA"
+      url: "https://zonemgr.train1.xfsc.dev/signer/v1/credential"
+      key: "test"
+      namespace: "signer"
+      group: ""
+
+well-known:
+  credentialSubject:
+    origin: https://essif.iao.fraunhofer.de
+  issuer: did:web:essif.iao.fraunhofer.de
+  context:
+    url1: "https://identity.foundation/.well-known/did-configuration/v1"
+  jwt:
+    kid: did:web:essif.iao.fraunhofer.de#yaHbNw6nj4Pn3nGPHyyTqP-QHXYNJIpkA37PrIOND4c
+  signature:
+    algo: EdDSA
+  proof:
+    signaturesuit: JsonWebSignature2020
+    #signer type INTERNAL or TSA
+  signer:
+    type: "INTERNAL"
+    url: "https://zonemgr.train1.xfsc.dev/signer/v1/credential"
+    key: "owner"
+    namespace: "signer"
+    group: ""
+
+#Select the store location either "INTERNAL" or "IPFS"
+storage:
+  type:
+    trustlist: INTERNAL
+  path:
+    vc: /tmp/train-tspa/store/VC/
+    well_known: /tmp/train-tspa/well-known/
+    scheme: /tmp/train-tspa/store/schemes/
+    did: /tmp/train-tspa/store/DID_URI/
+    trustlist: /tmp/train-tspa/store/trust-lists/
+
+request:
+  get:
+    mapping: http://localhost:16003/tspa-service/tspa/v1/
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  otlp:
+    metrics:
+      export:
+        enabled: false
+  tracing:
+    enabled: false

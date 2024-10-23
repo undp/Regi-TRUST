@@ -1,0 +1,44 @@
+version: "3.3"
+
+networks:
+  train-network:
+    name: train-network
+
+services:
+  web:
+    #build:
+    #  dockerfile: Dockerfile
+    #  context: .  
+    image: node-654e3bca7fbeeed18f81d7c7.ps-xaas.io/train/tspa-service
+    ports:
+      - "16003:16003"
+    depends_on:
+      - ipfs-daemon
+    networks:
+      - train-network
+  ipfs-daemon:
+    image: 'ipfs/kubo:v0.23.0'
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+    networks:
+      - train-network
+    user: "ipfs"
+    command: [ "daemon", "--enable-pubsub-experiment" ]
+    
+  keycloak:
+    container_name: "keycloak-idm-server"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_LOGLEVEL: INFO
+      ROOT_LOGLEVEL: INFO
+      
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./keycloak/:/opt/keycloak/data/import
+    command: ["start-dev", "--import-realm"]
+
+  

@@ -1,0 +1,10 @@
+{
+  "TSPA_PUBLISH_TF_URL": "https://www.boredapi.com/api/activity",
+  "TSPA_PUBLISH_DID_URL": "",
+  "_BEARER_TOKEN_comment": "this is only for development.",
+  "BEARER_TOKEN": "",
+  "AUTHORIZATION_BASE_URL":"https://essif.iao.fraunhofer.de",
+  "CLIENT_ID":"xfsctest",
+  "REALM":"xfs-dev-test",
+  "REALM2":"xfs-dev-test"
+}

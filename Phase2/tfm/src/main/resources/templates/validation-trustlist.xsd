@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TrustServiceStatusList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FrameworkInformation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TSLVersionIdentifier" type="xs:unsignedByte" />
+              <xs:element name="TSLSequenceNumber" type="xs:unsignedByte" />
+              <xs:element name="TSLType" type="xs:string" />
+              <xs:element name="FrameworkOperatorName">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FrameworkOperatorAddress">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="PostalAddresses">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="PostalAddress">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="StreetAddress" type="xs:string" />
+                                <xs:element name="Locality" type="xs:string" />
+                                <xs:element name="PostalCode" type="xs:unsignedInt" />
+                                <xs:element name="CountryName" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ElectronicAddress">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="URI" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FrameworkName">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FrameworkInformationURI">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="URI" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FrameworkAuditURI">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="URI" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FrameworkTypeCommunityRules">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="URI" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FrameworkScope" type="xs:string" />
+              <xs:element name="PolicyOrLegalNotice">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="TSLLegalNotice" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ListIssueDateTime" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

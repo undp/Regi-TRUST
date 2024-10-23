@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tspa-ui-service.fullname" . }}
+  labels:
+    {{- include "tspa-ui-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.externalPort }}
+      targetPort: {{ .Values.service.containerPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "tspa-ui-service.selectorLabels" . | nindent 4 }}

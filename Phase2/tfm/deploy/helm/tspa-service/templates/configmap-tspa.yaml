@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.application.properties.spring.application.name }} 
+data:
+  SPRING_APPLICATION_JSON: |-
+{{- toPrettyJson .Values.application.properties | nindent 4 }}

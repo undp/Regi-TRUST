@@ -6,8 +6,6 @@ Train Trust Framework Manager - TFM, formerly named TSPA (Trust Service Publicat
 
 TFM is responsioble for configuring and managing trust frameworks with its corresponding trust lists. It allows creation of trust lists for corresponding trust framework names. TFM also helps to anchor DIDs and trust frameworks in DNS using DNS Zone Manager. TFM also has REST API endpoints which are responsible for onboarding entities into trust list.
 
-This is a Reference Implementation of the [Gaia-X TRAIN Lot](https://eclipse.dev/xfsc/train/train/#trust-framework-and-trust-list-provision).
-
 ## TRAIN
 
 TRAIN provides components for a flexible and cross-domain trust infrastructure to sovereignly manage trust anchors with DNS(SEC) and verify the inclusion of entities (e.g. issuers of self-sovereign identity credentials) in trust frameworks.

@@ -1,0 +1,21 @@
+{
+  "@context" : [ "https://www.w3.org/2018/credentials/v1", "https://w3id.org/security/suites/ed25519-2020/v1", "https://w3id.org/security/suites/jws-2020/v1" ],
+  "type" : [ "VerifiableCredential" ],
+  "id" : "did:web:company1.com#issuer-lists",
+  "issuer" : "did:web:company1.com",
+  "issuanceDate" : "2019-06-16T18:56:59Z",
+  "expirationDate" : "2025-06-15T18:56:59Z",
+  "credentialSubject" : {
+    "id" : "uuid:2632367287r82729",
+    "trustlisttype" : "XML based Issuer Lists",
+    "trustlistURI" : "https://once-dev.regioit.de/train/schuelerausweis.xml",
+    "hash" : "774ae6f2731216252814c6e1377fa83e6defeddf68c9fd1a24d8153de6b2e6ed"
+  },
+  "proof" : {
+    "type" : "Ed25519Signature2020",
+    "created" : "2023-10-17T16:23:23Z",
+    "proofPurpose" : "assertionMethod",
+    "verificationMethod" : "did:web:company1.com",
+    "proofValue" : "z2We6Fo1vCgQjdZqwLJahSmaWqXdKKwW3wqHSKPHYJHb774CYzhXsL2NNpeTgNriePizdN6jE1tJf7Ve6NVpnH8py"
+  }
+}

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  {{- if .Values.monitoring.enabled }}
+  {{- with .Values.monitoring.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
+
+  name: {{ include "tspa-service.fullname" . }}
+  labels:
+    {{- include "tspa-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "tspa-service.selectorLabels" . | nindent 4 }}
