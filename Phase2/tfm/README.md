@@ -14,13 +14,30 @@ For more information please visit the website: https://www.hci.iao.fraunhofer.de
 
 ## Requirements
 
-- Java 17 or newer
-- Maven ~3.6.0
+- Java 21 or newer
+- Maven ~3.9.8
 - Internet access
-- TRAIN Trust Infrastructure
-- Zone Manager
+- Running instance of Zone Manager
 
 ## Documentation
+
+### Quick deployment guide for development
+
+To have a development running instance of TFM, follow these steps:
+
+```bash
+git clone git@github.com:undp/Regi-TRUST.git
+```
+
+Setup variables in [application.yml](./src/main/resources/application.yml). Then install and run.
+
+```bash
+cd Regi-TRUST/Phase2/tfm/
+mvn clean install
+mvn spring-boot:run
+```
+
+## This still needs to be orginized to simplify documentation for Phase 2:
 
 ### [Short Software Description](./README.md#description)
 
