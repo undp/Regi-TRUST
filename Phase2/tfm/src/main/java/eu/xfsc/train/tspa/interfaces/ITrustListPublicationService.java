@@ -24,22 +24,23 @@ public interface ITrustListPublicationService {
 	public Set<ValidationMessage> isJSONValid(String jsonData,Resource schema) throws FileNotFoundException, IOException;
 
 	public void initXMLTrustList(String frameworkName, String xml)
-			throws FileExistsException, FileNotFoundException, PropertiesAccessException;
+			throws FileExistsException, FileNotFoundException, PropertiesAccessException, JAXBException, FileEmptyException, IOException;
 	
 	public void initJsonTrustList(String frameworkName, String xml)
 			throws FileExistsException, FileNotFoundException, PropertiesAccessException;
-
-	public String getTrustlist(String frameworkName) throws IOException;
-
-	public String deleteTrustlist(String framworkname) throws IOException;
-
-	//TSP
-	public void tspPublish(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-
-	public void tspRemove(String frameworkName, String uuid) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-
-	public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-
-	public void updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			
+			public String deleteTrustlist(String framworkname) throws IOException;
+			
+			//TSP
+			public void tspPublish(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			
+			public void tspRemove(String frameworkName, String uuid) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			
+			public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			
+			// From here, implemented methods for Regitrust.
+			public String updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			public String getXMLTrustlist(String frameworkName) throws IOException;
+			public String getSimplifiedTrustlist(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
 
 }

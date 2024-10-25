@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
@@ -52,9 +51,9 @@ import eu.xfsc.train.tspa.exceptions.FileExistsException;
 import eu.xfsc.train.tspa.exceptions.PropertiesAccessException;
 import eu.xfsc.train.tspa.exceptions.TSPException;
 import eu.xfsc.train.tspa.exceptions.XmlValidationError;
-import eu.xfsc.train.tspa.interfaces.IDatabase;
 import eu.xfsc.train.tspa.interfaces.ITrustListPublicationService;
 import eu.xfsc.train.tspa.interfaces.IVCService;
+import eu.xfsc.train.tspa.model.trustlist.NameType;
 import eu.xfsc.train.tspa.model.trustlist.TrustServiceStatusList;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
@@ -71,8 +70,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.UpdateOptions;
 
 @Service
 public class TrustListPublicationServiceImpl implements ITrustListPublicationService {
@@ -87,8 +84,6 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	IVCService ivcService;
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	@Autowired
-	private IDatabase database;
 
 	
 	@Value("${tspa.ipfs.rcp.api}")
@@ -100,14 +95,16 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	@Value("${spring.data.mongodb.database}")
 	private String databaseName;
 	@Value("${spring.data.mongodb.collection-trustlists}")
-	private String collectionName;
+	private String collectionNameTrustlist;
+	@Value("${spring.data.mongodb.collection-tsps}")
+	private String collectionNameTsps;
 
 
 	private IPFS ipfs;
 
 	@Override
 	public void initXMLTrustList(String frameworkName, String xmlData)
-			throws FileExistsException, FileNotFoundException, PropertiesAccessException {
+			throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 
 		log.debug("Stored Type: {}", storeType);
 
@@ -132,7 +129,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 	@Override
-	public String getTrustlist(String frameworkName) throws IOException {
+	public String getXMLTrustlist(String frameworkName) throws IOException {
 
 		log.debug("Stored Type: {}", storeType);
 
@@ -272,15 +269,30 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	// --> Method for store XML trust-list in local store.
 	private void storeTrustListXMLLocal(String frameworkname, String xmlTrustList)
-			throws FileExistsException, FileNotFoundException, PropertiesAccessException {
+			throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 		setPropertiesRule();
 		if (TSPAUtil.isFileExisting(mPath, frameworkname)) {
-			throw new FileExistsException("A Trustlist xml file for this trust framework has already been created, please use PATCH method to update it. " + frameworkname);
+			throw new FileExistsException("A Trustlist xml file for this trust framework has already been created. " + frameworkname);
 		}
 
+		// Update Framework name before storing
+		TrustServiceStatusList trustList = (TrustServiceStatusList) jaxbContext.createUnmarshaller()
+				.unmarshal(new StringReader(xmlTrustList));
+		
+		NameType frameworkNameType = new NameType(frameworkname);
+		trustList.getFrameworkInformation().setFrameworkName(frameworkNameType);
+
+		// Marshal the updated object back to XML
+		StringWriter writer = new StringWriter();
+		jaxbContext.createMarshaller().marshal(trustList, writer);
+		String updatedXmlTrustList = writer.toString();
+
 		PrintWriter file = new PrintWriter(mPath + "/" + frameworkname + ".xml");
-		file.write(xmlTrustList);
+		file.write(updatedXmlTrustList);
 		file.close();
+
+		// update version, issuance date and store in DB
+		updateTLversion(frameworkname);
 
 		log.info("Local store; New XML trust-list is created with {}", frameworkname);
 	}
@@ -345,7 +357,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		}
 	}
 
-	// --> Method for fetching trust-list from local store.
+	// --> Method for fetching trustlist XML content from local store.
 	private String getTrustlistFromLocalStore(String frameworkName)
 			throws IOException, FileEmptyException, PropertiesAccessException {
 		setPropertiesRule();
@@ -362,6 +374,49 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		} else {
 			throw new FileNotFoundException(
 					"Trustlist for " + frameworkName + " not found in local store at path " + mPath);
+		}
+	}
+
+	// --> Method for fetching a simplified trustlist in JSON (to string) format from DB.
+	@Override
+	public String getSimplifiedTrustlist(String frameworkName, String version)
+			throws IOException, FileEmptyException, PropertiesAccessException {
+		try {
+			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+			MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
+
+			// First, check if the framework exists
+			Document frameworkQuery = new Document("FrameworkInformation.FrameworkName.Name", frameworkName);
+			long frameworkCount = collection.countDocuments(frameworkQuery);
+
+			if (frameworkCount == 0) {
+				throw new FileEmptyException("No trustlist found for framework: " + frameworkName);
+			}
+
+			// If framework exists, proceed with version query
+			Document query = new Document("FrameworkInformation.FrameworkName.Name", frameworkName);
+			Document sort = new Document("FrameworkInformation.TSLVersionIdentifier", -1);
+
+			if (version != null) {
+				query.append("FrameworkInformation.TSLVersionIdentifier", Integer.parseInt(version));
+			}
+
+			Document result = collection.find(query).sort(sort).first();
+
+			if (result == null) {
+				if (version != null) {
+					throw new FileEmptyException("No trustlist found for framework: " + frameworkName + " and version: " + version);
+				} else {
+					throw new FileEmptyException("Unexpected error: Framework exists but no trustlist found");
+				}
+			}
+
+			result.remove("_id");
+			return result.toJson();
+		} catch (Exception e) {
+			log.error("Error fetching simplified trustlist from database for framework '{}' and version '{}'", 
+					  frameworkName, version, e);
+			throw e;
 		}
 	}
 
@@ -473,7 +528,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	// --> Increments version and updates issuance date fields for the trustlist.
 	// Updates the trustlist in the local store and the MongoDB database.
 	@Override
-	public void updateTLversion(String framework) 
+	public String updateTLversion(String framework) 
 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 		setConfgurationObjectMapper();
 	
@@ -486,8 +541,14 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		trustListPojo = (TrustServiceStatusList) unmarshaller
 				.unmarshal(new StreamSource(new StringReader(existedTL)));
+
+		if (trustListPojo.getFrameworkInformation().getTSLVersionIdentifier() == 0) {
+			NameType frameworkName = new NameType(framework);
+			trustListPojo.getFrameworkInformation().setFrameworkName(frameworkName);
+		}
 		// update the version and issuance date fields
-		trustListPojo.getFrameworkInformation().setTSLVersionIdentifier(trustListPojo.getFrameworkInformation().getTSLVersionIdentifier() + 1);
+		int newVersion = trustListPojo.getFrameworkInformation().getTSLVersionIdentifier() + 1;
+		trustListPojo.getFrameworkInformation().setTSLVersionIdentifier(newVersion);
 		trustListPojo.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTSLVersionIdentifier());
 
@@ -511,14 +572,15 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
 			
 			// Get the specific collection within that database
-			MongoCollection<Document> collection = db.getCollection(collectionName);
+			MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
 			
 			// Always insert a new document in the database
 			collection.insertOne(trustListDocument);
 
-			log.info("Updated trust list for framework '{}' in database '{}', collection '{}'", framework, databaseName, collectionName);
+			log.info("Updated trust list to for framework '{}' in database '{}', collection '{}'", framework, databaseName, collectionNameTrustlist);
+			return String.valueOf(newVersion);
 		} catch (Exception e) {
-			log.error("Error updating trust list in database '{}', collection '{}' for framework '{}'", databaseName, collectionName, framework, e);
+			log.error("Error updating trust list in database '{}', collection '{}' for framework '{}'", databaseName, collectionNameTrustlist, framework, e);
 			throw new RuntimeException("Failed to update trust list in database", e);
 		}
 	}
@@ -752,6 +814,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 					.unmarshal(new StreamSource(new StringReader(existedTL)));
 			trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
 			StringWriter sw = new StringWriter();
+			
 			marshaller.marshal(trustListPojo, sw);
 			String newTrustlistAsString = sw.toString();
 			ipfsWriter(framework, newTrustlistAsString, "xml");

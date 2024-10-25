@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
@@ -86,7 +87,6 @@ public class TrustListPublicationController {
 		List<SAXParseException> errorList = null;
 
 		try {
-			// get the 
 			String trustListStr = trustListTemplate.getFilename();
 			trustListStr = new String(trustListTemplate.getInputStream().readAllBytes());
 			errorList = iTrustListPublicationService.isXMLValid(trustListStr, xsdResource);
@@ -119,7 +119,7 @@ public class TrustListPublicationController {
 	@PutMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	// @PreAuthorize("hasAuthority('enrolltf')")
 	// TO DO: expect a json body with the scheme information to update, validate it.
-	public ResponseEntity<Object> updateSchemeInformationInTrust(@PathVariable("framework-name") String frameworkName,
+	public ResponseEntity<Object> updateSchemeInformationInTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
 
 		log.debug("debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------");
@@ -132,8 +132,8 @@ public class TrustListPublicationController {
 			Boolean isValid = true;
 			if (isValid) {
 				log.debug("Successfully Validated!!!");
-				iTrustListPublicationService.updateTLversion(frameworkName);
-				return TSPAUtil.getResponseBody("Trustlist version updated",
+				String newVersion = iTrustListPublicationService.updateTLversion(frameworkName);
+				return TSPAUtil.getResponseBody("Trustlist version updated to " + newVersion,
 						HttpStatus.CREATED);
 
 			} else {
@@ -146,9 +146,39 @@ public class TrustListPublicationController {
 
 		} catch (IOException e) {
 			log.error("Failed to update trustlist: ", e);
-			return TSPAUtil.getResponseBody("Failed to update trustlist.",
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			return TSPAUtil.getResponseBody("Failed to update trustlist. A trustlist for this framework was not found",
+					HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	/**
+	 * --> Fetches a simmplified trustlist
+	 * @throws JAXBException 
+	 * @throws FileEmptyException 
+	 */
+	@GetMapping(value = "/regitrust/trustlist/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getSimplifiedTrustList(
+	        @PathVariable("framework-name") String frameworkName,
+	        @RequestParam(value = "version", required = false) String version) {
+	    log.debug("debug--------------- GET SIMPLIFIED TRUSTLIST ---------------");
+	    log.debug("Requested framework name: {}, version: {}", frameworkName, version);
+
+	    try {
+	        String trustList = iTrustListPublicationService.getSimplifiedTrustlist(frameworkName, version);
+	        return ResponseEntity.ok(trustList);
+	    } catch (FileEmptyException e) {
+	        log.error("Failed to fetch simplified trustlist: ", e);
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	                .body(e.getMessage());
+	    } catch (IOException e) {
+	        log.error("Failed to fetch simplified trustlist: ", e);
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("Failed to fetch simplified trustlist.");
+	    } catch (Exception e) {
+	        log.error("Unexpected error while fetching simplified trustlist: ", e);
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("An unexpected error occurred.");
+	    }
 	}
 
 
@@ -202,7 +232,7 @@ public class TrustListPublicationController {
 		log.debug("--------------- GET TRUSTLIST ---------------");
 
 		try {
-			String trustList = iTrustListPublicationService.getTrustlist(frameworkName);
+			String trustList = iTrustListPublicationService.getXMLTrustlist(frameworkName);
 			String trustListType=TSPAUtil.getContentType(trustList);
 			if(trustListType.equals("json")) {
 				return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trustList);

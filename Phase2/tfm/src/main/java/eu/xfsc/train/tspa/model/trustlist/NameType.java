@@ -7,12 +7,15 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
-
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "NameType",propOrder = {"name"})
+@XmlType(name = "NameType", propOrder = {"name"})
 public class NameType implements Serializable {
 
 	@XmlElement(name = "Name")
