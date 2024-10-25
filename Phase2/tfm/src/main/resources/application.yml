@@ -36,7 +36,9 @@ spring:
     mongodb:
       host: localhost
       port: 26003
-      database: mydatabase
+      database: trustlists
+      collection-trustlists: simplifiedTLs
+      collection-tsps: TSPs
 
 springdoc:
   api-docs:

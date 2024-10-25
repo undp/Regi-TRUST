@@ -1,7 +1,7 @@
 {
   "TrustServiceStatusList": {
     "FrameworkInformation": {
-      "TSLVersionIdentifier": "1",
+      "TSLVersionIdentifier": "0",
       "TSLSequenceNumber": "1",
       "TSLType": "http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC",
       "FrameworkOperatorName": {

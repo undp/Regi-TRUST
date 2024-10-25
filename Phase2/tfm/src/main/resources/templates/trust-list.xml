@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <TrustServiceStatusList>
   <FrameworkInformation>
-    <TSLVersionIdentifier>1</TSLVersionIdentifier>
+    <TSLVersionIdentifier>0</TSLVersionIdentifier>
     <TSLSequenceNumber>1</TSLSequenceNumber>
     <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
     <FrameworkOperatorName>

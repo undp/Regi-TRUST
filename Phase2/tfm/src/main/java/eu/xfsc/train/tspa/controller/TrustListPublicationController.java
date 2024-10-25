@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,7 @@ import foundation.identity.jsonld.JsonLDException;
 import jakarta.xml.bind.JAXBException;
 
 @RestController
-@RequestMapping("tspa/v1")
+@RequestMapping("/ttfm/api/v1")
 public class TrustListPublicationController {
 
 	private static final Logger log = LoggerFactory.getLogger(TrustListPublicationController.class);
@@ -58,27 +59,40 @@ public class TrustListPublicationController {
 	private Resource jsonSchemaResource;
 	@Value("classpath:templates/TSPSchema.json")
 	private Resource tspSchemaResource;
+	@Value("classpath:templates/trust-list.xml")
+	private Resource trustListTemplate;
+	
+
+	// hello world put mapping
+	@PutMapping(value="/hello-world/{code}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> helloWorld(@RequestBody String message, @PathVariable("code") String code) {
+		log.info("info--hello world!!!!!!!!!!!!");
+		return ResponseEntity.ok("Hello, " + message + "! code: " + code);
+	}
 
 	/**
-	 * --> Publishing initial trustlist by XMl Format. --> Enveloping trustlist in
-	 * VC (Creation of VC)
+	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.
+	 * @throws JAXBException 
+	 * @throws FileEmptyException 
 	 */
-	@PutMapping(value = "/init/xml/{framework-name}/trust-list", consumes = MediaType.APPLICATION_XML_VALUE)
-	@PreAuthorize("hasAuthority('enrolltf')")
+	@PostMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAuthority('enrolltf')")
 	public ResponseEntity<Object> createTrustListXML(@PathVariable("framework-name") String frameworkName,
-			@RequestBody String trustlist) throws PropertiesAccessException, FileExistsException {
+			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
 
-		log.debug("--------------- PUBLISH TRUSTLIST (XML) ---------------");
+		log.debug("debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------");
+		log.debug("schemes received: {}", schemesObject);
 
 		List<SAXParseException> errorList = null;
 
 		try {
-			errorList = iTrustListPublicationService.isXMLValid(trustlist, xsdResource);
+			// get the 
+			String trustListStr = trustListTemplate.getFilename();
+			trustListStr = new String(trustListTemplate.getInputStream().readAllBytes());
+			errorList = iTrustListPublicationService.isXMLValid(trustListStr, xsdResource);
 			if (errorList.isEmpty()) {
 				log.debug("Successfully Validated!!!");
-				iTrustListPublicationService.initXMLTrustList(frameworkName, trustlist);
-				ivcService.createVC(frameworkName, "xml");
-
+				iTrustListPublicationService.initXMLTrustList(frameworkName, trustListStr);
 				return TSPAUtil.getResponseBody("Trust-list initially created and stored in XML format",
 						HttpStatus.CREATED);
 
@@ -89,10 +103,6 @@ public class TrustListPublicationController {
 			              .collect(Collectors.joining("\r\n", "XML validation failed:\r\n", ""));
 				return new ResponseEntity<>(errorString, HttpStatus.BAD_REQUEST);
 			}
-		} catch (DecoderException | GeneralSecurityException | JsonLDException e) {	
-			log.error("Failed!; Problem during creation Proof of {} ", frameworkName,e);
-			return TSPAUtil.getResponseBody("VC for the " + frameworkName + " is not generated",
-					HttpStatus.FAILED_DEPENDENCY);
 
 		} catch (IOException | SAXException e) {
 			log.error("Failed to initiate trust-list creation via xml format because:", e);
@@ -100,6 +110,47 @@ public class TrustListPublicationController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	/**
+	 * --> Updates a trustlist's scheme information only'. Triggers a new version of the trustlist.
+	 * @throws JAXBException 
+	 * @throws FileEmptyException 
+	 */
+	@PutMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAuthority('enrolltf')")
+	// TO DO: expect a json body with the scheme information to update, validate it.
+	public ResponseEntity<Object> updateSchemeInformationInTrust(@PathVariable("framework-name") String frameworkName,
+			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
+
+		log.debug("debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------");
+
+		// List<SAXParseException> errorList = null;
+
+		try {
+			// TO DO: validate json body against JSON schema
+			// Boolean isValid = iTrustListPublicationService.isJSONValid(schemesObject, jsonSchemaResource);
+			Boolean isValid = true;
+			if (isValid) {
+				log.debug("Successfully Validated!!!");
+				iTrustListPublicationService.updateTLversion(frameworkName);
+				return TSPAUtil.getResponseBody("Trustlist version updated",
+						HttpStatus.CREATED);
+
+			} else {
+				log.error("Validation failed");
+				// String errorString=errorList.stream()
+			    //           .map(SAXParseException::toString)
+			    //           .collect(Collectors.joining("\r\n", "XML validation failed:\r\n", ""));
+				return new ResponseEntity<>("errorString", HttpStatus.BAD_REQUEST);
+			}
+
+		} catch (IOException e) {
+			log.error("Failed to update trustlist: ", e);
+			return TSPAUtil.getResponseBody("Failed to update trustlist.",
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 
 	/**
 	 * --> Publishing initial trustlist by JSON Format. --> Enveloping trustlist in

@@ -40,4 +40,6 @@ public interface ITrustListPublicationService {
 
 	public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 
+	public void updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+
 }

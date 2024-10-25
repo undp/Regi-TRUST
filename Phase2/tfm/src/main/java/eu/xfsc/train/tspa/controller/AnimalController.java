@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("tspa/v1/animals")
+@RequestMapping("/ttfm/api/v1/regitrust/trustlist/animals")
 public class AnimalController {
 
     private static final Logger log = LoggerFactory.getLogger(TrustFrameWorkPublishController.class);
@@ -32,8 +32,9 @@ public class AnimalController {
     @GetMapping
     public ResponseEntity<List<Animal>> getAllAnimals() {
         log.info("just testing speed once again from the GET");
-        log.info("Getting all animals...");
+        log.debug("Getting all animals...");
         List<Animal> animals = animalService.getAllAnimals();
+        log.debug("animals: {}", animals);
         return new ResponseEntity<>(animals, HttpStatus.OK);
     }
 }
