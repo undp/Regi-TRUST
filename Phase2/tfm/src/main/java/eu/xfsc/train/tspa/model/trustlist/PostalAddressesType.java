@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
 @Setter
@@ -16,6 +17,7 @@ import lombok.Setter;
 @XmlType(name = "PostalAddressesType",propOrder = {"postalAddress"})
 public class PostalAddressesType implements Serializable{
 	@XmlElement(name = "PostalAddress")
+	@JsonProperty("PostalAddress")
 	private List<Address> postalAddress;
 
 	

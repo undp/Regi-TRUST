@@ -1,7 +1,6 @@
 package eu.xfsc.train.tspa.model.trustlist;
 
-import java.io.Serializable;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -13,9 +12,9 @@ import lombok.Setter;
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FrameworkInformationType",propOrder = {
-		"tSLVersionIdentifier",
-		"tSLSequenceNumber",
-		"tSLType",
+		"tslVersionIdentifier",
+		"tslSequenceNumber",
+		"tslType",
 		"frameworkOperatorName",
 		"frameworkOperatorAddress",
 		"frameworkName",
@@ -29,39 +28,51 @@ import lombok.Setter;
 public class FrameworkInformationType{
 	
 	@XmlElement(name = "TSLVersionIdentifier")
-	private int tSLVersionIdentifier;
+	@JsonProperty("TSLVersionIdentifier")
+	private int tslVersionIdentifier;
 	
 	@XmlElement(name = "TSLSequenceNumber")
-	private int tSLSequenceNumber;
+	@JsonProperty("TSLSequenceNumber")
+	private int tslSequenceNumber;
 	
 	@XmlElement(name = "TSLType")
-	private String tSLType;
+	@JsonProperty("TSLType")
+	private String tslType;
 
 	@XmlElement(name = "FrameworkOperatorName")
+	@JsonProperty("FrameworkOperatorName")
 	private NameType frameworkOperatorName;
 	
 	@XmlElement(name = "FrameworkOperatorAddress")
+	@JsonProperty("FrameworkOperatorAddress")
 	private FrameworkOperatorAddressType frameworkOperatorAddress;
 	
 	@XmlElement(name = "FrameworkName")
-	private  NameType frameworkName;
+	@JsonProperty("FrameworkName")
+	private NameType frameworkName;
 	
 	@XmlElement(name = "FrameworkInformationURI")
+	@JsonProperty("FrameworkInformationURI")
 	private URIType frameworkInformationURI;
 	
 	@XmlElement(name = "FrameworkAuditURI")
+	@JsonProperty("FrameworkAuditURI")
 	private URIType frameworkAuditURI;
 	
 	@XmlElement(name = "FrameworkTypeCommunityRules")
+	@JsonProperty("FrameworkTypeCommunityRules")
 	private URIType frameworkTypeCommunityRules;
 	
 	@XmlElement(name = "FrameworkScope")
+	@JsonProperty("FrameworkScope")
 	private String frameworkScope;
 	
 	@XmlElement(name = "PolicyOrLegalNotice")
+	@JsonProperty("PolicyOrLegalNotice")
 	private PolicyOrLegalNoticeType policyOrLegalNotice;
 	
 	@XmlElement(name = "ListIssueDateTime")
+	@JsonProperty("ListIssueDateTime")
 	private String listIssueDateTime;
 
 	

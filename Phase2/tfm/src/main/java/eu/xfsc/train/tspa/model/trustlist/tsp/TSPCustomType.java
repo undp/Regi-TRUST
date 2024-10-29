@@ -6,6 +6,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
 @Setter
@@ -20,17 +21,22 @@ import lombok.Setter;
 public class TSPCustomType {
 
 	@XmlElement(name = "UUID")
+	@JsonProperty("UUID")
 	private String uUID;
 	
 	@XmlElement(name = "TSPName")
+	@JsonProperty("TSPName")
 	private  String tSPName;
 	
 	@XmlElement(name = "TSPTradeName")
+	@JsonProperty("TSPTradeName")
 	private String tSPTradeName;
 	
 	@XmlElement(name = "TSPInformation")
+	@JsonProperty("TSPInformation")
 	private TSPInformationType tSPInformation;
 	
 	@XmlElement(name = "TSPServices")
+	@JsonProperty("TSPServices")
 	private TSPServicesListType tSPServices;
 }

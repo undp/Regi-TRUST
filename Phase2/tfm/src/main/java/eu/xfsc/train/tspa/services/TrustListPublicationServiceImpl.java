@@ -111,7 +111,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		if (storeType.compareTo("IPFS") == 0) {
 			storenewTrustListXMLIPFS(frameworkName, xmlData);
 		} else if (storeType.compareTo("INTERNAL") == 0) {
-			storeTrustListXMLLocal(frameworkName, xmlData);
+			storeTrustListXMLLocal(frameworkName, xmlData, "CREATE");
 		}
 	}
 
@@ -267,34 +267,59 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		ipfs.files.mkdir(mPath, true); // Create directory if not exist.
 	}
 
-	// --> Method for store XML trust-list in local store.
-	private void storeTrustListXMLLocal(String frameworkname, String xmlTrustList)
+	// --> Method for store XML trust-list in local store and DB
+	private void storeTrustListXMLLocal(String frameworkname, String xmlTrustList, String operation)
 			throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 		setPropertiesRule();
-		if (TSPAUtil.isFileExisting(mPath, frameworkname)) {
-			throw new FileExistsException("A Trustlist xml file for this trust framework has already been created. " + frameworkname);
+		String trustListToStore = null;
+
+		if (operation.equals("CREATE")) {
+			if (TSPAUtil.isFileExisting(mPath, frameworkname)) {
+				throw new FileExistsException("A Trustlist xml file for this trust framework has already been created. " + frameworkname);
+			}
+			// Update Framework name before storing
+			TrustServiceStatusList trustList = (TrustServiceStatusList) jaxbContext.createUnmarshaller()
+					.unmarshal(new StringReader(xmlTrustList));
+			
+			NameType frameworkNameType = new NameType(frameworkname);
+			trustList.getFrameworkInformation().setFrameworkName(frameworkNameType);
+	
+			// Marshal the updated object back to XML
+			StringWriter writer = new StringWriter();
+			jaxbContext.createMarshaller().marshal(trustList, writer);
+			// update the trustlist to store with the updated trustlist TrustServiceStatusList
+			trustListToStore = writer.toString();
+
+
+		} else {
+			trustListToStore =xmlTrustList;
 		}
 
-		// Update Framework name before storing
-		TrustServiceStatusList trustList = (TrustServiceStatusList) jaxbContext.createUnmarshaller()
-				.unmarshal(new StringReader(xmlTrustList));
-		
-		NameType frameworkNameType = new NameType(frameworkname);
-		trustList.getFrameworkInformation().setFrameworkName(frameworkNameType);
-
-		// Marshal the updated object back to XML
-		StringWriter writer = new StringWriter();
-		jaxbContext.createMarshaller().marshal(trustList, writer);
-		String updatedXmlTrustList = writer.toString();
-
+		// write TL in local store
 		PrintWriter file = new PrintWriter(mPath + "/" + frameworkname + ".xml");
-		file.write(updatedXmlTrustList);
+		file.write(trustListToStore);
 		file.close();
 
-		// update version, issuance date and store in DB
+		// write TL in DB
+		TrustServiceStatusList trustListPojo = null;
+		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+		MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		Marshaller marshaller = jaxbContext.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+		trustListPojo = (TrustServiceStatusList) unmarshaller
+		.unmarshal(new StreamSource(new StringReader(trustListToStore)));
+
+		String trustListJson = omTrustList.writeValueAsString(trustListPojo);
+		Document trustListDocument = Document.parse(trustListJson);
+		collection.insertOne(trustListDocument);		
+
+		// update 
 		updateTLversion(frameworkname);
 
-		log.info("Local store; New XML trust-list is created with {}", frameworkname);
+
+		log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkname);
 	}
 
 	// --> Method for store XML trust-list in IPFS store.
@@ -380,7 +405,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	// --> Method for fetching a simplified trustlist in JSON (to string) format from DB.
 	@Override
 	public String getSimplifiedTrustlist(String frameworkName, String version)
-			throws IOException, FileEmptyException, PropertiesAccessException {
+			throws IOException, FileEmptyException {
 		try {
 			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
 			MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
@@ -390,7 +415,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			long frameworkCount = collection.countDocuments(frameworkQuery);
 
 			if (frameworkCount == 0) {
-				throw new FileEmptyException("No trustlist found for framework: " + frameworkName);
+				throw new FileEmptyException("FRAMEWORK_NOT_FOUND. No trustlist found for framework " + frameworkName);
 			}
 
 			// If framework exists, proceed with version query
@@ -404,11 +429,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			Document result = collection.find(query).sort(sort).first();
 
 			if (result == null) {
-				if (version != null) {
-					throw new FileEmptyException("No trustlist found for framework: " + frameworkName + " and version: " + version);
-				} else {
-					throw new FileEmptyException("Unexpected error: Framework exists but no trustlist found");
-				}
+				throw new FileEmptyException("VERSION_NOT_FOUND. Trust framework " + frameworkName + " does not have version " + version);
 			}
 
 			result.remove("_id");
@@ -533,24 +554,24 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		setConfgurationObjectMapper();
 	
 		TrustServiceStatusList trustListPojo = null;
-		String existedTL = getTrustlistFromLocalStore(framework);
 		File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
-
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
 		Marshaller marshaller = jaxbContext.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		trustListPojo = (TrustServiceStatusList) unmarshaller
-				.unmarshal(new StreamSource(new StringReader(existedTL)));
 
-		if (trustListPojo.getFrameworkInformation().getTSLVersionIdentifier() == 0) {
+
+		String currentTrustList = getSimplifiedTrustlist(framework, null);
+		trustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusList.class);
+
+		if (trustListPojo.getFrameworkInformation().getTslVersionIdentifier() == 0) {
 			NameType frameworkName = new NameType(framework);
 			trustListPojo.getFrameworkInformation().setFrameworkName(frameworkName);
 		}
 		// update the version and issuance date fields
-		int newVersion = trustListPojo.getFrameworkInformation().getTSLVersionIdentifier() + 1;
-		trustListPojo.getFrameworkInformation().setTSLVersionIdentifier(newVersion);
+		int newVersion = trustListPojo.getFrameworkInformation().getTslVersionIdentifier() + 1;
+		trustListPojo.getFrameworkInformation().setTslVersionIdentifier(newVersion);
 		trustListPojo.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-		log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTSLVersionIdentifier());
+		log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTslVersionIdentifier());
 
 		// update file in local store
 		PrintWriter file = new PrintWriter(existedTLFile);
@@ -559,24 +580,10 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 		// update DB
 		try {
-			// Convert trustListPojo to JSON
 			String trustListJson = omTrustList.writeValueAsString(trustListPojo);
-			
-			// Create a Document from the JSON
 			Document trustListDocument = Document.parse(trustListJson);
-			
-			// Add or update the framework field
-			//trustListDocument.append("framework", framework);
-			
-			// Get the specific MongoDB database
-			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
-			
-			// Get the specific collection within that database
 			MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
-			
-			// Always insert a new document in the database
 			collection.insertOne(trustListDocument);
-
 			log.info("Updated trust list to for framework '{}' in database '{}', collection '{}'", framework, databaseName, collectionNameTrustlist);
 			return String.valueOf(newVersion);
 		} catch (Exception e) {
@@ -622,6 +629,12 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
 			omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
 		}
+
+		// // get trustlist POJO (from DB)
+		// String currentTrustList = getSimplifiedTrustlist(framework, null);
+		// // convert it into POJO
+		// TrustServiceStatusList currentTrustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusList.class);
+
 
 		// Updating VC after updating Trustlist.
 		try {
