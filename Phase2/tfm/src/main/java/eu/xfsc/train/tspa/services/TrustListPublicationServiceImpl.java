@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -289,6 +290,47 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			resultTL = writer.toString();
 		}
 		return resultTL;
+	}
+
+	// --> Method for fetching a list of versions of a trustlist
+	@Override
+	public String getTrustListVersions(String frameworkName) throws IOException {
+		try {
+			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+			MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);    
+			
+			// Query to fetch all versions of a trustlist
+			Document query = new Document("FrameworkInformation.FrameworkName.Name", frameworkName);
+			List<Document> results = collection.find(query)
+				.sort(new Document("FrameworkInformation.TSLVersionIdentifier", -1))
+				.into(new ArrayList<>());
+
+				// if no lists were found with this framework name, return an empty list
+			if (results.isEmpty()) {
+				return "[]";
+			}
+			
+			// Create response object
+			Map<String, Object> response = new HashMap<>();
+			response.put("trustFrameworkName", frameworkName);
+			
+			List<Map<String, String>> versions = new ArrayList<>();
+			for (Document doc : results) {
+				Document frameworkInfo = (Document) doc.get("FrameworkInformation");
+				Map<String, String> version = new HashMap<>();
+				version.put("TSLVersionIdentifier", frameworkInfo.getInteger("TSLVersionIdentifier").toString());
+				version.put("ListIssueDateTime", frameworkInfo.getString("ListIssueDateTime"));
+				versions.add(version);
+			}
+			response.put("trustListVersions", versions);
+			
+			// Convert to JSON string
+			return omTrustList.writeValueAsString(response);
+			
+		} catch (Exception e) {
+			log.error("Error fetching trust list versions for framework '{}'", frameworkName, e);
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 
 

@@ -42,5 +42,5 @@ public interface ITrustListPublicationService {
 			public String updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 			public String getXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
 			public String getSimplifiedTrustlist(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
-
+			public String getTrustListVersions(String frameworkName) throws IOException;
 }

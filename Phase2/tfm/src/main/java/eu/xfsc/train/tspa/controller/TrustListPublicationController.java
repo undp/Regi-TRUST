@@ -218,7 +218,26 @@ public class TrustListPublicationController {
 		}	
 	}	
 
+	/*
+	 * --> Fetch a list of versions of a trustlist
+	 * @param frameworkName
+	 * @return
+	 * @throws IOException 
+	 */
+	@GetMapping(value = "/regitrust/trustlist/history/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getTrustListVersions(@PathVariable("framework-name") String frameworkName) {
+		log.debug("--------------- GET TRUSTLIST VERSIONS ---------------");
+		try {
+			String trustListVersions = iTrustListPublicationService.getTrustListVersions(frameworkName);
+			return ResponseEntity.ok(trustListVersions);
+		} catch (IOException e) {
+			log.error("Failed to fetch trustlist versions: ", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to fetch trustlist versions. " + e.getMessage());
+		}
+	}
 
+
+	// GXFS implementation ------------------------------------------------------------------------------------------------
 	/**
 	 * --> Publishing initial trustlist by JSON Format. --> Enveloping trustlist in
 	 * VC (Creation of VC)
