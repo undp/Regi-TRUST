@@ -40,7 +40,7 @@ public interface ITrustListPublicationService {
 			
 			// From here, implemented methods for Regitrust.
 			public String updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-			public String getXMLTrustlist(String frameworkName) throws IOException;
+			public String getXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
 			public String getSimplifiedTrustlist(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
 
 }

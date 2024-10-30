@@ -155,6 +155,7 @@ public class TrustListPublicationController {
 	 * --> Fetches a simmplified trustlist
 	 * @throws JAXBException 
 	 * @throws FileEmptyException 
+	 * @throws IllegalArgumentException 
 	 */
 	@GetMapping(value = "/regitrust/trustlist/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> getSimplifiedTrustList(
@@ -164,7 +165,10 @@ public class TrustListPublicationController {
 	    log.debug("Requested framework name: {}, version: {}", frameworkName, version);
 
 	    try {
-	        String trustList = iTrustListPublicationService.getSimplifiedTrustlist(frameworkName, version);
+			if (version != null && !version.matches("\\d+")) {
+				throw new IllegalArgumentException("Version must be a number.");
+			}
+			String trustList = iTrustListPublicationService.getSimplifiedTrustlist(frameworkName, version);
 	        return ResponseEntity.ok(trustList);
 	    } catch (FileEmptyException e) {
 	        log.error("Failed to fetch simplified trustlist: ", e);
@@ -174,12 +178,45 @@ public class TrustListPublicationController {
 	        log.error("Failed to fetch simplified trustlist: ", e);
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 	                .body("Failed to fetch simplified trustlist.");
-	    } catch (Exception e) {
-	        log.error("Unexpected error while fetching simplified trustlist: ", e);
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                .body("An unexpected error occurred.");
+		} catch (IllegalArgumentException e) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	                .body(e.getMessage());
 	    }
 	}
+
+	/**
+	 * --> Fecth a trustlist in XML format. Supports versioning.
+	 * @param frameworkName
+	 * @param trustlist
+	 * @return
+	 * @throws PropertiesAccessException
+	 * @throws FileExistsException
+	 */
+	@GetMapping(value = "/regitrust/trustlist/xml/{framework-name}", produces = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<Object> getTrustListXML(@PathVariable("framework-name") String frameworkName,
+			@RequestParam(value = "version", required = false) String version) {
+		log.debug("debug--------------- GET TRUSTLIST (XML) ---------------");
+		log.debug("Requested framework name: {}, version: {}", frameworkName, version);
+
+		try {
+			if (version != null && !version.matches("\\d+")) {
+				throw new IllegalArgumentException("Version must be a number.");
+			}
+			String trustListXML = iTrustListPublicationService.getXMLTrustlist(frameworkName, version);
+			return ResponseEntity.ok(trustListXML);
+		} catch (IllegalArgumentException e) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	                .body(e.getMessage());
+		} catch (FileNotFoundException e) {
+			log.error("Failed to fetch trustlist in XML format: ", e);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Trustlist for framework " + frameworkName + " not found.");
+		} catch (IOException | JAXBException e) {
+			log.error("Failed to fetch trustlist in XML format: ", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Failed to fetch trustlist in XML format. " + e.getMessage());
+		}	
+	}	
 
 
 	/**
@@ -225,31 +262,31 @@ public class TrustListPublicationController {
 	/**
 	 * --> Get request for fetching trustlist.
 	 */
-	@GetMapping(value = "/{framework-name}/trust-list")
-	@ResponseBody
-	public ResponseEntity<Object> getTrustList(@PathVariable("framework-name") String frameworkName)
-			throws FileEmptyException, PropertiesAccessException {
-		log.debug("--------------- GET TRUSTLIST ---------------");
+	// @GetMapping(value = "/{framework-name}/trust-list")
+	// @ResponseBody
+	// public ResponseEntity<Object> getTrustList(@PathVariable("framework-name") String frameworkName)
+	// 		throws FileEmptyException, PropertiesAccessException {
+	// 	log.debug("--------------- GET TRUSTLIST ---------------");
 
-		try {
-			String trustList = iTrustListPublicationService.getXMLTrustlist(frameworkName);
-			String trustListType=TSPAUtil.getContentType(trustList);
-			if(trustListType.equals("json")) {
-				return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trustList);
-			} else if (trustListType.equals("xml")) {
-				return ResponseEntity.ok().contentType(MediaType.APPLICATION_XML).body(trustList);
-			}
-		} catch (FileNotFoundException e) {
-			log.error("Failed to fetch the initial Trust-list because:", e);
-			return TSPAUtil.getResponseBody("Failed to fetch the initial Trust-list:" + e.getMessage(),
-					HttpStatus.NOT_FOUND);
-		} catch (IOException e) {
-			log.error("Failed to fetch the initial Trust-list because:", e);
-			return TSPAUtil.getResponseBody("Failed to fetch the initial Trust-list:" + e.getMessage(),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<>("Unexpected media type: ",HttpStatus.UNSUPPORTED_MEDIA_TYPE);
-	}
+	// 	try {
+	// 		String trustList = iTrustListPublicationService.getXMLTrustlist(frameworkName);
+	// 		String trustListType=TSPAUtil.getContentType(trustList);
+	// 		if(trustListType.equals("json")) {
+	// 			return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trustList);
+	// 		} else if (trustListType.equals("xml")) {
+	// 			return ResponseEntity.ok().contentType(MediaType.APPLICATION_XML).body(trustList);
+	// 		}
+	// 	} catch (FileNotFoundException e) {
+	// 		log.error("Failed to fetch the initial Trust-list because:", e);
+	// 		return TSPAUtil.getResponseBody("Failed to fetch the initial Trust-list:" + e.getMessage(),
+	// 				HttpStatus.NOT_FOUND);
+	// 	} catch (IOException e) {
+	// 		log.error("Failed to fetch the initial Trust-list because:", e);
+	// 		return TSPAUtil.getResponseBody("Failed to fetch the initial Trust-list:" + e.getMessage(),
+	// 				HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
+	// 	return new ResponseEntity<>("Unexpected media type: ",HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+	// }
 
 	/**
 	 * --> Delete request for trustlist.
