@@ -9,7 +9,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.security.GeneralSecurityException;
+// import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,26 +22,28 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import org.apache.commons.codec.DecoderException;
+// import org.apache.commons.codec.DecoderException;
+// import org.bouncycastle.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+// import com.fasterxml.jackson.core.JsonProcessingException;
+// import com.fasterxml.jackson.core.type.TypeReference;
+// import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+// import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationModule;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+// import com.google.gson.JsonElement;
+// import com.google.gson.JsonObject;
+// import com.google.gson.JsonParser;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
@@ -50,23 +52,25 @@ import com.networknt.schema.ValidationMessage;
 import eu.xfsc.train.tspa.exceptions.FileEmptyException;
 import eu.xfsc.train.tspa.exceptions.FileExistsException;
 import eu.xfsc.train.tspa.exceptions.PropertiesAccessException;
-import eu.xfsc.train.tspa.exceptions.TSPException;
+// import eu.xfsc.train.tspa.exceptions.TSPException;
 import eu.xfsc.train.tspa.exceptions.XmlValidationError;
 import eu.xfsc.train.tspa.interfaces.ITrustListPublicationService;
 import eu.xfsc.train.tspa.interfaces.IVCService;
 import eu.xfsc.train.tspa.model.trustlist.NameType;
 import eu.xfsc.train.tspa.model.trustlist.TrustServiceStatusList;
-import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
-import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
+// import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
+import eu.xfsc.train.tspa.model.trustlist.tsp.TSPSimplifiedListCustomType;
+// import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
 import eu.xfsc.train.tspa.utils.IpfsUtil;
 import eu.xfsc.train.tspa.utils.TSPAUtil;
-import foundation.identity.jsonld.JsonLDException;
+// import foundation.identity.jsonld.JsonLDException;
 import io.ipfs.api.IPFS;
 import io.ipfs.api.NamedStreamable;
+// import jakarta.el.ELException;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+// import jakarta.xml.bind.Unmarshaller;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
@@ -99,74 +103,62 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	private String collectionNameTrustlist;
 	@Value("${spring.data.mongodb.collection-tsps}")
 	private String collectionNameTsps;
-
-
 	private IPFS ipfs;
+
+
+	// TRUST LISTS ------------------------------------------------------------------------------------------------
 
 	@Override
 	public void initXMLTrustList(String frameworkName, String xmlData)
 			throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
-
-		log.debug("Stored Type: {}", storeType);
-
-		if (storeType.compareTo("IPFS") == 0) {
-			storenewTrustListXMLIPFS(frameworkName, xmlData);
-		} else if (storeType.compareTo("INTERNAL") == 0) {
-			storeTrustListXMLLocal(frameworkName, xmlData, "CREATE");
-		}
-	}
-
-	// --> Method for store XML trust-list in local store and DB
-	private void storeTrustListXMLLocal(String frameworkname, String xmlTrustList, String operation)
-		throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
-		setPropertiesRule();
-		String trustListToStore = null;
-
-		if (operation.equals("CREATE")) {
-			if (TSPAUtil.isFileExisting(mPath, frameworkname)) {
-				throw new FileExistsException("A Trustlist xml file for this trust framework has already been created. " + frameworkname);
-			}
-			TrustServiceStatusList trustList = (TrustServiceStatusList) jaxbContext.createUnmarshaller()
-			.unmarshal(new StringReader(xmlTrustList));
+				setPropertiesRule();
+				String trustListToStore = null;
+				if (TSPAUtil.isFileExisting(mPath, frameworkName)) {
+					throw new FileExistsException("A Trustlist xml file for this trust framework has already been created. " + frameworkName);
+				}
+				TrustServiceStatusList trustList = (TrustServiceStatusList) jaxbContext.createUnmarshaller()
+				.unmarshal(new StringReader(xmlData));
+				
+				// Update Framework name, version and update date before storing
+				NameType frameworkNameType = new NameType(frameworkName);
+				trustList.getFrameworkInformation().setFrameworkName(frameworkNameType);
+				trustList.getFrameworkInformation().setTslVersionIdentifier(1);
+				trustList.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+	
+				// Marshal the updated object back to XML
+				StringWriter writer = new StringWriter();
+				jaxbContext.createMarshaller().marshal(trustList, writer);
+				// update the trustlist to store with the updated trustlist TrustServiceStatusList
+				trustListToStore = writer.toString();
 			
-			// Update Framework name, version and update date before storing
-			NameType frameworkNameType = new NameType(frameworkname);
-			trustList.getFrameworkInformation().setFrameworkName(frameworkNameType);
-			trustList.getFrameworkInformation().setTslVersionIdentifier(1);
-			trustList.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+				// write TL in local store and DB
+				storeTLInLocalStoreAndDB(frameworkName, trustListToStore, trustList);
+				log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkName);
+		
+			}
 
-			// Marshal the updated object back to XML
-			StringWriter writer = new StringWriter();
-			jaxbContext.createMarshaller().marshal(trustList, writer);
-			// update the trustlist to store with the updated trustlist TrustServiceStatusList
-			trustListToStore = writer.toString();
+	// --> Stores XML data into the local store and Trust List pojo into the DB
+	private void storeTLInLocalStoreAndDB(String frameworkName, String fullTLxml, TrustServiceStatusList simplifiedTLpojo)
+		throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
+			log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkName);
 
-		} else {
-			trustListToStore =xmlTrustList;
+			if (fullTLxml != null) {
+			// write the full TL in local store
+				PrintWriter file = new PrintWriter(mPath + "/" + frameworkName + ".xml");
+				file.write(fullTLxml);
+				file.close();
+			}
+
+			if (simplifiedTLpojo != null) {
+			// write the simplified TL in DB
+			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+			MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
+	
+			String trustListJson = omTrustList.writeValueAsString(simplifiedTLpojo);
+			Document trustListDocument = Document.parse(trustListJson);
+				collection.insertOne(trustListDocument);		
+			}
 		}
-
-		// write TL in local store
-		PrintWriter file = new PrintWriter(mPath + "/" + frameworkname + ".xml");
-		file.write(trustListToStore);
-		file.close();
-
-		// write TL in DB
-		TrustServiceStatusList trustListPojo = null;
-		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
-		MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		Marshaller marshaller = jaxbContext.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-		trustListPojo = (TrustServiceStatusList) unmarshaller
-		.unmarshal(new StreamSource(new StringReader(trustListToStore)));
-
-		String trustListJson = omTrustList.writeValueAsString(trustListPojo);
-		Document trustListDocument = Document.parse(trustListJson);
-		collection.insertOne(trustListDocument);		
-
-		log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkname);
-	}
 
 	// --> Updates TL in local store and DB. (Modifies version and issuance date fields in the TL)
 	 @Override
@@ -181,7 +173,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
  
  
-		 String currentTrustList = getSimplifiedTrustlist(framework, null);
+		 String currentTrustList = getSimplifiedTLfromDB(framework, null);
 		 trustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusList.class);
  
 		 if (trustListPojo.getFrameworkInformation().getTslVersionIdentifier() == 0) {
@@ -189,9 +181,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			 trustListPojo.getFrameworkInformation().setFrameworkName(frameworkName);
 		 }
 		 // update the version and issuance date fields
-		 int newVersion = trustListPojo.getFrameworkInformation().getTslVersionIdentifier() + 1;
-		 trustListPojo.getFrameworkInformation().setTslVersionIdentifier(newVersion);
-		 trustListPojo.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		 trustListPojo = updateTLVersionRelatedFields(trustListPojo);
 		 log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTslVersionIdentifier());
  
 		 // update file in local store
@@ -206,7 +196,8 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			 MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
 			 collection.insertOne(trustListDocument);
 			 log.info("Updated trust list to for framework '{}' in database '{}', collection '{}'", framework, databaseName, collectionNameTrustlist);
-			 return String.valueOf(newVersion);
+			 return String.valueOf(trustListPojo.getFrameworkInformation().getTslVersionIdentifier());
+
 		 } catch (Exception e) {
 			 log.error("Error updating trust list in database '{}', collection '{}' for framework '{}'", databaseName, collectionNameTrustlist, framework, e);
 			 throw new RuntimeException("Failed to update trust list in database", e);
@@ -235,7 +226,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	// --> Method for fetching a simplified trustlist in JSON (to string) format from DB.
 	@Override
-	public String getSimplifiedTrustlist(String frameworkName, String version)
+	public String getSimplifiedTLfromDB(String frameworkName, String version)
 			throws IOException, FileEmptyException {
 		try {
 			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
@@ -273,7 +264,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 	@Override
-	public String getXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException {
+	public String getFullXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException {
 
 		log.debug("Stored Type: {}", storeType);
 
@@ -282,14 +273,28 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			resultTL = getTrustlistFromLocalStore(frameworkName);
 		} else {
 			// --> Fetch a specific version of the trustlist in String format (representation of the TL in JSON)
-			resultTL = getSimplifiedTrustlist(frameworkName, version);
+			resultTL = getSimplifiedTLfromDB(frameworkName, version);
 			// --> Convert the JSON representation of the TL to XML
 			TrustServiceStatusList trustListPojo = omTrustList.readValue(resultTL, TrustServiceStatusList.class);
-			StringWriter writer = new StringWriter();
-			jaxbContext.createMarshaller().marshal(trustListPojo, writer);
-			resultTL = writer.toString();
+			resultTL = buildXMLfromSimplifiedTL(trustListPojo);
 		}
 		return resultTL;
+	}
+
+	// --> MAY BE NOT NEEDED. Builds a full XML TL on the fly from a simplified TL to be stored in the local store or delivered to the client
+	public String buildXMLfromSimplifiedTL(TrustServiceStatusList simplifiedTL) throws JAXBException {
+		// to do: iterate over the TSPs and add them to the XML
+		StringWriter writer = new StringWriter();
+		jaxbContext.createMarshaller().marshal(simplifiedTL, writer);
+		return writer.toString();
+	}	
+
+	// --> Updates only the Version and Issuance Date fields of in the simplified TL
+	public TrustServiceStatusList updateTLVersionRelatedFields(TrustServiceStatusList simplifiedTL) {
+		int newVersion = simplifiedTL.getFrameworkInformation().getTslVersionIdentifier() + 1;
+		simplifiedTL.getFrameworkInformation().setTslVersionIdentifier(newVersion);
+		simplifiedTL.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		return simplifiedTL;
 	}
 
 	// --> Method for fetching a list of versions of a trustlist
@@ -333,6 +338,79 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		}
 	}
 
+	// TRUST SERVICE PROVIDERS ------------------------------------------------------------------------------------------------
+	@Override
+	public String addTSPToTrustList(String frameworkName, String tspJson) 
+	        throws FileEmptyException, PropertiesAccessException, DataAccessException, IOException {
+	    // Verify framework exists by getting trustlist
+	    getSimplifiedTLfromDB(frameworkName, null);
+
+	    try {
+	        JsonNode tspNode = omTrustList.readTree(tspJson);
+	        String tspId = null;
+			// By now we don't do validation of the BODY, just check if TSPID is present
+			// To Do: validate the TSP body in the controller against the schema (?)
+			tspId = tspNode.get("TSPID").asText();
+			if (tspId == null) {
+				throw new PropertiesAccessException("TSPID field was not found in the TSP JSON");
+			} 	        
+	        MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+	        MongoCollection<Document> collection = db.getCollection(collectionNameTsps);
+	        
+	        // Check if TSP exists
+			Document existingTsp = null;
+			Document query = new Document("TSPID", tspId);
+			existingTsp = collection.find(query)
+				.sort(new Document("TSPVersion", -1))
+				.first();
+
+	        Document tspDoc = Document.parse(tspJson);
+	        
+	        if (existingTsp == null) {
+				// create new TSP
+				tspDoc.put("TSPVersion", 1);
+				// To do: Also modify the update	 date field
+	        } else {
+	            // TSP exists, increment version
+	            int currentVersion = existingTsp.getInteger("TSPVersion", 1);
+	            tspDoc.put("TSPVersion", currentVersion + 1);
+	            log.info("Incrementing version for TSP {} from {} to {}", tspId, currentVersion, currentVersion + 1);
+	        }
+
+			tspDoc.put("StatusStartingTime", java.time.LocalDateTime.now().toString());
+	        collection.insertOne(tspDoc);
+
+			// update the listOfTspId field in the trustlist
+			//create a TSPSimplifiedEntry object but only with the fields that are needed (TSPID, StatusStartingTime, etc)
+			TSPSimplifiedListCustomType.TSPSimplifiedEntry tspSimplifiedEntry = new TSPSimplifiedListCustomType.TSPSimplifiedEntry();
+			tspSimplifiedEntry.setTspID(tspId);
+			tspSimplifiedEntry.setStatusStartingTime(java.time.LocalDateTime.now().toString());
+			tspSimplifiedEntry.setTspVersion("1x");
+
+			//create a TSPSimplifiedListCustomType object
+			TrustServiceStatusList trustListPojo = omTrustList.readValue(getSimplifiedTLfromDB(frameworkName, null), TrustServiceStatusList.class);
+			TSPSimplifiedListCustomType tspSimplifiedList = null;
+			if (trustListPojo.getTspSimplifiedList() != null) {
+			    tspSimplifiedList = trustListPojo.getTspSimplifiedList();
+			} else {
+			    trustListPojo.setTspSimplifiedList(new TSPSimplifiedListCustomType());
+			}
+			// add the TSPSimplifiedEntry object to the list
+			List<TSPSimplifiedListCustomType.TSPSimplifiedEntry> tspList = new ArrayList<>();
+			tspList.add(tspSimplifiedEntry);
+			tspSimplifiedList.setTspSimplified(tspList);
+			trustListPojo.setTspSimplifiedList(tspSimplifiedList);
+
+			storeTLInLocalStoreAndDB(frameworkName, null, trustListPojo);
+	        
+	        return String.format("TSP %s successfully added/updated to version %d", 
+	            tspId, tspDoc.getInteger("TSPVersion"));
+	            
+	    } catch (Exception e) {
+	        log.error("Error adding/updating TSP for framework {}", frameworkName, e);
+	        throw new PropertiesAccessException("Failed to add/update TSP: " + e.getMessage());
+	    }
+	}
 
 
 // GXFS IMPLEMENTATION ------------------------------------------------------------------------------------------------
@@ -366,47 +444,47 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		return result;
 	}
 
-	@Override
-	public void tspPublish(String frameworkName, String newTsps)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// @Override
+	// public void tspPublish(String frameworkName, String newTsps)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		log.debug("Stored Type: {}", storeType);
+	// 	log.debug("Stored Type: {}", storeType);
 
-		if (storeType.compareTo("IPFS") == 0) {
-			tspPublishIPFS(frameworkName, newTsps);
-		} else if (storeType.compareTo("INTERNAL") == 0) {
-			tspPublishLocalStore(frameworkName, newTsps);
+	// 	if (storeType.compareTo("IPFS") == 0) {
+	// 		tspPublishIPFS(frameworkName, newTsps);
+	// 	} else if (storeType.compareTo("INTERNAL") == 0) {
+	// 		tspPublishLocalStore(frameworkName, newTsps);
 
-		}
-	}
+	// 	}
+	// }
 
-	@Override
-	public void tspUpdate(String frameworkName, String uuid, String tsp)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// @Override
+	// public void tspUpdate(String frameworkName, String uuid, String tsp)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		log.debug("Stored Type: {}", storeType);
+	// 	log.debug("Stored Type: {}", storeType);
 
-		if (storeType.compareTo("IPFS") == 0) {
-			tspUpdationIPFS(frameworkName, uuid, tsp);
-		} else if (storeType.compareTo("INTERNAL") == 0) {
-			tspUpdationLocalStore(frameworkName, uuid, tsp);
+	// 	if (storeType.compareTo("IPFS") == 0) {
+	// 		tspUpdationIPFS(frameworkName, uuid, tsp);
+	// 	} else if (storeType.compareTo("INTERNAL") == 0) {
+	// 		tspUpdationLocalStore(frameworkName, uuid, tsp);
 
-		}
-	}
+	// 	}
+	// }
 
-	@Override
-	public void tspRemove(String frameworkName, String uuid)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
-		log.debug("Stored Type: {}", storeType);
+	// @Override
+	// public void tspRemove(String frameworkName, String uuid)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// 	log.debug("Stored Type: {}", storeType);
 
-		if (storeType.compareTo("IPFS") == 0) {
-			tspDeleteIPFS(frameworkName, uuid);
-		} else if (storeType.compareTo("INTERNAL") == 0) {
-			tspDeleteLocalStore(frameworkName, uuid);
+	// 	if (storeType.compareTo("IPFS") == 0) {
+	// 		tspDeleteIPFS(frameworkName, uuid);
+	// 	} else if (storeType.compareTo("INTERNAL") == 0) {
+	// 		tspDeleteLocalStore(frameworkName, uuid);
 
-		}
+	// 	}
 
-	}
+	// }
 
 	// --> Method for XML validation.
 	@Override
@@ -474,28 +552,6 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 
-	// --> Method for store XML trust-list in IPFS store.
-	private void storenewTrustListXMLIPFS(String frameworkname, String xmlTrustList)
-			throws PropertiesAccessException, FileExistsException {
-		try {
-			setDirectoryIPFS();
-
-			String fileName = frameworkname + ".xml";
-			String filepath = mPath + fileName;
-
-			if (isTrustListAvailableIPFS(mPath, frameworkname) != null) {
-				throw new FileExistsException("IPFS store; Trustlist is already Existing for " + frameworkname);
-			}
-			ipfs.files.rm(filepath, true, true);
-			NamedStreamable.ByteArrayWrapper ns = new NamedStreamable.ByteArrayWrapper(fileName,
-					xmlTrustList.getBytes());
-			ipfs.files.write(filepath, ns, true, true);
-			log.info("IPFS store; New XML trust-list is created with {} in Store.", frameworkname);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	// --> Method for store JSON trust-list in local store.
 	private void storeTrustListJSONLocal(String frameworkname, String jsonTrustList)
 			throws FileExistsException, FileNotFoundException, PropertiesAccessException {
@@ -534,24 +590,24 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		}
 	}
 
-	// --> Method for getting trust-list from IPFS store.
-	private String getTrustlistFromIPFS(String frameworkName) throws IOException {
+	// // --> Method for getting trust-list from IPFS store.
+	// private String getTrustlistFromIPFS(String frameworkName) throws IOException {
 
-		setDirectoryIPFS();
-		String filename = isTrustListAvailableIPFS(mPath, frameworkName);
-		if (filename == null) {
-			throw new FileNotFoundException(
-					"Trustlist for " + frameworkName + " not found in IPFS store at path " + mPath);
-		}
+	// 	setDirectoryIPFS();
+	// 	String filename = isTrustListAvailableIPFS(mPath, frameworkName);
+	// 	if (filename == null) {
+	// 		throw new FileNotFoundException(
+	// 				"Trustlist for " + frameworkName + " not found in IPFS store at path " + mPath);
+	// 	}
 
-		String filePath = mPath + filename;
+	// 	String filePath = mPath + filename;
 
-		byte[] data = ipfs.files.read(filePath);
-		if (data == null)
-			throw new FileEmptyException("IPFS store; Trust-list for " + frameworkName);
-		log.info("IPFS store; Fetching trustlist {} from {}", frameworkName, filePath);
-		return new String(data, StandardCharsets.UTF_8);
-	}
+	// 	byte[] data = ipfs.files.read(filePath);
+	// 	if (data == null)
+	// 		throw new FileEmptyException("IPFS store; Trust-list for " + frameworkName);
+	// 	log.info("IPFS store; Fetching trustlist {} from {}", frameworkName, filePath);
+	// 	return new String(data, StandardCharsets.UTF_8);
+	// }
 
 	// --> Method for deleting trust-list from local store.
 	private String deleteTLfromLocalStore(String framworkname) throws PropertiesAccessException {
@@ -622,447 +678,446 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		this.omTrustList.registerModule(module);
 	}
 
-	// --> Enable some of the configuration for the root-level.(During the
-	// (de-)serialization for the entire Trustlist )
-	private void EnableRootElementConfig() {
-		log.debug("Enable root-level (de-)serialization");
-		omTrustList.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
-		omTrustList.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
-		//omTrustList.setSerializationInclusion(Include.NON_NULL);
-	}
+	// // --> Enable some of the configuration for the root-level.(During the
+	// // (de-)serialization for the entire Trustlist )
+	// private void EnableRootElementConfig() {
+	// 	log.debug("Enable root-level (de-)serialization");
+	// 	omTrustList.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
+	// 	omTrustList.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
+	// 	//omTrustList.setSerializationInclusion(Include.NON_NULL);
+	// }
 
-	// --> Disable some configuration for the root-level.(During the deserialization
-	// of the TSPs array)
-	private void UnableRootElementConfig() {
-		log.debug("disable root-level (de-)serialization");
-		omTrustList.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-		omTrustList.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, false);
-	}
+	// // --> Disable some configuration for the root-level.(During the deserialization
+	// // of the TSPs array)
+	// private void UnableRootElementConfig() {
+	// 	log.debug("disable root-level (de-)serialization");
+	// 	omTrustList.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+	// 	omTrustList.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, false);
+	// }
 
-	
-	// --> TSP publishing for the INTERNAL store.
-	private void tspPublishLocalStore(String framework, String tsps)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// // --> TSP publishing for the INTERNAL store.
+	// private void tspPublishLocalStore(String framework, String tsps)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		setConfgurationObjectMapper();
+	// 	setConfgurationObjectMapper();
 
-		TrustServiceStatusList trustListPojo = null;
-		List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
+	// 	TrustServiceStatusList trustListPojo = null;
+	// 	List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
 
-		JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(tsps);
-		JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
-		if (tspElement.isJsonObject()) {
-			tspList = handleSingleTSP(tspElement.toString());
-		} else {
-			tspList = ArrayToTSPCustomTypeList(tspElement.toString());
-		}
+	// 	JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(tsps);
+	// 	JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
+	// 	if (tspElement.isJsonObject()) {
+	// 		tspList = handleSingleTSP(tspElement.toString());
+	// 	} else {
+	// 		tspList = ArrayToTSPCustomTypeList(tspElement.toString());
+	// 	}
 
-		String existedTL = getTrustlistFromLocalStore(framework);
-		String tlType = TSPAUtil.getContentType(existedTL);
-		File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
+	// 	String existedTL = getTrustlistFromLocalStore(framework);
+	// 	String tlType = TSPAUtil.getContentType(existedTL);
+	// 	File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
 
-		if (tlType.equals("xml")) {
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			trustListPojo = (TrustServiceStatusList) unmarshaller
-					.unmarshal(new StreamSource(new StringReader(existedTL)));
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
-			PrintWriter file = new PrintWriter(existedTLFile);
-			marshaller.marshal(trustListPojo, file);
-			file.close();
-		} else if (tlType.equals("json")) {
-			EnableRootElementConfig();
-			trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
-			omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
-		}
+	// 	if (tlType.equals("xml")) {
+	// 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	// 		Marshaller marshaller = jaxbContext.createMarshaller();
+	// 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	// 		trustListPojo = (TrustServiceStatusList) unmarshaller
+	// 				.unmarshal(new StreamSource(new StringReader(existedTL)));
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		PrintWriter file = new PrintWriter(existedTLFile);
+	// 		marshaller.marshal(trustListPojo, file);
+	// 		file.close();
+	// 	} else if (tlType.equals("json")) {
+	// 		EnableRootElementConfig();
+	// 		trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
+	// 	}
 
-		// // get trustlist POJO (from DB)
-		// String currentTrustList = getSimplifiedTrustlist(framework, null);
-		// // convert it into POJO
-		// TrustServiceStatusList currentTrustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusList.class);
+	// 	// // get trustlist POJO (from DB)
+	// 	// String currentTrustList = getSimplifiedTLfromDB(framework, null);
+	// 	// // convert it into POJO
+	// 	// TrustServiceStatusList currentTrustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusList.class);
 
 
-		// Updating VC after updating Trustlist.
-		try {
-			ivcService.createVC(framework, tlType);
-		} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
-			e.printStackTrace();
-		}
+	// 	// Updating VC after updating Trustlist.
+	// 	try {
+	// 		ivcService.createVC(framework, tlType);
+	// 	} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
+	// 		e.printStackTrace();
+	// 	}
 
-	}
+	// }
 
-	// --> TSP publishing for the IPFS store.
-	private void tspPublishIPFS(String framework, String tsps)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// // --> TSP publishing for the IPFS store.
+	// private void tspPublishIPFS(String framework, String tsps)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		setConfgurationObjectMapper();
-		//setDirectoryIPFS(PATH_STORE_TRUSTLIST);
+	// 	setConfgurationObjectMapper();
+	// 	//setDirectoryIPFS(PATH_STORE_TRUSTLIST);
 
-		TrustServiceStatusList trustListPojo = null;
-		List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
+	// 	TrustServiceStatusList trustListPojo = null;
+	// 	List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
 
-		JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(tsps);
-		JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
-		if (tspElement.isJsonObject()) {
-			tspList = handleSingleTSP(tspElement.toString());
-		} else {
-			tspList = ArrayToTSPCustomTypeList(tspElement.toString());
-		}
+	// 	JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(tsps);
+	// 	JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
+	// 	if (tspElement.isJsonObject()) {
+	// 		tspList = handleSingleTSP(tspElement.toString());
+	// 	} else {
+	// 		tspList = ArrayToTSPCustomTypeList(tspElement.toString());
+	// 	}
 
-		String existedTL = getTrustlistFromIPFS(framework);
-		String tlType = TSPAUtil.getContentType(existedTL);
-		// File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
+	// 	String existedTL = getTrustlistFromIPFS(framework);
+	// 	String tlType = TSPAUtil.getContentType(existedTL);
+	// 	// File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
 
-		if (tlType.equals("xml")) {
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			trustListPojo = (TrustServiceStatusList) unmarshaller
-					.unmarshal(new StreamSource(new StringReader(existedTL)));
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
-			StringWriter sw = new StringWriter();
-			marshaller.marshal(trustListPojo, sw);
-			String newTrustlistAsString = sw.toString();
-			ipfsWriter(framework, newTrustlistAsString, "xml");
+	// 	if (tlType.equals("xml")) {
+	// 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	// 		Marshaller marshaller = jaxbContext.createMarshaller();
+	// 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	// 		trustListPojo = (TrustServiceStatusList) unmarshaller
+	// 				.unmarshal(new StreamSource(new StringReader(existedTL)));
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		StringWriter sw = new StringWriter();
+	// 		marshaller.marshal(trustListPojo, sw);
+	// 		String newTrustlistAsString = sw.toString();
+	// 		ipfsWriter(framework, newTrustlistAsString, "xml");
 
-		} else if (tlType.equals("json")) {
-			EnableRootElementConfig();
-			trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
-			String newTrustlistAsString = omTrustList.writerWithDefaultPrettyPrinter()
-					.writeValueAsString(trustListPojo);
-			ipfsWriter(framework, newTrustlistAsString, "json");
-		}
+	// 	} else if (tlType.equals("json")) {
+	// 		EnableRootElementConfig();
+	// 		trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		String newTrustlistAsString = omTrustList.writerWithDefaultPrettyPrinter()
+	// 				.writeValueAsString(trustListPojo);
+	// 		ipfsWriter(framework, newTrustlistAsString, "json");
+	// 	}
 
-		// Updating VC after updating Trustlist.
-		try {
-			ivcService.createVC(framework, tlType);
-		} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
-			e.printStackTrace();
-		}
+	// 	// Updating VC after updating Trustlist.
+	// 	try {
+	// 		ivcService.createVC(framework, tlType);
+	// 	} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
+	// 		e.printStackTrace();
+	// 	}
 
-	}
+	// }
 
-	private List<TSPCustomType> handleSingleTSP(String tspJsonObj) {
-		UnableRootElementConfig();
-		List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
-		TSPCustomType singleTsp = null;
+	// private List<TSPCustomType> handleSingleTSP(String tspJsonObj) {
+	// 	UnableRootElementConfig();
+	// 	List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
+	// 	TSPCustomType singleTsp = null;
 
-		try {
-			singleTsp = omTrustList.readValue(tspJsonObj, TSPCustomType.class);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		tspList.add(singleTsp);
-		return tspList;
-	}
+	// 	try {
+	// 		singleTsp = omTrustList.readValue(tspJsonObj, TSPCustomType.class);
+	// 	} catch (JsonProcessingException e) {
+	// 		e.printStackTrace();
+	// 	}
+	// 	tspList.add(singleTsp);
+	// 	return tspList;
+	// }
 
-	// Convert JsonArray of the Trust provider
-	private List<TSPCustomType> ArrayToTSPCustomTypeList(String tspsArray) {
-		UnableRootElementConfig();
+	// // Convert JsonArray of the Trust provider
+	// private List<TSPCustomType> ArrayToTSPCustomTypeList(String tspsArray) {
+	// 	UnableRootElementConfig();
 
-		List<TSPCustomType> tspList = null;
+	// 	List<TSPCustomType> tspList = null;
 
-		TypeReference<List<TSPCustomType>> listTypeReference = new TypeReference<List<TSPCustomType>>() {
-		};
-		try {
-			tspList = omTrustList.readValue(tspsArray, listTypeReference);
-			for (int i=0; i<tspList.size();i++) {
-				for(int j= i+1; j<tspList.size();j++) {
-					TSPCustomType tempTSP1 = tspList.get(i);
-					TSPCustomType tempTSP2 = tspList.get(j);
-					if(tempTSP1.getUUID().equals(tempTSP2.getUUID())) {
-						throw new TSPException("TSP can't publish: UUID "+ tempTSP1.getUUID() +" passed multiple times in TSP array.");
-					}
-				}
-			}
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+	// 	TypeReference<List<TSPCustomType>> listTypeReference = new TypeReference<List<TSPCustomType>>() {
+	// 	};
+	// 	try {
+	// 		tspList = omTrustList.readValue(tspsArray, listTypeReference);
+	// 		for (int i=0; i<tspList.size();i++) {
+	// 			for(int j= i+1; j<tspList.size();j++) {
+	// 				TSPCustomType tempTSP1 = tspList.get(i);
+	// 				TSPCustomType tempTSP2 = tspList.get(j);
+	// 				if(tempTSP1.getTspID().equals(tempTSP2.getTspID())) {
+	// 					throw new TSPException("TSP can't publish: UUID "+ tempTSP1.getTspID() +" passed multiple times in TSP array.");
+	// 				}
+	// 			}
+	// 		}
+	// 	} catch (JsonProcessingException e) {
+	// 		e.printStackTrace();
+	// 	}
 		
-		return tspList;
-	}
+	// 	return tspList;
+	// }
 
-	// Add TSP in existing Trustlist.
-	private TrustServiceStatusList addTSPinExistedTL(TrustServiceStatusList trustlist, List<TSPCustomType> tsps)
-			throws TSPException {
+	// // Add TSP in existing Trustlist.
+	// private TrustServiceStatusList addTSPinExistedTL(TrustServiceStatusList trustlist, List<TSPCustomType> tsps)
+	// 		throws TSPException {
 
-		TrustServiceProviderListCustomType trustServiceProviderListCustomType = new TrustServiceProviderListCustomType();
+	// 	TrustServiceProviderListCustomType trustServiceProviderListCustomType = new TrustServiceProviderListCustomType();
 
-		// Checking UUID. matching
-		if (trustlist.getTrustServiceProviderList() == null) {
-			trustServiceProviderListCustomType.setTrustServiceProvider(tsps);
+	// 	// Checking UUID. matching
+	// 	if (trustlist.getTrustServiceProviderList() == null) {
+	// 		trustServiceProviderListCustomType.setTrustServiceProvider(tsps);
 
-		} else {
-			List<TSPCustomType> existingCustomTypesList = trustlist.getTrustServiceProviderList()
-					.getTrustServiceProvider();
-			if (existingCustomTypesList != null) {
-				for (TSPCustomType single : tsps) {
-					for (TSPCustomType tspexist : existingCustomTypesList) {
-						if (tspexist.getUUID().equals(single.getUUID()) ) {
-							throw new TSPException(
-									"TSP can't publish : TSP with UUID " + single.getUUID() + " already exists.");
-						}
-					}
-				}
-				existingCustomTypesList.addAll(tsps);
-				trustServiceProviderListCustomType.setTrustServiceProvider(existingCustomTypesList);
-			} else {
-				trustServiceProviderListCustomType.setTrustServiceProvider(tsps);
-			}
-		}
-		trustlist.setTrustServiceProviderList(trustServiceProviderListCustomType);
-		return trustlist;
-	}
+	// 	} else {
+	// 		List<TSPCustomType> existingCustomTypesList = trustlist.getTrustServiceProviderList()
+	// 				.getTrustServiceProvider();
+	// 		if (existingCustomTypesList != null) {
+	// 			for (TSPCustomType single : tsps) {
+	// 				for (TSPCustomType tspexist : existingCustomTypesList) {
+	// 					if (tspexist.getTspID().equals(single.getTspID()) ) {
+	// 						throw new TSPException(
+	// 								"TSP can't publish : TSP with UUID " + single.getTspID() + " already exists.");
+	// 					}
+	// 				}
+	// 			}
+	// 			existingCustomTypesList.addAll(tsps);
+	// 			trustServiceProviderListCustomType.setTrustServiceProvider(existingCustomTypesList);
+	// 		} else {
+	// 			trustServiceProviderListCustomType.setTrustServiceProvider(tsps);
+	// 		}
+	// 	}
+	// 	trustlist.setTrustServiceProviderList(trustServiceProviderListCustomType);
+	// 	return trustlist;
+	// }
 
-	// --> TSP delete from INTERNAL.
-	private void tspDeleteLocalStore(String framework, String uuid)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// // --> TSP delete from INTERNAL.
+	// private void tspDeleteLocalStore(String framework, String uuid)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		setConfgurationObjectMapper();
+	// 	setConfgurationObjectMapper();
 
-		TrustServiceStatusList trustListPojo = null;
+	// 	TrustServiceStatusList trustListPojo = null;
 
-		String existedTL = getTrustlistFromLocalStore(framework);
-		String tlType = TSPAUtil.getContentType(existedTL);
-		File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
+	// 	String existedTL = getTrustlistFromLocalStore(framework);
+	// 	String tlType = TSPAUtil.getContentType(existedTL);
+	// 	File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
 
-		if (tlType.equals("xml")) {
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			trustListPojo = (TrustServiceStatusList) unmarshaller
-					.unmarshal(new StreamSource(new StringReader(existedTL)));
-			trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
-			// marshaller.marshal(trustListPojo, existedTLFile);
-			PrintWriter file = new PrintWriter(existedTLFile);
-			marshaller.marshal(trustListPojo, file);
-			file.close();
-		} else if (tlType.equals("json")) {
-			EnableRootElementConfig();
-			trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
-			trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
-			omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
-		}
+	// 	if (tlType.equals("xml")) {
+	// 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	// 		Marshaller marshaller = jaxbContext.createMarshaller();
+	// 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	// 		trustListPojo = (TrustServiceStatusList) unmarshaller
+	// 				.unmarshal(new StreamSource(new StringReader(existedTL)));
+	// 		trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
+	// 		// marshaller.marshal(trustListPojo, existedTLFile);
+	// 		PrintWriter file = new PrintWriter(existedTLFile);
+	// 		marshaller.marshal(trustListPojo, file);
+	// 		file.close();
+	// 	} else if (tlType.equals("json")) {
+	// 		EnableRootElementConfig();
+	// 		trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
+	// 		trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
+	// 		omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
+	// 	}
 
-		// Updating VC
-		try {
-			ivcService.createVC(framework, tlType);
-		} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
-			e.printStackTrace();
-		}
+	// 	// Updating VC
+	// 	try {
+	// 		ivcService.createVC(framework, tlType);
+	// 	} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
+	// 		e.printStackTrace();
+	// 	}
 
-	}
+	// }
 
-	// -->TSP delete from IPFS.
-	private void tspDeleteIPFS(String framework, String uuid)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// // -->TSP delete from IPFS.
+	// private void tspDeleteIPFS(String framework, String uuid)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		setConfgurationObjectMapper();
+	// 	setConfgurationObjectMapper();
 
-		TrustServiceStatusList trustListPojo = null;
+	// 	TrustServiceStatusList trustListPojo = null;
 
-		String existedTL = getTrustlistFromIPFS(framework);
-		String tlType = TSPAUtil.getContentType(existedTL);
+	// 	String existedTL = getTrustlistFromIPFS(framework);
+	// 	String tlType = TSPAUtil.getContentType(existedTL);
 
-		if (tlType.equals("xml")) {
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			trustListPojo = (TrustServiceStatusList) unmarshaller
-					.unmarshal(new StreamSource(new StringReader(existedTL)));
-			trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
-			StringWriter sw = new StringWriter();
+	// 	if (tlType.equals("xml")) {
+	// 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	// 		Marshaller marshaller = jaxbContext.createMarshaller();
+	// 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	// 		trustListPojo = (TrustServiceStatusList) unmarshaller
+	// 				.unmarshal(new StreamSource(new StringReader(existedTL)));
+	// 		trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
+	// 		StringWriter sw = new StringWriter();
 			
-			marshaller.marshal(trustListPojo, sw);
-			String newTrustlistAsString = sw.toString();
-			ipfsWriter(framework, newTrustlistAsString, "xml");
-		} else if (tlType.equals("json")) {
-			EnableRootElementConfig();
-			trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
-			trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
-			String newTrustlistAsString = omTrustList.writerWithDefaultPrettyPrinter()
-					.writeValueAsString(trustListPojo);
-			ipfsWriter(framework, newTrustlistAsString, "json");
-		}
+	// 		marshaller.marshal(trustListPojo, sw);
+	// 		String newTrustlistAsString = sw.toString();
+	// 		ipfsWriter(framework, newTrustlistAsString, "xml");
+	// 	} else if (tlType.equals("json")) {
+	// 		EnableRootElementConfig();
+	// 		trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
+	// 		trustListPojo = deleteTSPinExistedTL(trustListPojo, uuid);
+	// 		String newTrustlistAsString = omTrustList.writerWithDefaultPrettyPrinter()
+	// 				.writeValueAsString(trustListPojo);
+	// 		ipfsWriter(framework, newTrustlistAsString, "json");
+	// 	}
 
-		// Updating VC
-		try {
-			ivcService.createVC(framework, tlType);
-		} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
-			e.printStackTrace();
-		}
+	// 	// Updating VC
+	// 	try {
+	// 		ivcService.createVC(framework, tlType);
+	// 	} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
+	// 		e.printStackTrace();
+	// 	}
 
-	}
+	// }
 
-	private TrustServiceStatusList deleteTSPinExistedTL(TrustServiceStatusList trustlist, String uuid) {
-		TrustServiceStatusList newTrustList = deleteTsp(trustlist, uuid);
-		if (newTrustList == null) {
-			throw new TSPException("TSP can't deleted : Trust-list without single TSP");
-		}
-		return newTrustList;
+	// private TrustServiceStatusList deleteTSPinExistedTL(TrustServiceStatusList trustlist, String uuid) {
+	// 	TrustServiceStatusList newTrustList = deleteTsp(trustlist, uuid);
+	// 	if (newTrustList == null) {
+	// 		throw new TSPException("TSP can't deleted : Trust-list without single TSP");
+	// 	}
+	// 	return newTrustList;
 
-	}
+	// }
 
-	private TrustServiceStatusList deleteTsp(TrustServiceStatusList trustlist, String uuid) {
-		TrustServiceProviderListCustomType trustServiceProviderListCustomType = new TrustServiceProviderListCustomType();
+	// private TrustServiceStatusList deleteTsp(TrustServiceStatusList trustlist, String uuid) {
+	// 	TrustServiceProviderListCustomType trustServiceProviderListCustomType = new TrustServiceProviderListCustomType();
 
-		// Checking UUID. matching
-		if (trustlist.getTrustServiceProviderList() == null) {
+	// 	// Checking UUID. matching
+	// 	if (trustlist.getTrustServiceProviderList() == null) {
 
-			return null;
+	// 		return null;
 
-		} else {
-			List<TSPCustomType> existingCustomTypesList = trustlist.getTrustServiceProviderList()
-					.getTrustServiceProvider();
-			if (existingCustomTypesList != null) {
-				for (TSPCustomType tsp : existingCustomTypesList) {
-					if (uuid.equals(tsp.getUUID() )) {
-						existingCustomTypesList.remove(tsp);
-						trustServiceProviderListCustomType.setTrustServiceProvider(existingCustomTypesList);
-						trustlist.setTrustServiceProviderList(trustServiceProviderListCustomType);
-						return trustlist;
-					}
-				}
-				throw new TSPException("TSP oprations can't perform : Unable to find TSP with UUID :" + uuid);
-			}
-			return null;
-		}
-	}
+	// 	} else {
+	// 		List<TSPCustomType> existingCustomTypesList = trustlist.getTrustServiceProviderList()
+	// 				.getTrustServiceProvider();
+	// 		if (existingCustomTypesList != null) {
+	// 			for (TSPCustomType tsp : existingCustomTypesList) {
+	// 				if (uuid.equals(tsp.getTspID() )) {
+	// 					existingCustomTypesList.remove(tsp);
+	// 					trustServiceProviderListCustomType.setTrustServiceProvider(existingCustomTypesList);
+	// 					trustlist.setTrustServiceProviderList(trustServiceProviderListCustomType);
+	// 					return trustlist;
+	// 				}
+	// 			}
+	// 			throw new TSPException("TSP oprations can't perform : Unable to find TSP with UUID :" + uuid);
+	// 		}
+	// 		return null;
+	// 	}
+	// }
 
 	// --> TSP update from INTERNAL
-	private void tspUpdationLocalStore(String framework, String uuid, String newTSP)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// private void tspUpdationLocalStore(String framework, String uuid, String newTSP)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		setConfgurationObjectMapper();
-		TrustServiceStatusList trustListPojo = null;
-		List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
+	// 	setConfgurationObjectMapper();
+	// 	TrustServiceStatusList trustListPojo = null;
+	// 	List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
 
-		JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(newTSP);
-		JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
-		if (tspElement.isJsonObject()) {
-			tspList = handleSingleTSP(tspElement.toString());
-		} else {
-			throw new TSPException("UpdatingTSP; 'TrustServiceProvider' should be JsonObject");
-		}
+	// 	JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(newTSP);
+	// 	JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
+	// 	if (tspElement.isJsonObject()) {
+	// 		tspList = handleSingleTSP(tspElement.toString());
+	// 	} else {
+	// 		throw new TSPException("UpdatingTSP; 'TrustServiceProvider' should be JsonObject");
+	// 	}
 
-		if (!uuid.equals(tspList.get(0).getUUID())) {
-			throw new TSPException("TSP update failed, UUID should be " + uuid + " in updated TSP");
-		}
+	// 	if (!uuid.equals(tspList.get(0).getTspID())) {
+	// 		throw new TSPException("TSP update failed, UUID should be " + uuid + " in updated TSP");
+	// 	}
 
-		String existedTL = getTrustlistFromLocalStore(framework);
-		String tlType = TSPAUtil.getContentType(existedTL);
-		File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
+	// 	String existedTL = getTrustlistFromLocalStore(framework);
+	// 	String tlType = TSPAUtil.getContentType(existedTL);
+	// 	File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
 
-		if (tlType.equals("xml")) {
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			// Existed TL.
-			trustListPojo = (TrustServiceStatusList) unmarshaller
-					.unmarshal(new StreamSource(new StringReader(existedTL)));
+	// 	if (tlType.equals("xml")) {
+	// 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	// 		Marshaller marshaller = jaxbContext.createMarshaller();
+	// 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	// 		// Existed TL.
+	// 		trustListPojo = (TrustServiceStatusList) unmarshaller
+	// 				.unmarshal(new StreamSource(new StringReader(existedTL)));
 
-			// Requested TSP delete.
-			trustListPojo = deleteTsp(trustListPojo, uuid);
+	// 		// Requested TSP delete.
+	// 		trustListPojo = deleteTsp(trustListPojo, uuid);
 
-			// Update new tsp.
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		// Update new tsp.
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
 
-			PrintWriter file = new PrintWriter(existedTLFile);
-			marshaller.marshal(trustListPojo, file);
-			file.close();
-		} else if (tlType.equals("json")) {
-			EnableRootElementConfig();
-			trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
-			trustListPojo = deleteTsp(trustListPojo, uuid);
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
-			omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
-		}
+	// 		PrintWriter file = new PrintWriter(existedTLFile);
+	// 		marshaller.marshal(trustListPojo, file);
+	// 		file.close();
+	// 	} else if (tlType.equals("json")) {
+	// 		EnableRootElementConfig();
+	// 		trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
+	// 		trustListPojo = deleteTsp(trustListPojo, uuid);
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		omTrustList.writerWithDefaultPrettyPrinter().writeValue(existedTLFile, trustListPojo);
+	// 	}
 
-		// Updating VC
-		try {
-			ivcService.createVC(framework, tlType);
-		} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
-			e.printStackTrace();
-		}
+	// 	// Updating VC
+	// 	try {
+	// 		ivcService.createVC(framework, tlType);
+	// 	} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
+	// 		e.printStackTrace();
+	// 	}
 
-	}
+	// }
 
-	// --> TSP update from IPFS
-	private void tspUpdationIPFS(String framework, String uuid, String newTSP)
-			throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
+	// // --> TSP update from IPFS
+	// private void tspUpdationIPFS(String framework, String uuid, String newTSP)
+	// 		throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 
-		setConfgurationObjectMapper();
-		TrustServiceStatusList trustListPojo = null;
-		List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
+	// 	setConfgurationObjectMapper();
+	// 	TrustServiceStatusList trustListPojo = null;
+	// 	List<TSPCustomType> tspList = new ArrayList<TSPCustomType>();
 
-		JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(newTSP);
-		JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
-		if (tspElement.isJsonObject()) {
-			tspList = handleSingleTSP(tspElement.toString());
-		} else {
-			throw new TSPException("UpdatingTSP; 'TrustServiceProvider' should be JsonObject");
-		}
+	// 	JsonObject tspjsonObjct = (JsonObject) JsonParser.parseString(newTSP);
+	// 	JsonElement tspElement = tspjsonObjct.get("TrustServiceProvider");
+	// 	if (tspElement.isJsonObject()) {
+	// 		tspList = handleSingleTSP(tspElement.toString());
+	// 	} else {
+	// 		throw new TSPException("UpdatingTSP; 'TrustServiceProvider' should be JsonObject");
+	// 	}
 
-		if (!uuid.equals(tspList.get(0).getUUID())) {
-			throw new TSPException("TSP update failed, UUID should be " + uuid + " in updated TSP");
-		}
+	// 	if (!uuid.equals(tspList.get(0).getTspID())) {
+	// 		throw new TSPException("TSP update failed, UUID should be " + uuid + " in updated TSP");
+	// 	}
 
-		String existedTL = getTrustlistFromIPFS(framework);
-		String tlType = TSPAUtil.getContentType(existedTL);
+	// 	String existedTL = getTrustlistFromIPFS(framework);
+	// 	String tlType = TSPAUtil.getContentType(existedTL);
 
-		if (tlType.equals("xml")) {
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			// Existed TL.
-			trustListPojo = (TrustServiceStatusList) unmarshaller
-					.unmarshal(new StreamSource(new StringReader(existedTL)));
+	// 	if (tlType.equals("xml")) {
+	// 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	// 		Marshaller marshaller = jaxbContext.createMarshaller();
+	// 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	// 		// Existed TL.
+	// 		trustListPojo = (TrustServiceStatusList) unmarshaller
+	// 				.unmarshal(new StreamSource(new StringReader(existedTL)));
 
-			// Requested TSP delete.
-			trustListPojo = deleteTsp(trustListPojo, uuid);
+	// 		// Requested TSP delete.
+	// 		trustListPojo = deleteTsp(trustListPojo, uuid);
 
-			// Update new tsp.
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		// Update new tsp.
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
 
-			StringWriter sw = new StringWriter();
-			marshaller.marshal(trustListPojo, sw);
-			String newTrustlistAsString = sw.toString();
-			ipfsWriter(framework, newTrustlistAsString, "xml");
+	// 		StringWriter sw = new StringWriter();
+	// 		marshaller.marshal(trustListPojo, sw);
+	// 		String newTrustlistAsString = sw.toString();
+	// 		ipfsWriter(framework, newTrustlistAsString, "xml");
 
-		} else if (tlType.equals("json")) {
-			EnableRootElementConfig();
-			trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
-			trustListPojo = deleteTsp(trustListPojo, uuid);
-			trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
-			String newTrustlistAsString = omTrustList.writerWithDefaultPrettyPrinter()
-					.writeValueAsString(trustListPojo);
-			ipfsWriter(framework, newTrustlistAsString, "json");
-		}
+	// 	} else if (tlType.equals("json")) {
+	// 		EnableRootElementConfig();
+	// 		trustListPojo = omTrustList.readValue(existedTL, TrustServiceStatusList.class);
+	// 		trustListPojo = deleteTsp(trustListPojo, uuid);
+	// 		trustListPojo = addTSPinExistedTL(trustListPojo, tspList);
+	// 		String newTrustlistAsString = omTrustList.writerWithDefaultPrettyPrinter()
+	// 				.writeValueAsString(trustListPojo);
+	// 		ipfsWriter(framework, newTrustlistAsString, "json");
+	// 	}
 
-		// Updating VC
-		try {
-			ivcService.createVC(framework, tlType);
-		} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
-			e.printStackTrace();
-		}
+	// 	// Updating VC
+	// 	try {
+	// 		ivcService.createVC(framework, tlType);
+	// 	} catch (PropertiesAccessException | DecoderException | GeneralSecurityException | JsonLDException e) {
+	// 		e.printStackTrace();
+	// 	}
 
-	}
+	// }
 
-	private void ipfsWriter(String frameworkname, String content, String type)
-			throws PropertiesAccessException, IOException {
-		setDirectoryIPFS();
+	// private void ipfsWriter(String frameworkname, String content, String type)
+	// 		throws PropertiesAccessException, IOException {
+	// 	setDirectoryIPFS();
 
-		String fileName = frameworkname + "." + type;
-		String filepath = mPath + fileName;
+	// 	String fileName = frameworkname + "." + type;
+	// 	String filepath = mPath + fileName;
 
-		// System.out.println("here");
+	// 	// System.out.println("here");
 
-		ipfs.files.rm(filepath, true, true);
-		NamedStreamable.ByteArrayWrapper ns = new NamedStreamable.ByteArrayWrapper(fileName, content.getBytes());
-		ipfs.files.write(filepath, ns, true, true);
+	// 	ipfs.files.rm(filepath, true, true);
+	// 	NamedStreamable.ByteArrayWrapper ns = new NamedStreamable.ByteArrayWrapper(fileName, content.getBytes());
+	// 	ipfs.files.write(filepath, ns, true, true);
 
-	}
+	// }
 }

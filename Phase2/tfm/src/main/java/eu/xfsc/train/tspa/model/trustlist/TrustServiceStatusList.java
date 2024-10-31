@@ -3,6 +3,7 @@ package eu.xfsc.train.tspa.model.trustlist;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import eu.xfsc.train.tspa.model.trustlist.tsp.TSPSimplifiedListCustomType;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -24,8 +25,8 @@ public class TrustServiceStatusList {
 	@JsonProperty("FrameworkInformation")
 	private FrameworkInformationType frameworkInformation;
 	
-	@XmlElement(name = "TrustServiceProviderList")
-	@JsonProperty("TrustServiceProviderList")
-	private TrustServiceProviderListCustomType trustServiceProviderList;
+	@XmlElement(name = "TSPSimplifiedList")
+	@JsonProperty("TSPSimplifiedList")
+	private TSPSimplifiedListCustomType tspSimplifiedList;
 
 }

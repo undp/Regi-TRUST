@@ -1,0 +1,190 @@
+{
+  "TrustServiceStatusList": {
+    "@xmlns": "http://uri.etsi.org/02231/v2#",
+    "@xmlns:ns2": "http://www.w3.org/2000/09/xmldsig#",
+    "@xmlns:ns3": "http://uri.etsi.org/01903/v1.3.2#",
+    "@xmlns:ns4": "http://uri.etsi.org/02231/v2/additionaltypes#",
+    "@xmlns:ns5": "http://uri.etsi.org/TrstSvc/SvcInfoExt/eSigDir-1999-93-EC-TrustedList/#",
+    "@xmlns:ns6": "http://uri.etsi.org/01903/v1.4.1#",
+    "@TSLTag": "http://uri.etsi.org/19612/TSLTag",
+    "SchemeInformation": {
+      "TSLVersion": "1",
+      "TSLType": "http://TRAIN/TrstSvc/TrustedList/TSLType/GCCN-POC",
+      "SchemeOperatorName": {
+        "Name": "Indonesian Ministry of Health"
+      },
+      "SchemeOperatorAddress": {
+        "PostalAddresses": {
+          "PostalAddress": {
+            "StreetAddress": "Gedung Kementerian Kesehatan",
+            "Locality": "Jakarta",
+            "PostalCode": "10110",
+            "CountryName": "ID"
+          }
+        },
+        "ElectronicAddress": {
+          "URI": "mailto:contact@kemkes.go.id"
+        }
+      },
+      "SchemeName": {
+        "Name": "Indonesian Minitry of Health Scheme"
+      },
+      "SchemeInformationURI": {
+        "URI": "https://www.kemkes.go.id/haj-health-credentials"
+      },
+      "SchemeTypeCommunityRules": {
+        "URI": "https://www.kemkes.go.id/haj-health-rules"
+      },
+      "SchemeTerritory": "ID",
+      "PolicyOrLegalNotice": {
+        "TSLLegalNotice": "The applicable legal framework for the present trusted list is regulated by the Indonesian Government."
+      },
+      "ListIssueDateTime": "2023-10-01T00:00:00Z",
+      "NextUpdate": {
+        "dateTime": "2024-10-01T00:00:00Z"
+      },
+      "DistributionPoints": {
+        "URI": "https://www.kemkes.go.id/haj-health-rules"
+      },
+      "SchemeExtensions": {
+        "URI": "https://www.kemkes.go.id/haj-health-rules"
+      },
+      "PointersToOtherTSL": {
+        "OtherTSLPointer": {
+          "URI": "htpps://...."
+        }
+      }
+    },
+    "TrustServiceProviderList": {
+      "TrustServiceProvider": {
+        "TSPID": "5263452364",
+        "TSPCurrentStatus": "active",
+        "StatusStartingTime": "2025-10-01T00:00:00Z",
+        "TSPInformation": {
+          "TSPName": {
+            "Name": "Hospital 1"
+          },
+          "TSPType": "Issuer",
+          "TrustSchemeName": {
+            "Name": "hospital.health.credential.issuers"
+          },
+          "TSPRole": "Issuer",
+          "TSPLegalName": {
+            "Name": "Hospital 1"
+          },
+          "TSPTradeName": {
+            "Name": "Hospital 1"
+          },
+          "TSPEntityIdentifierList": {
+            "TSPEntityIdentifier": {
+              "Type": "vLEI",
+              "Value": "LEICode ISO 17442"
+            }
+          },
+          "TSPCertificationLists": {
+            "TSPCertification": {
+              "Type": "ISO",
+              "Value": "ISO 17442"
+            }
+          },
+          "TSPAddress": {
+            "PostalAddresses": {
+              "PostalAddress": {
+                "StreetAddress1": "Jl. Rasuna Said",
+                "StreetAddress2": "Kav. 4-9",
+                "PostalCode": "12950",
+                "Locality": "Jakarta",
+                "State": "ID",
+                "CountryName": "ID"
+              }
+            },
+            "ElectronicAddress": {
+              "URI": "https://www.kemkes.go.id"
+            }
+          },
+          "TSPInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credential"
+          },
+          "TSPQualifierList": {
+            "TSPQualifier": {
+              "Name": "GICS Code",
+              "Value": "7890123",
+              "QualifierURI": "https://kemkes.go.id/gics-code"
+            }
+          },
+          "OtherTSL": "https://kemkes.go.id/other-tsl"
+        },
+        "SubmitterInfo": {
+          "SubmitterName": {
+            "Name": "Agency Name 1"
+          },
+          "SubmitterAddress": {
+            "PostalAddresses": {
+              "PostalAddress": {
+                "StreetAddress1": "Jl. Rasuna Said",
+                "StreetAddress2": "Kav. 4-9",
+                "PostalCode": "12950",
+                "Locality": "Jakarta",
+                "State": "ID",
+                "CountryName": "ID"
+              }
+            },
+            "ElectronicAddress": {
+              "URI": [
+                "https://www.kemkes.go.id",
+                "mailto:info@kemkes.go.id"
+              ]
+            }
+          }
+        },
+        "TSPServices": {
+          "TSPService": {
+            "ServiceInformation": {
+              "ServiceTypeIdentifier": "did:Web:haj.jakarta.health",
+              "ServiceName": {
+                "Name": "Hospital 1 Haj Health Credential Service"
+              },
+              "ServiceDigitalIdentity": {
+                "DigitalId": {
+                  "Value": "did:Web:hospital1.health.com",
+                  "KeyType": "DID"
+                }
+              },
+              "ServiceStatus": "https://kemkes.go.id/ServiceStatus/active",
+              "StatusStartingTime": "2025-10-01T00:00:00Z",
+              "SchemeServiceDefinition": "https://github.com/kemkes/haj-health-credential",
+              "ServiceSupplyPoint": "https://kemkes.go.id/masterlist.html",
+              "ServiceDefintionURI": "https://www.example-description-required",
+              "AdditionalServiceInformation": {
+                "ServiceIssuedCredentialTypes": {
+                  "CredentialType": "HajCredential"
+                },
+                "ServiceGovernanceURI": "https://kemkes.go.id/legal-content",
+                "ServiceBusinessRulesURI": "https://kemkes.go.id/business-rules"
+              }
+            },
+            "OpsAgentInfo": {
+              "OpsAgentName": {
+                "Name": "Agency Name 1"
+              },
+              "OpsAgentAddress": {
+                "PostalAddresses": {
+                  "PostalAddress": {
+                    "StreetAddress1": "Jl. Rasuna Said",
+                    "StreetAddress2": "Kav. 4-9",
+                    "Locality": "Jakarta",
+                    "State": "ID",
+                    "CountryName": "ID"
+                  }
+                },
+                "ElectronicAddress": {
+                  "URI": "https://www.kemkes.go.id"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

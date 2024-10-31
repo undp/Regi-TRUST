@@ -907,7 +907,7 @@
 2024-10-25T13:04:36.914+02:00 ERROR 7560 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:386)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:386)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:165)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -1050,7 +1050,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T13:04:36.940+02:00 ERROR 7560 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Unexpected error while fetching simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplified trustlist from database
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:394)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:394)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:165)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -1942,7 +1942,7 @@ java.io.FileNotFoundException: Trustlist for someFname2 not found in local store
 2024-10-25T13:48:15.352+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -2085,7 +2085,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T13:48:19.885+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : Unexpected error while fetching simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplified trustlist from database
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:407)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:407)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -2230,7 +2230,7 @@ eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplif
 2024-10-25T13:49:48.473+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -2373,7 +2373,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T13:49:48.494+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Unexpected error while fetching simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplified trustlist from database
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:407)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:407)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -2550,7 +2550,7 @@ eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplif
 2024-10-25T13:51:05.507+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -2693,7 +2693,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T13:51:17.199+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Unexpected error while fetching simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplified trustlist from database
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:407)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:407)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -2868,7 +2868,7 @@ eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplif
 2024-10-25T13:57:47.058+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3011,7 +3011,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T13:57:47.075+02:00 ERROR 26572 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Unexpected error while fetching simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplified trustlist from database
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:407)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:407)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3218,7 +3218,7 @@ eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to fetch simplif
 2024-10-25T14:00:44.587+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3361,7 +3361,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:00:50.163+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3536,7 +3536,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:01:35.875+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3679,7 +3679,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:01:35.890+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3856,7 +3856,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:02:45.977+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -3999,7 +3999,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:02:45.995+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2 is Empty !!!!!
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:399)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:399)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -4363,7 +4363,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:12:52.445+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 java.io.IOException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -4506,7 +4506,7 @@ java.io.IOException: No trustlist found for framework: testFM2
 2024-10-25T14:12:52.466+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 java.io.IOException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -4651,7 +4651,7 @@ java.io.IOException: No trustlist found for framework: testFM2
 2024-10-25T14:13:30.665+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 java.io.IOException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -4794,7 +4794,7 @@ java.io.IOException: No trustlist found for framework: testFM2
 2024-10-25T14:13:30.685+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 java.io.IOException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -4939,7 +4939,7 @@ java.io.IOException: No trustlist found for framework: testFM2
 2024-10-25T14:15:56.400+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 java.io.IOException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -5082,7 +5082,7 @@ java.io.IOException: No trustlist found for framework: testFM2
 2024-10-25T14:15:56.423+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 java.io.IOException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -5284,7 +5284,7 @@ java.io.IOException: No trustlist found for framework: testFM2
 2024-10-25T14:18:37.245+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM2' and version 'null'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -5427,7 +5427,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:18:37.261+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM2
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:393)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:393)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:164)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -5662,7 +5662,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:21:50.714+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM' and version '1'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM and version: 1
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:408)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:408)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -5805,7 +5805,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:21:50.733+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM and version: 1
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:408)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:408)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -6038,7 +6038,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:23:42.192+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM' and version '0'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM and version: 0
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:408)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:408)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -6181,7 +6181,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:23:42.208+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM and version: 0
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:408)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:408)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -6326,7 +6326,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:23:48.404+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFM' and version '4'
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM and version: 4
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:408)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:408)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -6469,7 +6469,7 @@ eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framewo
 2024-10-25T14:23:48.420+02:00 ERROR 33644 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
 
 eu.xfsc.train.tspa.exceptions.FileEmptyException: No trustlist found for framework: testFM and version: 4
-	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTrustlist(TrustListPublicationServiceImpl.java:408)
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:408)
 	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:167)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)

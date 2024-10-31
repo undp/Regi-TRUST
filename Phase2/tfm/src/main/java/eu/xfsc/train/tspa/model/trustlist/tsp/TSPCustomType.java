@@ -11,32 +11,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TSPCustomType",propOrder = {
-		"uUID",
-		"tSPName",
-		"tSPTradeName",
-		"tSPInformation",
-		"tSPServices"
+@XmlType(name = "TSPCustomType", propOrder = {
+    "tspID",
+    "tspCurrentStatus",
+    "statusStartingTime",
+    "tspInformation",
+    "submitterInfo",
+    "tspServices"
 })
 public class TSPCustomType {
 
-	@XmlElement(name = "UUID")
-	@JsonProperty("UUID")
-	private String uUID;
-	
-	@XmlElement(name = "TSPName")
-	@JsonProperty("TSPName")
-	private  String tSPName;
-	
-	@XmlElement(name = "TSPTradeName")
-	@JsonProperty("TSPTradeName")
-	private String tSPTradeName;
-	
-	@XmlElement(name = "TSPInformation")
-	@JsonProperty("TSPInformation")
-	private TSPInformationType tSPInformation;
-	
-	@XmlElement(name = "TSPServices")
-	@JsonProperty("TSPServices")
-	private TSPServicesListType tSPServices;
+    @XmlElement(name = "TSPID")
+    @JsonProperty("TSPID")
+    private String tspID;
+    
+    @XmlElement(name = "TSPCurrentStatus")
+    @JsonProperty("TSPCurrentStatus")
+    private String tspCurrentStatus;
+    
+    @XmlElement(name = "StatusStartingTime")
+    @JsonProperty("StatusStartingTime")
+    private String statusStartingTime;
+    
+    @XmlElement(name = "TSPInformation")
+    @JsonProperty("TSPInformation")
+    private TSPInformationType tspInformation;
+    
+    @XmlElement(name = "SubmitterInfo")
+    @JsonProperty("SubmitterInfo")
+    private SubmitterInfoType submitterInfo;
+    
+    @XmlElement(name = "TSPServices")
+    @JsonProperty("TSPServices")
+    private TSPServicesListType tspServices;
 }

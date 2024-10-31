@@ -17,16 +17,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
+// import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+// import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+// import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -64,12 +64,7 @@ public class TrustListPublicationController {
 	private Resource trustListTemplate;
 	
 
-	// hello world put mapping
-	@PutMapping(value="/hello-world/{code}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> helloWorld(@RequestBody String message, @PathVariable("code") String code) {
-		log.info("info--hello world!!!!!!!!!!!!");
-		return ResponseEntity.ok("Hello, " + message + "! code: " + code);
-	}
+	// TRUST LISTS ------------------------------------------------------------------------------------------------
 
 	/**
 	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.
@@ -168,7 +163,7 @@ public class TrustListPublicationController {
 			if (version != null && !version.matches("\\d+")) {
 				throw new IllegalArgumentException("Version must be a number.");
 			}
-			String trustList = iTrustListPublicationService.getSimplifiedTrustlist(frameworkName, version);
+			String trustList = iTrustListPublicationService.getSimplifiedTLfromDB(frameworkName, version);
 	        return ResponseEntity.ok(trustList);
 	    } catch (FileEmptyException e) {
 	        log.error("Failed to fetch simplified trustlist: ", e);
@@ -185,7 +180,7 @@ public class TrustListPublicationController {
 	}
 
 	/**
-	 * --> Fecth a trustlist in XML format. Supports versioning.
+	 * --> Fecth a full trustlist in XML format. Supports versioning.
 	 * @param frameworkName
 	 * @param trustlist
 	 * @return
@@ -202,7 +197,7 @@ public class TrustListPublicationController {
 			if (version != null && !version.matches("\\d+")) {
 				throw new IllegalArgumentException("Version must be a number.");
 			}
-			String trustListXML = iTrustListPublicationService.getXMLTrustlist(frameworkName, version);
+			String trustListXML = iTrustListPublicationService.getFullXMLTrustlist(frameworkName, version);
 			return ResponseEntity.ok(trustListXML);
 		} catch (IllegalArgumentException e) {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -236,6 +231,25 @@ public class TrustListPublicationController {
 		}
 	}
 
+	// TRUST SERVICE PROVIDERS ------------------------------------------------------------------------------------------------
+	/* --> Add TSP to Trustlist
+	 * @param frameworkName
+	 */
+	@PostMapping(value = "/regitrust/tsp/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> addTSPToTrustList(@PathVariable("framework-name") String frameworkName,
+			@RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
+		
+			try {
+				String addedTSP = iTrustListPublicationService.addTSPToTrustList(frameworkName, tspJson);
+				return TSPAUtil.getResponseBody(addedTSP, HttpStatus.CREATED);
+			} catch (PropertiesAccessException e) {
+				log.error("Failed to add TSP to trustlist: ", e);
+				return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.BAD_REQUEST);
+			} catch (IOException e) {
+				log.error("Failed to add TSP to trustlist: ", e);
+				return TSPAUtil.getResponseBody("Failed to add TSP to trustlist. " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+	}
 
 	// GXFS implementation ------------------------------------------------------------------------------------------------
 	/**
@@ -288,7 +302,7 @@ public class TrustListPublicationController {
 	// 	log.debug("--------------- GET TRUSTLIST ---------------");
 
 	// 	try {
-	// 		String trustList = iTrustListPublicationService.getXMLTrustlist(frameworkName);
+	// 		String trustList = iTrustListPublicationService.getFullXMLTrustlist(frameworkName);
 	// 		String trustListType=TSPAUtil.getContentType(trustList);
 	// 		if(trustListType.equals("json")) {
 	// 			return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trustList);
@@ -307,125 +321,125 @@ public class TrustListPublicationController {
 	// 	return new ResponseEntity<>("Unexpected media type: ",HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 	// }
 
-	/**
-	 * --> Delete request for trustlist.
-	 * 
-	 * @throws IOException
-	 */
-	@DeleteMapping(value = "/{framework-name}/trust-list")
-	@PreAuthorize("hasAuthority('enrolltf')")
-	public ResponseEntity<Object> deleteTrustList(@PathVariable("framework-name") String frameworkName)
-			throws PropertiesAccessException, IOException {
-		log.debug("--------------- DELETE TRUSTLIST ---------------");
+	// /**
+	//  * --> Delete request for trustlist.
+	//  * 
+	//  * @throws IOException
+	//  */
+	// @DeleteMapping(value = "/{framework-name}/trust-list")
+	// @PreAuthorize("hasAuthority('enrolltf')")
+	// public ResponseEntity<Object> deleteTrustList(@PathVariable("framework-name") String frameworkName)
+	// 		throws PropertiesAccessException, IOException {
+	// 	log.debug("--------------- DELETE TRUSTLIST ---------------");
 
-		String responseString = iTrustListPublicationService.deleteTrustlist(frameworkName);
-		ivcService.deleteVC(frameworkName);
-		return TSPAUtil.getResponseBody(responseString, HttpStatus.OK);
-		// return new ResponseEntity<>(responseString, HttpStatus.OK);
-	}
+	// 	String responseString = iTrustListPublicationService.deleteTrustlist(frameworkName);
+	// 	ivcService.deleteVC(frameworkName);
+	// 	return TSPAUtil.getResponseBody(responseString, HttpStatus.OK);
+	// 	// return new ResponseEntity<>(responseString, HttpStatus.OK);
+	// }
 
-	/**
-	 * --> Get request for fetching VC of trustframework.
-	 */
-	@GetMapping(value = "/{framework-name}/vc/trust-list", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Object> getVC(@PathVariable("framework-name") String frameworkName)
-			throws FileEmptyException, PropertiesAccessException {
-		log.debug("--------------- GET VC FOR TRUSTLIST '{}' ---------------", frameworkName);
+	// /**
+	//  * --> Get request for fetching VC of trustframework.
+	//  */
+	// @GetMapping(value = "/{framework-name}/vc/trust-list", produces = MediaType.APPLICATION_JSON_VALUE)
+	// @ResponseBody
+	// public ResponseEntity<Object> getVC(@PathVariable("framework-name") String frameworkName)
+	// 		throws FileEmptyException, PropertiesAccessException {
+	// 	log.debug("--------------- GET VC FOR TRUSTLIST '{}' ---------------", frameworkName);
 
-		try {
-			String vcAsString = ivcService.getVCforTrustList(frameworkName);
-			return new ResponseEntity<>(vcAsString, HttpStatus.OK);
-		} catch (FileNotFoundException e) {
-			log.error("Failed to fetch the Verifiable Credential for {} because:", frameworkName, e);
-			return TSPAUtil.getResponseBody("Failed to fetch the Verifiable Credential : " + e.getMessage(), HttpStatus.NOT_FOUND);
-		} catch (IOException e) {
-			log.error("Failed to fetch the Verifiable Credential for {} because:", frameworkName, e);
-			return TSPAUtil.getResponseBody("Failed to fetch the Verifiable Credential : "+ e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+	// 	try {
+	// 		String vcAsString = ivcService.getVCforTrustList(frameworkName);
+	// 		return new ResponseEntity<>(vcAsString, HttpStatus.OK);
+	// 	} catch (FileNotFoundException e) {
+	// 		log.error("Failed to fetch the Verifiable Credential for {} because:", frameworkName, e);
+	// 		return TSPAUtil.getResponseBody("Failed to fetch the Verifiable Credential : " + e.getMessage(), HttpStatus.NOT_FOUND);
+	// 	} catch (IOException e) {
+	// 		log.error("Failed to fetch the Verifiable Credential for {} because:", frameworkName, e);
+	// 		return TSPAUtil.getResponseBody("Failed to fetch the Verifiable Credential : "+ e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
+	// }
 
 	
-	/**
-	 * --> Publishing TSP for trustframework.
-	 */
-	@PutMapping(value = "/{framework-name}/trust-list/tsp", consumes = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAuthority('enrolltf')")
-	public ResponseEntity<Object> createTSP(@PathVariable("framework-name") String frameworkName,
-			@RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException {
-		log.debug("CreateTSP, got :{}", frameworkName);
-		Set<ValidationMessage> errors = null;
+	// /**
+	//  * --> Publishing TSP for trustframework.
+	//  */
+	// @PutMapping(value = "/{framework-name}/trust-list/tsp", consumes = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAuthority('enrolltf')")
+	// public ResponseEntity<Object> createTSP(@PathVariable("framework-name") String frameworkName,
+	// 		@RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException {
+	// 	log.debug("CreateTSP, got :{}", frameworkName);
+	// 	Set<ValidationMessage> errors = null;
 
-		try {
-			errors=iTrustListPublicationService.isJSONValid(tspJson, tspSchemaResource);
-			if (errors.isEmpty()) {
-				log.debug("Successfully Validated!!!");
-				iTrustListPublicationService.tspPublish(frameworkName, tspJson);
-				return TSPAUtil.getResponseBody("TSP published for " + frameworkName + ".", HttpStatus.CREATED);
-			} else {
-				log.error("TSP validation failed");
-				String errorString=errors.stream()
-			              .map(ValidationMessage::toString)
-			              .collect(Collectors.joining("\r\n", "TSP validation failed:\r\n", ""));
-				return new ResponseEntity<>(errorString, HttpStatus.BAD_REQUEST);
-			}
+	// 	try {
+	// 		errors=iTrustListPublicationService.isJSONValid(tspJson, tspSchemaResource);
+	// 		if (errors.isEmpty()) {
+	// 			log.debug("Successfully Validated!!!");
+	// 			iTrustListPublicationService.tspPublish(frameworkName, tspJson);
+	// 			return TSPAUtil.getResponseBody("TSP published for " + frameworkName + ".", HttpStatus.CREATED);
+	// 		} else {
+	// 			log.error("TSP validation failed");
+	// 			String errorString=errors.stream()
+	// 		              .map(ValidationMessage::toString)
+	// 		              .collect(Collectors.joining("\r\n", "TSP validation failed:\r\n", ""));
+	// 			return new ResponseEntity<>(errorString, HttpStatus.BAD_REQUEST);
+	// 		}
 
-		} catch (FileNotFoundException e) {
-			log.error("createTSP, Trustlist for {} not found :", frameworkName, e);
-			return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.NOT_FOUND);
-		} catch (IOException | JAXBException e) {
-			log.error("createTSP, failed to publish TSP:", e);
-			return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	// 	} catch (FileNotFoundException e) {
+	// 		log.error("createTSP, Trustlist for {} not found :", frameworkName, e);
+	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.NOT_FOUND);
+	// 	} catch (IOException | JAXBException e) {
+	// 		log.error("createTSP, failed to publish TSP:", e);
+	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
 
-	}
+	// }
 
-	@PatchMapping(value = "/{framework-name}/trust-list/tsp/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAuthority('enrolltf')")
-	public ResponseEntity<Object> updateTSP(@PathVariable("framework-name") String frameworkName,
-			@PathVariable("id") String uuid, @RequestBody String tspJson)
-			throws FileEmptyException, PropertiesAccessException, TSPException {
-		log.debug("updateTSP, got :{}", frameworkName);
-		Set<ValidationMessage> errors = null;
+	// @PatchMapping(value = "/{framework-name}/trust-list/tsp/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAuthority('enrolltf')")
+	// public ResponseEntity<Object> updateTSP(@PathVariable("framework-name") String frameworkName,
+	// 		@PathVariable("id") String uuid, @RequestBody String tspJson)
+	// 		throws FileEmptyException, PropertiesAccessException, TSPException {
+	// 	log.debug("updateTSP, got :{}", frameworkName);
+	// 	Set<ValidationMessage> errors = null;
 
-		try {
-			errors=iTrustListPublicationService.isJSONValid(tspJson, tspSchemaResource);
+	// 	try {
+	// 		errors=iTrustListPublicationService.isJSONValid(tspJson, tspSchemaResource);
 			
-			if (errors.isEmpty()) {
-				log.debug("TSP validation pass.");
-				iTrustListPublicationService.tspUpdate(frameworkName, uuid, tspJson);
-				return TSPAUtil.getResponseBody("TSP update for " + frameworkName + " with UUID :" + uuid, HttpStatus.OK);
-			} else {
-				log.error("TSP validation failed");
-				String errorString=errors.stream()
-			              .map(ValidationMessage::toString)
-			              .collect(Collectors.joining("\r\n", "TSP validation failed:\r\n", ""));
-				return new ResponseEntity<>(errorString, HttpStatus.BAD_REQUEST);
-			}
-		} catch (FileNotFoundException e) {
-			log.error("updateTSP, Trustlist for {} not found.", frameworkName, e);
-			return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.NOT_FOUND);
-		} catch (IOException | JAXBException e) {
-			log.error("updateTSP, failed to update TSP.", e);
-			return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	// 		if (errors.isEmpty()) {
+	// 			log.debug("TSP validation pass.");
+	// 			iTrustListPublicationService.tspUpdate(frameworkName, uuid, tspJson);
+	// 			return TSPAUtil.getResponseBody("TSP update for " + frameworkName + " with UUID :" + uuid, HttpStatus.OK);
+	// 		} else {
+	// 			log.error("TSP validation failed");
+	// 			String errorString=errors.stream()
+	// 		              .map(ValidationMessage::toString)
+	// 		              .collect(Collectors.joining("\r\n", "TSP validation failed:\r\n", ""));
+	// 			return new ResponseEntity<>(errorString, HttpStatus.BAD_REQUEST);
+	// 		}
+	// 	} catch (FileNotFoundException e) {
+	// 		log.error("updateTSP, Trustlist for {} not found.", frameworkName, e);
+	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.NOT_FOUND);
+	// 	} catch (IOException | JAXBException e) {
+	// 		log.error("updateTSP, failed to update TSP.", e);
+	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
 
-	}
+	// }
 
-	@DeleteMapping(value = "/{framework-name}/trust-list/tsp/{id}")
-	@PreAuthorize("hasAuthority('enrolltf')")
-	public ResponseEntity<Object> deleteTSP(@PathVariable("framework-name") String frameworkName,
-			@PathVariable("id") String uuid) throws FileEmptyException, PropertiesAccessException, TSPException {
-		try {
-			iTrustListPublicationService.tspRemove(frameworkName, uuid);
-			return TSPAUtil.getResponseBody("TSP removed from " + frameworkName + " for UUID: " + uuid, HttpStatus.OK);
-		} catch (FileNotFoundException e) {
-			log.error("deleteTSP, Trustlist for {} not found.", frameworkName, e);
-			return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.NOT_FOUND);
-		} catch (IOException | JAXBException e) {
-			log.error("deleteTSP, failed to delete TSP.", e);
-			return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+	// @DeleteMapping(value = "/{framework-name}/trust-list/tsp/{id}")
+	// @PreAuthorize("hasAuthority('enrolltf')")
+	// public ResponseEntity<Object> deleteTSP(@PathVariable("framework-name") String frameworkName,
+	// 		@PathVariable("id") String uuid) throws FileEmptyException, PropertiesAccessException, TSPException {
+	// 	try {
+	// 		iTrustListPublicationService.tspRemove(frameworkName, uuid);
+	// 		return TSPAUtil.getResponseBody("TSP removed from " + frameworkName + " for UUID: " + uuid, HttpStatus.OK);
+	// 	} catch (FileNotFoundException e) {
+	// 		log.error("deleteTSP, Trustlist for {} not found.", frameworkName, e);
+	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.NOT_FOUND);
+	// 	} catch (IOException | JAXBException e) {
+	// 		log.error("deleteTSP, failed to delete TSP.", e);
+	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
+	// }
 
 }

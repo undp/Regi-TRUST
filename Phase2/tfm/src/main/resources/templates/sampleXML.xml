@@ -1,0 +1,179 @@
+<TrustServiceStatusList xmlns="http://uri.etsi.org/02231/v2#" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02231/v2/additionaltypes#" xmlns:ns5="http://uri.etsi.org/TrstSvc/SvcInfoExt/eSigDir-1999-93-EC-TrustedList/#" xmlns:ns6="http://uri.etsi.org/01903/v1.4.1#" TSLTag="http://uri.etsi.org/19612/TSLTag">
+  <SchemeInformation>
+    <TSLVersion>1</TSLVersion>
+    <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/GCCN-POC</TSLType>
+    <SchemeOperatorName>
+      <Name>Indonesian Ministry of Health</Name>
+    </SchemeOperatorName>
+    <SchemeOperatorAddress>
+      <PostalAddresses>
+        <PostalAddress>
+          <StreetAddress>Gedung Kementerian Kesehatan</StreetAddress>
+          <Locality>Jakarta</Locality>
+          <PostalCode>10110</PostalCode>
+          <CountryName>ID</CountryName>
+        </PostalAddress>
+      </PostalAddresses>
+      <ElectronicAddress>
+        <URI>mailto:contact@kemkes.go.id</URI>
+      </ElectronicAddress>
+    </SchemeOperatorAddress>
+    <SchemeName>
+      <Name>Indonesian Minitry of Health Scheme</Name>
+    </SchemeName>
+    <SchemeInformationURI>
+      <URI>https://www.kemkes.go.id/haj-health-credentials</URI>
+    </SchemeInformationURI>
+    <SchemeTypeCommunityRules>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </SchemeTypeCommunityRules>
+    <SchemeTerritory>ID</SchemeTerritory>
+    <PolicyOrLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is regulated by the Indonesian Government.</TSLLegalNotice>
+    </PolicyOrLegalNotice>
+    <ListIssueDateTime>2023-10-01T00:00:00Z</ListIssueDateTime>
+    <NextUpdate>
+      <dateTime>2024-10-01T00:00:00Z</dateTime>
+    </NextUpdate>
+	<DistributionPoints>
+		<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+	</DistributionPoints>
+	<SchemeExtensions>
+		<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+	</SchemeExtensions>
+	<PointersToOtherTSL>
+		<OtherTSLPointer>
+			<URI>htpps://....</URI>
+		</OtherTSLPointer>
+	</PointersToOtherTSL>
+  </SchemeInformation>
+  <TrustServiceProviderList>
+    <TrustServiceProvider>
+	<TSPID>5263452364</TSPID>
+	<TSPCurrentStatus>active</TSPCurrentStatus>
+	<StatusStartingTime>2025-10-01T00:00:00Z</StatusStartingTime>
+      <TSPInformation>
+        <TSPName>
+          <Name>Hospital 1</Name>
+        </TSPName>
+        <TSPType>Issuer</TSPType>
+        <TrustSchemeName>
+          <Name>hospital.health.credential.issuers</Name>
+        </TrustSchemeName>
+        <TSPRole>Issuer</TSPRole>
+        <TSPLegalName>
+          <Name>Hospital 1</Name>
+        </TSPLegalName>
+        <TSPTradeName>
+          <Name>Hospital 1</Name>
+        </TSPTradeName>
+        <TSPEntityIdentifierList>
+          <TSPEntityIdentifier>
+            <Type>vLEI</Type>
+            <Value>LEICode ISO 17442</Value>
+          </TSPEntityIdentifier>
+        </TSPEntityIdentifierList>
+		<TSPCertificationLists>
+          <TSPCertification>
+            <Type>ISO</Type>
+            <Value>ISO 17442</Value>
+          </TSPCertification>
+        </TSPCertificationLists>
+        <TSPAddress>
+          <PostalAddresses>
+            <PostalAddress>
+              <StreetAddress1>Jl. Rasuna Said</StreetAddress1>
+              <StreetAddress2>Kav. 4-9</StreetAddress2>
+              <PostalCode>12950</PostalCode>
+              <Locality>Jakarta</Locality>
+              <State>ID</State>
+              <CountryName>ID</CountryName>
+            </PostalAddress>
+          </PostalAddresses>
+          <ElectronicAddress>
+            <URI>https://www.kemkes.go.id</URI>
+          </ElectronicAddress>
+        </TSPAddress>
+        <TSPInformationURI>
+          <URI>https://www.kemkes.go.id/haj-health-credential</URI>
+        </TSPInformationURI>
+        <TSPQualifierList>
+          <TSPQualifier>
+            <Name>GICS Code</Name>
+            <Value>7890123</Value>
+            <QualifierURI>https://kemkes.go.id/gics-code</QualifierURI>
+          </TSPQualifier>
+        </TSPQualifierList>
+        <OtherTSL>https://kemkes.go.id/other-tsl</OtherTSL>
+      </TSPInformation>
+      <SubmitterInfo>
+        <SubmitterName>
+          <Name>Agency Name 1</Name>
+        </SubmitterName>
+        <SubmitterAddress>
+          <PostalAddresses>
+            <PostalAddress>
+              <StreetAddress1>Jl. Rasuna Said</StreetAddress1>
+              <StreetAddress2>Kav. 4-9</StreetAddress2>
+              <PostalCode>12950</PostalCode>
+              <Locality>Jakarta</Locality>
+              <State>ID</State>
+              <CountryName>ID</CountryName>
+            </PostalAddress>
+          </PostalAddresses>
+          <ElectronicAddress>
+            <URI>https://www.kemkes.go.id</URI>
+            <URI>mailto:info@kemkes.go.id</URI>
+          </ElectronicAddress>
+        </SubmitterAddress>
+      </SubmitterInfo>
+      <TSPServices>
+        <TSPService>
+          <ServiceInformation>
+            <ServiceTypeIdentifier>did:Web:haj.jakarta.health</ServiceTypeIdentifier>
+            <ServiceName>
+              <Name>Hospital 1 Haj Health Credential Service</Name>
+            </ServiceName>
+            <ServiceDigitalIdentity>
+              <DigitalId>
+                <Value>did:Web:hospital1.health.com</Value>
+				<KeyType>DID</KeyType>
+              </DigitalId>
+            </ServiceDigitalIdentity>
+            <ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+            <StatusStartingTime>2025-10-01T00:00:00Z</StatusStartingTime>
+            <SchemeServiceDefinition>https://github.com/kemkes/haj-health-credential</SchemeServiceDefinition>
+            <ServiceSupplyPoint>https://kemkes.go.id/masterlist.html</ServiceSupplyPoint>
+            <ServiceDefintionURI>https://www.example-description-required</ServiceDefintionURI>
+            <AdditionalServiceInformation>
+              <ServiceIssuedCredentialTypes>
+                <CredentialType>HajCredential</CredentialType>
+              </ServiceIssuedCredentialTypes>
+              <ServiceGovernanceURI>https://kemkes.go.id/legal-content</ServiceGovernanceURI>
+              <ServiceBusinessRulesURI>https://kemkes.go.id/business-rules</ServiceBusinessRulesURI>
+            </AdditionalServiceInformation>
+          </ServiceInformation>
+          <OpsAgentInfo>
+            <OpsAgentName>
+              <Name>Agency Name 1</Name>
+            </OpsAgentName>
+            <OpsAgentAddress>
+              <PostalAddresses>
+                <PostalAddress>
+                  <StreetAddress1>Jl. Rasuna Said</StreetAddress1>
+                  <StreetAddress2>Kav. 4-9</StreetAddress2>
+                  <Locality>Jakarta</Locality>
+                  <State>ID</State>
+                  <CountryName>ID</CountryName>
+                </PostalAddress>
+              </PostalAddresses>
+              <ElectronicAddress>
+                <URI>https://www.kemkes.go.id</URI>
+              </ElectronicAddress>
+            </OpsAgentAddress>
+          </OpsAgentInfo>
+        </TSPService>
+      </TSPServices>
+    </TrustServiceProvider>
+  </TrustServiceProviderList>
+</TrustServiceStatusList>

@@ -32,15 +32,17 @@ public interface ITrustListPublicationService {
 			public String deleteTrustlist(String framworkname) throws IOException;
 			
 			//TSP
-			public void tspPublish(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			// public void tspPublish(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 			
-			public void tspRemove(String frameworkName, String uuid) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			// public void tspRemove(String frameworkName, String uuid) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 			
-			public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+			// public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 			
 			// From here, implemented methods for Regitrust.
 			public String updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-			public String getXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
-			public String getSimplifiedTrustlist(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
+			public String getFullXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
+			public String getSimplifiedTLfromDB(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
 			public String getTrustListVersions(String frameworkName) throws IOException;
+			public String addTSPToTrustList(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException;
+
 }
