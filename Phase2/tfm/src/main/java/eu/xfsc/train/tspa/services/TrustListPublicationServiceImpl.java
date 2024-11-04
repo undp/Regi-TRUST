@@ -39,6 +39,7 @@ import org.xml.sax.SAXParseException;
 // import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 // import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationModule;
 // import com.google.gson.JsonElement;
@@ -60,6 +61,7 @@ import eu.xfsc.train.tspa.model.trustlist.NameType;
 import eu.xfsc.train.tspa.model.trustlist.TrustServiceStatusList;
 // import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TSPIdListType;
+import eu.xfsc.train.tspa.model.trustlist.tsp.TSPSimplified;
 // import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
 import eu.xfsc.train.tspa.utils.IpfsUtil;
 import eu.xfsc.train.tspa.utils.TSPAUtil;
@@ -275,17 +277,29 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			// --> Fetch a specific version of the trustlist in String format (representation of the TL in JSON)
 			resultTL = getSimplifiedTLfromDB(frameworkName, version);
 			// --> Convert the JSON representation of the TL to XML
-			TrustServiceStatusList trustListPojo = omTrustList.readValue(resultTL, TrustServiceStatusList.class);
-			resultTL = buildXMLfromSimplifiedTL(trustListPojo);
+			resultTL = buildXMLfromSimplifiedTL(frameworkName, version);
 		}
 		return resultTL;
 	}
 
-	// --> MAY BE NOT NEEDED. Builds a full XML TL on the fly from a simplified TL to be stored in the local store or delivered to the client
-	public String buildXMLfromSimplifiedTL(TrustServiceStatusList simplifiedTL) throws JAXBException {
+	// --> Builds a full XML TL on the fly from a simplified TL to be stored in the local store or delivered to the client
+	public String buildXMLfromSimplifiedTL(String frameworkName, String version) throws JAXBException, FileEmptyException, IOException {
 		// to do: iterate over the TSPs and add them to the XML
+		String simplifiedTL = getSimplifiedTLfromDB(frameworkName, version);
+		JsonNode simplifiedTLJson = omTrustList.readTree(simplifiedTL);
+		List<JsonNode> tsps = new ArrayList<>();
+		if (simplifiedTLJson.has("tspSimplifiedList") && 
+		    simplifiedTLJson.get("tspSimplifiedList").has("TSPSimplified")) {
+		    simplifiedTLJson.get("tspSimplifiedList").get("TSPSimplified").elements()
+		        .forEachRemaining(tsps::add);
+		}
+
+		// To be done!!!
+
+		TrustServiceStatusList trustListPojo = omTrustList.readValue(simplifiedTL, TrustServiceStatusList.class);
+		// convert it in to XML
 		StringWriter writer = new StringWriter();
-		jaxbContext.createMarshaller().marshal(simplifiedTL, writer);
+		jaxbContext.createMarshaller().marshal(trustListPojo, writer);
 		return writer.toString();
 	}	
 
@@ -339,6 +353,9 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 	// TRUST SERVICE PROVIDERS ------------------------------------------------------------------------------------------------
+
+	// --> Adds a TSP to the trustlist. 
+	// 1- Update TSP in DB. 2- Add it as simplified TSP to the TL. 3- update TL version. 4- create new entry in TL DB. 5- finally update full XML file in local store
 	@Override
 	public String addTSPToTrustList(String frameworkName, String tspJson) 
 	        throws FileEmptyException, PropertiesAccessException, DataAccessException, IOException {
@@ -355,52 +372,50 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 				throw new PropertiesAccessException("TSPID field was not found in the TSP JSON");
 			} 	        
 	        MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
-	        MongoCollection<Document> collection = db.getCollection(collectionNameTsps);
+	        MongoCollection<Document> tspCollection = db.getCollection(collectionNameTsps);
 	        
-	        // Check if TSP exists
+	        // Check in the DB if TSP exists
 			Document existingTsp = null;
 			Document query = new Document("TSPID", tspId);
-			existingTsp = collection.find(query)
+			existingTsp = tspCollection.find(query)
 				.sort(new Document("TSPVersion", -1))
 				.first();
 
 	        Document tspDoc = Document.parse(tspJson);
 	        
-	        if (existingTsp == null) {
-				// create new TSP
-				tspDoc.put("TSPVersion", 1);
-				// To do: Also modify the update	 date field
-	        } else {
-	            // TSP exists, increment version
+	        if (existingTsp == null) { // create new TSP
+				tspDoc.put("TSPVersion", 1);   
+	        } else { // TSP exists, increment version 
 	            int currentVersion = existingTsp.getInteger("TSPVersion", 1);
 	            tspDoc.put("TSPVersion", currentVersion + 1);
 	            log.info("Incrementing version for TSP {} from {} to {}", tspId, currentVersion, currentVersion + 1);
 	        }
-
 			tspDoc.put("StatusStartingTime", java.time.LocalDateTime.now().toString());
-	        collection.insertOne(tspDoc);
+			// step 1- update TSP in TSP collection in the DB
+	        tspCollection.insertOne(tspDoc);
 
-			// update the listOfTspId field in the trustlist
-			//create a TSPSimplifiedEntry object but only with the fields that are needed (TSPID, StatusStartingTime, etc)
-			TSPIdListType.TSPSimplifiedEntry tspSimplifiedEntry = new TSPIdListType.TSPSimplifiedEntry();
-			tspSimplifiedEntry.setTspID(tspId);
-			tspSimplifiedEntry.setStatusStartingTime(java.time.LocalDateTime.now().toString());
-			tspSimplifiedEntry.setTspVersion("1x");
-
-			//create a TSPIdListType object
+			// Step 2-  add it as simplified TSP to the TL
+			JsonNode simplifiedTsp = omTrustList.createObjectNode();
+			((ObjectNode) simplifiedTsp).put("TSPID", tspId);
+			((ObjectNode) simplifiedTsp).put("StatusStartingTime", tspDoc.getString("StatusStartingTime"));
+			((ObjectNode) simplifiedTsp).put("TSPVersion", tspDoc.getInteger("TSPVersion"));
+			
 			TrustServiceStatusList trustListPojo = omTrustList.readValue(getSimplifiedTLfromDB(frameworkName, null), TrustServiceStatusList.class);
 			TSPIdListType tspSimplifiedList = null;
-			if (trustListPojo.getTspSimplifiedList() != null) {
+			if (trustListPojo.getTspSimplifiedList() != null) { // update existing TSPs in the TL
 			    tspSimplifiedList = trustListPojo.getTspSimplifiedList();
-			} else {
-			    trustListPojo.setTspSimplifiedList(new TSPIdListType());
+			} else { // first TSP in the TL
+				tspSimplifiedList = new TSPIdListType();
+				List<JsonNode> listOfJsons = new ArrayList<>();
+				listOfJsons.add(simplifiedTsp);
+				tspSimplifiedList.setTspSimplified(listOfJsons);
+				trustListPojo.setTspSimplifiedList(tspSimplifiedList);
 			}
-			// add the TSPSimplifiedEntry object to the list
-			List<TSPIdListType.TSPSimplifiedEntry> tspList = new ArrayList<>();
-			tspList.add(tspSimplifiedEntry);
-			tspSimplifiedList.setTspSimplified(tspList);
-			trustListPojo.setTspSimplifiedList(tspSimplifiedList);
 
+			// Step 3- update TL version
+			updateTLVersionRelatedFields(trustListPojo);
+
+			// Steps 4- and 5- create new entry in TL DB and write new full XML to local store
 			storeTLInLocalStoreAndDB(frameworkName, null, trustListPojo);
 	        
 	        return String.format("TSP %s successfully added/updated to version %d", 
