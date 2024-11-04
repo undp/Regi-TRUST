@@ -1,0 +1,59 @@
+{
+  "TrustServiceStatusList": {
+    "SchemeInformation": {
+      "TSLVersion": "1",
+      "TSLType": "http://TRAIN/TrstSvc/TrustedList/TSLType/GCCN-POC",
+      "SchemeOperatorName": {
+        "Name": "Indonesian Ministry of Health"
+      },
+      "SchemeOperatorAddress": {
+        "PostalAddresses": {
+          "PostalAddress": {
+            "StreetAddress": "Gedung Kementerian Kesehatan",
+            "Locality": "Jakarta",
+            "PostalCode": "10110",
+            "CountryName": "ID"
+          }
+        },
+        "ElectronicAddress": {
+          "URI": "mailto:contact@kemkes.go.id"
+        }
+      },
+      "SchemeName": {
+        "Name": "Indonesian Minitry of Health Scheme"
+      },
+      "SchemeInformationURI": {
+        "URI": "https://www.kemkes.go.id/haj-health-credentials"
+      },
+      "SchemeTypeCommunityRules": {
+        "URI": "https://www.kemkes.go.id/haj-health-rules"
+      },
+      "SchemeTerritory": "ID",
+      "PolicyOrLegalNotice": {
+        "TSLLegalNotice": "The applicable legal framework for the present trusted list is regulated by the Indonesian Government."
+      },
+      "ListIssueDateTime": "2023-10-01T00:00:00Z",
+      "NextUpdate": {
+        "dateTime": "2024-10-01T00:00:00Z"
+      },
+      "DistributionPoints": {
+        "URI": "https://www.kemkes.go.id/haj-health-rules"
+      },
+      "SchemeExtensions": {
+        "URI": "https://www.kemkes.go.id/haj-health-rules"
+      },
+      "PointersToOtherTSL": {
+        "OtherTSLPointer": {
+          "URI": "htpps://...."
+        }
+      }
+    },
+    "TSPSimplifiedList": [
+      {
+        "TSPID": "5263452364",
+        "TSPVersion": "1",
+        "LastUpdate": "2024-10-01T00:00:00Z"
+      }
+    ]
+  }
+}

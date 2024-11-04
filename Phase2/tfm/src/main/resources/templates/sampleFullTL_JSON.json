@@ -58,8 +58,9 @@
     "TrustServiceProviderList": {
       "TrustServiceProvider": {
         "TSPID": "5263452364",
+        "TSPVersion": "1",
         "TSPCurrentStatus": "active",
-        "StatusStartingTime": "2025-10-01T00:00:00Z",
+        "LastUpdate": "2024-10-01T00:00:00Z",
         "TSPInformation": {
           "TSPName": {
             "Name": "Hospital 1"
@@ -130,10 +131,7 @@
               }
             },
             "ElectronicAddress": {
-              "URI": [
-                "https://www.kemkes.go.id",
-                "mailto:info@kemkes.go.id"
-              ]
+              "URI": ["https://www.kemkes.go.id", "mailto:info@kemkes.go.id"]
             }
           }
         },

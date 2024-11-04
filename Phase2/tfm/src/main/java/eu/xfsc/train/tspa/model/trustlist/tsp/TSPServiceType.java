@@ -34,8 +34,8 @@ public class TSPServiceType {
 	@JsonProperty("ServiceCurrentStatus")
 	private String serviceCurrentStatus;
 	
-	@XmlElement(name = "StatusStartingTime")
-	@JsonProperty("StatusStartingTime")
+	@XmlElement(name = "LastUpdate")
+	@JsonProperty("LastUpdate")
 	private String statusStartingTime;
 	
 	@XmlElement(name = "ServiceDefinitionURI")

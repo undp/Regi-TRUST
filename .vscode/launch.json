@@ -10,7 +10,8 @@
       "name": "TspaGccnApplication",
       "request": "launch",
       "mainClass": "com.train.tspagccn.TspaGccnApplication",
-      "projectName": "tspa-gccn"
+      "projectName": "tspa-gccn",
+      "args": "--server.port=16003"
     },
     {
       "type": "java",

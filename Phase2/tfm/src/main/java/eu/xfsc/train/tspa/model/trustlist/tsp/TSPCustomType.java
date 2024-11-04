@@ -29,8 +29,8 @@ public class TSPCustomType {
     @JsonProperty("TSPCurrentStatus")
     private String tspCurrentStatus;
     
-    @XmlElement(name = "StatusStartingTime")
-    @JsonProperty("StatusStartingTime")
+    @XmlElement(name = "LastUpdate")
+    @JsonProperty("LastUpdate")
     private String statusStartingTime;
     
     @XmlElement(name = "TSPInformation")

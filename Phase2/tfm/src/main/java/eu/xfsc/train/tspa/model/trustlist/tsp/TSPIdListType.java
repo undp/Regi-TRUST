@@ -12,8 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TSPSimplifiedListCustomType", propOrder = {"trustServiceProvider"})
-public class TSPSimplifiedListCustomType {
+@XmlType(name = "TSPIdListType", propOrder = {"tspSimplified"})
+public class TSPIdListType {
 	
 	@XmlElement(name = "TSPSimplified")
 	private List<TSPSimplifiedEntry> tspSimplified;
@@ -26,7 +26,7 @@ public class TSPSimplifiedListCustomType {
 		@XmlElement(name = "TSPID")
 		private String tspID;
 		
-		@XmlElement(name = "StatusStartingTime")
+		@XmlElement(name = "LastUpdate")
 		private String statusStartingTime;
 		
 		@XmlElement(name = "TSPVersion")

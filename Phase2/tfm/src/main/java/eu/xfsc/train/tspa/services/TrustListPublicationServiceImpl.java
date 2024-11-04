@@ -59,7 +59,7 @@ import eu.xfsc.train.tspa.interfaces.IVCService;
 import eu.xfsc.train.tspa.model.trustlist.NameType;
 import eu.xfsc.train.tspa.model.trustlist.TrustServiceStatusList;
 // import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
-import eu.xfsc.train.tspa.model.trustlist.tsp.TSPSimplifiedListCustomType;
+import eu.xfsc.train.tspa.model.trustlist.tsp.TSPIdListType;
 // import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
 import eu.xfsc.train.tspa.utils.IpfsUtil;
 import eu.xfsc.train.tspa.utils.TSPAUtil;
@@ -382,21 +382,21 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 			// update the listOfTspId field in the trustlist
 			//create a TSPSimplifiedEntry object but only with the fields that are needed (TSPID, StatusStartingTime, etc)
-			TSPSimplifiedListCustomType.TSPSimplifiedEntry tspSimplifiedEntry = new TSPSimplifiedListCustomType.TSPSimplifiedEntry();
+			TSPIdListType.TSPSimplifiedEntry tspSimplifiedEntry = new TSPIdListType.TSPSimplifiedEntry();
 			tspSimplifiedEntry.setTspID(tspId);
 			tspSimplifiedEntry.setStatusStartingTime(java.time.LocalDateTime.now().toString());
 			tspSimplifiedEntry.setTspVersion("1x");
 
-			//create a TSPSimplifiedListCustomType object
+			//create a TSPIdListType object
 			TrustServiceStatusList trustListPojo = omTrustList.readValue(getSimplifiedTLfromDB(frameworkName, null), TrustServiceStatusList.class);
-			TSPSimplifiedListCustomType tspSimplifiedList = null;
+			TSPIdListType tspSimplifiedList = null;
 			if (trustListPojo.getTspSimplifiedList() != null) {
 			    tspSimplifiedList = trustListPojo.getTspSimplifiedList();
 			} else {
-			    trustListPojo.setTspSimplifiedList(new TSPSimplifiedListCustomType());
+			    trustListPojo.setTspSimplifiedList(new TSPIdListType());
 			}
 			// add the TSPSimplifiedEntry object to the list
-			List<TSPSimplifiedListCustomType.TSPSimplifiedEntry> tspList = new ArrayList<>();
+			List<TSPIdListType.TSPSimplifiedEntry> tspList = new ArrayList<>();
 			tspList.add(tspSimplifiedEntry);
 			tspSimplifiedList.setTspSimplified(tspList);
 			trustListPojo.setTspSimplifiedList(tspSimplifiedList);

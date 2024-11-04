@@ -1,4 +1,8 @@
-<TrustServiceStatusList xmlns="http://uri.etsi.org/02231/v2#" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02231/v2/additionaltypes#" xmlns:ns5="http://uri.etsi.org/TrstSvc/SvcInfoExt/eSigDir-1999-93-EC-TrustedList/#" xmlns:ns6="http://uri.etsi.org/01903/v1.4.1#" TSLTag="http://uri.etsi.org/19612/TSLTag">
+<TrustServiceStatusList xmlns="http://uri.etsi.org/02231/v2#"
+  xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#"
+  xmlns:ns4="http://uri.etsi.org/02231/v2/additionaltypes#"
+  xmlns:ns5="http://uri.etsi.org/TrstSvc/SvcInfoExt/eSigDir-1999-93-EC-TrustedList/#"
+  xmlns:ns6="http://uri.etsi.org/01903/v1.4.1#" TSLTag="http://uri.etsi.org/19612/TSLTag">
   <SchemeInformation>
     <TSLVersion>1</TSLVersion>
     <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/GCCN-POC</TSLType>
@@ -29,29 +33,31 @@
     </SchemeTypeCommunityRules>
     <SchemeTerritory>ID</SchemeTerritory>
     <PolicyOrLegalNotice>
-      <TSLLegalNotice>The applicable legal framework for the present trusted list is regulated by the Indonesian Government.</TSLLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is regulated by
+        the Indonesian Government.</TSLLegalNotice>
     </PolicyOrLegalNotice>
     <ListIssueDateTime>2023-10-01T00:00:00Z</ListIssueDateTime>
     <NextUpdate>
       <dateTime>2024-10-01T00:00:00Z</dateTime>
     </NextUpdate>
-	<DistributionPoints>
-		<URI>https://www.kemkes.go.id/haj-health-rules</URI>
-	</DistributionPoints>
-	<SchemeExtensions>
-		<URI>https://www.kemkes.go.id/haj-health-rules</URI>
-	</SchemeExtensions>
-	<PointersToOtherTSL>
-		<OtherTSLPointer>
-			<URI>htpps://....</URI>
-		</OtherTSLPointer>
-	</PointersToOtherTSL>
+    <DistributionPoints>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </DistributionPoints>
+    <SchemeExtensions>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </SchemeExtensions>
+    <PointersToOtherTSL>
+      <OtherTSLPointer>
+        <URI>htpps://....</URI>
+      </OtherTSLPointer>
+    </PointersToOtherTSL>
   </SchemeInformation>
   <TrustServiceProviderList>
     <TrustServiceProvider>
-	<TSPID>5263452364</TSPID>
-	<TSPCurrentStatus>active</TSPCurrentStatus>
-	<StatusStartingTime>2025-10-01T00:00:00Z</StatusStartingTime>
+      <TSPID>5263452364</TSPID>
+      <TSPVersion>1</TSPVersion>
+      <TSPCurrentStatus>active</TSPCurrentStatus>
+      <LastUpdate>2024-10-01T00:00:00Z</LastUpdate>
       <TSPInformation>
         <TSPName>
           <Name>Hospital 1</Name>
@@ -73,7 +79,7 @@
             <Value>LEICode ISO 17442</Value>
           </TSPEntityIdentifier>
         </TSPEntityIdentifierList>
-		<TSPCertificationLists>
+        <TSPCertificationLists>
           <TSPCertification>
             <Type>ISO</Type>
             <Value>ISO 17442</Value>
@@ -137,7 +143,7 @@
             <ServiceDigitalIdentity>
               <DigitalId>
                 <Value>did:Web:hospital1.health.com</Value>
-				<KeyType>DID</KeyType>
+                <KeyType>DID</KeyType>
               </DigitalId>
             </ServiceDigitalIdentity>
             <ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
