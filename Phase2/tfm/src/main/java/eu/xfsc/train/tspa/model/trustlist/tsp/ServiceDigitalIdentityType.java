@@ -12,11 +12,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ServiceDigitalIdentityType",propOrder = {"digitalIdType"})
+@XmlType(name = "ServiceDigitalIdentityType",propOrder = {"digitalId"})
 public class ServiceDigitalIdentityType {
 	
 	@XmlElement(name = "DigitalId")
 	@JsonProperty("DigitalId")
-	private DigitalIdType digitalIdType;
+	private DigitalIdType digitalId;
 	
 }

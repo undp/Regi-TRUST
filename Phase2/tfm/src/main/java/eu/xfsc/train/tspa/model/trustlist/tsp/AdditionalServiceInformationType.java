@@ -12,42 +12,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AdditionalServiceInformationType",propOrder = {
-		"serviceBusinessRulesURI",
-		"serviceGovernanceURI",
 		"serviceIssuedCredentialTypes",
-		"serviceContractType",
-		"servicePolicySet",
-		"serviceSchemaURI",
-		"serviceSupplyPoint"
+		"serviceGovernanceURI",
+		"serviceBusinessRulesURI"
 })
 public class AdditionalServiceInformationType {
-	
-	@XmlElement(name = "ServiceBusinessRulesURI")
-	@JsonProperty("ServiceBusinessRulesURI")
-	private String serviceBusinessRulesURI;
-	
-	@XmlElement(name = "ServiceGovernanceURI")
-	@JsonProperty("ServiceGovernanceURI")
-	private String serviceGovernanceURI;
 	
 	@XmlElement(name = "ServiceIssuedCredentialTypes")
 	@JsonProperty("ServiceIssuedCredentialTypes")
 	private ServiceIssuedCredentialType serviceIssuedCredentialTypes;
 	
-	@XmlElement(name = "ServiceContractType")
-	@JsonProperty("ServiceContractType")
-	private String serviceContractType;
+	@XmlElement(name = "ServiceGovernanceURI")
+	@JsonProperty("ServiceGovernanceURI")
+	private String serviceGovernanceURI;
 	
-	@XmlElement(name = "ServicePolicySet")
-	@JsonProperty("ServicePolicySet")
-	private String servicePolicySet;
+	@XmlElement(name = "ServiceBusinessRulesURI")
+	@JsonProperty("ServiceBusinessRulesURI")
+	private String serviceBusinessRulesURI;
 	
-	@XmlElement(name = "ServiceSchemaURI")
-	@JsonProperty("ServiceSchemaURI")
-	private String serviceSchemaURI;
-	
-	@XmlElement(name = "ServiceSupplyPoint")
-	@JsonProperty("ServiceSupplyPoint")
-	private String serviceSupplyPoint;
-
 }

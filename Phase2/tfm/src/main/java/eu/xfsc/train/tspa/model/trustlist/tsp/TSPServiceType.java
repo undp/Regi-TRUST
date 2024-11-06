@@ -12,41 +12,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TSPServiceType",propOrder = {
-		"serviceName",
-		"serviceTypeIdentifier",
-		"serviceCurrentStatus",
-		"statusStartingTime",
-		"serviceDefinitionURI",
-		"serviceDigitalIdentity",
-		"additionalServiceInformation"
+		"serviceInformation",
+		"opsAgentInfo"
 })
 public class TSPServiceType {
 	
-	@XmlElement(name = "ServiceName")
-	@JsonProperty("ServiceName")
-	private String serviceName;
+	@XmlElement(name = "ServiceInformation")
+	@JsonProperty("ServiceInformation")
+	private ServiceInformationType serviceInformation;
 
-	@XmlElement(name = "ServiceTypeIdentifier")
-	@JsonProperty("ServiceTypeIdentifier")
-	private String serviceTypeIdentifier;
-	
-	@XmlElement(name = "ServiceCurrentStatus")
-	@JsonProperty("ServiceCurrentStatus")
-	private String serviceCurrentStatus;
-	
-	@XmlElement(name = "LastUpdate")
-	@JsonProperty("LastUpdate")
-	private String statusStartingTime;
-	
-	@XmlElement(name = "ServiceDefinitionURI")
-	@JsonProperty("ServiceDefinitionURI")
-	private String serviceDefinitionURI;
-	
-	@XmlElement(name = "ServiceDigitalIdentity")
-	@JsonProperty("ServiceDigitalIdentity")
-	private ServiceDigitalIdentityType serviceDigitalIdentity;
-	
-	@XmlElement(name = "AdditionalServiceInformation")
-	@JsonProperty("AdditionalServiceInformation")
-	private AdditionalServiceInformationType additionalServiceInformation;
+	@XmlElement(name = "OpsAgentInfo")
+	@JsonProperty("OpsAgentInfo")
+	private OpsAgentInfoType opsAgentInfo;
+
 }

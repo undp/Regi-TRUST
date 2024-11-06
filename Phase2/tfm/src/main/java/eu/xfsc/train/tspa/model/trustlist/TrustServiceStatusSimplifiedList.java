@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import eu.xfsc.train.tspa.model.trustlist.tsp.TSPIdListType;
-// import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;

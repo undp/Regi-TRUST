@@ -131,7 +131,7 @@
               }
             },
             "ElectronicAddress": {
-              "URI": ["https://www.kemkes.go.id", "mailto:info@kemkes.go.id"]
+              "URI": "https://www.kemkes.go.id"
             }
           }
         },

@@ -6,21 +6,23 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import eu.xfsc.train.tspa.model.trustlist.URIType;
+
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TSPAddessType",propOrder = {"electronicAddress", "postalAddress"})
+@XmlType(name = "TSPAddessType",propOrder = {"electronicAddress", "postalAddresses"})
 public class TSPAddessType {
 	
 	@XmlElement(name = "ElectronicAddress")
 	@JsonProperty("ElectronicAddress")
 	private URIType electronicAddress;
 	
-	@XmlElement(name = "PostalAddress")
-	@JsonProperty("PostalAddress")
-	private PostalAddressType postalAddress;
+	@XmlElement(name = "PostalAddresses")
+	@JsonProperty("PostalAddresses")
+	private List<PostalAddressType> postalAddresses;
 
 }

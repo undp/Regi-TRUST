@@ -17,6 +17,6 @@ public class ServiceIssuedCredentialType {
 	
 	@XmlElement(name = "CredentialType")
 	@JsonProperty("CredentialType")
-	private List<CredentialCustomType> credentialType;
+	private List<String> credentialType;
 
 }

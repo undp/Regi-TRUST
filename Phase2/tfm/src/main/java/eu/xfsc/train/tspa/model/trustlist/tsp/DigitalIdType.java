@@ -11,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DigitalIdType",propOrder = {"x509Certificate","did"})
+@XmlType(name = "DigitalIdType",propOrder = {"value","keyType"})
 public class DigitalIdType {
 	
-	@XmlElement(name = "X509Certificate")
-	@JsonProperty("X509Certificate")
-	private String x509Certificate;
+	@XmlElement(name = "Value")
+	@JsonProperty("Value")
+	private String value;
 	
-	@XmlElement(name = "DID")
-	@JsonProperty("DID")
-	private String did;
+	@XmlElement(name = "KeyType")
+	@JsonProperty("KeyType")
+	private String keyType;
 
 }
