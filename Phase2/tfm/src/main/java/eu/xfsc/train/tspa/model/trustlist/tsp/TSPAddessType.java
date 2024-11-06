@@ -6,7 +6,9 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import eu.xfsc.train.tspa.model.trustlist.URIType;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -14,9 +16,11 @@ import lombok.Setter;
 public class TSPAddessType {
 	
 	@XmlElement(name = "ElectronicAddress")
-	private String electronicAddress;
+	@JsonProperty("ElectronicAddress")
+	private URIType electronicAddress;
 	
 	@XmlElement(name = "PostalAddress")
+	@JsonProperty("PostalAddress")
 	private PostalAddressType postalAddress;
 
 }

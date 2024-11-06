@@ -1,9 +1,6 @@
 package eu.xfsc.train.tspa.model.trustlist.tsp;
 
 import java.util.List;
-
-import com.fasterxml.jackson.databind.JsonNode;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -18,7 +15,7 @@ import lombok.Setter;
 public class TSPIdListType {
 	
 	@XmlElement(name = "TSPSimplified")
-	private List<JsonNode> tspSimplified;
+	private List<TSPSimplified> tspSimplified;
 	
 }
 

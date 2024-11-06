@@ -13,8 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TSPCustomType", propOrder = {
     "tspID",
+    "tspVersion",
     "tspCurrentStatus",
-    "statusStartingTime",
+    "lastUpdate",
     "tspInformation",
     "submitterInfo",
     "tspServices"
@@ -25,13 +26,17 @@ public class TSPCustomType {
     @JsonProperty("TSPID")
     private String tspID;
     
+    @XmlElement(name = "TSPVersion")
+    @JsonProperty("TSPVersion")
+    private String tspVersion;
+    
     @XmlElement(name = "TSPCurrentStatus")
     @JsonProperty("TSPCurrentStatus")
     private String tspCurrentStatus;
     
     @XmlElement(name = "LastUpdate")
     @JsonProperty("LastUpdate")
-    private String statusStartingTime;
+    private String lastUpdate;
     
     @XmlElement(name = "TSPInformation")
     @JsonProperty("TSPInformation")

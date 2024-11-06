@@ -8,6 +8,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
 @Setter
@@ -16,6 +17,7 @@ import lombok.Setter;
 public class TSPServicesListType {
 	
 	@XmlElement(name = "TSPService")
+	@JsonProperty("TSPService")
 	private List<TSPServiceType> tspService;
 
 }

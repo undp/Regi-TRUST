@@ -7,6 +7,7 @@ import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter; 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ import java.util.List;
 public class TSPEntityIdentifierListType {
 	
 	@XmlElement(name = "TSPEntityIdendifier")
+	@JsonProperty("TSPEntityIdendifier")
 	private List<TypeValue> tSPEntityIdendifier;
 
 }

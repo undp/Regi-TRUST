@@ -8,6 +8,8 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import eu.xfsc.train.tspa.model.trustlist.NameType;
+
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -19,9 +21,9 @@ public class SubmitterInfoType {
 
     @XmlElement(name = "SubmitterName")
     @JsonProperty("SubmitterName")
-    private String submitterName;
+    private NameType submitterName;
 
     @XmlElement(name = "SubmitterAddress")
     @JsonProperty("SubmitterAddress")
-    private String submitterAddress;
+    private TSPAddessType submitterAddress;
 } 

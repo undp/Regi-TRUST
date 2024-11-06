@@ -1,7 +1,5 @@
 package eu.xfsc.train.tspa.model.trustlist.tsp;
 
-import java.util.List;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -13,12 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TrustServiceProviderListCustomType",propOrder = {"trustServiceProvider"})
-public class TrustServiceProviderListCustomType {
+@XmlType(name = "TSPQualifierType",propOrder = {"name", "value", "qualifierURI"})
+public class TSPQualifierType {
 	
-	@XmlElement(name = "TrustServiceProvider")
-	@JsonProperty("TrustServiceProvider")
-	private List<TSPCustomType> trustServiceProvider;
+	@XmlElement(name = "Name")
+	@JsonProperty("Name")
+	private String name; 
 
-	
+	@XmlElement(name = "Value")
+	@JsonProperty("Value")
+	private String value; 
+
+	@XmlElement(name = "QualifierURI")
+	@JsonProperty("QualifierURI")
+	private String qualifierURI; 
+
 }

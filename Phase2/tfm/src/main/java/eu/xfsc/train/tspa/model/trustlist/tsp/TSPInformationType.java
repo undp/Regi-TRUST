@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import eu.xfsc.train.tspa.model.trustlist.NameType;
+import eu.xfsc.train.tspa.model.trustlist.URIType;
+
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,7 +32,7 @@ public class TSPInformationType {
 
     @XmlElement(name = "TSPName")
     @JsonProperty("TSPName")
-    private String tspName;
+    private NameType tspName;
 
     @XmlElement(name = "TSPType")
     @JsonProperty("TSPType")
@@ -37,7 +40,7 @@ public class TSPInformationType {
 
     @XmlElement(name = "TrustSchemeName")
     @JsonProperty("TrustSchemeName")
-    private String trustSchemeName;
+    private NameType trustSchemeName;
 
     @XmlElement(name = "TSPRole")
     @JsonProperty("TSPRole")
@@ -45,11 +48,11 @@ public class TSPInformationType {
 
     @XmlElement(name = "TSPLegalName")
     @JsonProperty("TSPLegalName")
-    private String tspLegalName;
+    private NameType tspLegalName;
 
     @XmlElement(name = "TSPTradeName")
     @JsonProperty("TSPTradeName")
-    private String tspTradeName;
+    private NameType tspTradeName;
 
     @XmlElement(name = "TSPEntityIdentifierList")
     @JsonProperty("TSPEntityIdentifierList")
@@ -57,19 +60,19 @@ public class TSPInformationType {
 
     @XmlElement(name = "TSPCertificationLists")
     @JsonProperty("TSPCertificationLists")
-    private String tspCertificationLists;
+    private TSPCertificationListType tspCertificationLists;
 
     @XmlElement(name = "TSPAddress")
     @JsonProperty("TSPAddress")
-    private String tspAddress;
+    private TSPAddessType tspAddress;
 
     @XmlElement(name = "TSPInformationURI")
     @JsonProperty("TSPInformationURI")
-    private String tspInformationURI;
+    private URIType tspInformationURI;
 
     @XmlElement(name = "TSPQualifierList")
     @JsonProperty("TSPQualifierList")
-    private String tspQualifierList;
+    private TSPQualifierListType tspQualifierList;
 
     @XmlElement(name = "OtherTSL")
     @JsonProperty("OtherTSL")

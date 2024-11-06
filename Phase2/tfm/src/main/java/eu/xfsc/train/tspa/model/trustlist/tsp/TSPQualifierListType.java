@@ -13,12 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TrustServiceProviderListCustomType",propOrder = {"trustServiceProvider"})
-public class TrustServiceProviderListCustomType {
+@XmlType(name = "TSPQualifierListType",propOrder = {"tSPQualifier"})
+public class TSPQualifierListType {
 	
-	@XmlElement(name = "TrustServiceProvider")
-	@JsonProperty("TrustServiceProvider")
-	private List<TSPCustomType> trustServiceProvider;
+	@XmlElement(name = "TSPQualifier")
+	@JsonProperty("TSPQualifier")
+	private List<TSPQualifierType> tSPQualifier; 
 
-	
 }

@@ -11,6 +11,7 @@ import jakarta.xml.bind.JAXBException;
 public class TSPConfig {
 	@Bean
 	public JAXBContext setJAXBContext() throws JAXBException {
+		// Ensure TrustServiceStatusList and its dependencies are correctly annotated
 		return JAXBContext.newInstance(TrustServiceStatusList.class);
 	}
 

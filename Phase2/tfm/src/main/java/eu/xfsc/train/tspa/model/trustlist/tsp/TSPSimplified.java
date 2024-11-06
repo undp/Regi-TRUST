@@ -6,6 +6,8 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Getter
 @Setter
@@ -13,11 +15,14 @@ import lombok.Setter;
 @XmlType(name = "TSPSimplified")
 public class TSPSimplified {
     @XmlElement(name = "TSPID")
+    @JsonProperty("TSPID")
     private String tspID;
     
     @XmlElement(name = "LastUpdate")
+    @JsonProperty("LastUpdate")
     private String statusStartingTime;
     
     @XmlElement(name = "TSPVersion")
+    @JsonProperty("TSPVersion")
     private String tspVersion;
 }
