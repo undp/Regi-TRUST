@@ -6,6 +6,9 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.xfsc.train.tspa.model.trustlist.NameType;
@@ -56,11 +59,11 @@ public class TSPInformationType {
 
     @XmlElement(name = "TSPEntityIdentifierList")
     @JsonProperty("TSPEntityIdentifierList")
-    private TSPEntityIdentifierListType tspEntityIdentifierList;
+    private List<TypeValue> tspEntityIdentifierList;
 
     @XmlElement(name = "TSPCertificationLists")
     @JsonProperty("TSPCertificationLists")
-    private TSPCertificationListType tspCertificationLists;
+    private List<TypeValue> tspCertificationLists;
 
     @XmlElement(name = "TSPAddress")
     @JsonProperty("TSPAddress")
@@ -72,7 +75,7 @@ public class TSPInformationType {
 
     @XmlElement(name = "TSPQualifierList")
     @JsonProperty("TSPQualifierList")
-    private TSPQualifierListType tspQualifierList;
+    private List<TSPQualifierType> tspQualifierList;
 
     @XmlElement(name = "OtherTSL")
     @JsonProperty("OtherTSL")

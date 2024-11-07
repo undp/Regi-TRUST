@@ -9,6 +9,8 @@ import org.springframework.core.io.Resource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.networknt.schema.ValidationMessage;
 
 import eu.xfsc.train.tspa.exceptions.FileEmptyException;
@@ -44,5 +46,6 @@ public interface ITrustListPublicationService {
 			public String getSimplifiedTLfromDB(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
 			public String getTrustListVersions(String frameworkName) throws IOException;
 			public String addTSPToTrustList(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException;
+			public String test(String data) throws JsonMappingException, JsonProcessingException;
 
 }

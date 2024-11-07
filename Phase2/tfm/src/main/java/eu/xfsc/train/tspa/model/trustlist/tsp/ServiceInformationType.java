@@ -13,7 +13,7 @@ import eu.xfsc.train.tspa.model.trustlist.NameType;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TSPServiceType", propOrder = {
+@XmlType(name = "ServiceInformationType", propOrder = {
 		"serviceTypeIdentifier",
 		"serviceName",
 		"serviceDigitalIdentity",

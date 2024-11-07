@@ -9,14 +9,15 @@ import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ServiceIssuedCredentialType",propOrder = {"credentialType"})
-public class ServiceIssuedCredentialType {
+@XmlType(name = "ServiceIssuedCredentialTypes",propOrder = {"credentialType"})
+public class ServiceIssuedCredentialTypes {
 	
 	@XmlElement(name = "CredentialType")
 	@JsonProperty("CredentialType")
-	private List<String> credentialType;
+	private String credentialType;
 
 }

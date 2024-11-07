@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.networknt.schema.ValidationMessage;
 
 import eu.xfsc.train.tspa.exceptions.FileEmptyException;
@@ -65,6 +67,15 @@ public class TrustListPublicationController {
 	
 
 	// TRUST LISTS ------------------------------------------------------------------------------------------------
+
+	/* Test POST ednpoint. Recieves a JSON and returns it.	 */
+	@PostMapping("/test")
+	public ResponseEntity<String> test(@RequestBody String jsonData) throws JsonMappingException, JsonProcessingException {
+		String result = iTrustListPublicationService.test(jsonData);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+
+
 
 	/**
 	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.

@@ -20,7 +20,7 @@ public class AdditionalServiceInformationType {
 	
 	@XmlElement(name = "ServiceIssuedCredentialTypes")
 	@JsonProperty("ServiceIssuedCredentialTypes")
-	private ServiceIssuedCredentialType serviceIssuedCredentialTypes;
+	private ServiceIssuedCredentialTypes serviceIssuedCredentialTypes;
 	
 	@XmlElement(name = "ServiceGovernanceURI")
 	@JsonProperty("ServiceGovernanceURI")

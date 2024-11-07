@@ -13,7 +13,7 @@ import eu.xfsc.train.tspa.model.trustlist.NameType;
 @Getter
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SubmitterInfoType", propOrder = {
+@XmlType(name = "OpsAgentInfoType", propOrder = {
     "opsAgentName",
     "opsAgentAddress"
 })
@@ -26,4 +26,5 @@ public class OpsAgentInfoType {
     @XmlElement(name = "OpsAgentAddress")
     @JsonProperty("OpsAgentAddress")
     private TSPAddessType opsAgentAddress;
+    
 } 

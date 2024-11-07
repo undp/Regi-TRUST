@@ -34,6 +34,8 @@ import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 // import com.fasterxml.jackson.core.JsonProcessingException;
 // import com.fasterxml.jackson.core.type.TypeReference;
 // import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -60,9 +62,11 @@ import eu.xfsc.train.tspa.interfaces.IVCService;
 import eu.xfsc.train.tspa.model.trustlist.NameType;
 import eu.xfsc.train.tspa.model.trustlist.TrustServiceStatusList;
 import eu.xfsc.train.tspa.model.trustlist.TrustServiceStatusSimplifiedList;
+import eu.xfsc.train.tspa.model.trustlist.tsp.TSPAddessType;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
 // import eu.xfsc.train.tspa.model.trustlist.tsp.TSPCustomType;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TSPIdListType;
+import eu.xfsc.train.tspa.model.trustlist.tsp.TSPInformationType;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TSPSimplified;
 import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
 // import eu.xfsc.train.tspa.model.trustlist.tsp.TrustServiceProviderListCustomType;
@@ -112,6 +116,21 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 
 	// TRUST LISTS ------------------------------------------------------------------------------------------------
+
+	@Override
+	public String test(String jsonObj) throws JsonMappingException, JsonProcessingException {
+
+		try {
+			TSPInformationType tspInformation = omTrustList.readValue(jsonObj, TSPInformationType.class);
+			return omTrustList.writeValueAsString(tspInformation);
+		} catch (JsonMappingException e) {
+			log.error("Error mapping JSON to TSPAddessType", e);
+			throw e;
+		} catch (JsonProcessingException e) {
+			log.error("Error processing JSON", e);
+			throw e;
+		}
+	}
 
 	@Override
 	public void initXMLTrustList(String frameworkName, String xmlData)
@@ -280,20 +299,17 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			// --> Fetch a specific version of the trustlist in String format (representation of the TL in JSON)
 			resultTL = getSimplifiedTLfromDB(frameworkName, version);
 			// --> Convert the JSON representation of the TL to XML
-			resultTL = buildXMLfromSimplifiedTL(frameworkName, version);
+			// resultTL = buildXMLfromSimplifiedTL(frameworkName, version);
 		}
 		return resultTL;
 	}
 
-	// --> Builds a full XML TL on the fly from a simplified TL to be stored in the local store or delivered to the client
-	public String buildXMLfromSimplifiedTL(String frameworkName, String version) throws JAXBException, FileEmptyException, IOException {
+	// --> Builds a full XML TL on the fly from a simplified TL pojo to be stored in the local store or delivered to the client
+	public String buildXMLfromSimplifiedTL(TrustServiceStatusSimplifiedList simplifiedTLpojo) throws JAXBException, FileEmptyException, IOException {
 		// get the mongo collection for TSPs
 		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
 		MongoCollection<Document> tspCollection = db.getCollection(collectionNameTsps);
 
-		String simplifiedTL = getSimplifiedTLfromDB(frameworkName, null);
-		// convert simplifiedTL to pojo
-		TrustServiceStatusSimplifiedList simplifiedTLpojo = omTrustList.readValue(simplifiedTL, TrustServiceStatusSimplifiedList.class);
 		TSPIdListType simplifiedTSPsList = simplifiedTLpojo.getTspSimplifiedList();
 		TrustServiceProviderListCustomType detailedTSPsList = new TrustServiceProviderListCustomType();
 		// iterate over simplifiedTSPsList and get detailed TSPs from DB
@@ -304,6 +320,10 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			// Remove the "_id" field from the result before converting to TSPCustomType
 			result.remove("_id");
 			TSPCustomType detailedTsp = omTrustList.readValue(result.toJson(), TSPCustomType.class);
+			// add detailedTsp to detailedTSPsList
+			if (detailedTSPsList.getTrustServiceProvider() == null) {
+				detailedTSPsList.setTrustServiceProvider(new ArrayList<>());
+			}
 			detailedTSPsList.getTrustServiceProvider().add(detailedTsp);
 		}
 		
@@ -429,11 +449,10 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			}
 
 			// Step 3- update TL version
-			updateTLVersionRelatedFields(simplifiedTLpojo);
+			simplifiedTLpojo = updateTLVersionRelatedFields(simplifiedTLpojo);
 
 			// Steps 4- and 5- create new entry in TL DB and write new full XML to local store
-			int tlVersion = simplifiedTLpojo.getFrameworkInformation().getTslVersionIdentifier();
-			String fullXML = buildXMLfromSimplifiedTL(frameworkName, String.valueOf(tlVersion));
+			String fullXML = buildXMLfromSimplifiedTL(simplifiedTLpojo);
 			storeTLInLocalStoreAndDB(frameworkName, fullXML, simplifiedTLpojo);
 	        
 	        return String.format("TSP %s successfully added/updated to version %d", 
