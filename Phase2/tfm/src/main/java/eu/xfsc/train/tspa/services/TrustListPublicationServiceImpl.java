@@ -298,7 +298,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		} else {
 			// --> Fetch a specific version of the trustlist in String format (representation of the TL in JSON)
 			resultTL = getSimplifiedTLfromDB(frameworkName, version);
-			// --> Convert the JSON representation of the TL to XML
+			// --> Convert the JSON representation of the TL to XML TO BE DONE!
 			// resultTL = buildXMLfromSimplifiedTL(frameworkName, version);
 		}
 		return resultTL;
@@ -399,10 +399,9 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	    try {
 	        JsonNode tspNode = omTrustList.readTree(tspJson);
-	        String tspId = null;
+	        final String tspId = tspNode.get("TSPID").asText();
 			// By now we don't do validation of the BODY, just check if TSPID is present
 			// To Do: validate the TSP body in the controller against the schema (?)
-			tspId = tspNode.get("TSPID").asText();
 			if (tspId == null) {
 				throw new PropertiesAccessException("TSPID field was not found in the TSP JSON");
 			} 	        
@@ -418,35 +417,48 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	        Document tspDoc = Document.parse(tspJson);
 	        
+			String newVersionStr = null;
 	        if (existingTsp == null) { // create new TSP
-				tspDoc.put("TSPVersion", "1");   
-	        } else { // TSP exists, increment version 
-	            int currentVersion = existingTsp.getInteger("TSPVersion", 1);
-	            tspDoc.put("TSPVersion", currentVersion + 1);
-	            log.info("Incrementing version for TSP {} from {} to {}", tspId, currentVersion, currentVersion + 1);
+				newVersionStr = "1";
+				tspDoc.put("TSPVersion", newVersionStr);
+	        } else { // TSP exists, throw an error
+				throw new PropertiesAccessException("TSP " + tspId + " already exists.");
+				// String currentVersionStr = existingTsp.get("TSPVersion") != null ? existingTsp.get("TSPVersion").toString() : "1";
+				// int currentVersion = Integer.parseInt(currentVersionStr); 
+				// tspDoc.put("TSPVersion", String.valueOf(currentVersion + 1));
+				// newVersionStr = String.valueOf(currentVersion + 1);
+				// log.info("Incrementing version for TSP {} from {} to {}", tspId, currentVersion, newVersionStr);
+
 	        }
-			tspDoc.put("StatusStartingTime", java.time.LocalDateTime.now().toString());
+			tspDoc.put("LastUpdate", java.time.LocalDateTime.now().toString());
 			// step 1- update TSP in TSP collection in the DB
 	        tspCollection.insertOne(tspDoc);
 
 			// Step 2-  add it as simplified TSP to the TL
 			TSPSimplified simplifiedTsp = new TSPSimplified();
-			simplifiedTsp.setTspID(tspId);
-			simplifiedTsp.setStatusStartingTime(tspDoc.getString("StatusStartingTime"));
-			simplifiedTsp.setTspVersion(tspDoc.getString("TSPVersion"));
+			simplifiedTsp.setTspID(tspDoc.getString("TSPID"));
+			simplifiedTsp.setLastUpdate(tspDoc.getString("LastUpdate"));
+			simplifiedTsp.setTspVersion(newVersionStr);
 			
 			TrustServiceStatusSimplifiedList simplifiedTLpojo = omTrustList.readValue(getSimplifiedTLfromDB(frameworkName, null), TrustServiceStatusSimplifiedList.class);
 			TSPIdListType tspSimplifiedList = null;
-			if (simplifiedTLpojo.getTspSimplifiedList() != null) { // update existing TSPs in the TL (To be done)
-			    tspSimplifiedList = simplifiedTLpojo.getTspSimplifiedList();
+			if (simplifiedTLpojo.getTspSimplifiedList() != null) { // update existing TSPs in the TL 
+				tspSimplifiedList = simplifiedTLpojo.getTspSimplifiedList();
+				// check if TSP already exists in the TL
+				if (tspSimplifiedList.getTspSimplified().stream().anyMatch(tsp -> tsp.getTspID().equals(tspId))) {
+					// throw an error
+					throw new PropertiesAccessException("TSP " + tspId + " already exists in the trustlist.");
+				} 
+				// add simplifiedTsp to the TL
+				tspSimplifiedList.getTspSimplified().add(simplifiedTsp);
 			} else { // first TSP in the TL
 				tspSimplifiedList = new TSPIdListType();
 				List<TSPSimplified> listOfSimplifiedTSPs = new ArrayList<>();
 				// add simplifiedTsp to listOfSimplifiedTSPs
 				listOfSimplifiedTSPs.add(simplifiedTsp);
 				tspSimplifiedList.setTspSimplified(listOfSimplifiedTSPs);
-				simplifiedTLpojo.setTspSimplifiedList(tspSimplifiedList);
 			}
+			simplifiedTLpojo.setTspSimplifiedList(tspSimplifiedList);
 
 			// Step 3- update TL version
 			simplifiedTLpojo = updateTLVersionRelatedFields(simplifiedTLpojo);
@@ -455,12 +467,12 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			String fullXML = buildXMLfromSimplifiedTL(simplifiedTLpojo);
 			storeTLInLocalStoreAndDB(frameworkName, fullXML, simplifiedTLpojo);
 	        
-	        return String.format("TSP %s successfully added/updated to version %d", 
-	            tspId, tspDoc.getInteger("TSPVersion"));
+	        return String.format("TSP %s successfully created", 
+	            tspId);
 	            
 	    } catch (Exception e) {
 	        log.error("Error adding/updating TSP for framework {}", frameworkName, e);
-	        throw new PropertiesAccessException("Failed to add/update TSP: " + e.getMessage());
+	        throw new PropertiesAccessException("Failed to create TSP: " + e.getMessage());
 	    }
 	}
 

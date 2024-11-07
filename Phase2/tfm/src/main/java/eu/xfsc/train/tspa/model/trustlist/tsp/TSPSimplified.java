@@ -20,7 +20,7 @@ public class TSPSimplified {
     
     @XmlElement(name = "LastUpdate")
     @JsonProperty("LastUpdate")
-    private String statusStartingTime;
+    private String lastUpdate;
     
     @XmlElement(name = "TSPVersion")
     @JsonProperty("TSPVersion")
