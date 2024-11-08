@@ -276,6 +276,24 @@ public class TrustListPublicationController {
 			return TSPAUtil.getResponseBody("Failed to fetch TSP versions. " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	/* --> GET a specific TSP with optional version parameter */
+	@GetMapping(value = "/regitrust/tsp/{framework-name}/{tspId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getSpecificTSP(@PathVariable("framework-name") String frameworkName,
+			@PathVariable("tspId") String tspId, @RequestParam(value = "version", required = false) String version) throws IOException {
+		log.debug("--------------- GET SPECIFIC TSP ---------------");
+		log.debug("Requested framework name: {}, TSP ID: {}, version: {}", frameworkName, tspId, version);
+		try {
+			String tsp = iTrustListPublicationService.getSingleTSP(frameworkName, tspId, version);
+			return ResponseEntity.ok(tsp);
+		} catch (FileEmptyException e) {
+			log.error("Failed to fetch specific TSP: ", e);
+			return TSPAUtil.getResponseBody("Failed to fetch specific TSP. " + e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+
+
 	// GXFS implementation ------------------------------------------------------------------------------------------------
 	/**
 	 * --> Publishing initial trustlist by JSON Format. --> Enveloping trustlist in

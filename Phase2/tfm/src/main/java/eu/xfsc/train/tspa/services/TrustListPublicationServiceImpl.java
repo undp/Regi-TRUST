@@ -509,6 +509,35 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		return omTrustList.writeValueAsString(response);
 	}
 
+	// --> Returns a specific TSP with optional version parameter
+	@Override
+	public String getSingleTSP(String frameworkName, String tspId, String version) throws FileEmptyException, IOException {
+		// check if framework exists throw an exception if not
+		getSimplifiedTLfromDB(frameworkName, null); 
+		// check if TSP exists throw an exception if not
+		Document query = new Document("TSPID", tspId);
+		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+		MongoCollection<Document> tspCollection = db.getCollection(collectionNameTsps);
+		Document result = tspCollection.find(query).first();
+		
+		if (result == null) {
+			throw new FileEmptyException("TSP " + tspId + " not found in the trustlist.");
+		}
+
+		// If version is provided, fetch that specific version
+		if (version != null) {
+			query.append("TSPVersion", version);
+			result = tspCollection.find(query).first();
+			if (result == null) {
+				throw new FileEmptyException("Version " + version + " for TSP " + tspId + " not found.");
+			}
+		}
+		
+		// Remove the "_id" field before returning
+		result.remove("_id");
+		return result.toJson();
+	}
+
 
 // GXFS IMPLEMENTATION ------------------------------------------------------------------------------------------------
 
