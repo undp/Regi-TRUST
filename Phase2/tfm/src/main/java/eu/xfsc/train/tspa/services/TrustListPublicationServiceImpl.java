@@ -476,6 +476,39 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	    }
 	}
 
+	// --> Returns a list of versions of a specific TSP
+	@Override
+	public String getTSPVersions(String frameworkName, String tspId) throws IOException {
+		// check if framework exists throw an exception if not
+		getSimplifiedTLfromDB(frameworkName, null); 
+		// check if TSP exists throw an exception if not
+		Document query = new Document("TSPID", tspId);
+		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+		MongoCollection<Document> tspCollection = db.getCollection(collectionNameTsps);
+		Document result = tspCollection.find(query).first();
+		if (result == null) {
+			throw new FileEmptyException("TSP " + tspId + " not found in the trustlist.");
+		}
+		// fetch all versions of the TSP
+		List<Document> versions = tspCollection.find(query).sort(new Document("TSPVersion", -1)).into(new ArrayList<>());
+		Map<String, Object> response = new HashMap<>();
+		response.put("tspId", tspId);
+		Document resultDoc = (Document) result; // Cast result to Document
+		Document tspInformation = (Document) resultDoc.get("TSPInformation"); // Get TSPInformation Document
+		Document tspName = (Document) tspInformation.get("TSPName"); // Get TSPName Document
+		String name = tspName.getString("Name"); // Get the Name field
+		response.put("tspName", name);
+		List<Map<String, Object>> versionList = new ArrayList<>();
+		for (Document version : versions) {
+			Map<String, Object> versionInfo = new HashMap<>();
+			versionInfo.put("TSPVersion", version.getString("TSPVersion"));
+			versionInfo.put("LastUpdate", version.getString("LastUpdate"));
+			versionList.add(versionInfo);
+		}
+		response.put("versions", versionList);
+		return omTrustList.writeValueAsString(response);
+	}
+
 
 // GXFS IMPLEMENTATION ------------------------------------------------------------------------------------------------
 

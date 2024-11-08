@@ -41,11 +41,16 @@ public interface ITrustListPublicationService {
 			// public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 			
 			// From here, implemented methods for Regitrust.
+
+			// TRUST LIST
 			public String updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
 			public String getFullXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
 			public String getSimplifiedTLfromDB(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
 			public String getTrustListVersions(String frameworkName) throws IOException;
 			public String addTSPToTrustList(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException;
+
+			// TSP
+			public String getTSPVersions(String frameworkName, String tspId) throws IOException;
 			public String test(String data) throws JsonMappingException, JsonProcessingException;
 
 }

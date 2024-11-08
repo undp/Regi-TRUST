@@ -75,8 +75,6 @@ public class TrustListPublicationController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
-
-
 	/**
 	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.
 	 * @throws JAXBException 
@@ -262,6 +260,22 @@ public class TrustListPublicationController {
 			}
 	}
 
+	/* --> GET TSP list of versions */
+	@GetMapping(value = "/regitrust/tsp/history/{framework-name}/{tspId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getTSPVersions(@PathVariable("framework-name") String frameworkName,
+			@PathVariable("tspId") String tspId) {
+		log.debug("--------------- GET TSP VERSIONS ---------------");
+		try {
+			String tspVersions = iTrustListPublicationService.getTSPVersions(frameworkName, tspId);
+			return ResponseEntity.ok(tspVersions); 
+		} catch (IOException e) {
+			log.error("Failed to fetch TSP versions: ", e);
+			return TSPAUtil.getResponseBody("Failed to fetch TSP versions. " + e.getMessage(), HttpStatus.BAD_REQUEST);
+		} catch (FileEmptyException e) {
+			log.error("Failed to fetch TSP versions: ", e);
+			return TSPAUtil.getResponseBody("Failed to fetch TSP versions. " + e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
 	// GXFS implementation ------------------------------------------------------------------------------------------------
 	/**
 	 * --> Publishing initial trustlist by JSON Format. --> Enveloping trustlist in
