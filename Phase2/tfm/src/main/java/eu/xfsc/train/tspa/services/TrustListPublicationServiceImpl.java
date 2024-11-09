@@ -298,8 +298,9 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		} else {
 			// --> Fetch a specific version of the trustlist in String format (representation of the TL in JSON)
 			resultTL = getSimplifiedTLfromDB(frameworkName, version);
-			// --> Convert the JSON representation of the TL to XML TO BE DONE!
-			// resultTL = buildXMLfromSimplifiedTL(frameworkName, version);
+			// --> Convert simplified TL to pojo
+			TrustServiceStatusSimplifiedList simplifiedTLpojo = omTrustList.readValue(resultTL, TrustServiceStatusSimplifiedList.class);
+			resultTL = buildXMLfromSimplifiedTL(simplifiedTLpojo);
 		}
 		return resultTL;
 	}
