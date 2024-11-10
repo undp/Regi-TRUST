@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "TSPID",
+    "TSPCurrentStatus",
+    "LastUpdate",
+    "TSPInformation",
+    "TSPServices"
+  ],
+  "properties": {
+    "TSPID": {
+      "type": "string"
+    },
+    "TSPVersion": {
+      "type": "string"
+    },
+    "TSPCurrentStatus": {
+      "type": "string"
+    },
+    "LastUpdate": {
+      "type": "string"
+    },
+    "TSPInformation": {
+      "type": "object",
+      "required": ["TSPName", "TSPType", "TSPRole", "TSPLegalName"],
+      "properties": {
+        "TSPName": {
+          "type": "object",
+          "required": ["Name"],
+          "properties": {
+            "Name": { "type": "string" }
+          }
+        },
+        "TSPType": { "type": "string" },
+        "TrustFrameworkName": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" }
+          }
+        },
+        "TSPRole": { "type": "string" },
+        "TSPLegalName": {
+          "type": "object",
+          "required": ["Name"],
+          "properties": {
+            "Name": { "type": "string" }
+          }
+        },
+        "TSPEntityIdentifierList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["Type", "Value"],
+            "properties": {
+              "Type": { "type": "string" },
+              "Value": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "TSPServices": {
+      "type": "object",
+      "required": ["TSPService"],
+      "properties": {
+        "TSPService": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ServiceInformation"],
+            "properties": {
+              "ServiceInformation": {
+                "type": "object",
+                "required": [
+                  "ServiceTypeIdentifier",
+                  "ServiceName",
+                  "ServiceDigitalIdentity",
+                  "ServiceStatus"
+                ],
+                "properties": {
+                  "ServiceTypeIdentifier": { "type": "string" },
+                  "ServiceName": {
+                    "type": "object",
+                    "required": ["Name"],
+                    "properties": {
+                      "Name": { "type": "string" }
+                    }
+                  },
+                  "ServiceDigitalIdentity": {
+                    "type": "object",
+                    "required": ["DigitalId"],
+                    "properties": {
+                      "DigitalId": {
+                        "type": "object",
+                        "required": ["Value", "KeyType"],
+                        "properties": {
+                          "Value": { "type": "string" },
+                          "KeyType": { "type": "string" }
+                        }
+                      }
+                    }
+                  },
+                  "ServiceStatus": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

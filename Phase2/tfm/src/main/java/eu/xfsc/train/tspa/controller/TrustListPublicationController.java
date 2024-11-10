@@ -44,6 +44,8 @@ import eu.xfsc.train.tspa.interfaces.IVCService;
 import eu.xfsc.train.tspa.utils.TSPAUtil;
 import foundation.identity.jsonld.JsonLDException;
 import jakarta.xml.bind.JAXBException;
+import eu.xfsc.train.tspa.services.TSPValidationService;
+import eu.xfsc.train.tspa.services.TSPValidationService.ValidationResult;
 
 @RestController
 @RequestMapping("/ttfm/api/v1")
@@ -65,6 +67,11 @@ public class TrustListPublicationController {
 	@Value("classpath:templates/trust-list.xml")
 	private Resource trustListTemplate;
 	
+	private final TSPValidationService validationService;
+
+	public TrustListPublicationController(TSPValidationService validationService) {
+		this.validationService = validationService;
+	}
 
 	// TRUST LISTS ------------------------------------------------------------------------------------------------
 
@@ -232,6 +239,12 @@ public class TrustListPublicationController {
 	public ResponseEntity<Object> addTSPToTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
 		
+			ValidationResult validationResult = validationService.validateTSP(tspJson);
+			
+			if (!validationResult.isValid()) {
+				return TSPAUtil.getResponseBody("Validation failed: " + validationResult.getErrors(), HttpStatus.BAD_REQUEST);
+			}
+
 			try {
 				String addedTSP = iTrustListPublicationService.addTSPToTrustList(frameworkName, tspJson);
 				return TSPAUtil.getResponseBody(addedTSP, HttpStatus.CREATED);
@@ -468,5 +481,20 @@ public class TrustListPublicationController {
 	// 		return TSPAUtil.getResponseBody(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	// 	}
 	// }
+
+	@PostMapping("/api/tsp")
+	public ResponseEntity<?> processTSP(@RequestBody String tspJson) {
+		ValidationResult validationResult = validationService.validateTSP(tspJson);
+		
+		if (!validationResult.isValid()) {
+			return ResponseEntity.badRequest()
+				.body("Validation failed: " + validationResult.getErrors());
+		}
+
+		// Process the valid TSP JSON
+		// ... your processing logic here ...
+
+		return ResponseEntity.ok().build();
+	}
 
 }

@@ -24,17 +24,17 @@
 		<tomcat.version>10.1.16</tomcat.version>
 		<codehaus-mojo.version>2.4.0</codehaus-mojo.version>
 		<repository.path>eclipse/xfsc/train/tspa</repository.path>
-        <ci-registry>${env.HARBOR_HOST}/${env.HARBOR_PROJECT}</ci-registry>
+		<ci-registry>${env.HARBOR_HOST}/${env.HARBOR_PROJECT}</ci-registry>
 	</properties>
 
 	<url>https://gitlab.eclipse.org/${repository.path}</url>
 	<issueManagement>
-        <system>GitLab</system>
-        <url>https://gitlab.eclipse.org/${repository.path}/-/issues</url>
-    </issueManagement>
-    <ciManagement>
-        <url>https://gitlab.eclipse.org/${repository.path}/-/pipelines</url>
-    </ciManagement>
+		<system>GitLab</system>
+		<url>https://gitlab.eclipse.org/${repository.path}/-/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<url>https://gitlab.eclipse.org/${repository.path}/-/pipelines</url>
+	</ciManagement>
 
 	<repositories>
 		<repository>
@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -71,12 +71,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-test</artifactId>
-		    <scope>test</scope>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-           	<groupId>org.springframework.boot</groupId>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
@@ -158,13 +158,13 @@
 			<artifactId>java-ipfs-http-client</artifactId>
 			<version>1.4.4</version>
 		</dependency>
-	   	<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-security</artifactId>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
@@ -218,39 +218,39 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>		
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <!--
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<!--
                 <version>3.2.0</version>
                 -->
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>shared/src</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>			
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>shared/src</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -274,39 +274,39 @@
 				</configuration>
 			</plugin>
 			<plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
 				<version>3.4.0</version>
-                <configuration>
-                    <from>
-                        <image>tomcat:10.1.16-jdk21-temurin-jammy</image>
-                    </from>
-                    <container>
-                        <appRoot>/usr/local/tomcat/webapps/tspa-service</appRoot>
-                    </container>
-                    <extraDirectories>
-                        <paths>
-                            <path>
-                                <from>/</from>
-                                <into>/usr/local/tomcat/webapps/manager/META-INF</into>
-                                <includes>context.xml</includes>
-                            </path>
-                            <path>
-                                <from>/</from>
-                                <into>/usr/local/tomcat/conf</into>
-                                <includes>tomcat-users.xml</includes>
-                            </path>
-                        </paths>
-                    </extraDirectories>
-                    <to>
-                        <image>${ci-registry}/${project.artifactId}:latest</image>
-                        <auth>
-                            <username>${env.HARBOR_USERNAME}</username>
-                            <password>${env.HARBOR_PASSWORD}</password>
-                        </auth>
-                    </to>
-                </configuration>
-            </plugin>
+				<configuration>
+					<from>
+						<image>tomcat:10.1.16-jdk21-temurin-jammy</image>
+					</from>
+					<container>
+						<appRoot>/usr/local/tomcat/webapps/tspa-service</appRoot>
+					</container>
+					<extraDirectories>
+						<paths>
+							<path>
+								<from>/</from>
+								<into>/usr/local/tomcat/webapps/manager/META-INF</into>
+								<includes>context.xml</includes>
+							</path>
+							<path>
+								<from>/</from>
+								<into>/usr/local/tomcat/conf</into>
+								<includes>tomcat-users.xml</includes>
+							</path>
+						</paths>
+					</extraDirectories>
+					<to>
+						<image>${ci-registry}/${project.artifactId}:latest</image>
+						<auth>
+							<username>${env.HARBOR_USERNAME}</username>
+							<password>${env.HARBOR_PASSWORD}</password>
+						</auth>
+					</to>
+				</configuration>
+			</plugin>
 
 		</plugins>
 	</build>
