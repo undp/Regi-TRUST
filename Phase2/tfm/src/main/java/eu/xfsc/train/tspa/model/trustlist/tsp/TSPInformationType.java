@@ -20,7 +20,7 @@ import eu.xfsc.train.tspa.model.trustlist.URIType;
 @XmlType(name = "TSPInformationType", propOrder = {
     "tspName",
     "tspType",
-    "trustSchemeName",
+    "trustFrameworkName",
     "tspRole",
     "tspLegalName",
     "tspTradeName",
@@ -41,9 +41,9 @@ public class TSPInformationType {
     @JsonProperty("TSPType")
     private String tspType;
 
-    @XmlElement(name = "TrustSchemeName")
-    @JsonProperty("TrustSchemeName")
-    private NameType trustSchemeName;
+    @XmlElement(name = "TrustFrameworkName")
+    @JsonProperty("TrustFrameworkName")
+    private NameType trustFrameworkName;
 
     @XmlElement(name = "TSPRole")
     @JsonProperty("TSPRole")

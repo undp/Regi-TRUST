@@ -146,7 +146,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 				// Update Framework name, version and update date before storing
 				NameType frameworkNameType = new NameType(frameworkName);
 				trustList.getFrameworkInformation().setFrameworkName(frameworkNameType);
-				trustList.getFrameworkInformation().setTslVersionIdentifier(1);
+				trustList.getFrameworkInformation().setTslVersion("1");
 				trustList.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 	
 				// Marshal the updated object back to XML
@@ -200,13 +200,13 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		 String currentTrustList = getSimplifiedTLfromDB(framework, null);
 		 trustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusSimplifiedList.class);
  
-		 if (trustListPojo.getFrameworkInformation().getTslVersionIdentifier() == 0) {
+		 if (trustListPojo.getFrameworkInformation().getTslVersion().equals("0")) {
 			 NameType frameworkName = new NameType(framework);
 			 trustListPojo.getFrameworkInformation().setFrameworkName(frameworkName);
 		 }
 		 // update the version and issuance date fields
 		 trustListPojo = updateTLVersionRelatedFields(trustListPojo);
-		 log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTslVersionIdentifier());
+		 log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTslVersion());
  
 		 // update file in local store
 		 PrintWriter file = new PrintWriter(existedTLFile);
@@ -220,7 +220,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			 MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
 			 collection.insertOne(trustListDocument);
 			 log.info("Updated trust list to for framework '{}' in database '{}', collection '{}'", framework, databaseName, collectionNameTrustlist);
-			 return String.valueOf(trustListPojo.getFrameworkInformation().getTslVersionIdentifier());
+			 return String.valueOf(trustListPojo.getFrameworkInformation().getTslVersion());
 
 		 } catch (Exception e) {
 			 log.error("Error updating trust list in database '{}', collection '{}' for framework '{}'", databaseName, collectionNameTrustlist, framework, e);
@@ -266,10 +266,10 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 			// If framework exists, proceed with version query
 			Document query = new Document("FrameworkInformation.FrameworkName.Name", frameworkName);
-			Document sort = new Document("FrameworkInformation.TSLVersionIdentifier", -1);
+			Document sort = new Document("FrameworkInformation.TSLVersion", -1);
 
 			if (version != null) {
-				query.append("FrameworkInformation.TSLVersionIdentifier", Integer.parseInt(version));
+				query.append("FrameworkInformation.TSLVersion", version);
 			}
 
 			Document result = collection.find(query).sort(sort).first();
@@ -341,8 +341,8 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	// --> Updates only the Version and Issuance Date fields of in the simplified TL
 	public TrustServiceStatusSimplifiedList updateTLVersionRelatedFields(TrustServiceStatusSimplifiedList simplifiedTL) {
-		int newVersion = simplifiedTL.getFrameworkInformation().getTslVersionIdentifier() + 1;
-		simplifiedTL.getFrameworkInformation().setTslVersionIdentifier(newVersion);
+		int newVersion = Integer.parseInt(simplifiedTL.getFrameworkInformation().getTslVersion()) + 1;
+		simplifiedTL.getFrameworkInformation().setTslVersion(String.valueOf(newVersion));
 		simplifiedTL.getFrameworkInformation().setListIssueDateTime(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		return simplifiedTL;
 	}
@@ -357,7 +357,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			// Query to fetch all versions of a trustlist
 			Document query = new Document("FrameworkInformation.FrameworkName.Name", frameworkName);
 			List<Document> results = collection.find(query)
-				.sort(new Document("FrameworkInformation.TSLVersionIdentifier", -1))
+				.sort(new Document("FrameworkInformation.TSLVersion", -1))
 				.into(new ArrayList<>());
 
 				// if no lists were found with this framework name, return an empty list
@@ -373,7 +373,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			for (Document doc : results) {
 				Document frameworkInfo = (Document) doc.get("FrameworkInformation");
 				Map<String, String> version = new HashMap<>();
-				version.put("TSLVersionIdentifier", frameworkInfo.getInteger("TSLVersionIdentifier").toString());
+				version.put("TSLVersion", frameworkInfo.getString("TSLVersion"));
 				version.put("ListIssueDateTime", frameworkInfo.getString("ListIssueDateTime"));
 				versions.add(version);
 			}

@@ -88,29 +88,15 @@ public class TrustListPublicationController {
 		log.debug("debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------");
 		log.debug("schemes received: {}", schemesObject);
 
-		List<SAXParseException> errorList = null;
-
 		try {
 			String trustListStr = trustListTemplate.getFilename();
 			trustListStr = new String(trustListTemplate.getInputStream().readAllBytes());
-			errorList = iTrustListPublicationService.isXMLValid(trustListStr, xsdResource);
-			if (errorList.isEmpty()) {
-				log.debug("Successfully Validated!!!");
-				iTrustListPublicationService.initXMLTrustList(frameworkName, trustListStr);
-				return TSPAUtil.getResponseBody("Trust-list initially created and stored in XML format",
-						HttpStatus.CREATED);
-
-			} else {
-				log.error("Validation failed");
-				String errorString=errorList.stream()
-			              .map(SAXParseException::toString)
-			              .collect(Collectors.joining("\r\n", "XML validation failed:\r\n", ""));
-				return new ResponseEntity<>(errorString, HttpStatus.BAD_REQUEST);
-			}
-
-		} catch (IOException | SAXException e) {
+			iTrustListPublicationService.initXMLTrustList(frameworkName, trustListStr);
+			return TSPAUtil.getResponseBody("Trust list for framework " + frameworkName + " successfully created",
+			HttpStatus.CREATED);
+		} catch (IOException e) {
 			log.error("Failed to initiate trust-list creation via xml format because:", e);
-			return TSPAUtil.getResponseBody("Failed to initiate trust-list creation via xml format.",
+			return TSPAUtil.getResponseBody("Failed to initiate trust-list creation via xml format." + e.getMessage(),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -176,16 +162,14 @@ public class TrustListPublicationController {
 	        return ResponseEntity.ok(trustList);
 	    } catch (FileEmptyException e) {
 	        log.error("Failed to fetch simplified trustlist: ", e);
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-	                .body(e.getMessage());
+	        return TSPAUtil.getResponseBody("Failed to fetch simplified trust list : " + e.getMessage(), HttpStatus.BAD_REQUEST);
 	    } catch (IOException e) {
 	        log.error("Failed to fetch simplified trustlist: ", e);
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                .body("Failed to fetch simplified trustlist.");
+	        return TSPAUtil.getResponseBody("Failed to fetch simplified trust list : " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		} catch (IllegalArgumentException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-	                .body(e.getMessage());
+	        return TSPAUtil.getResponseBody("Error : " + e.getMessage(), HttpStatus.BAD_REQUEST);
 	    }
+
 	}
 
 	/**

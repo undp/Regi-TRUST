@@ -1,41 +1,50 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <TrustServiceStatusList>
   <FrameworkInformation>
-    <TSLVersionIdentifier>0</TSLVersionIdentifier>
-    <TSLSequenceNumber>1</TSLSequenceNumber>
+    <TSLVersion>0</TSLVersion>
     <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
+    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+    <NextUpdate>2030-12-31T00:00:00Z</NextUpdate>
+    <FrameworkName>
+      <Name>federation1.train.trust-Framework.de</Name>
+    </FrameworkName>
     <FrameworkOperatorName>
       <Name>Federation 1</Name>
     </FrameworkOperatorName>
     <FrameworkOperatorAddress>
       <PostalAddresses>
         <PostalAddress>
-          <StreetAddress>Hauptsrasse</StreetAddress>
-          <Locality>Stuttgart</Locality>
-          <PostalCode>70563</PostalCode>
-          <CountryName>DE</CountryName>
+          <StreetAddress>Gedung Kementerian Kesehatan</StreetAddress>
+          <Locality>Jakarta</Locality>
+          <PostalCode>10110</PostalCode>
+          <CountryName>ID</CountryName>
         </PostalAddress>
       </PostalAddresses>
       <ElectronicAddress>
-        <URI>mailto:admin@federation1.de</URI>
+        <URI>mailto:contact@kemkes.go.id</URI>
       </ElectronicAddress>
     </FrameworkOperatorAddress>
-    <FrameworkName>
-      <Name>federation1.train.trust-Framework.de</Name>
-    </FrameworkName>
     <FrameworkInformationURI>
-      <URI>https://TRAIN/interoperability/federation-Directory</URI>
+      <URI>https://www.kemkes.go.id/haj-health-credentials</URI>
     </FrameworkInformationURI>
-	  <FrameworkAuditURI>
-      <URI>https://TRAIN/interoperability/Audit</URI>
-    </FrameworkAuditURI>
     <FrameworkTypeCommunityRules>
-      <URI>https://TrustFramework_TRAIN.example.com/en/federation1-dir-rules.html</URI>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
     </FrameworkTypeCommunityRules>
-    <FrameworkScope>EU</FrameworkScope>
+    <SchemeTerritory>ID</SchemeTerritory>
     <PolicyOrLegalNotice>
-      <TSLLegalNotice>The applicable legal framework for the present trusted list is TBD. Valid legal notice text will be created.</TSLLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is regulated by
+        the Indonesian Government.</TSLLegalNotice>
     </PolicyOrLegalNotice>
-    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+    <DistributionPoints>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </DistributionPoints>
+    <SchemeExtensions>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </SchemeExtensions>
+    <PointersToOtherTSL>
+      <OtherTSLPointer>
+        <URI>htpps://....</URI>
+      </OtherTSLPointer>
+    </PointersToOtherTSL>
   </FrameworkInformation>
 </TrustServiceStatusList>

@@ -1,5 +1,7 @@
 package eu.xfsc.train.tspa.model.trustlist;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -12,33 +14,43 @@ import lombok.Setter;
 @Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FrameworkInformationType",propOrder = {
-		"tslVersionIdentifier",
-		"tslSequenceNumber",
+		"tslVersion",
 		"tslType",
+		"listIssueDateTime",
+		"nextUpdate",	
+		"frameworkName",
 		"frameworkOperatorName",
 		"frameworkOperatorAddress",
-		"frameworkName",
 		"frameworkInformationURI",
-		"frameworkAuditURI",
 		"frameworkTypeCommunityRules",
-		"frameworkScope",
+		"schemeTerritory",
 		"policyOrLegalNotice",
-		"listIssueDateTime"	
+		"distributionPoints",
+		"schemeExtensions",
+		"pointersToOtherTSL"
 })
 public class FrameworkInformationType{
 	
-	@XmlElement(name = "TSLVersionIdentifier")
-	@JsonProperty("TSLVersionIdentifier")
-	private int tslVersionIdentifier;
-	
-	@XmlElement(name = "TSLSequenceNumber")
-	@JsonProperty("TSLSequenceNumber")
-	private int tslSequenceNumber;
+	@XmlElement(name = "TSLVersion")
+	@JsonProperty("TSLVersion")
+	private String tslVersion;
 	
 	@XmlElement(name = "TSLType")
 	@JsonProperty("TSLType")
 	private String tslType;
 
+	@XmlElement(name = "ListIssueDateTime")
+	@JsonProperty("ListIssueDateTime")
+	private String listIssueDateTime;
+
+	@XmlElement(name = "NextUpdate")
+	@JsonProperty("NextUpdate")
+	private String nextUpdate;
+	
+	@XmlElement(name = "FrameworkName")
+	@JsonProperty("FrameworkName")
+	private NameType frameworkName;
+	
 	@XmlElement(name = "FrameworkOperatorName")
 	@JsonProperty("FrameworkOperatorName")
 	private NameType frameworkOperatorName;
@@ -47,33 +59,34 @@ public class FrameworkInformationType{
 	@JsonProperty("FrameworkOperatorAddress")
 	private FrameworkOperatorAddressType frameworkOperatorAddress;
 	
-	@XmlElement(name = "FrameworkName")
-	@JsonProperty("FrameworkName")
-	private NameType frameworkName;
-	
 	@XmlElement(name = "FrameworkInformationURI")
 	@JsonProperty("FrameworkInformationURI")
 	private URIType frameworkInformationURI;
-	
-	@XmlElement(name = "FrameworkAuditURI")
-	@JsonProperty("FrameworkAuditURI")
-	private URIType frameworkAuditURI;
 	
 	@XmlElement(name = "FrameworkTypeCommunityRules")
 	@JsonProperty("FrameworkTypeCommunityRules")
 	private URIType frameworkTypeCommunityRules;
 	
-	@XmlElement(name = "FrameworkScope")
-	@JsonProperty("FrameworkScope")
-	private String frameworkScope;
+	@XmlElement(name = "SchemeTerritory")
+	@JsonProperty("SchemeTerritory")
+	private String schemeTerritory;
 	
 	@XmlElement(name = "PolicyOrLegalNotice")
 	@JsonProperty("PolicyOrLegalNotice")
 	private PolicyOrLegalNoticeType policyOrLegalNotice;
-	
-	@XmlElement(name = "ListIssueDateTime")
-	@JsonProperty("ListIssueDateTime")
-	private String listIssueDateTime;
 
+	@XmlElement(name = "DistributionPoints")
+	@JsonProperty("DistributionPoints")
+	private URIType distributionPoints;
 	
+	@XmlElement(name = "SchemeExtensions")
+	@JsonProperty("SchemeExtensions")
+	private URIType schemeExtensions;
+	
+	@XmlElement(name = "PointersToOtherTSL")
+	@JsonProperty("PointersToOtherTSL")
+	private List<OtherTSLPointerType> pointersToOtherTSL;
+	
+
+
 }
