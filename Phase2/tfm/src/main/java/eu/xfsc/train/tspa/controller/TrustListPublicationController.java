@@ -66,6 +66,10 @@ public class TrustListPublicationController {
 	private Resource tspSchemaResource;
 	@Value("classpath:templates/trust-list.xml")
 	private Resource trustListTemplate;
+	@Value("classpath:templates/SchemeInformation-Schema.json")
+	private Resource schemeInformationSchema;
+	@Value("classpath:schemas/SimplifiedTrustList-Schema.json")
+	private Resource simplifiedTrustListSchema;
 	
 	private final TSPValidationService validationService;
 
@@ -117,34 +121,32 @@ public class TrustListPublicationController {
 	// @PreAuthorize("hasAuthority('enrolltf')")
 	// TO DO: expect a json body with the scheme information to update, validate it.
 	public ResponseEntity<Object> updateSchemeInformationInTrustList(@PathVariable("framework-name") String frameworkName,
-			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
+			@RequestBody String FrameworkInformation) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
 
 		log.debug("debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------");
-
-		// List<SAXParseException> errorList = null;
+		log.debug("Received trust list object: {}", FrameworkInformation);
 
 		try {
-			// TO DO: validate json body against JSON schema
-			// Boolean isValid = iTrustListPublicationService.isJSONValid(schemesObject, jsonSchemaResource);
-			Boolean isValid = true;
-			if (isValid) {
-				log.debug("Successfully Validated!!!");
-				String newVersion = iTrustListPublicationService.updateTLversion(frameworkName);
-				return TSPAUtil.getResponseBody("Trustlist version updated to " + newVersion,
-						HttpStatus.CREATED);
-
-			} else {
-				log.error("Validation failed");
-				// String errorString=errorList.stream()
-			    //           .map(SAXParseException::toString)
-			    //           .collect(Collectors.joining("\r\n", "XML validation failed:\r\n", ""));
-				return new ResponseEntity<>("errorString", HttpStatus.BAD_REQUEST);
+			// Validate the JSON against schema
+			Set<ValidationMessage> validationErrors = iTrustListPublicationService.isJSONValid(FrameworkInformation, simplifiedTrustListSchema);
+			
+			if (!validationErrors.isEmpty()) {
+				String errorString = validationErrors.stream()
+						.map(ValidationMessage::toString)
+						.collect(Collectors.joining("\n"));
+				log.error("Schema validation failed: {}", errorString);
+				return TSPAUtil.getResponseBody("Schema validation failed: " + errorString, HttpStatus.BAD_REQUEST);
 			}
+
+			// If validation passes, proceed with the update
+			String newVersion = iTrustListPublicationService.updateFrameworkInformation(frameworkName, FrameworkInformation);
+			return TSPAUtil.getResponseBody("Trustlist version updated to " + newVersion, HttpStatus.CREATED);
 
 		} catch (IOException e) {
 			log.error("Failed to update trustlist: ", e);
-			return TSPAUtil.getResponseBody("Failed to update trustlist. A trustlist for this framework was not found",
-					HttpStatus.BAD_REQUEST);
+			return TSPAUtil.getResponseBody(
+					"Failed to update trustlist. " + e.getMessage(),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

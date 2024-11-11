@@ -31,26 +31,26 @@ public interface ITrustListPublicationService {
 	public void initJsonTrustList(String frameworkName, String xml)
 			throws FileExistsException, FileNotFoundException, PropertiesAccessException;
 			
-			public String deleteTrustlist(String framworkname) throws IOException;
-			
-			//TSP
-			// public void tspPublish(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-			
-			// public void tspRemove(String frameworkName, String uuid) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-			
-			// public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-			
-			// From here, implemented methods for Regitrust.
+	public String deleteTrustlist(String framworkname) throws IOException;
+	
+	//TSP
+	// public void tspPublish(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+	
+	// public void tspRemove(String frameworkName, String uuid) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+	
+	// public void tspUpdate(String frameworkName, String uuid, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+	
+	// From here, implemented methods for Regitrust.
 
-			// TRUST LIST
-			public String updateTLversion(String frameworkName) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
-			public String getFullXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
-			public String getSimplifiedTLfromDB(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
-			public String getTrustListVersions(String frameworkName) throws IOException;
-			public String addTSPToTrustList(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException;
+	// TRUST LIST
+	public String updateFrameworkInformation(String frameworkName, String FrameworkInformation) throws FileEmptyException, PropertiesAccessException, IOException, JAXBException;
+	public String getFullXMLTrustlist(String frameworkName, String version) throws IOException, JAXBException;
+	public String getSimplifiedTLfromDB(String frameworkName, String version) throws IOException, FileEmptyException, PropertiesAccessException;
+	public String getTrustListVersions(String frameworkName) throws IOException;
+	public String addTSPToTrustList(String frameworkName, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException;
 
-			// TSP
-			public String getTSPVersions(String frameworkName, String tspId) throws IOException;
-			public String test(String data) throws JsonMappingException, JsonProcessingException;
-			public String getSingleTSP(String frameworkName, String tspId, String version) throws FileEmptyException, IOException;
+	// TSP
+	public String getTSPVersions(String frameworkName, String tspId) throws IOException;
+	public String test(String data) throws JsonMappingException, JsonProcessingException;
+	public String getSingleTSP(String frameworkName, String tspId, String version) throws FileEmptyException, IOException;
 }

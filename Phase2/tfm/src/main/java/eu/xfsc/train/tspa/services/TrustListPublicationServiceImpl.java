@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -184,9 +185,10 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			}
 		}
 
-	// --> Updates TL in local store and DB. (Modifies version and issuance date fields in the TL)
-	 @Override
-	 public String updateTLversion(String framework) 
+
+		// --> Updates FrameworkInformation only in local store and DB. (Modifies version and issuance date fields in the TL)
+	@Override
+	 public String updateFrameworkInformation(String framework, String FrameworkInformation) 
 		 throws FileEmptyException, PropertiesAccessException, IOException, JAXBException {
 		 setConfgurationObjectMapper();
 	 
@@ -204,13 +206,23 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			 NameType frameworkName = new NameType(framework);
 			 trustListPojo.getFrameworkInformation().setFrameworkName(frameworkName);
 		 }
-		 // update the version and issuance date fields
+
+		 // get the current version
+		 String currentVersion = trustListPojo.getFrameworkInformation().getTslVersion();
+		 TrustServiceStatusSimplifiedList newFrameworkInformation = omTrustList.readValue(FrameworkInformation, TrustServiceStatusSimplifiedList.class);
+		 newFrameworkInformation.getFrameworkInformation().setTslVersion(currentVersion);
+		 if (newFrameworkInformation.getTspSimplifiedList() == null) {
+			 newFrameworkInformation.setTspSimplifiedList(new TSPIdListType());
+		 }
+		 newFrameworkInformation.getTspSimplifiedList().setTspSimplified(trustListPojo.getTspSimplifiedList().getTspSimplified());
+		 trustListPojo.setFrameworkInformation(newFrameworkInformation.getFrameworkInformation());
 		 trustListPojo = updateTLVersionRelatedFields(trustListPojo);
 		 log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTslVersion());
  
 		 // update file in local store
+		 String newTLxml = buildXMLfromSimplifiedTL(trustListPojo);
 		 PrintWriter file = new PrintWriter(existedTLFile);
-		 marshaller.marshal(trustListPojo, file);
+		 file.write(newTLxml);
 		 file.close();	
  
 		 // update DB
@@ -636,6 +648,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	@Override
 	public Set<ValidationMessage> isJSONValid(String jsonData, Resource schemajson)
 			throws FileNotFoundException, IOException {
+		Locale.setDefault(Locale.ENGLISH); // Set the default locale to English
 		ObjectMapper mapper = new ObjectMapper();
 		Set<ValidationMessage> errorSet = null;
 
