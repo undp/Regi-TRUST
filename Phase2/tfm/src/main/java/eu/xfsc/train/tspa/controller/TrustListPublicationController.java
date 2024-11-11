@@ -1,5 +1,6 @@
 package eu.xfsc.train.tspa.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -8,11 +9,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.codec.DecoderException;
+import org.bson.Document;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +39,8 @@ import org.xml.sax.SAXParseException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.networknt.schema.ValidationMessage;
 
 import eu.xfsc.train.tspa.exceptions.FileEmptyException;
@@ -79,6 +87,48 @@ public class TrustListPublicationController {
 
 	// TRUST LISTS ------------------------------------------------------------------------------------------------
 
+	// THIS ENDPOINT IS FOR TESTING PURPOSES ONLY. IT WILL ERASE ALL ENTRIES IN THE TRUSTLIST COLLECTION!!!!
+	@Autowired
+	private MongoTemplate mongoTemplate;
+	@Value("${spring.data.mongodb.database}")
+	private String databaseName;
+	@Value("${spring.data.mongodb.collection-trustlists}")
+	private String collectionNameTrustlist;
+	@Value("${spring.data.mongodb.collection-tsps}")
+	private String collectionNameTsps;	
+	@Value("${storage.path.trustlist}")
+	private String mPath;
+	@PostMapping("/nowayback")
+	public ResponseEntity<String> eraseAllEntries() {
+		try {
+			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
+			MongoCollection<Document> collectionTL = db.getCollection(collectionNameTrustlist);
+			collectionTL.drop(); // This will erase all entries in the collection
+			MongoCollection<Document> collectionTsps = db.getCollection(collectionNameTsps);
+			collectionTsps.drop(); // This will erase all entries in the collection
+
+			// Delete all XML files from local storage
+			File directory = new File(mPath);
+			File[] xmlFiles = directory.listFiles((dir, name) -> name.endsWith(".xml"));
+			if (xmlFiles != null) {
+				for (File xmlFile : xmlFiles) {
+					if (xmlFile.delete()) {
+						log.info("Deleted XML file: {}", xmlFile.getName());
+					} else {
+						log.warn("Failed to delete XML file: {}", xmlFile.getName());
+					}
+				}
+			}
+
+			log.info("All entries in the trust list collection have been erased.");
+			return new ResponseEntity<>("All entries have been successfully erased.", HttpStatus.OK);
+		} catch (Exception e) {
+			log.error("Error erasing entries from the database: ", e);
+			return new ResponseEntity<>("Failed to erase entries from the database.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+
 	/* Test POST ednpoint. Recieves a JSON and returns it.	 */
 	@PostMapping("/test")
 	public ResponseEntity<String> test(@RequestBody String jsonData) throws JsonMappingException, JsonProcessingException {
@@ -100,6 +150,10 @@ public class TrustListPublicationController {
 		log.debug("schemes received: {}", schemesObject);
 
 		try {
+			JSONObject jsonObject = new JSONObject(schemesObject);
+			if (!jsonObject.has("otherFrameworks") || !jsonObject.get("otherFrameworks").getClass().equals(JSONArray.class)) {
+				return TSPAUtil.getResponseBody("Request body must contain 'otherFrameworks' field as an array.", HttpStatus.BAD_REQUEST);
+			}
 			String trustListStr = trustListTemplate.getFilename();
 			trustListStr = new String(trustListTemplate.getInputStream().readAllBytes());
 			iTrustListPublicationService.initXMLTrustList(frameworkName, trustListStr);
@@ -109,6 +163,8 @@ public class TrustListPublicationController {
 			log.error("Failed to initiate trust-list creation via xml format because:", e);
 			return TSPAUtil.getResponseBody("Failed to initiate trust-list creation via xml format." + e.getMessage(),
 					HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (JSONException e) {
+			return TSPAUtil.getResponseBody("Invalid JSON format.", HttpStatus.BAD_REQUEST);
 		}
 	}
 

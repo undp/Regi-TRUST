@@ -193,12 +193,6 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		 setConfgurationObjectMapper();
 	 
 		 TrustServiceStatusSimplifiedList trustListPojo = null;
-		 File existedTLFile = TSPAUtil.FindFileFromPath(mPath, framework);
-		 MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
-		 Marshaller marshaller = jaxbContext.createMarshaller();
-		 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
- 
- 
 		 String currentTrustList = getSimplifiedTLfromDB(framework, null);
 		 trustListPojo = omTrustList.readValue(currentTrustList, TrustServiceStatusSimplifiedList.class);
  
@@ -214,30 +208,20 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 		 if (newFrameworkInformation.getTspSimplifiedList() == null) {
 			 newFrameworkInformation.setTspSimplifiedList(new TSPIdListType());
 		 }
+		 if (trustListPojo.getTspSimplifiedList() == null) {
+			 trustListPojo.setTspSimplifiedList(new TSPIdListType());
+		 }
 		 newFrameworkInformation.getTspSimplifiedList().setTspSimplified(trustListPojo.getTspSimplifiedList().getTspSimplified());
 		 trustListPojo.setFrameworkInformation(newFrameworkInformation.getFrameworkInformation());
+		 trustListPojo.getFrameworkInformation().getFrameworkName().setName(framework);
 		 trustListPojo = updateTLVersionRelatedFields(trustListPojo);
 		 log.debug("Trustlist version updated to {}", trustListPojo.getFrameworkInformation().getTslVersion());
- 
-		 // update file in local store
-		 String newTLxml = buildXMLfromSimplifiedTL(trustListPojo);
-		 PrintWriter file = new PrintWriter(existedTLFile);
-		 file.write(newTLxml);
-		 file.close();	
- 
-		 // update DB
-		 try {
-			 String trustListJson = omTrustList.writeValueAsString(trustListPojo);
-			 Document trustListDocument = Document.parse(trustListJson);
-			 MongoCollection<Document> collection = db.getCollection(collectionNameTrustlist);
-			 collection.insertOne(trustListDocument);
-			 log.info("Updated trust list to for framework '{}' in database '{}', collection '{}'", framework, databaseName, collectionNameTrustlist);
-			 return String.valueOf(trustListPojo.getFrameworkInformation().getTslVersion());
 
-		 } catch (Exception e) {
-			 log.error("Error updating trust list in database '{}', collection '{}' for framework '{}'", databaseName, collectionNameTrustlist, framework, e);
-			 throw new RuntimeException("Failed to update trust list in database", e);
-		 }
+		 String newTLxml = buildXMLfromSimplifiedTL(trustListPojo);
+		 storeTLInLocalStoreAndDB(framework, newTLxml, trustListPojo);
+		return trustListPojo.getFrameworkInformation().getTslVersion();
+
+
 	 }
  
 	// --> Method for fetching trustlist XML content from local store.
@@ -318,6 +302,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 	// --> Builds a full XML TL on the fly from a simplified TL pojo to be stored in the local store or delivered to the client
+	@SuppressWarnings("null")
 	public String buildXMLfromSimplifiedTL(TrustServiceStatusSimplifiedList simplifiedTLpojo) throws JAXBException, FileEmptyException, IOException {
 		// get the mongo collection for TSPs
 		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
@@ -325,19 +310,27 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 		TSPIdListType simplifiedTSPsList = simplifiedTLpojo.getTspSimplifiedList();
 		TrustServiceProviderListCustomType detailedTSPsList = new TrustServiceProviderListCustomType();
-		// iterate over simplifiedTSPsList and get detailed TSPs from DB
-		for (TSPSimplified tsp : simplifiedTSPsList.getTspSimplified()) {
-			// query the DB for the TSP
-			Document query = new Document("TSPID", tsp.getTspID());
-			Document result = tspCollection.find(query).first();
-			// Remove the "_id" field from the result before converting to TSPCustomType
-			result.remove("_id");
-			TSPCustomType detailedTsp = omTrustList.readValue(result.toJson(), TSPCustomType.class);
-			// add detailedTsp to detailedTSPsList
-			if (detailedTSPsList.getTrustServiceProvider() == null) {
-				detailedTSPsList.setTrustServiceProvider(new ArrayList<>());
+		if (simplifiedTSPsList != null) {
+			// iterate over simplifiedTSPsList and get detailed TSPs from DB
+			if (simplifiedTSPsList.getTspSimplified() != null) {
+				for (TSPSimplified tsp : simplifiedTSPsList.getTspSimplified()) {
+					// query the DB for the TSP
+				Document query = new Document("TSPID", tsp.getTspID());
+				Document result = tspCollection.find(query).first();
+				// Remove the "_id" field from the result before converting to TSPCustomType
+				result.remove("_id");
+				TSPCustomType detailedTsp = omTrustList.readValue(result.toJson(), TSPCustomType.class);
+				// add detailedTsp to detailedTSPsList
+				if (detailedTSPsList.getTrustServiceProvider() == null) {
+					detailedTSPsList.setTrustServiceProvider(new ArrayList<>());
+				}
+					detailedTSPsList.getTrustServiceProvider().add(detailedTsp);
+				}
+			} else {
+				log.warn("No simplified TSPs found in this trustlist");
 			}
-			detailedTSPsList.getTrustServiceProvider().add(detailedTsp);
+		} else {
+			log.warn("No simplified TSPs found in this trustlist");
 		}
 		
 		// make fullTLPojo with simplifiedTLpojo and detailedTSPsList
