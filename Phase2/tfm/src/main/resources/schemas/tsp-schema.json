@@ -23,7 +23,13 @@
     },
     "TSPInformation": {
       "type": "object",
-      "required": ["TSPName", "TSPType", "TSPRole", "TSPLegalName"],
+      "required": [
+        "TSPName",
+        "TSPType",
+        "TSPRole",
+        "TSPLegalName",
+        "TSPCertificationLists"
+      ],
       "properties": {
         "TSPName": {
           "type": "object",
@@ -47,14 +53,35 @@
             "Name": { "type": "string" }
           }
         },
+        "TSPCertificationLists": {
+          "type": "object",
+          "properties": {
+            "TSPCertification": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["Type", "Value"],
+                "properties": {
+                  "Type": { "type": "string" },
+                  "Value": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
         "TSPEntityIdentifierList": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["Type", "Value"],
-            "properties": {
-              "Type": { "type": "string" },
-              "Value": { "type": "string" }
+          "type": "object",
+          "properties": {
+            "TSPEntityIdentifier": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["Type", "Value"],
+                "properties": {
+                  "Type": { "type": "string" },
+                  "Value": { "type": "string" }
+                }
+              }
             }
           }
         }

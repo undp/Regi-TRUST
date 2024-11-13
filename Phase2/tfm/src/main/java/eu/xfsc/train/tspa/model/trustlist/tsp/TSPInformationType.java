@@ -59,11 +59,11 @@ public class TSPInformationType {
 
     @XmlElement(name = "TSPEntityIdentifierList")
     @JsonProperty("TSPEntityIdentifierList")
-    private List<TypeValue> tspEntityIdentifierList;
+    private TSPEntityIdentifierType tspEntityIdentifierList;
 
     @XmlElement(name = "TSPCertificationLists")
     @JsonProperty("TSPCertificationLists")
-    private List<TypeValue> tspCertificationLists;
+    private TSPCertificationType tspCertificationLists;
 
     @XmlElement(name = "TSPAddress")
     @JsonProperty("TSPAddress")

@@ -30,7 +30,9 @@ CLIENT_ID = "xfsctest"
 ---------------------------------
 HOST DNS SERVER CONFIGURATION 
 ---------------------------------
-The host uses resolved as dns. 2 things must be done: edit resolved.conf and create /etc/systemd/resolved.conf.d/zone-manager.conf adding in the last, the port definition and the domain that the zone manager is going to administer.
+The host uses resolved as dns. 2 things must be done: edit resolved.conf and 
+create /etc/systemd/resolved.conf.d/zone-manager.conf adding in the last, 
+the port definition and the domain that the zone manager is going to administer.
 
 cat /etc/systemd/resolved.conf
 [Resolve]
@@ -41,16 +43,19 @@ cat /etc/systemd/resolved.conf.d/zone-manager.conf
 DNS=127.0.0.1:5353
 Domains=testtrain.trust-scheme.de
 
+Restart the host's systemd-resolved service:
+sudo systemctl restart systemd-resolved
 
 ---------------------------------
 HOW TO BUILD AND RUN
 ---------------------------------
 
-1. Build the container specifying the host's network so that dependencies can be installed (at this point I don't know why the container does not do external dns resoltuion)
-docker build --network="host" -t localhost/zm .
+1. Build the container specifying the host's network so that dependencies can be 
+installed (at this point I don't know why the container does not do external dns resoltuion)
+docker build --network="host" -t zone-manager .
 
 2. Run the container:
-docker run --name zm -p 16001:16001 -p 5353:53 -p 5353:53/udp localhost/zm
+docker run --name zm -p 16001:16001 -p 5354:53 -p 5354:53/udp zone-manager
 
 ---------------------------------------------------
 Check PTR records after publishing Trust Frameworks
@@ -62,13 +67,15 @@ enter _scheme._trust.<<your-PTR-record>>
 ---------------------------------
 TROUBLESHOOTING
 ---------------------------------
-[problem] When building the docker container (with the default configuration for resolved) it cannot resolve names so it can't install the dependencies.
+[problem] When building the docker container (with the default configuration for resolved) it 
+cannot resolve names so it can't install the dependencies.
 [solution] run the build command telling it to use the host's dns resolver:   
 docker build --network="host" -t localhost/zone-manager .
 
 [info] initiate container with name:
 docker run --name zm -p 16001:16001 -p 5353:53 -p 5353:53/udp localhost/zone-manager
-this allows the NSD to solve queries related to the testtrain.trust-scheme.de BUT THE CONTAINER DOESN'T HAVE INTERNET ACCESS SO AUTHENTICATION WITH KEYCLOAK FAILS!
+this allows the NSD to solve queries related to the testtrain.trust-scheme.de BUT THE CONTAINER 
+DOESN'T HAVE INTERNET ACCESS SO AUTHENTICATION WITH KEYCLOAK FAILS!
 
 [fix] Run the container with additional dns servers
 docker run --name zm -p 16001:16001 --dns 8.8.8.8 --dns 8.8.4.4 -p 5353:53 -p 5353:53/udp localhost/zone-manager

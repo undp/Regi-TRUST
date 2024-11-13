@@ -18,18 +18,26 @@
     "TSPTradeName": {
       "Name": "Hospital 1"
     },
-    "TSPEntityIdentifierList": [
-      {
-        "Type": "vLEI",
-        "Value": "LEICode ISO 17442"
-      }
-    ],
-    "TSPCertificationLists": [
-      {
-        "Type": "ISO",
-        "Value": "ISO 17442"
-      }
-    ],
+    "TSPEntityIdentifierList": {
+      "TSPEntityIdentifier": [
+        {
+          "Type": "vLEI",
+          "Value": "LEICode ISO 17442"
+        },
+        {
+          "Type": "VAT",
+          "Value": "3453654764"
+        }
+      ]
+    },
+    "TSPCertificationLists": {
+      "TSPCertification": [
+        {
+          "Type": "ISO",
+          "Value": "ISO 17442"
+        }
+      ]
+    },
     "TSPAddress": {
       "PostalAddresses": [
         {
