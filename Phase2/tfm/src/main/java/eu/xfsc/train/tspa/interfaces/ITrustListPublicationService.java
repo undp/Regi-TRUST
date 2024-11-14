@@ -53,4 +53,5 @@ public interface ITrustListPublicationService {
 	public String getTSPVersions(String frameworkName, String tspId) throws IOException;
 	public String test(String data) throws JsonMappingException, JsonProcessingException;
 	public String getSingleTSP(String frameworkName, String tspId, String version) throws FileEmptyException, IOException;
+	public String updateTSP(String frameworkName, String tspId, String tspJson) throws FileEmptyException, PropertiesAccessException, IOException;
 }

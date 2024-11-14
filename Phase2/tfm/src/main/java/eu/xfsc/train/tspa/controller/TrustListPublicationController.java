@@ -175,7 +175,6 @@ public class TrustListPublicationController {
 	 */
 	@PutMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	// @PreAuthorize("hasAuthority('enrolltf')")
-	// TO DO: expect a json body with the scheme information to update, validate it.
 	public ResponseEntity<Object> updateSchemeInformationInTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String FrameworkInformation) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
 
@@ -183,7 +182,7 @@ public class TrustListPublicationController {
 		log.debug("Received trust list object: {}", FrameworkInformation);
 
 		try {
-			// Validate the JSON against schema
+			// Validate the FrameworkInformationJSON against schema
 			Set<ValidationMessage> validationErrors = iTrustListPublicationService.isJSONValid(FrameworkInformation, simplifiedTrustListSchema);
 			
 			if (!validationErrors.isEmpty()) {
@@ -346,6 +345,29 @@ public class TrustListPublicationController {
 			return TSPAUtil.getResponseBody("Failed to fetch specific TSP. " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	/* --> Update a specific TSP */
+	@PutMapping(value = "/regitrust/tsp/{framework-name}/{tspId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> updateTSP(@PathVariable("framework-name") String frameworkName,
+			@PathVariable("tspId") String tspId, @RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
+				// validate json against schema
+				ValidationResult validationResult = validationService.validateTSP(tspJson);
+			
+				if (!validationResult.isValid()) {
+					return TSPAUtil.getResponseBody("Validation failed: " + validationResult.getErrors(), HttpStatus.BAD_REQUEST);
+				}
+				try {
+					String updatedTSP = iTrustListPublicationService.updateTSP(frameworkName, tspId, tspJson);
+					return TSPAUtil.getResponseBody(updatedTSP, HttpStatus.OK);
+				} catch (FileEmptyException e) {
+					log.error("Failed to update TSP: ", e);
+					return TSPAUtil.getResponseBody("Failed to update TSP. " + e.getMessage(), HttpStatus.BAD_REQUEST);
+				} catch (IOException e) {
+					log.error("Failed to update TSP: ", e);
+					return TSPAUtil.getResponseBody("Failed to update TSP. " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+	}
+
 
 
 
