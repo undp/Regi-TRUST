@@ -1,0 +1,918 @@
+2024-11-06T17:06:02.722+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 14968 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:06:02.729+01:00 DEBUG 14968 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:06:02.731+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:06:02.813+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:06:02.814+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:06:04.525+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:06:04.635+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 102 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:06:05.948+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:06:06.007+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:06:06.009+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:06:06.189+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:06:06.193+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3376 ms
+2024-11-06T17:06:08.469+01:00  WARN 14968 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:06:08.477+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:06:08.533+01:00  INFO 14968 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:06:08.598+01:00 ERROR 14968 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:15)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:10:03.078+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 30900 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:10:03.080+01:00 DEBUG 30900 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:10:03.081+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:10:03.171+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:10:03.172+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:10:05.074+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:10:05.211+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 129 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:10:06.501+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:10:06.558+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:10:06.560+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:10:06.698+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:10:06.700+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3526 ms
+2024-11-06T17:10:08.553+01:00  WARN 30900 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:10:08.561+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:10:08.587+01:00  INFO 30900 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:10:08.648+01:00 ERROR 30900 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:15)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:13:37.294+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 29356 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:13:37.296+01:00 DEBUG 29356 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:13:37.298+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:13:37.390+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:13:37.392+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:13:39.197+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:13:39.321+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 112 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:13:40.583+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:13:40.637+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:13:40.638+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:13:40.765+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:13:40.768+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3373 ms
+2024-11-06T17:13:42.393+01:00  WARN 29356 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:13:42.400+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:13:42.430+01:00  INFO 29356 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:13:42.472+01:00 ERROR 29356 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:15)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:25:32.594+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 2992 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:25:32.596+01:00 DEBUG 2992 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:25:32.598+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:25:32.682+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:25:32.684+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:25:34.626+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:25:34.721+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:25:35.986+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:25:36.023+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:25:36.025+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:25:36.148+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:25:36.151+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3465 ms
+2024-11-06T17:25:38.051+01:00  WARN 2992 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:25:38.057+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:25:38.089+01:00  INFO 2992 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:25:38.150+01:00 ERROR 2992 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:17)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:42:06.545+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 500 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:42:06.548+01:00 DEBUG 500 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:42:06.549+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:42:06.638+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:42:06.640+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:42:08.533+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:42:08.657+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:42:10.042+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:42:10.100+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:42:10.101+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:42:10.213+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:42:10.216+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3573 ms
+2024-11-06T17:42:11.910+01:00  WARN 500 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:42:11.914+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:42:11.937+01:00  INFO 500 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:42:11.968+01:00 ERROR 500 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:17)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:42:16.683+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 19320 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:42:16.686+01:00 DEBUG 19320 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:42:16.687+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:42:16.775+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:42:16.776+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:42:18.653+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:42:18.766+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:42:20.092+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:42:20.147+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:42:20.149+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:42:20.273+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:42:20.275+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3498 ms
+2024-11-06T17:42:21.993+01:00  WARN 19320 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:42:21.999+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:42:22.020+01:00  INFO 19320 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:42:22.052+01:00 ERROR 19320 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:17)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:51:26.748+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 25540 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:51:26.750+01:00 DEBUG 25540 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:51:26.751+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:51:26.841+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:51:26.842+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:51:28.679+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:51:28.803+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 115 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:51:30.140+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:51:30.192+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:51:30.193+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:51:30.300+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:51:30.303+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3458 ms
+2024-11-06T17:51:32.226+01:00  WARN 25540 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:51:32.233+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:51:32.261+01:00  INFO 25540 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:51:32.325+01:00 ERROR 25540 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:17)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T17:58:45.126+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 26284 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T17:58:45.129+01:00 DEBUG 26284 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T17:58:45.130+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T17:58:45.218+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T17:58:45.219+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T17:58:47.043+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T17:58:47.170+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 1 MongoDB repository interface.
+2024-11-06T17:58:48.480+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T17:58:48.535+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T17:58:48.536+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T17:58:48.663+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T17:58:48.665+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3444 ms
+2024-11-06T17:58:50.374+01:00  WARN 26284 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T17:58:50.381+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T17:58:50.418+01:00  INFO 26284 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T17:58:50.462+01:00 ERROR 26284 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:17)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+
+2024-11-06T18:01:50.970+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 27536 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-11-06T18:01:50.972+01:00 DEBUG 27536 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-11-06T18:01:50.974+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-11-06T18:01:51.063+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-06T18:01:51.064+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-06T18:01:53.013+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-06T18:01:53.141+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 1 MongoDB repository interface.
+2024-11-06T18:01:54.427+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-11-06T18:01:54.469+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-06T18:01:54.471+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-11-06T18:01:54.584+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-06T18:01:54.586+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3519 ms
+2024-11-06T18:01:55.974+01:00  WARN 27536 --- [trust-framework-administration-authority] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+2024-11-06T18:01:55.978+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-11-06T18:01:55.999+01:00  INFO 27536 --- [trust-framework-administration-authority] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-06T18:01:56.025+01:00 ERROR 27536 --- [trust-framework-administration-authority] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationController': Unsatisfied dependency expressed through field 'iTrustListPublicationService': Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at eu.xfsc.train.tspa.TspaApplication.main(TspaApplication.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'trustListPublicationServiceImpl': Unsatisfied dependency expressed through field 'jaxbContext': Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 23 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'setJAXBContext' defined in class path resource [eu/xfsc/train/tspa/configuration/TSPConfig.class]: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [jakarta.xml.bind.JAXBContext]: Factory method 'setJAXBContext' threw exception with message: 2 counts of IllegalAnnotationExceptions
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 50 common frames omitted
+Caused by: org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException: 2 counts of IllegalAnnotationExceptions
+	at org.glassfish.jaxb.runtime.v2.runtime.IllegalAnnotationsException$Builder.check(IllegalAnnotationsException.java:83)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.getTypeInfoSet(JAXBContextImpl.java:421)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl.<init>(JAXBContextImpl.java:255)
+	at org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl$JAXBContextBuilder.build(JAXBContextImpl.java:1115)
+	at org.glassfish.jaxb.runtime.v2.ContextFactory.createContext(ContextFactory.java:144)
+	at org.glassfish.jaxb.runtime.v2.JAXBContextFactory.createContext(JAXBContextFactory.java:44)
+	at jakarta.xml.bind.ContextFinder.find(ContextFinder.java:373)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:605)
+	at jakarta.xml.bind.JAXBContext.newInstance(JAXBContext.java:546)
+	at eu.xfsc.train.tspa.configuration.TSPConfig.setJAXBContext(TSPConfig.java:17)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.CGLIB$setJAXBContext$0(<generated>)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at eu.xfsc.train.tspa.configuration.TSPConfig$$SpringCGLIB$$0.setJAXBContext(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 51 common frames omitted
+

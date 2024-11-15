@@ -1,0 +1,321 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"TrustServiceProvider": {
+			"anyOf": [
+				{
+					"$ref": "#/definitions/TrustServiceProvider"
+				},
+				{
+					"type": "array",
+					"description": "...",
+					"items": {
+						"$ref": "#/definitions/TrustServiceProvider"
+					}
+				}
+			]
+		}
+	},
+	"definitions": {
+		"TrustServiceProvider": {
+			"type": "object",
+			"properties": {
+				"UUID": {
+					"type": "string"
+				},
+				"TSPName":{
+					"type": "string"
+				},
+				"TSPTradeName": {
+					"type": "string"
+				},
+				"TSPInformation": {
+					"type": "object",
+					"properties": {
+						"Address": {
+							"type": "object",
+							"properties": {
+								"ElectronicAddress": {
+									"type": "string"
+								},
+								"PostalAddress": {
+									"type": "object",
+									"properties": {
+										"City": {
+											"type": "string"
+										},
+										"Country": {
+											"type": "string"
+										},
+										"PostalCode": {
+											"type": "string"
+										},
+										"State": {
+											"type": "string"
+										},
+										"StreetAddress1": {
+											"type": "string"
+										},
+										"StreetAddress2": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"City",
+										"Country",
+										"PostalCode",
+										"State",
+										"StreetAddress1",
+										"StreetAddress2"
+									]
+								}
+							},
+							"required": [
+								"ElectronicAddress",
+								"PostalAddress"
+							]
+						},
+						"TSPCertificationList": {
+							"type": "object",
+							"properties": {
+								"TSPCertification": {
+									"type": "array",
+									"items": [
+										{
+											"type": "object",
+											"properties": {
+												"Type": {
+													"type": "string"
+												},
+												"Value": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"Type",
+												"Value"
+											]
+										},
+										{
+											"type": "object",
+											"properties": {
+												"Type": {
+													"type": "string"
+												},
+												"Value": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"Type",
+												"Value"
+											]
+										}
+									]
+								}
+							},
+							"required": [
+								"TSPCertification"
+							]
+						},
+						"TSPEntityIdentifierList": {
+							"type": "object",
+							"properties": {
+								"TSPEntityIdendifier": {
+									"type": "array",
+									"items": [
+										{
+											"type": "object",
+											"properties": {
+												"Type": {
+													"type": "string"
+												},
+												"Value": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"Type",
+												"Value"
+											]
+										},
+										{
+											"type": "object",
+											"properties": {
+												"Type": {
+													"type": "string"
+												},
+												"Value": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"Type",
+												"Value"
+											]
+										}
+									]
+								}
+							},
+							"required": [
+								"TSPEntityIdendifier"
+							]
+						},
+						"TSPInformationURI": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"Address",
+						"TSPCertificationList",
+						"TSPEntityIdentifierList",
+						"TSPInformationURI"
+					]
+				},
+				"TSPServices": {
+					"type": "object",
+					"properties": {
+						"TSPService": {
+							"type": "array",
+							"items": [
+								{
+									"type": "object",
+									"properties": {
+										"ServiceName": {
+											"type": "string"
+										},
+										"ServiceTypeIdentifier": {
+											"type": "string"
+										},
+										"ServiceCurrentStatus": {
+											"type": "string"
+										},
+										"StatusStartingTime": {
+											"type": "string"
+										},
+										"ServiceDefinitionURI": {
+											"type": "string"
+										},
+										"ServiceDigitalIdentity": {
+											"type": "object",
+											"properties": {
+												"DigitalId": {
+													"type": "object",
+													"properties": {
+														"X509Certificate": {
+															"type": "string"
+														},
+														"DID": {
+															"type": "string"
+														}
+													},
+													"required": [
+														"X509Certificate",
+														"DID"
+													]
+												}
+											},
+											"required": [
+												"DigitalId"
+											]
+										},
+										"AdditionalServiceInformation": {
+											"type": "object",
+											"properties": {
+												"ServiceBusinessRulesURI": {
+													"type": "string"
+												},
+												"ServiceGovernanceURI": {
+													"type": "string"
+												},
+												"ServiceIssuedCredentialTypes": {
+													"type": "object",
+													"properties": {
+														"CredentialType": {
+															"type": "array",
+															"items": [
+																{
+																	"type": "object",
+																	"properties": {
+																		"Type": {
+																			"type": "string"
+																		}
+																	},
+																	"required": [
+																		"Type"
+																	]
+																},
+																{
+																	"type": "object",
+																	"properties": {
+																		"Type": {
+																			"type": "string"
+																		}
+																	},
+																	"required": [
+																		"Type"
+																	]
+																}
+															]
+														}
+													},
+													"required": [
+														"CredentialType"
+													]
+												},
+												"ServiceContractType": {
+													"type": "string"
+												},
+												"ServicePolicySet": {
+													"type": "string"
+												},
+												"ServiceSchemaURI": {
+													"type": "string"
+												},
+												"ServiceSupplyPoint": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"ServiceBusinessRulesURI",
+												"ServiceGovernanceURI",
+												"ServiceIssuedCredentialTypes",
+												"ServiceContractType",
+												"ServicePolicySet",
+												"ServiceSchemaURI",
+												"ServiceSupplyPoint"
+											]
+										}
+									},
+									"required": [
+										"ServiceName",
+										"ServiceTypeIdentifier",
+										"ServiceCurrentStatus",
+										"StatusStartingTime",
+										"ServiceDefinitionURI",
+										"ServiceDigitalIdentity",
+										"AdditionalServiceInformation"
+									]
+								}
+							]
+						}
+					},
+					"required": [
+						"TSPService"
+					]
+				}
+			},
+			"required": [
+				"UUID",
+				"TSPName",
+				"TSPTradeName",
+				"TSPInformation",
+				"TSPServices"
+			]
+		}
+	},
+	"required": [
+		"TrustServiceProvider"
+	]
+}

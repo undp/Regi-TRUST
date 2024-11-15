@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TrustServiceStatusList>
+  <FrameworkInformation>
+    <TSLVersion>0</TSLVersion>
+    <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
+    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+    <NextUpdate>2030-12-31T00:00:00Z</NextUpdate>
+    <FrameworkName>
+      <Name>federation1.train.trust-Framework.de</Name>
+    </FrameworkName>
+    <FrameworkOperatorName>
+      <Name>Federation 1</Name>
+    </FrameworkOperatorName>
+    <FrameworkOperatorAddress>
+      <PostalAddresses>
+        <PostalAddress>
+          <StreetAddress>Gedung Kementerian Kesehatan</StreetAddress>
+          <Locality>Jakarta</Locality>
+          <PostalCode>10110</PostalCode>
+          <CountryName>ID</CountryName>
+        </PostalAddress>
+      </PostalAddresses>
+      <ElectronicAddress>
+        <URI>mailto:contact@kemkes.go.id</URI>
+      </ElectronicAddress>
+    </FrameworkOperatorAddress>
+    <FrameworkInformationURI>
+      <URI>https://www.kemkes.go.id/haj-health-credentials</URI>
+    </FrameworkInformationURI>
+    <FrameworkTypeCommunityRules>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </FrameworkTypeCommunityRules>
+    <SchemeTerritory>ID</SchemeTerritory>
+    <PolicyOrLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is regulated by
+        the Indonesian Government.</TSLLegalNotice>
+    </PolicyOrLegalNotice>
+    <DistributionPoints>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </DistributionPoints>
+    <SchemeExtensions>
+      <URI>https://www.kemkes.go.id/haj-health-rules</URI>
+    </SchemeExtensions>
+    <PointersToOtherTSL>
+      <OtherTSLPointer>
+        <URI>htpps://....</URI>
+      </OtherTSLPointer>
+    </PointersToOtherTSL>
+  </FrameworkInformation>
+</TrustServiceStatusList>

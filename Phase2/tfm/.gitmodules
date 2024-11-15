@@ -1,0 +1,3 @@
+[submodule "shared"]
+	path = shared
+	url = https://gitlab.eclipse.org/eclipse/xfsc/train/train-shared.git

@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nsd-service.fullname" . }}
+  labels:
+    {{- include "nsd-service.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "nsd-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "nsd-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          envFrom:
+            - configMapRef:
+                name: nsd-config-zones
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.rest.containerPort }}
+              protocol: TCP
+            - name: dns-tcp
+              containerPort: {{ .Values.service.dns.containerPort }}
+              protocol: TCP
+            - name: dns-udp
+              containerPort: {{ .Values.service.dns.containerPort }}
+              protocol: UDP
+#          livenessProbe:
+#            httpGet:
+#              path: {{ .Values.probes.path }} 
+#              port: http
+#            initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.probes.periodSeconds }}
+#            timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+#          readinessProbe:
+#            httpGet:
+#              path: {{ .Values.probes.path }} 
+#              port: http
+#            initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.probes.periodSeconds }}
+#            timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: zoneconfig
+              mountPath: /var/lib/zonemgr/
+            - name: config-file-auth
+              mountPath: /usr/lib/zonemgr/auth.conf
+              subPath: auth.conf
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.restartPolicy }}
+      restartPolicy: {{ .Values.restartPolicy }}
+      {{- end }}
+      volumes:
+        - name: zoneconfig
+          persistentVolumeClaim:
+            claimName: nsd-zonedata-pvc
+        - name: config-file-auth
+          configMap:
+            name: nsd-config-auth

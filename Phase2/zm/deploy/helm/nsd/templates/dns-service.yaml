@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nsd-service.fullname" . }}-dns
+  labels:
+    {{- include "nsd-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.dns.type }}
+  ports:
+    - port: {{ .Values.service.dns.externalPort }}
+      targetPort: {{ .Values.service.dns.containerPort }}
+      protocol: TCP
+      name: dns-tcp
+    - port: {{ .Values.service.dns.externalPort }}
+      targetPort: {{ .Values.service.dns.containerPort }}
+      protocol: UDP
+      name: dns-udp
+  selector:
+    {{- include "nsd-service.selectorLabels" . | nindent 4 }}

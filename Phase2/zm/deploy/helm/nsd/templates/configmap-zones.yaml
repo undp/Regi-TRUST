@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nsd-config-zones
+data: 
+  TF_DOMAIN_NAME: {{ .Values.application.properties.zoneConfig.TF_DOMAIN_NAME }}
+  TF_DOMAIN_IP: {{ .Values.application.properties.zoneConfig.TF_DOMAIN_IP }}
+  PRIMARY_SERVER_NSD: {{ .Values.application.properties.zoneConfig.PRIMARY_SERVER_NSD }}
+  PRIMARY_SERVER_IP: {{ .Values.application.properties.zoneConfig.PRIMARY_SERVER_IP }}
+  SECONDARY_SERVER_1_NSD: {{ .Values.application.properties.zoneConfig.SECONDARY_SERVER_1_NSD }}
+  SECONDARY_SERVER_1_IP: {{ .Values.application.properties.zoneConfig.SECONDARY_SERVER_1_IP }}
+  SECONDARY_SERVER_2_NSD: {{ .Values.application.properties.zoneConfig.SECONDARY_SERVER_2_NSD }}
+  SECONDARY_SERVER_2_IP: {{ .Values.application.properties.zoneConfig.SECONDARY_SERVER_2_IP }}

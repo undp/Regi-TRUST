@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TrustServiceStatusList>
+  <FrameworkInformation>
+    <TSLVersionIdentifier>1</TSLVersionIdentifier>
+    <TSLSequenceNumber>1</TSLSequenceNumber>
+    <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
+    <FrameworkOperatorName>
+      <Name>Good Gin Ltd.</Name>
+    </FrameworkOperatorName>
+    <FrameworkOperatorAddress>
+      <PostalAddresses>
+        <PostalAddress>
+          <StreetAddress>Ginstreet 1</StreetAddress>
+          <Locality>Girvan</Locality>
+          <PostalCode>KA26 9PT</PostalCode>
+          <CountryName>UK</CountryName>
+        </PostalAddress>
+      </PostalAddresses>
+      <ElectronicAddress>
+        <URI>mailto:admin@goodgin.co.uk</URI>
+      </ElectronicAddress>
+    </FrameworkOperatorAddress>
+    <FrameworkName>
+      <Name>train.goodgin.co.uk</Name>
+    </FrameworkName>
+    <FrameworkInformationURI>
+      <URI>https://goodgin.co.uk/TRAIN/interoperability/federation-directory</URI>
+    </FrameworkInformationURI>
+	<FrameworkAuditURI>
+      <URI>https://goodgin.co.uk/TRAIN/interoperability/Audit</URI>
+    </FrameworkAuditURI>
+    <FrameworkTypeCommunityRules>
+      <URI>https://goodgin.co.uk/TRAIN/en/federation1-dir-rules.html</URI>
+    </FrameworkTypeCommunityRules>
+    <FrameworkScope>Organizational Trustlist Good Gin</FrameworkScope>
+    <PolicyOrLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is TBD. Valid legal notice text will be created.</TSLLegalNotice>
+    </PolicyOrLegalNotice>
+    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+  </FrameworkInformation>
+  <TrustServiceProviderList>
+	   <TrustServiceProvider>
+		 <UUID>1349357</UUID>
+		 <TSPName>Good Gin</TSPName>
+		 <TSPTradeName>Good Gin Ltd.</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>admin@goodgin.co.uk</ElectronicAddress>
+               <PostalAddress>
+                  <City>Girvan</City>
+                  <Country>UK</Country>
+                  <PostalCode>KA26 9PT</PostalCode>
+                  <StreetAddress1>Ginstreet 1</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+               <TSPCertification>                  
+                     <Type>ISO:9001</Type>
+                     <Value>9386546745</Value>
+               </TSPCertification>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>GB123456789</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPEntityIdentifierList>
+               <TSPEntityIdendifier>
+					 <Type>LEI</Type>
+                     <Value>334801983YD72E4FBC42</Value>
+               </TSPEntityIdendifier>
+            </TSPEntityIdentifierList>
+            <TSPInformationURI>https://goodgin.co.uk/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Human Resources</ServiceName>
+				<ServiceTypeIdentifier>did:web:hr.goodgin.co.uk</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:hr.goodgin.co.uk</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://hr.goodgin.co.uk/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://hr.goodgin.co.uk/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+						<CredentialType>
+							<Type>HR Manager Credential</Type>
+						</CredentialType>
+						<CredentialType>
+							<Type>Employee Credential</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://hr.goodgin.co.uk/contract</ServiceContractType>
+					 <ServicePolicySet>https://hr.goodgin.co.uk/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://hr.goodgin.co.uk/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://hr.goodgin.co.uk/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			            <TSPService>
+				<ServiceName>Procurement</ServiceName>
+				<ServiceTypeIdentifier>did:web:proc.goodgin.co.uk</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>345example</X509Certificate>
+						<DID>did:web:proc.goodgin.co.uk</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://proc.goodgin.co.uk/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://proc.goodgin.co.uk/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+						<CredentialType>
+							<Type>Procurement Manager Credential</Type>
+						</CredentialType>
+						<CredentialType>
+							<Type>Buying Agent Credential</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://proc.goodgin.co.uk/contract</ServiceContractType>
+					 <ServicePolicySet>https://proc.goodgin.co.uk/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://proc.goodgin.co.uk/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://proc.goodgin.co.uk/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	  <TrustServiceProvider>
+		 <UUID>3251835</UUID>
+		 <TSPName>Good Gin Germany</TSPName>
+		 <TSPTradeName>Good Gin Germany GmbH</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>info@goodgin.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Munich</City>
+                  <Country>DE</Country>
+                  <PostalCode>80413</PostalCode>
+                  <StreetAddress1>Genzstrasse 6</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+               <TSPCertification>                  
+                     <Type>ISO:9001</Type>
+                     <Value>4356546745</Value>
+               </TSPCertification>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE999999999</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPEntityIdentifierList>
+               <TSPEntityIdendifier>
+					 <Type>LEI</Type>
+                     <Value>994500983AD71E4FBC41</Value>
+               </TSPEntityIdendifier>
+            </TSPEntityIdentifierList>
+            <TSPInformationURI>https://goodgin.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Sales</ServiceName>
+				<ServiceTypeIdentifier>did:web:sales.goodgin.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>example</X509Certificate>
+						<DID>did:web:sales.goodgin.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://sales.goodgin.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://sales.goodgin.de/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+						<CredentialType>
+							<Type>Sales Manager Credential</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://sales.goodgin.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://sales.goodgin.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://sales.goodgin.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://sales.goodgin.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			 <TSPService>
+				<ServiceName>Supply Chain and Logistics Data</ServiceName>
+				<ServiceTypeIdentifier>https://scm-data.goodgin.de/</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>1example</X509Certificate>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://scm-data.goodgin.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://scm-data.goodgin.de/governance</ServiceGovernanceURI>					 
+					 <ServiceContractType>https://scm-data.goodgin.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://scm-data.goodgin.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://scm-data.goodgin.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://scm-data.goodgin.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			<TSPService>
+				<ServiceName>Financial Data</ServiceName>
+				<ServiceTypeIdentifier>https://financial-data.goodgin.de/</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>222example</X509Certificate>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://financial-data.goodgin.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://financial-data.goodgin.de/governance</ServiceGovernanceURI>					 
+					 <ServiceContractType>https://financial-data.goodgin.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://financial-data.goodgin.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://financial-data.goodgin.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://financial-data.goodgin.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	   </TrustServiceProviderList>
+</TrustServiceStatusList>

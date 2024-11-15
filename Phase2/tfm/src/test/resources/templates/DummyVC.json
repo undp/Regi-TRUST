@@ -1,0 +1,19 @@
+{
+    "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://w3id.org/security/suites/ed25519-2020/v1"
+    ],
+    "type": [
+        "VerifiableCredential"
+    ],
+    "id": "did:web:essif.iao.fraunhofer.de#issuer-lists",
+    "issuer": "did:web:essif.iao.fraunhofer.de",
+    "issuanceDate": "2023-12-13T16:19:16+01:00",
+    "expirationDate": "2023-06-15T18:56:59Z",
+    "credentialSubject": {
+        "id": "uuid:2632367287r82729",
+        "trustlisttype": "XML based Trust-lists",
+        "trustlistURI": "http://localhost:16003/notary/api/v1/gxfs-prep.train.trust-scheme.de/trust-list",
+        "hash": "QmXrTN7Jzj94XfoGKpBrvAw1yYm1TVZnGJjePEccix1dTw"
+    }
+}

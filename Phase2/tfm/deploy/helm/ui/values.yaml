@@ -1,0 +1,108 @@
+# Default values for tcr-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+ 
+name: tspa-ui-service
+replicaCount: 1
+ 
+image:
+#  repository: gitlab.eclipse.org/eclipse/xfsc/train/trusted-content-resolver/-/harbor/repositories/train/trusted-content-resolver-service
+  repository: node-654e3bca7fbeeed18f81d7c7.ps-xaas.io/train/tspa-service-ui
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+ 
+#imagePullSecrets: []
+#nameOverride: ""
+fullnameOverride: "tspa-ui-service"
+ 
+podAnnotations: {}
+ 
+podSecurityContext: {}
+  # fsGroup: 2000
+ 
+securityContext: 
+  allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+ 
+service:
+  type: ClusterIP
+  externalPort: 80
+  containerPort: 80
+ 
+ingress:
+  dns:
+    namespace: 'train'
+  enabled: true
+  className: nginx
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+  hosts:
+    - host: tspa-ui.train1.xfsc.dev
+      paths:
+        - path: /
+          pathType: Prefix
+    - host: tspa-ui-server.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: ingress-tspa-ui-secret
+      hosts:
+        - tspa-ui.train1.xfsc.dev
+ 
+   
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+probes:
+  path: /
+  initialDelaySeconds: 30
+  periodSeconds: 30             
+  timeoutSeconds: 5
+ 
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+ 
+nodeSelector: {}
+ 
+tolerations: []
+ 
+affinity: {}  
+restartPolicy: Always
+ 
+application:
+  properties:
+    tspa_base_url: "http://localhost:16003"
+ 
+    # Authentication for IdP 
+    oidc_issuer_url: "https://auth-cloud-wallet.xfsc.dev/realms/train"
+    redirect_url: "https://tspa-ui.train1.xfsc.dev"
+    client_id: "client-id"
+    client_secret: "client-secret"
+    role_allowed: "enrolltf"
+    configmap:
+      name: tspa-service-ui-configmap

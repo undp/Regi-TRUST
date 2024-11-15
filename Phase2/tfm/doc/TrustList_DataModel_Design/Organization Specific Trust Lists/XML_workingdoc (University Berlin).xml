@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TrustServiceStatusList>
+  <FrameworkInformation>
+    <TSLVersionIdentifier>1</TSLVersionIdentifier>
+    <TSLSequenceNumber>1</TSLSequenceNumber>
+    <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
+    <FrameworkOperatorName>
+      <Name>University Berlin</Name>
+    </FrameworkOperatorName>
+    <FrameworkOperatorAddress>
+      <PostalAddresses>
+        <PostalAddress>
+          <StreetAddress>Hauptstrasse 11</StreetAddress>
+          <Locality>Berlin</Locality>
+          <PostalCode>10785</PostalCode>
+          <CountryName>DE</CountryName>
+        </PostalAddress>
+      </PostalAddresses>
+      <ElectronicAddress>
+        <URI>mailto:admin@uniberlin.de</URI>
+      </ElectronicAddress>
+    </FrameworkOperatorAddress>
+    <FrameworkName>
+      <Name>train.uniberlin.de</Name>
+    </FrameworkName>
+    <FrameworkInformationURI>
+      <URI>https://uniberlin.de/TRAIN/interoperability/federation-directory</URI>
+    </FrameworkInformationURI>
+	<FrameworkAuditURI>
+      <URI>https://uniberlin.de/TRAIN/interoperability/Audit</URI>
+    </FrameworkAuditURI>
+    <FrameworkTypeCommunityRules>
+      <URI>https://uniberlin.de/TRAIN/en/federation1-dir-rules.html</URI>
+    </FrameworkTypeCommunityRules>
+    <FrameworkScope>Organizational Trustlist University Berlin</FrameworkScope>
+    <PolicyOrLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is TBD. Valid legal notice text will be created.</TSLLegalNotice>
+    </PolicyOrLegalNotice>
+    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+  </FrameworkInformation>
+  <TrustServiceProviderList>
+	   <TrustServiceProvider>
+		 <UUID>2339377</UUID>
+		 <TSPName>University Berlin</TSPName>
+		 <TSPTradeName>University Berlin Körperschaft des öffentlichen Rechts</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>admin@uniberlin.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Berlin</City>
+                  <Country>DE</Country>
+                  <PostalCode>10785</PostalCode>
+                  <StreetAddress1>Hauptstrasse 11</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE912314869</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPEntityIdentifierList>
+               <TSPEntityIdendifier>
+					 <Type>LEI</Type>
+                     <Value>344821993YY72E4FBC42</Value>
+               </TSPEntityIdendifier>
+            </TSPEntityIdentifierList>
+            <TSPInformationURI>https://uniberlin.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Student Affairs</ServiceName>
+				<ServiceTypeIdentifier>did:web:students.uniberlin.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:students.uniberlin.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://students.uniberlin.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://students.uniberlin.de/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+						<CredentialType>
+							<Type>Student ID</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://students.uniberlin.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://students.uniberlin.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://students.uniberlin.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://students.uniberlin.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			            <TSPService>
+				<ServiceName>Central Examination Office</ServiceName>
+				<ServiceTypeIdentifier>did:web:cexo.uniberlin.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>345example</X509Certificate>
+						<DID>did:web:cexo.uniberlin.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://cexo.uniberlin.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://cexo.uniberlin.de/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+					 	<CredentialType>
+							<Type>Exam Certificate</Type>
+						</CredentialType>
+						<CredentialType>
+							<Type>Masters' Certificate</Type>
+						</CredentialType>
+						<CredentialType>
+							<Type>Bachelors' Certificate</Type>
+						</CredentialType>
+						<CredentialType>
+							<Type>PhD Certificate</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://cexo.uniberlin.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://cexo.uniberlin.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://cexo.uniberlin.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://cexo.uniberlin.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	  <TrustServiceProvider>
+		 <UUID>3251835</UUID>
+		 <TSPName>University Library Berlin</TSPName>
+		 <TSPTradeName>University Library Berlin</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>info@bib.uniberlin.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Berlin</City>
+                  <Country>DE</Country>
+                  <PostalCode>10710</PostalCode>
+                  <StreetAddress1>Pariser Platz 6</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE199299919</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPInformationURI>https://bib.uniberlin.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Library Access</ServiceName>
+				<ServiceTypeIdentifier>did:web:bib.uniberlin.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:bib.uniberlin.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://bib.uniberlin.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://bib.uniberlin.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://bib.uniberlin.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://bib.uniberlin.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://bib.uniberlin.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://bib.uniberlin.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	   </TrustServiceProviderList>
+</TrustServiceStatusList>

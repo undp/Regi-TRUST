@@ -1,0 +1,13 @@
+FROM localhost/dns-zone-manager-server
+
+RUN apt install sqlite3 # to debug database content
+
+# Install `dev` ZM dependencies
+RUN pip3 install "git+https://github.com/Javlopez/falcon-apispec.git"
+RUN pip3 install -e ".[dev]"
+
+CMD \
+    RUNNER="coverage run --append --data-file=/mounted/.tmp/.coverage $(which dns-zone-manager-server)" \
+    RUN_WITH_WSGI="--run-with-wsgi" \
+    GENERATE_SWAGGER="--swagger /mounted/.tmp/ZM_swagger.yaml" \
+    bash -x ./script.sh "${PORT_ENV}"

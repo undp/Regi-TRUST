@@ -1,0 +1,276 @@
+# Default values for train-tspa.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: tspa-service
+replicaCount: 1
+
+image:
+  repository: node-654e3bca7fbeeed18f81d7c7.ps-xaas.io/train/tspa-service
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+#imagePullSecrets: []
+#nameOverride: ""
+fullnameOverride: "tspa-service"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "tspa-service-account"
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 16003
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+  hosts:
+    - host: tspa.train1.xfsc.dev
+      paths:
+        - path: /
+          pathType: Prefix
+
+  tls: 
+    - secretName: ingress-tspa-service-secret
+      hosts:
+        - tspa.train1.xfsc.dev  
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+probes:
+  path: /tspa-service/actuator/health
+  initialDelaySeconds: 30
+  periodSeconds: 30             
+  timeoutSeconds: 5
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+monitoring:
+  enabled: true
+  release: cao-monitoring
+  annotations:
+    prometheus.io/path: /tspa-service/actuator/prometheus
+    prometheus.io/scheme: http
+    prometheus.io/scrape: "true"  
+
+
+# Additional volumes on the output Deployment definition.
+
+volumes:
+  - name: vc-volume
+    mountPath: /tmp/train-tspa/store/VC
+    spec:
+      hostPath:
+        path: /etc/config/tspa/vc
+        type: DirectoryOrCreate
+
+  - name: well-known-volume
+    mountPath: /tmp/train-tspa/well-known
+    spec:
+      hostPath:
+        path: /etc/config/tspa/well-known
+        type: DirectoryOrCreate
+
+  - name: scheme-volume
+    mountPath: /tmp/train-tspa/store/schemes
+    spec:
+      hostPath:
+        path: /etc/config/tspa/scheme
+        type: DirectoryOrCreate
+
+  - name: did-volume
+    mountPath: /tmp/train-tspa/store/DID_URI
+    spec:
+      hostPath:
+        path: /etc/config/tspa/did
+        type: DirectoryOrCreate
+
+  - name: trustlist-volume
+    mountPath: /tmp/train-tspa/store/trust-lists
+    spec:
+      hostPath:
+        path: /etc/config/tspa/trust-lists
+        type: DirectoryOrCreate
+
+
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+application:
+  properties:
+    management:
+      endpoint:
+        configprops:
+          show-values: ALWAYS
+        env:
+          show-values: ALWAYS
+        health:
+          show-details: ALWAYS
+      endpoints:
+        web:
+          exposure:
+            include: "*" 
+      otlp:
+        metrics:
+          export:
+            enabled: false
+            url: http://localhost:4318/v1/metrics
+            step: 10s
+        tracing:
+          endpoint: http://localhost:4318/v1/traces
+          export:
+            step: 10s # Export interval set to 10 seconds
+      tracing:
+        enabled: false
+        sampling:
+          probability: 1.0
+
+    server:
+      port: 16003
+      shutdown: graceful
+
+    spring:
+      application:
+        name: trust-framework-administration-authority
+      cloud:
+        kubernetes:
+          config: 
+            enabled: true
+            name: trust-framework-administration-authority
+#            
+          reload:
+            enabled: true        
+      mvc:
+        log-request-details: true
+      security:
+        oauth2:
+          resourceserver:
+            jwt:
+              issuer-uri: https://your-issuer.example
+
+    springdoc:
+      api-docs:
+        path: /api/docs
+        enabled: true
+
+    logging:
+      level:
+        root: INFO
+        eu.xfsc.train.tspa: DEBUG
+
+    request:
+      get:
+        mapping: http://localhost:16003/tspa-service/tspa/v1/ 
+    
+    zonemanager:
+      Address: 'https://zonemgr.train1.xfsc.dev'
+      token-server-url: 'https://your-issuer.example/token'
+      grant-type: 'client_credentials'
+      client-id: 'client'
+      client-secret: 'asdf'
+      query:
+        status: true
+
+    trustlist:
+      vc:
+        hashAlgo: sha2-256
+        issuer: did:web:essif.iao.fraunhofer.de
+        proof:
+          signaturesuit: JsonWebSignature2020
+        jwt:
+          kid: did:web:essif.iao.fraunhofer.de#yaHbNw6nj4Pn3nGPHyyTqP-QHXYNJIpkA37PrIOND4c
+        signature:
+          algo: EdDSA
+        signer:
+          type: "TSA"
+          url: "https://zonemgr.train1.xfsc.dev/signer/v1/credential"
+          key: "test"
+          namespace: "signer"
+          group: ""
+
+    well-known:
+      credentialSubject:
+        origin: https://essif.iao.fraunhofer.de
+      issuer: did:web:essif.iao.fraunhofer.de
+      context:
+        url1: "https://identity.foundation/.well-known/did-configuration/v1"
+      jwt:
+        kid: did:web:essif.iao.fraunhofer.de#yaHbNw6nj4Pn3nGPHyyTqP-QHXYNJIpkA37PrIOND4c
+      signature:
+        algo: EdDSA
+      proof:
+        signaturesuit: JsonWebSignature2020
+      signer:
+          type: "TSA"
+          url: "https://zonemgr.train1.xfsc.dev/signer/v1/credential"
+          key: "test"
+          namespace: "signer"
+          group: ""
+
+      
+    storage:
+      type:
+        trustlist: IPFS
+      path:
+        vc: /tmp/train-tspa/store/VC/
+        well_known: /tmp/train-tspa/well-known/
+        scheme: /tmp/train-tspa/store/schemes/
+        did: /tmp/train-tspa/store/DID_URI/
+        trustlist: /tmp/train-tspa/store/trust-lists/

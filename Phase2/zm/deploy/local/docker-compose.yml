@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  dns-server:
+    image: tdzm-nsd:latest
+    container_name: tdzm
+    hostname: tdzm
+    ports:
+#      - "53:53" # dns tcp
+#      - "53:53/udp" # dns udp
+      - "16001:16001" # Backend api port.
+    volumes:
+      - zonedata:/var/lib/zonemgr
+      - ./tdzm.conf:/usr/lib/zonemgr/config.conf
+      - ./tdzm_auth.conf:/usr/lib/zonemgr/auth.conf
+    networks:
+      tdzm-network:
+        ipv4_address: 172.29.0.2
+
+  ui-server:
+    image: tdzm-ui:latest
+    container_name: tdzm-ui
+    hostname: tdzm-ui
+    ports:
+      - "8001:80"
+    networks:
+      - tdzm-network
+    env_file:
+      - ./ui-local.env
+
+networks:
+  tdzm-network:
+    external: false
+    name: tdzm-network
+    ipam:
+      config:
+        - subnet: 172.29.0.1/16
+
+volumes:
+  zonedata:
+    name: zonedata

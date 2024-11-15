@@ -1,0 +1,19 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!/auth.conf
+!/config.conf
+!/etc/
+!/pyproject.toml
+!/reload-nsd.sh
+!/script.sh
+!/setup.cfg
+!/zonedb/
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/*.log
+**/*~
+**/.DS_Store
+**/Thumbs.db

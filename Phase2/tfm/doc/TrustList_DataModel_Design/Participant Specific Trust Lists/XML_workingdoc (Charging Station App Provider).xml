@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TrustServiceStatusList>
+  <FrameworkInformation>
+    <TSLVersionIdentifier>1</TSLVersionIdentifier>
+    <TSLSequenceNumber>1</TSLSequenceNumber>
+    <TSLType>http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC</TSLType>
+    <FrameworkOperatorName>
+      <Name>Charging Station App Provider Gmbh</Name>
+    </FrameworkOperatorName>
+    <FrameworkOperatorAddress>
+      <PostalAddresses>
+        <PostalAddress>
+          <StreetAddress>Hauptstrasse 11</StreetAddress>
+          <Locality>Berlin</Locality>
+          <PostalCode>10785</PostalCode>
+          <CountryName>DE</CountryName>
+        </PostalAddress>
+      </PostalAddresses>
+      <ElectronicAddress>
+        <URI>mailto:admin@csapp.de</URI>
+      </ElectronicAddress>
+    </FrameworkOperatorAddress>
+    <FrameworkName>
+      <Name>train.csapp.de</Name>
+    </FrameworkName>
+    <FrameworkInformationURI>
+      <URI>https://csapp.de/TRAIN/interoperability/federation-directory</URI>
+    </FrameworkInformationURI>
+	<FrameworkAuditURI>
+      <URI>https://csapp.de/TRAIN/interoperability/Audit</URI>
+    </FrameworkAuditURI>
+    <FrameworkTypeCommunityRules>
+      <URI>https://csapp.de/TRAIN/en/federation1-dir-rules.html</URI>
+    </FrameworkTypeCommunityRules>
+    <FrameworkScope>Partcipant Trust List</FrameworkScope>
+    <PolicyOrLegalNotice>
+      <TSLLegalNotice>The applicable legal framework for the present trusted list is TBD. Valid legal notice text will be created.</TSLLegalNotice>
+    </PolicyOrLegalNotice>
+    <ListIssueDateTime>2023-12-15T00:00:00Z</ListIssueDateTime>
+  </FrameworkInformation>
+  <TrustServiceProviderList>
+	   <TrustServiceProvider>
+		 <UUID>2339377</UUID>
+		 <TSPName>EnBW E-Mobility Charging Point</TSPName>
+		 <TSPTradeName>EnBW E-Mobility Gmbh</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>admin@enbwemob.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Berlin</City>
+                  <Country>DE</Country>
+                  <PostalCode>10785</PostalCode>
+                  <StreetAddress1>Hauptstrasse 11</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE912314869</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPEntityIdentifierList>
+               <TSPEntityIdendifier>
+					 <Type>LEI</Type>
+                     <Value>344821993YY72E4FBC42</Value>
+               </TSPEntityIdendifier>
+            </TSPEntityIdentifierList>
+            <TSPInformationURI>https://csapp.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Geo Location data for Car Charging Stations</ServiceName>
+				<ServiceTypeIdentifier>did:web:geolocdata.car.enbw.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:geolocdata.car.enbw.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://geolocdata.csapp.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://geolocdata.csapp.de/governance</ServiceGovernanceURI>
+					 <ServiceIssuedCredentialTypes>
+						<CredentialType>
+							<Type>Charging Endpoint ID</Type>
+						</CredentialType>
+					 </ServiceIssuedCredentialTypes>
+					 <ServiceContractType>https://geolocdata.csapp.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://geolocdata.csapp.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://geolocdata.csapp.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://geolocdata.csapp.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			     <TSPService>
+				<ServiceName>Availability of Enbw Charging Stations</ServiceName>
+				<ServiceTypeIdentifier>did:web:free.charge.enbw.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>345example</X509Certificate>
+						<DID>did:web:free.charge.enbw.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://charge.csapp.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://charge.csapp.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://charge.csapp.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://charge.csapp.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://charge.csapp.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://charge.csapp.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	  <TrustServiceProvider>
+		 <UUID>3251835</UUID>
+		 <TSPName>Tesla Charging Stations</TSPName>
+		 <TSPTradeName>Tesla Gmbh</TSPTradeName>		 
+         <TSPInformation>
+            <Address>
+               <ElectronicAddress>info@bib.csapp.de</ElectronicAddress>
+               <PostalAddress>
+                  <City>Berlin</City>
+                  <Country>DE</Country>
+                  <PostalCode>10710</PostalCode>
+                  <StreetAddress1>Pariser Platz 6</StreetAddress1>
+               </PostalAddress>
+            </Address>
+            <TSPCertificationList>
+			   <TSPCertification>                  
+                     <Type>EU-VAT</Type>
+                     <Value>DE199299919</Value>
+               </TSPCertification>
+            </TSPCertificationList>
+            <TSPInformationURI>https://bib.csapp.de/informationuri</TSPInformationURI>
+         </TSPInformation>
+         <TSPServices>
+            <TSPService>
+				<ServiceName>Super Charging Station Endpoint Geo Location Data</ServiceName>
+				<ServiceTypeIdentifier>did:web:super.geo.tesla.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:super.geo.tesla.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://super.csapp.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://super.csapp.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://super.csapp.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://super.csapp.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://super.csapp.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://super.csapp.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+			    <TSPService>
+				<ServiceName>Super Charging Station Endpoint Availaibility</ServiceName>
+				<ServiceTypeIdentifier>did:web:super.free.tesla.de</ServiceTypeIdentifier>
+				<ServiceCurrentStatus>active</ServiceCurrentStatus>
+				<StatusStartingTime>2023-12-15T00:00:00Z</StatusStartingTime>
+				<ServiceDefinitionURI>string</ServiceDefinitionURI>
+				<ServiceDigitalIdentity>
+					<DigitalId>
+						<X509Certificate>123example</X509Certificate>
+						<DID>did:web:super.free.tesla.de</DID>
+					</DigitalId>                   
+				</ServiceDigitalIdentity>
+				<AdditionalServiceInformation>
+					 <ServiceBusinessRulesURI>https://super.csapp.de/business</ServiceBusinessRulesURI>
+					 <ServiceGovernanceURI>https://super.csapp.de/governance</ServiceGovernanceURI>
+					 <ServiceContractType>https://super.csapp.de/contract</ServiceContractType>
+					 <ServicePolicySet>https://super.csapp.de/policy</ServicePolicySet>
+					 <ServiceSchemaURI>https://super.csapp.de/schema</ServiceSchemaURI>
+					 <ServiceSupplyPoint>https://super.csapp.de/sp</ServiceSupplyPoint>        
+				</AdditionalServiceInformation>              	            
+            </TSPService>
+         </TSPServices>
+      </TrustServiceProvider>
+	   </TrustServiceProviderList>
+</TrustServiceStatusList>

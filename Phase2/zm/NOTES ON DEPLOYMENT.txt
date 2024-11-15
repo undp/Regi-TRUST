@@ -1,0 +1,86 @@
+TO DO's (26.08)
+- Activate authentication again.
+- Add a "nsd-control reconfig" after booting up
+- Push to gitlab
+
+====================================================================
+NOTES ON DEPLOYMENT FOR testtrain.trust-scheme.de (in 52.19.94.74)
+====================================================================
+
+config.conf should be configured this way for the idm-dev machine:
+TF_DOMAIN_NAME=testtrain.trust-scheme.de
+TF_DOMAIN_IP=52.19.94.74
+PRIMARY_SERVER_NSD=ns1.testtrain.trust-scheme.de
+PRIMARY_SERVER_IP=52.19.94.74
+SECONDARY_SERVER_1_NSD=ns2.testtrain.trust-scheme.de
+SECONDARY_SERVER_1_IP=52.19.94.74
+SECONDARY_SERVER_2_NSD=ns3.testtrain.trust-scheme.de
+SECONDARY_SERVER_2_IP=1.2.3.4
+
+
+auth.conf must be configured this way to use the keycloak from essif:
+
+ISSUER_URL = "https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test"
+REALM = "gxfs-dev-test"
+ALLOW_UNSAFE_SSL = "true"
+CLIENT_ID = "xfsctest"
+#https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test
+
+
+---------------------------------
+HOST DNS SERVER CONFIGURATION 
+---------------------------------
+The host uses resolved as dns. 2 things must be done: edit resolved.conf and 
+create /etc/systemd/resolved.conf.d/zone-manager.conf adding in the last, 
+the port definition and the domain that the zone manager is going to administer.
+
+cat /etc/systemd/resolved.conf
+[Resolve]
+DNSStubListener=yes
+
+cat /etc/systemd/resolved.conf.d/zone-manager.conf
+[Resolve]
+DNS=127.0.0.1:5353
+Domains=testtrain.trust-scheme.de
+
+Restart the host's systemd-resolved service:
+sudo systemctl restart systemd-resolved
+
+---------------------------------
+HOW TO BUILD AND RUN
+---------------------------------
+
+1. Build the container specifying the host's network so that dependencies can be 
+installed (at this point I don't know why the container does not do external dns resoltuion)
+docker build --network="host" -t zone-manager .
+
+2. Run the container:
+docker run --name zm -p 16001:16001 -p 5354:53 -p 5354:53/udp zone-manager
+
+---------------------------------------------------
+Check PTR records after publishing Trust Frameworks
+---------------------------------------------------
+https://dnschecker.org/all-dns-records-of-domain.php
+enter _scheme._trust.<<your-PTR-record>>
+
+
+---------------------------------
+TROUBLESHOOTING
+---------------------------------
+[problem] When building the docker container (with the default configuration for resolved) it 
+cannot resolve names so it can't install the dependencies.
+[solution] run the build command telling it to use the host's dns resolver:   
+docker build --network="host" -t localhost/zone-manager .
+
+[info] initiate container with name:
+docker run --name zm -p 16001:16001 -p 5353:53 -p 5353:53/udp localhost/zone-manager
+this allows the NSD to solve queries related to the testtrain.trust-scheme.de BUT THE CONTAINER 
+DOESN'T HAVE INTERNET ACCESS SO AUTHENTICATION WITH KEYCLOAK FAILS!
+
+[fix] Run the container with additional dns servers
+docker run --name zm -p 16001:16001 --dns 8.8.8.8 --dns 8.8.4.4 -p 5353:53 -p 5353:53/udp localhost/zone-manager
+
+[info] How to check from host:
+dig @127.0.0.1 -p 5353 testtrain.trust-scheme.de
+
+

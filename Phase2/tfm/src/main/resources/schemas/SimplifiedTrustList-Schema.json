@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "FrameworkInformation": {
+      "type": "object",
+      "properties": {
+        "TSLVersion": { "type": "string" },
+        "TSLType": { "type": "string" },
+        "ListIssueDateTime": { "type": "string" },
+        "NextUpdate": { "type": "string" },
+        "FrameworkName": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" }
+          },
+          "required": ["Name"]
+        },
+        "FrameworkOperatorName": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" }
+          },
+          "required": ["Name"]
+        },
+        "FrameworkOperatorAddress": {
+          "type": "object",
+          "properties": {
+            "PostalAddresses": {
+              "type": "object",
+              "properties": {
+                "PostalAddress": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "StreetAddress": { "type": "string" },
+                      "Locality": { "type": "string" },
+                      "PostalCode": { "type": "string" },
+                      "CountryName": { "type": "string" }
+                    },
+                    "required": [
+                      "StreetAddress",
+                      "Locality",
+                      "PostalCode",
+                      "CountryName"
+                    ]
+                  }
+                }
+              },
+              "required": ["PostalAddress"]
+            },
+            "ElectronicAddress": {
+              "type": "object",
+              "properties": {
+                "URI": { "type": "string" }
+              },
+              "required": ["URI"]
+            }
+          },
+          "required": ["PostalAddresses", "ElectronicAddress"]
+        },
+        "FrameworkInformationURI": {
+          "type": "object",
+          "properties": {
+            "URI": { "type": "string" }
+          },
+          "required": ["URI"]
+        },
+        "FrameworkTypeCommunityRules": {
+          "type": "object",
+          "properties": {
+            "URI": { "type": "string" }
+          },
+          "required": ["URI"]
+        },
+        "SchemeTerritory": { "type": "string" },
+        "PolicyOrLegalNotice": {
+          "type": "object",
+          "properties": {
+            "TSLLegalNotice": { "type": "string" }
+          },
+          "required": ["TSLLegalNotice"]
+        },
+        "DistributionPoints": {
+          "type": "object",
+          "properties": {
+            "URI": { "type": "string" }
+          },
+          "required": ["URI"]
+        },
+        "SchemeExtensions": {
+          "type": "object",
+          "properties": {
+            "URI": { "type": "string" }
+          },
+          "required": ["URI"]
+        },
+        "PointersToOtherTSL": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "URI": { "type": ["string", "null"] }
+            },
+            "required": ["URI"]
+          }
+        }
+      },
+      "required": [
+        "TSLVersion",
+        "TSLType",
+        "ListIssueDateTime",
+        "NextUpdate",
+        "FrameworkName",
+        "FrameworkOperatorName",
+        "FrameworkOperatorAddress",
+        "FrameworkInformationURI",
+        "FrameworkTypeCommunityRules",
+        "SchemeTerritory",
+        "PolicyOrLegalNotice",
+        "DistributionPoints",
+        "SchemeExtensions",
+        "PointersToOtherTSL"
+      ]
+    }
+  },
+  "required": ["FrameworkInformation"]
+}

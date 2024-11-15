@@ -1,0 +1,137 @@
+{
+  "TSPID": "c",
+  "TSPVersion": "",
+  "TSPCurrentStatus": "active",
+  "LastUpdate": "2020-11-04T11:55:11.951221500",
+  "TSPInformation": {
+    "TSPName": {
+      "Name": "Hospital 1"
+    },
+    "TSPType": "Issuer",
+    "TrustFrameworkName": {
+      "Name": "hospital.health.credential.issuers"
+    },
+    "TSPRole": "Issuer",
+    "TSPLegalName": {
+      "Name": "Hospital 1"
+    },
+    "TSPTradeName": {
+      "Name": "Hospital 1"
+    },
+    "TSPEntityIdentifierList": {
+      "TSPEntityIdentifier": [
+        {
+          "Type": "vLEI",
+          "Value": "LEICode ISO 17442"
+        },
+        {
+          "Type": "VAT",
+          "Value": "3453654764"
+        }
+      ]
+    },
+    "TSPCertificationLists": {
+      "TSPCertification": [
+        {
+          "Type": "ISO",
+          "Value": "ISO 17442"
+        }
+      ]
+    },
+    "TSPAddress": {
+      "PostalAddresses": [
+        {
+          "StreetAddress1": "Jl. Rasuna Said",
+          "StreetAddress2": "Kav. 4-9",
+          "PostalCode": "12950",
+          "Locality": "Jakarta",
+          "State": "ID",
+          "CountryName": "ID"
+        }
+      ],
+      "ElectronicAddress": {
+        "URI": "https://www.kemkes.go.id"
+      }
+    },
+    "TSPInformationURI": {
+      "URI": "https://www.kemkes.go.id/haj-health-credential"
+    },
+    "TSPQualifierList": [
+      {
+        "Name": "GICS Code",
+        "Value": "7890123",
+        "QualifierURI": "https://kemkes.go.id/gics-code"
+      }
+    ],
+    "OtherTSL": "https://kemkes.go.id/other-tsl"
+  },
+  "SubmitterInfo": {
+    "SubmitterName": {
+      "Name": "Agency Name 1"
+    },
+    "SubmitterAddress": {
+      "PostalAddresses": [
+        {
+          "StreetAddress1": "Jl. Rasuna Said",
+          "StreetAddress2": "Kav. 4-9",
+          "PostalCode": "12950",
+          "Locality": "Jakarta",
+          "State": "ID",
+          "CountryName": "ID"
+        }
+      ],
+      "ElectronicAddress": {
+        "URI": "https://www.kemkes.go.id"
+      }
+    }
+  },
+  "TSPServices": {
+    "TSPService": [
+      {
+        "ServiceInformation": {
+          "ServiceTypeIdentifier": "did:Web:haj.jakarta.health",
+          "ServiceName": {
+            "Name": "Hospital 1 Haj Health Credential Service"
+          },
+          "ServiceDigitalIdentity": {
+            "DigitalId": {
+              "Value": "did:Web:hospital1.health.com",
+              "KeyType": "DID"
+            }
+          },
+          "ServiceStatus": "https://kemkes.go.id/ServiceStatus/active",
+          "StatusStartingTime": "2025-10-01T00:00:00Z",
+          "SchemeServiceDefinition": "https://github.com/kemkes/haj-health-credential",
+          "ServiceSupplyPoint": "https://kemkes.go.id/masterlist.html",
+          "ServiceDefintionURI": "https://www.example-description-required",
+          "AdditionalServiceInformation": {
+            "ServiceIssuedCredentialTypes": {
+              "CredentialType": "HajCredential"
+            },
+            "ServiceGovernanceURI": "https://kemkes.go.id/legal-content",
+            "ServiceBusinessRulesURI": "https://kemkes.go.id/business-rules"
+          }
+        },
+        "OpsAgentInfo": {
+          "OpsAgentName": {
+            "Name": "Agency Name 1"
+          },
+          "OpsAgentAddress": {
+            "PostalAddresses": [
+              {
+                "StreetAddress1": "Jl. Rasuna Said",
+                "StreetAddress2": "Kav. 4-9",
+                "Locality": "Jakarta",
+                "State": "ID",
+                "CountryName": "ID"
+              }
+            ],
+            "ElectronicAddress": {
+              "URI": "https://www.kemkes.go.id"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

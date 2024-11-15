@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: tspa-service-monitor
+  namespace: cao-monitoring
+  labels:
+    app: tspa-service
+    release: cao-monitoring
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: tspa-service
+      release: cao-monitoring
+  namespaceSelector:
+    matchNames:
+      - tspa
+  endpoints:
+    - path: /tspa-service/actuator/prometheus
+      port: http
+      interval: 15s

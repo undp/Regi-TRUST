@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.application.properties.configmap.name }}
+data:
+  TSPA_BASE_URL: {{ .Values.application.properties.tspa_base_url }}
+  OIDC_ISSUER_URL: {{ .Values.application.properties.oidc_issuer_url }}
+  REDIRECT_URL: {{ .Values.application.properties.redirect_url }}
+  CLIENT_ID: {{ .Values.application.properties.client_id }}
+  CLIENT_SECRET: {{ .Values.application.properties.client_secret }}
+  ROLE_ALLOWED: {{ .Values.application.properties.role_allowed }}

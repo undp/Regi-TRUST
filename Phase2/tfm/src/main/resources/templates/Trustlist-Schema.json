@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "TrustServiceStatusList": {
+      "type": "object",
+      "properties": {
+        "FrameworkInformation": {
+          "type": "object",
+          "properties": {
+            "TSLVersionIdentifier": {
+              "type": "string"
+            },
+            "TSLSequenceNumber": {
+              "type": "string"
+            },
+            "TSLType": {
+              "type": "string"
+            },
+            "FrameworkOperatorName": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            },
+            "FrameworkOperatorAddress": {
+              "type": "object",
+              "properties": {
+                "PostalAddresses": {
+                  "type": "object",
+                  "properties": {
+                    "PostalAddress": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "StreetAddress": {
+                              "type": "string"
+                            },
+                            "Locality": {
+                              "type": "string"
+                            },
+                            "PostalCode": {
+                              "type": "string"
+                            },
+                            "CountryName": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "StreetAddress",
+                            "Locality",
+                            "PostalCode",
+                            "CountryName"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "PostalAddress"
+                  ]
+                },
+                "ElectronicAddress": {
+                  "type": "object",
+                  "properties": {
+                    "URI": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "URI"
+                  ]
+                }
+              },
+              "required": [
+                "PostalAddresses",
+                "ElectronicAddress"
+              ]
+            },
+            "FrameworkName": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            },
+            "FrameworkInformationURI": {
+              "type": "object",
+              "properties": {
+                "URI": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "URI"
+              ]
+            },
+            "FrameworkAuditURI": {
+              "type": "object",
+              "properties": {
+                "URI": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "URI"
+              ]
+            },
+            "FrameworkTypeCommunityRules": {
+              "type": "object",
+              "properties": {
+                "URI": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "URI"
+              ]
+            },
+            "FrameworkScope": {
+              "type": "string"
+            },
+            "PolicyOrLegalNotice": {
+              "type": "object",
+              "properties": {
+                "TSLLegalNotice": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "TSLLegalNotice"
+              ]
+            },
+            "ListIssueDateTime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "TSLVersionIdentifier",
+            "TSLSequenceNumber",
+            "TSLType",
+            "FrameworkOperatorName",
+            "FrameworkOperatorAddress",
+            "FrameworkName",
+            "FrameworkInformationURI",
+            "FrameworkAuditURI",
+            "FrameworkTypeCommunityRules",
+            "FrameworkScope",
+            "PolicyOrLegalNotice",
+            "ListIssueDateTime"
+          ]
+        }
+      },
+      "required": [
+        "FrameworkInformation"
+      ]
+    }
+  },
+  "required": [
+    "TrustServiceStatusList"
+  ]
+}

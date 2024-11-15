@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  tdzm_ui_dev_keycloak:
+    container_name: tdzm-ui-keycloak
+    hostname: tdzm-ui-keycloak
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - 8002:8080
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=devpassword
+    volumes:
+      - ./realm/:/opt/keycloak/data/import
+    command: ["start-dev", "--import-realm", "--hostname-url=http://localhost:8002/"]
