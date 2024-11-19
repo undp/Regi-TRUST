@@ -528,22 +528,26 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	public String getSingleTSP(String frameworkName, String tspId, String version) throws FileEmptyException, IOException {
 		// check if framework exists throw an exception if not
 		getSimplifiedTLfromDB(frameworkName, null); 
-		// check if TSP exists throw an exception if not
+		
 		Document query = new Document("TSPID", tspId);
 		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
 		MongoCollection<Document> tspCollection = db.getCollection(collectionNameTsps);
-		Document result = tspCollection.find(query).first();
 		
-		if (result == null) {
-			throw new FileEmptyException("TSP " + tspId + " not found in the trustlist.");
-		}
-
-		// If version is provided, fetch that specific version
+		Document result;
 		if (version != null) {
+			// If version is provided, fetch that specific version
 			query.append("TSPVersion", version);
 			result = tspCollection.find(query).first();
 			if (result == null) {
 				throw new FileEmptyException("Version " + version + " for TSP " + tspId + " not found.");
+			}
+		} else {
+			// If no version provided, fetch the latest version by sorting in descending order
+			result = tspCollection.find(query)
+				.sort(new Document("TSPVersion", -1))
+				.first();
+			if (result == null) {
+				throw new FileEmptyException("TSP " + tspId + " not found in the trustlist.");
 			}
 		}
 		
