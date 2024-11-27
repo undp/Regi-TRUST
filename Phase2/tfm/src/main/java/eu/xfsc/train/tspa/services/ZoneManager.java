@@ -54,6 +54,14 @@ public class ZoneManager implements IZoneManager {
 	@Value("${zonemanager.query.status}")
 	private boolean CONFIG_NS_QUERY_STATUS;
 
+
+	@Override
+	public int checkStatus() throws IOException, InvalidStatusCodeException {
+		String endpoint = CONFIG_PROPERTY_ZONEMANAGER + "/status";
+		Request request = new Request.Builder().url(endpoint).get().build();
+		return sendRequest(request);
+	}
+
 	// Functionality for Publishing PTR record in the Zone.
 	@Override
 	public int publishTrustSchemes(String schemeName, String service) throws IOException, InvalidStatusCodeException {

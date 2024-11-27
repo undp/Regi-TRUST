@@ -37,18 +37,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.networknt.schema.ValidationMessage;
 
 import eu.xfsc.train.tspa.exceptions.FileEmptyException;
 import eu.xfsc.train.tspa.exceptions.FileExistsException;
+import eu.xfsc.train.tspa.exceptions.InvalidStatusCodeException;
 import eu.xfsc.train.tspa.exceptions.PropertiesAccessException;
 import eu.xfsc.train.tspa.exceptions.TSPException;
 import eu.xfsc.train.tspa.interfaces.ITrustListPublicationService;
 import eu.xfsc.train.tspa.interfaces.IVCService;
+import eu.xfsc.train.tspa.interfaces.IZoneManager;
 import eu.xfsc.train.tspa.utils.TSPAUtil;
 import foundation.identity.jsonld.JsonLDException;
 import jakarta.xml.bind.JAXBException;
@@ -98,6 +98,10 @@ public class TrustListPublicationController {
 	private String collectionNameTsps;	
 	@Value("${storage.path.trustlist}")
 	private String mPath;
+	@Autowired
+	public IZoneManager mZoneManager;
+	
+	
 	@PostMapping("/nowayback")
 	public ResponseEntity<String> eraseAllEntries() {
 		try {
@@ -129,27 +133,35 @@ public class TrustListPublicationController {
 	}
 
 
-	/* Test POST ednpoint. Recieves a JSON and returns it.	 */
+	/* Test POST ednpoint.*/
 	@PostMapping("/test")
-	public ResponseEntity<String> test(@RequestBody String jsonData) throws JsonMappingException, JsonProcessingException {
-		String result = iTrustListPublicationService.test(jsonData);
-		return new ResponseEntity<>(result, HttpStatus.OK);
+	public ResponseEntity<String> test(@RequestBody String jsonData) throws IOException, InvalidStatusCodeException {
+		log.debug("debug--------------- TEST POST ENDPOINT ---------------");
+		// publish Trust Framework via Zone Manager
+		Integer result = mZoneManager.publishTrustSchemes("tf2.zm.regitrust.axyom.co", jsonData);
+		return new ResponseEntity<>("code received from Zone Manager: " + result.toString(), HttpStatus.OK);
 	}
 
 	/**
 	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.
 	 * @throws JAXBException 
 	 * @throws FileEmptyException 
-	 */
-	@PostMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	// @PreAuthorize("hasAuthority('enrolltf')")
-	public ResponseEntity<Object> createTrustListXML(@PathVariable("framework-name") String frameworkName,
-			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
+		 * @throws InvalidStatusCodeException 
+		 */
+		@PostMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+		// @PreAuthorize("hasAuthority('enrolltf')")
+		public ResponseEntity<Object> createTrustListXML(@PathVariable("framework-name") String frameworkName,
+				@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException, InvalidStatusCodeException {
 
 		log.debug("debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------");
 		log.debug("schemes received: {}", schemesObject);
 
 		try {
+			// check status of the zone manager
+			Integer status = mZoneManager.checkStatus();
+			if (status != 200) {
+				return TSPAUtil.getResponseBody("Zone Manager is not available.", HttpStatus.SERVICE_UNAVAILABLE);
+			}
 			JSONObject jsonObject = new JSONObject(schemesObject);
 			if (!jsonObject.has("otherFrameworks") || !jsonObject.get("otherFrameworks").getClass().equals(JSONArray.class)) {
 				return TSPAUtil.getResponseBody("Request body must contain 'otherFrameworks' field as an array.", HttpStatus.BAD_REQUEST);
@@ -157,6 +169,13 @@ public class TrustListPublicationController {
 			String trustListStr = trustListTemplate.getFilename();
 			trustListStr = new String(trustListTemplate.getInputStream().readAllBytes());
 			iTrustListPublicationService.initXMLTrustList(frameworkName, trustListStr);
+			// publish the trust list pointer record via the zone manager
+			JSONObject jsonObjectToPublish = new JSONObject();
+			JSONArray otherFrameworks = jsonObject.optJSONArray("otherFrameworks");
+			if (otherFrameworks != null) {
+				jsonObjectToPublish.put("schemes", otherFrameworks);
+			}
+			mZoneManager.publishTrustSchemes(frameworkName, jsonObjectToPublish.toString());
 			return TSPAUtil.getResponseBody("Trust list for framework " + frameworkName + " successfully created",
 			HttpStatus.CREATED);
 		} catch (IOException e) {
@@ -165,6 +184,9 @@ public class TrustListPublicationController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (JSONException e) {
 			return TSPAUtil.getResponseBody("Invalid JSON format.", HttpStatus.BAD_REQUEST);
+		} catch (InvalidStatusCodeException e) {
+			log.error("Zone Manager is not available. Please contact the administrator.", e);
+			return TSPAUtil.getResponseBody("Zone Manager is not available. Please contact the administrator.", HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
 

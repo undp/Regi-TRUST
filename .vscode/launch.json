@@ -11,7 +11,7 @@
       "request": "launch",
       "mainClass": "com.train.tspagccn.TspaGccnApplication",
       "projectName": "tspa-gccn",
-      "args": "--server.port=16003"
+      "args": ["--server.port=16003"]
     },
     {
       "type": "java",

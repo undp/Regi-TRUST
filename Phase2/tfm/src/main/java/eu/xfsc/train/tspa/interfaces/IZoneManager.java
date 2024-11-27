@@ -5,6 +5,8 @@ import eu.xfsc.train.tspa.exceptions.InvalidStatusCodeException;
 
 public interface IZoneManager {
 
+	public int checkStatus() throws IOException, InvalidStatusCodeException;
+
 	public int publishTrustSchemes(String schemeName, String data) throws IOException, InvalidStatusCodeException;
 
 	public int publishDIDUri(String TrustName, String data) throws IOException, InvalidStatusCodeException;

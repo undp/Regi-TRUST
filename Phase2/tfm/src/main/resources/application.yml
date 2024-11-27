@@ -51,7 +51,7 @@ logging:
     eu.xfsc.train.tspa: DEBUG
 
 zonemanager:
-  Address: "https://testtrain.trust-scheme.de"
+  Address: "https://zm.regitrust.axyom.co"
   token-server-url: "https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test/protocol/openid-connect/token"
   grant-type: "client_credentials"
   client-id: "xfsctest"
