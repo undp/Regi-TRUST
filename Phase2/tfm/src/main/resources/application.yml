@@ -13,6 +13,7 @@ tspa:
 
 server:
   port: "${TRAIN_TSPA_SERVER_PORT:16003}"
+  url: https://tfm.regitrust.axyom.co # needed to create pointer to TL
 
 spring:
   application:

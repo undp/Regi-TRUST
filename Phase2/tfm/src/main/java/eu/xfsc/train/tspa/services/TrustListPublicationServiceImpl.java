@@ -134,7 +134,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 	@Override
-	public void initXMLTrustList(String frameworkName, String xmlData)
+	public String initXMLTrustList(String frameworkName, String xmlData)
 			throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 				setPropertiesRule();
 				String trustListToStore = null;
@@ -157,19 +157,21 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 				trustListToStore = writer.toString();
 			
 				// write TL in local store and DB
-				storeTLInLocalStoreAndDB(frameworkName, trustListToStore, trustList);
+				String tlUrl = storeTLInLocalStoreAndDB(frameworkName, trustListToStore, trustList);
 				log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkName);
-		
+				return tlUrl;
 			}
 
 	// --> Stores XML data into the local store and Trust List pojo into the DB
-	private void storeTLInLocalStoreAndDB(String frameworkName, String fullTLxml, TrustServiceStatusSimplifiedList simplifiedTLpojo)
+	private String storeTLInLocalStoreAndDB(String frameworkName, String fullTLxml, TrustServiceStatusSimplifiedList simplifiedTLpojo)
 		throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 			log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkName);
 
+			String tlUrl = mPath + "/" + frameworkName + ".xml";
+
 			if (fullTLxml != null) {
 			// write the full TL in local store
-				PrintWriter file = new PrintWriter(mPath + "/" + frameworkName + ".xml");
+				PrintWriter file = new PrintWriter(tlUrl);
 				file.write(fullTLxml);
 				file.close();
 			}
@@ -183,6 +185,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			Document trustListDocument = Document.parse(trustListJson);
 				collection.insertOne(trustListDocument);		
 		}
+		return tlUrl;
 	}
 	
 		// --> Updates FrameworkInformation only in local store and DB. (Modifies version and issuance date fields in the TL)

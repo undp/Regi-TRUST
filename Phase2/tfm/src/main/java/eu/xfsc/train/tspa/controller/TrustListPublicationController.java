@@ -3,6 +3,7 @@ package eu.xfsc.train.tspa.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Set;
@@ -137,9 +138,7 @@ public class TrustListPublicationController {
 	@PostMapping("/test")
 	public ResponseEntity<String> test(@RequestBody String jsonData) throws IOException, InvalidStatusCodeException {
 		log.debug("debug--------------- TEST POST ENDPOINT ---------------");
-		// publish Trust Framework via Zone Manager
-		Integer result = mZoneManager.publishTrustSchemes("tf2.zm.regitrust.axyom.co", jsonData);
-		return new ResponseEntity<>("code received from Zone Manager: " + result.toString(), HttpStatus.OK);
+		return new ResponseEntity<>("tlURL", HttpStatus.OK);
 	}
 
 	/**
@@ -176,6 +175,7 @@ public class TrustListPublicationController {
 				jsonObjectToPublish.put("schemes", otherFrameworks);
 			}
 			mZoneManager.publishTrustSchemes(frameworkName, jsonObjectToPublish.toString());
+			mZoneManager.publishURLUri(frameworkName);
 			return TSPAUtil.getResponseBody("Trust list for framework " + frameworkName + " successfully created",
 			HttpStatus.CREATED);
 		} catch (IOException e) {

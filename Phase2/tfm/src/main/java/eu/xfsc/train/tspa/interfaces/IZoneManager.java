@@ -9,6 +9,8 @@ public interface IZoneManager {
 
 	public int publishTrustSchemes(String schemeName, String data) throws IOException, InvalidStatusCodeException;
 
+	public int publishURLUri(String schemeName) throws IOException, InvalidStatusCodeException;
+
 	public int publishDIDUri(String TrustName, String data) throws IOException, InvalidStatusCodeException;
 
 	public int deleteTrustSchemes(String schemeName) throws IOException, InvalidStatusCodeException;
