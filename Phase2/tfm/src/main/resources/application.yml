@@ -32,11 +32,11 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test
+          issuer-uri: https://auth.regitrust.axyom.co/realms/RegiTRUST
   data:
     mongodb:
       host: localhost
-      port: 26003
+      port: 26003 # dev 26003, prod 27017
       database: trustlists
       collection-trustlists: simplifiedTLs
       collection-tsps: TSPs
@@ -53,10 +53,10 @@ logging:
 
 zonemanager:
   Address: "https://zm.regitrust.axyom.co"
-  token-server-url: "https://essif.iao.fraunhofer.de/auth/realms/gxfs-dev-test/protocol/openid-connect/token"
-  grant-type: "client_credentials"
-  client-id: "xfsctest"
-  client-secret: "ec8CvNq771IX1pX0jwaeJJ204p172Seg"
+  token-server-url: "https://auth.regitrust.axyom.co/realms/RegiTRUST/protocol/openid-connect/token"
+  grant-type: "password"
+  client-id: "RegiTRUST_Client"
+  client-secret: "h9uD21nx6tbAWP19FBYfZtvLBLO7NHJG"
   query:
     status: true
 

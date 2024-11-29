@@ -2,6 +2,7 @@ package eu.xfsc.train.tspa.config;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -75,19 +76,51 @@ public class SecurityConfig {
 			.anyRequest().permitAll())
 			.oauth2ResourceServer(oauth2Configurer ->
 			  oauth2Configurer.jwt(jwtConfigurer ->
-			  jwtConfigurer.jwtAuthenticationConverter(jwt -> { Map<String,
-			  Collection<String>> realmAccess = jwt.getClaim("realm_access");
-			  log.debug("REALM_ACCESS_CLAIM:" + realmAccess);
-			  Collection<String> roles = realmAccess.get("roles");
-			  log.debug("Roles:"+ roles);
-			  //var grantedAuthorities = roles.stream() .map(role -> new SimpleGrantedAuthority("ROLE_" + role)).toList();
-			  var grantedAuthorities = roles.stream() .map(role -> new SimpleGrantedAuthority(role)).toList();
-			  log.debug("grantedAuthorities:" + grantedAuthorities);
-			  return new JwtAuthenticationToken(jwt, grantedAuthorities); })).authenticationEntryPoint(restAuthenticationEntryPoint));
+			    jwtConfigurer.jwtAuthenticationConverter(jwt -> {
+			      Map<String, Object> resourceAccess = jwt.getClaim("resource_access");
+			      log.debug("RESOURCE_ACCESS_CLAIM:" + resourceAccess);
+			      
+			      Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+			      
+			      if (resourceAccess != null) {
+			        // Check GCCN client
+			        if (resourceAccess.containsKey("GCCN")) {
+			          @SuppressWarnings("unchecked")
+			          Map<String, Object> gccn = (Map<String, Object>) resourceAccess.get("GCCN");
+			          if (gccn != null && gccn.containsKey("roles")) {
+			            @SuppressWarnings("unchecked")
+			            Collection<String> roles = (Collection<String>) gccn.get("roles");
+			            log.debug("GCCN Roles:" + roles);
+			            authorities.addAll(roles.stream()
+			              .map(SimpleGrantedAuthority::new)
+			              .toList());
+			          }
+			        }
+			        
+			        // Check RegiTRUST_Client
+			        if (resourceAccess.containsKey("RegiTRUST_Client")) {
+			          @SuppressWarnings("unchecked")
+			          Map<String, Object> regiTrust = (Map<String, Object>) resourceAccess.get("RegiTRUST_Client");
+			          if (regiTrust != null && regiTrust.containsKey("roles")) {
+			            @SuppressWarnings("unchecked")
+			            Collection<String> roles = (Collection<String>) regiTrust.get("roles");
+			            log.debug("RegiTRUST Roles:" + roles);
+			            authorities.addAll(roles.stream()
+			              .map(SimpleGrantedAuthority::new)
+			              .toList());
+			          }
+			        }
+			      }
+			      
+			      log.debug("Final grantedAuthorities:" + authorities);
+			      return new JwtAuthenticationToken(jwt, authorities);
+			    }))
+			    .authenticationEntryPoint(restAuthenticationEntryPoint)
+			);
 			  http.sessionManagement( t ->
 			  t.sessionCreationPolicy(SessionCreationPolicy.STATELESS) );
 
-		log.debug("reached here");
+		log.debug("reached security check");
 
 		return http.build();
 	}

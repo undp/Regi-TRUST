@@ -101,9 +101,10 @@ public class TrustListPublicationController {
 	private String mPath;
 	@Autowired
 	public IZoneManager mZoneManager;
-	
-	
+	private final String hasAuthority = "hasAuthority('Registry_submitter')";
+
 	@PostMapping("/nowayback")
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<String> eraseAllEntries() {
 		try {
 			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
@@ -136,6 +137,7 @@ public class TrustListPublicationController {
 
 	/* Test POST ednpoint.*/
 	@PostMapping("/test")
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<String> test(@RequestBody String jsonData) throws IOException, InvalidStatusCodeException {
 		log.debug("debug--------------- TEST POST ENDPOINT ---------------");
 		return new ResponseEntity<>("tlURL", HttpStatus.OK);
@@ -145,12 +147,12 @@ public class TrustListPublicationController {
 	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.
 	 * @throws JAXBException 
 	 * @throws FileEmptyException 
-		 * @throws InvalidStatusCodeException 
-		 */
-		@PostMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
-		// @PreAuthorize("hasAuthority('enrolltf')")
-		public ResponseEntity<Object> createTrustListXML(@PathVariable("framework-name") String frameworkName,
-				@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException, InvalidStatusCodeException {
+	 * @throws InvalidStatusCodeException 
+	 */
+	@PostMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
+	public ResponseEntity<Object> createTrustListXML(@PathVariable("framework-name") String frameworkName,
+			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException, InvalidStatusCodeException {
 
 		log.debug("debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------");
 		log.debug("schemes received: {}", schemesObject);
@@ -196,7 +198,7 @@ public class TrustListPublicationController {
 	 * @throws FileEmptyException 
 	 */
 	@PutMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	// @PreAuthorize("hasAuthority('enrolltf')")
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> updateSchemeInformationInTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String FrameworkInformation) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
 
@@ -234,6 +236,7 @@ public class TrustListPublicationController {
 	 * @throws IllegalArgumentException 
 	 */
 	@GetMapping(value = "/regitrust/trustlist/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getSimplifiedTrustList(
 	        @PathVariable("framework-name") String frameworkName,
 	        @RequestParam(value = "version", required = false) String version) {
@@ -267,6 +270,7 @@ public class TrustListPublicationController {
 	 * @throws FileExistsException
 	 */
 	@GetMapping(value = "/regitrust/trustlist/xml/{framework-name}", produces = MediaType.APPLICATION_XML_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getTrustListXML(@PathVariable("framework-name") String frameworkName,
 			@RequestParam(value = "version", required = false) String version) {
 		log.debug("debug--------------- GET TRUSTLIST (XML) ---------------");
@@ -299,6 +303,7 @@ public class TrustListPublicationController {
 	 * @throws IOException 
 	 */
 	@GetMapping(value = "/regitrust/trustlist/history/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getTrustListVersions(@PathVariable("framework-name") String frameworkName) {
 		log.debug("--------------- GET TRUSTLIST VERSIONS ---------------");
 		try {
@@ -315,6 +320,7 @@ public class TrustListPublicationController {
 	 * @param frameworkName
 	 */
 	@PostMapping(value = "/regitrust/tsp/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> addTSPToTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
 		
@@ -338,6 +344,7 @@ public class TrustListPublicationController {
 
 	/* --> GET TSP list of versions */
 	@GetMapping(value = "/regitrust/tsp/history/{framework-name}/{tspId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getTSPVersions(@PathVariable("framework-name") String frameworkName,
 			@PathVariable("tspId") String tspId) {
 		log.debug("--------------- GET TSP VERSIONS ---------------");
@@ -355,6 +362,7 @@ public class TrustListPublicationController {
 
 	/* --> GET a specific TSP with optional version parameter */
 	@GetMapping(value = "/regitrust/tsp/{framework-name}/{tspId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getSpecificTSP(@PathVariable("framework-name") String frameworkName,
 			@PathVariable("tspId") String tspId, @RequestParam(value = "version", required = false) String version) throws IOException {
 		log.debug("--------------- GET SPECIFIC TSP ---------------");
@@ -370,6 +378,7 @@ public class TrustListPublicationController {
 
 	/* --> Update a specific TSP */
 	@PutMapping(value = "/regitrust/tsp/{framework-name}/{tspId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> updateTSP(@PathVariable("framework-name") String frameworkName,
 			@PathVariable("tspId") String tspId, @RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
 				// validate json against schema
