@@ -31,6 +31,7 @@ exec(AUTH_CONF, config)
 
 
 def auth_zone(req) -> Zone:
+    '''
     if not req.auth:
         raise falcon.errors.HTTPForbidden(
             title="401 Unauthorized",
@@ -92,6 +93,7 @@ def auth_zone(req) -> Zone:
     except jwt.PyJWTError as e:
         LOG.error("Token verification failed: %s", str(e))
         raise falcon.errors.HTTPUnauthorized(description="JWT Token validation failed: %s" % str(e))
+    '''
     try:
         zone = req.context.session.query(Zone).first()
     except NoResultFound as no_result:

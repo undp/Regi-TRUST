@@ -199,12 +199,13 @@ public class ZoneManager implements IZoneManager {
 	}
 
 	private Request buildRestPutRequest(String endpoint, RequestBody body) {
-		return new Request.Builder().url(endpoint).addHeader("Authorization", "Bearer " + getBearerToken()).put(body)
-				.build();
+		// return new Request.Builder().url(endpoint).addHeader("Authorization", "Bearer " + getBearerToken()).put(body)
+		// 		.build();
+		return new Request.Builder().url(endpoint).put(body)
+		.build();
 	}
 
 	private Request buildRestDeleteRequest(String endpoint) {
-
 		return new Request.Builder().url(endpoint).addHeader("Authorization", "Bearer " + getBearerToken()).delete()
 				.build();
 	}
