@@ -209,14 +209,14 @@ class TrustList(Base):
     zone_id = Column(Integer, ForeignKey('zone.id'))
     list_type = Column(String)
     name = Column(String)
-    did = Column(String)
+    url = Column(String)
 
     zone = relationship(Zone, back_populates="trust_lists")
 
     def rr(self):
         return rr_from_str(str(
             "_%s._trust.%s 0 IN URI 10 1 \"%s\"" % (
-                self.list_type, self.name, self.did
+                self.list_type, self.name, self.url
             )
         ))
 

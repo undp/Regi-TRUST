@@ -25,4 +25,9 @@ public class TSPSimplified {
     @XmlElement(name = "TSPVersion")
     @JsonProperty("TSPVersion")
     private String tspVersion;
+
+    @XmlElement(name = "TSPName")
+    @JsonProperty("TSPName")
+    private String tspName;
+
 }

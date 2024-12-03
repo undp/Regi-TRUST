@@ -3,6 +3,7 @@ package eu.xfsc.train.tspa.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Set;
@@ -37,18 +38,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.networknt.schema.ValidationMessage;
 
 import eu.xfsc.train.tspa.exceptions.FileEmptyException;
 import eu.xfsc.train.tspa.exceptions.FileExistsException;
+import eu.xfsc.train.tspa.exceptions.InvalidStatusCodeException;
 import eu.xfsc.train.tspa.exceptions.PropertiesAccessException;
 import eu.xfsc.train.tspa.exceptions.TSPException;
 import eu.xfsc.train.tspa.interfaces.ITrustListPublicationService;
 import eu.xfsc.train.tspa.interfaces.IVCService;
+import eu.xfsc.train.tspa.interfaces.IZoneManager;
 import eu.xfsc.train.tspa.utils.TSPAUtil;
 import foundation.identity.jsonld.JsonLDException;
 import jakarta.xml.bind.JAXBException;
@@ -98,7 +99,12 @@ public class TrustListPublicationController {
 	private String collectionNameTsps;	
 	@Value("${storage.path.trustlist}")
 	private String mPath;
+	@Autowired
+	public IZoneManager mZoneManager;
+	private final String hasAuthority = "hasAuthority('Registry_submitter')";
+
 	@PostMapping("/nowayback")
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<String> eraseAllEntries() {
 		try {
 			MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
@@ -129,27 +135,34 @@ public class TrustListPublicationController {
 	}
 
 
-	/* Test POST ednpoint. Recieves a JSON and returns it.	 */
+	/* Test POST ednpoint.*/
 	@PostMapping("/test")
-	public ResponseEntity<String> test(@RequestBody String jsonData) throws JsonMappingException, JsonProcessingException {
-		String result = iTrustListPublicationService.test(jsonData);
-		return new ResponseEntity<>(result, HttpStatus.OK);
+	@PreAuthorize(hasAuthority)
+	public ResponseEntity<String> test(@RequestBody String jsonData) throws IOException, InvalidStatusCodeException {
+		log.debug("debug--------------- TEST POST ENDPOINT ---------------");
+		return new ResponseEntity<>("tlURL", HttpStatus.OK);
 	}
 
 	/**
 	 * --> Publish (create and store) an initial trustlist in XML format. The Trustlist XML is taken from resource template.
 	 * @throws JAXBException 
 	 * @throws FileEmptyException 
+	 * @throws InvalidStatusCodeException 
 	 */
 	@PostMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	// @PreAuthorize("hasAuthority('enrolltf')")
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> createTrustListXML(@PathVariable("framework-name") String frameworkName,
-			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
+			@RequestBody String schemesObject) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException, InvalidStatusCodeException {
 
 		log.debug("debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------");
 		log.debug("schemes received: {}", schemesObject);
 
 		try {
+			// check status of the zone manager
+			Integer status = mZoneManager.checkStatus();
+			if (status != 200) {
+				return TSPAUtil.getResponseBody("Zone Manager is not available.", HttpStatus.SERVICE_UNAVAILABLE);
+			}
 			JSONObject jsonObject = new JSONObject(schemesObject);
 			if (!jsonObject.has("otherFrameworks") || !jsonObject.get("otherFrameworks").getClass().equals(JSONArray.class)) {
 				return TSPAUtil.getResponseBody("Request body must contain 'otherFrameworks' field as an array.", HttpStatus.BAD_REQUEST);
@@ -157,6 +170,14 @@ public class TrustListPublicationController {
 			String trustListStr = trustListTemplate.getFilename();
 			trustListStr = new String(trustListTemplate.getInputStream().readAllBytes());
 			iTrustListPublicationService.initXMLTrustList(frameworkName, trustListStr);
+			// publish the trust list pointer record via the zone manager
+			JSONObject jsonObjectToPublish = new JSONObject();
+			JSONArray otherFrameworks = jsonObject.optJSONArray("otherFrameworks");
+			if (otherFrameworks != null) {
+				jsonObjectToPublish.put("schemes", otherFrameworks);
+			}
+			mZoneManager.publishTrustSchemes(frameworkName, jsonObjectToPublish.toString());
+			mZoneManager.publishURLUri(frameworkName);
 			return TSPAUtil.getResponseBody("Trust list for framework " + frameworkName + " successfully created",
 			HttpStatus.CREATED);
 		} catch (IOException e) {
@@ -165,6 +186,9 @@ public class TrustListPublicationController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (JSONException e) {
 			return TSPAUtil.getResponseBody("Invalid JSON format.", HttpStatus.BAD_REQUEST);
+		} catch (InvalidStatusCodeException e) {
+			log.error("Zone Manager is not available. Please contact the administrator.", e);
+			return TSPAUtil.getResponseBody("Zone Manager is not available. Please contact the administrator.", HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
 
@@ -174,7 +198,7 @@ public class TrustListPublicationController {
 	 * @throws FileEmptyException 
 	 */
 	@PutMapping(value = "/regitrust/trustlist/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	// @PreAuthorize("hasAuthority('enrolltf')")
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> updateSchemeInformationInTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String FrameworkInformation) throws PropertiesAccessException, FileExistsException, FileEmptyException, JAXBException {
 
@@ -212,6 +236,7 @@ public class TrustListPublicationController {
 	 * @throws IllegalArgumentException 
 	 */
 	@GetMapping(value = "/regitrust/trustlist/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getSimplifiedTrustList(
 	        @PathVariable("framework-name") String frameworkName,
 	        @RequestParam(value = "version", required = false) String version) {
@@ -245,6 +270,7 @@ public class TrustListPublicationController {
 	 * @throws FileExistsException
 	 */
 	@GetMapping(value = "/regitrust/trustlist/xml/{framework-name}", produces = MediaType.APPLICATION_XML_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getTrustListXML(@PathVariable("framework-name") String frameworkName,
 			@RequestParam(value = "version", required = false) String version) {
 		log.debug("debug--------------- GET TRUSTLIST (XML) ---------------");
@@ -277,6 +303,7 @@ public class TrustListPublicationController {
 	 * @throws IOException 
 	 */
 	@GetMapping(value = "/regitrust/trustlist/history/{framework-name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getTrustListVersions(@PathVariable("framework-name") String frameworkName) {
 		log.debug("--------------- GET TRUSTLIST VERSIONS ---------------");
 		try {
@@ -293,6 +320,7 @@ public class TrustListPublicationController {
 	 * @param frameworkName
 	 */
 	@PostMapping(value = "/regitrust/tsp/{framework-name}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> addTSPToTrustList(@PathVariable("framework-name") String frameworkName,
 			@RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
 		
@@ -316,6 +344,7 @@ public class TrustListPublicationController {
 
 	/* --> GET TSP list of versions */
 	@GetMapping(value = "/regitrust/tsp/history/{framework-name}/{tspId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getTSPVersions(@PathVariable("framework-name") String frameworkName,
 			@PathVariable("tspId") String tspId) {
 		log.debug("--------------- GET TSP VERSIONS ---------------");
@@ -333,6 +362,7 @@ public class TrustListPublicationController {
 
 	/* --> GET a specific TSP with optional version parameter */
 	@GetMapping(value = "/regitrust/tsp/{framework-name}/{tspId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> getSpecificTSP(@PathVariable("framework-name") String frameworkName,
 			@PathVariable("tspId") String tspId, @RequestParam(value = "version", required = false) String version) throws IOException {
 		log.debug("--------------- GET SPECIFIC TSP ---------------");
@@ -348,6 +378,7 @@ public class TrustListPublicationController {
 
 	/* --> Update a specific TSP */
 	@PutMapping(value = "/regitrust/tsp/{framework-name}/{tspId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize(hasAuthority)
 	public ResponseEntity<Object> updateTSP(@PathVariable("framework-name") String frameworkName,
 			@PathVariable("tspId") String tspId, @RequestBody String tspJson) throws FileEmptyException, PropertiesAccessException, TSPException, IOException {
 				// validate json against schema

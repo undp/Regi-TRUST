@@ -53,6 +53,16 @@ public class ZoneManager implements IZoneManager {
 
 	@Value("${zonemanager.query.status}")
 	private boolean CONFIG_NS_QUERY_STATUS;
+	@Value("${server.url}")
+	private String tfmUrl;
+
+
+	@Override
+	public int checkStatus() throws IOException, InvalidStatusCodeException {
+		String endpoint = CONFIG_PROPERTY_ZONEMANAGER + "/status";
+		Request request = new Request.Builder().url(endpoint).get().build();
+		return sendRequest(request);
+	}
 
 	// Functionality for Publishing PTR record in the Zone.
 	@Override
@@ -97,6 +107,22 @@ public class ZoneManager implements IZoneManager {
 
 		int statusCode = sendRequest(request);
 
+		return statusCode;
+	}
+
+	// Function for the Publishing the URL URI record in the Zone.
+	@Override
+	public int publishURLUri(String schemeName) throws IOException, InvalidStatusCodeException {
+		String addTLPointerEndpoint = NAMES + SEP + schemeName + SEP + TRUST_LIST;
+		String endpoint = buildFullPath(addTLPointerEndpoint);
+		log.info("Endpoint for URL URI: {}", endpoint);
+		String trustListURL = tfmUrl + SEP + "trust-list" + SEP + schemeName + ".xml";
+
+		RequestBody body = RequestBody.create(String.format("{\"url\": \"%s\"}", trustListURL), MEDIA_TYPE_JSON);
+
+		Request request = buildRestPutRequest(endpoint, body);
+
+		int statusCode = sendRequest(request);
 		return statusCode;
 	}
 
@@ -173,12 +199,13 @@ public class ZoneManager implements IZoneManager {
 	}
 
 	private Request buildRestPutRequest(String endpoint, RequestBody body) {
-		return new Request.Builder().url(endpoint).addHeader("Authorization", "Bearer " + getBearerToken()).put(body)
-				.build();
+		// return new Request.Builder().url(endpoint).addHeader("Authorization", "Bearer " + getBearerToken()).put(body)
+		// 		.build();
+		return new Request.Builder().url(endpoint).put(body)
+		.build();
 	}
 
 	private Request buildRestDeleteRequest(String endpoint) {
-
 		return new Request.Builder().url(endpoint).addHeader("Authorization", "Bearer " + getBearerToken()).delete()
 				.build();
 	}

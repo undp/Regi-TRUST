@@ -134,7 +134,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	}
 
 	@Override
-	public void initXMLTrustList(String frameworkName, String xmlData)
+	public String initXMLTrustList(String frameworkName, String xmlData)
 			throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 				setPropertiesRule();
 				String trustListToStore = null;
@@ -157,19 +157,21 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 				trustListToStore = writer.toString();
 			
 				// write TL in local store and DB
-				storeTLInLocalStoreAndDB(frameworkName, trustListToStore, trustList);
+				String tlUrl = storeTLInLocalStoreAndDB(frameworkName, trustListToStore, trustList);
 				log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkName);
-		
+				return tlUrl;
 			}
 
 	// --> Stores XML data into the local store and Trust List pojo into the DB
-	private void storeTLInLocalStoreAndDB(String frameworkName, String fullTLxml, TrustServiceStatusSimplifiedList simplifiedTLpojo)
+	private String storeTLInLocalStoreAndDB(String frameworkName, String fullTLxml, TrustServiceStatusSimplifiedList simplifiedTLpojo)
 		throws FileExistsException, PropertiesAccessException, JAXBException, FileEmptyException, IOException {
 			log.info("New XML trust list is created in local store  and DB. Framework name: {}", frameworkName);
 
+			String tlUrl = mPath + "/" + frameworkName + ".xml";
+
 			if (fullTLxml != null) {
 			// write the full TL in local store
-				PrintWriter file = new PrintWriter(mPath + "/" + frameworkName + ".xml");
+				PrintWriter file = new PrintWriter(tlUrl);
 				file.write(fullTLxml);
 				file.close();
 			}
@@ -183,6 +185,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			Document trustListDocument = Document.parse(trustListJson);
 				collection.insertOne(trustListDocument);		
 		}
+		return tlUrl;
 	}
 	
 		// --> Updates FrameworkInformation only in local store and DB. (Modifies version and issuance date fields in the TL)
@@ -437,6 +440,8 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	        }
 			tspDoc.put("LastUpdate", java.time.LocalDateTime.now().toString());
+			String tspName = tspNode.path("TSPInformation").path("TSPName").path("Name").asText();
+			tspDoc.put("TSPName", tspName);
 			// step 1- update TSP in TSP collection in the DB
 	        tspCollection.insertOne(tspDoc);
 
@@ -445,6 +450,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			simplifiedTsp.setTspID(tspDoc.getString("TSPID"));
 			simplifiedTsp.setLastUpdate(tspDoc.getString("LastUpdate"));
 			simplifiedTsp.setTspVersion(newVersionStr);
+			simplifiedTsp.setTspName(tspName);
 			
 			TrustServiceStatusSimplifiedList simplifiedTLpojo = omTrustList.readValue(getSimplifiedTLfromDB(frameworkName, null), TrustServiceStatusSimplifiedList.class);
 			TSPIdListType tspSimplifiedList = null;
@@ -528,22 +534,26 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 	public String getSingleTSP(String frameworkName, String tspId, String version) throws FileEmptyException, IOException {
 		// check if framework exists throw an exception if not
 		getSimplifiedTLfromDB(frameworkName, null); 
-		// check if TSP exists throw an exception if not
+		
 		Document query = new Document("TSPID", tspId);
 		MongoDatabase db = mongoTemplate.getMongoDatabaseFactory().getMongoDatabase(databaseName);
 		MongoCollection<Document> tspCollection = db.getCollection(collectionNameTsps);
-		Document result = tspCollection.find(query).first();
 		
-		if (result == null) {
-			throw new FileEmptyException("TSP " + tspId + " not found in the trustlist.");
-		}
-
-		// If version is provided, fetch that specific version
+		Document result;
 		if (version != null) {
+			// If version is provided, fetch that specific version
 			query.append("TSPVersion", version);
 			result = tspCollection.find(query).first();
 			if (result == null) {
 				throw new FileEmptyException("Version " + version + " for TSP " + tspId + " not found.");
+			}
+		} else {
+			// If no version provided, fetch the latest version by sorting in descending order
+			result = tspCollection.find(query)
+				.sort(new Document("TSPVersion", -1))
+				.first();
+			if (result == null) {
+				throw new FileEmptyException("TSP " + tspId + " not found in the trustlist.");
 			}
 		}
 		

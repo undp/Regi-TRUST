@@ -191,13 +191,13 @@ class TrustListResource:
         self.list_type = list_type
 
     def on_get(self, req, resp, scheme_name):
-        """Get a trust list pointer (did)
+        """Get a trust list pointer (url)
         ---
         description: Get trust list pointer
         security:
             - jwt_auth: []        
         tags: 
-            - Trust Lists (DIDs)
+            - Trust Lists (URLs)
         responses:
             200:
                 description: Trust list pointer
@@ -215,14 +215,14 @@ class TrustListResource:
         if tl is None:
             resp.text = json.dumps([], ensure_ascii=False)
         else:
-            resp.text = json.dumps({"did": tl.did}, ensure_ascii=False)
+            resp.text = json.dumps({"url": tl.url}, ensure_ascii=False)
 
     def on_put(self, req, resp, scheme_name):
-        """Publish a trust list pointer (did)
+        """Publish a trust list pointer (url)
         ---
         description: Publish trust list pointer
         tags: 
-            - Trust Lists (DIDs)
+            - Trust Lists (URLs)
         security:
             - jwt_auth: []  
         responses:
@@ -245,13 +245,13 @@ class TrustListResource:
             raise falcon.errors.HTTPNotFound(title=scheme_name + ": domain name not in current zone")
         data = load_json(req, self._run_with_wsgi)
         try:
-            did = data["did"]
+            url = data["url"]
         except KeyError as exc:
             raise falcon.errors.HTTPBadRequest("400 Bad Request", f"missing key '{exc}'")
-        if not did.startswith("did:"):
-            raise falcon.errors.HTTPBadRequest("400 Bad Request", "Request must contain a valid did")
+        if not url.startswith("http"):
+            raise falcon.errors.HTTPBadRequest("400 Bad Request", "Request must contain a valid url")
         self.delete(req, zone, scheme_name)
-        trust_list = TrustList(zone=zone, name=scheme_name, list_type=self.list_type, did=did)
+        trust_list = TrustList(zone=zone, name=scheme_name, list_type=self.list_type, url=url)
         try:
             trust_list.rr()
         except Exception as exc:
@@ -266,11 +266,11 @@ class TrustListResource:
         LOG.debug("TrustlistResource PUT, OK in scheme %s", scheme_name)
 
     def on_delete(self, req, resp, scheme_name):
-        """Delete a trust list pointer (did)
+        """Delete a trust list pointer (url)
         ---
         description: Delete trust list pointer
         tags: 
-            - Trust Lists (DIDs)
+            - Trust Lists (URLs)
         security:
             - jwt_auth: []  
         responses:
@@ -444,7 +444,7 @@ class SchemeClaimResource:
 class ViewZone:
     def on_get(self, req, resp):
         """Visualize the zone: Schemes (trust frameworks),
-        subschemes (trusted external trust frameworks) its dids (pointers to trust lists).
+        subschemes (trusted external trust frameworks) its urls (pointers to trust lists).
         ---
         description: Visualization of zone
         tags: 
@@ -473,11 +473,11 @@ class ViewZone:
                 for scheme in schemes:
                     if scheme.name == unique_scheme:
                         subscheme = scheme.scheme
-                        did = ""
+                        url = ""
                         for tl in trust_lists:
                             if tl.name == subscheme:
-                                did = tl.did
-                        el = {"subscheme": subscheme, "trustListDid": did}
+                                url = tl.url
+                        el = {"subscheme": subscheme, "trustListUrl": url}
                         top_scheme["subSchemes"].append(el)
                 current_zone["schemes"].append(top_scheme)
             all_zones.append(current_zone)

@@ -25,7 +25,7 @@ public interface ITrustListPublicationService {
 
 	public Set<ValidationMessage> isJSONValid(String jsonData,Resource schema) throws FileNotFoundException, IOException;
 
-	public void initXMLTrustList(String frameworkName, String xml)
+	public String initXMLTrustList(String frameworkName, String xml)
 			throws FileExistsException, FileNotFoundException, PropertiesAccessException, JAXBException, FileEmptyException, IOException;
 	
 	public void initJsonTrustList(String frameworkName, String xml)
