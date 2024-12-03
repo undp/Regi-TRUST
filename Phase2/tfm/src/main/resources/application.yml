@@ -36,7 +36,7 @@ spring:
   data:
     mongodb:
       host: localhost
-      port: 26003 # dev 26003, prod 27017
+      port: 27017 # local dev 26003, test env 27017
       database: trustlists
       collection-trustlists: simplifiedTLs
       collection-tsps: TSPs

@@ -440,6 +440,8 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 
 	        }
 			tspDoc.put("LastUpdate", java.time.LocalDateTime.now().toString());
+			String tspName = tspNode.path("TSPInformation").path("TSPName").path("Name").asText();
+			tspDoc.put("TSPName", tspName);
 			// step 1- update TSP in TSP collection in the DB
 	        tspCollection.insertOne(tspDoc);
 
@@ -448,6 +450,7 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 			simplifiedTsp.setTspID(tspDoc.getString("TSPID"));
 			simplifiedTsp.setLastUpdate(tspDoc.getString("LastUpdate"));
 			simplifiedTsp.setTspVersion(newVersionStr);
+			simplifiedTsp.setTspName(tspName);
 			
 			TrustServiceStatusSimplifiedList simplifiedTLpojo = omTrustList.readValue(getSimplifiedTLfromDB(frameworkName, null), TrustServiceStatusSimplifiedList.class);
 			TSPIdListType tspSimplifiedList = null;
