@@ -1,0 +1,81 @@
+extend ../layout
+
+block content
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css')
+    .container#review-page(style='min-height:80vh')
+        .page-heading.mt-5.mb-5.d-flex.justify-content-between.align-items-center
+            div
+                h1.mb-0 Trust Service Framework
+                span.ml-2.mb-5.align-content-end.text-muted.text-uppercase.font-weight-bold Current Version: !{version}                
+            if roles && roles.includes('Registry_admin')
+                a.btn.btn-lg.addBtn.ml-auto(href=(`/forms/gccn-framework/1`), alt='Edit Network Entry Submission')
+                    span.visually-hidden Edit Network Entry Submission
+                    | Edit 
+                    i.fa.fa-pencil.ms-1
+
+
+        .card.mb-5
+            h2.card-header Framework Details
+            .card-content.p-4
+                .card-content-item
+                    .px-2
+                        each val, key in framework
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js')
+    script.
+        $(document).ready(function() {
+            var selectedVersionData = null;
+            // Initialize the version history table when the modal is shown
+            $('#versionModal').on('shown.bs.modal', function () {
+                $('#version-history-table').DataTable({
+                    data: !{tspHistory},
+                    columns: [
+                        { 
+                            title: "Version", 
+                            data: "TSPVersion",
+                        },
+                        { 
+                            title: "Last Updated", 
+                            data: "LastUpdate",
+                            render: function(data, type, row, meta) {
+                                if (type === 'display' || type === 'filter') {
+                                    const date = new Date(data);
+                                    return new Intl.DateTimeFormat('en-US', {
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        year: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: true
+                                    }).format(date).replace(',', ' -');
+                                }
+                                return data; // Return raw data for sorting and other operations
+                            }
+                        },
+                        { 
+                            title: "Actions",
+                            data: null,
+                            orderable: false, // Disable ordering for this column
+                            className: 'text-center',
+                            render: function(data, type, row, meta) {
+                                if (type === 'display') {
+                                    // Assuming the row object contains a `link` property with the target URL
+                                    const link = window.location.pathname + '?version=' + data.TSPVersion; 
+                                    return `<button class="btn addBtn btn-md" onclick="window.location.href='${link}'">View Version</button>`;
+                                }
+                                return null;
+                            }
+                        }
+                    ],
+                    order: [[0, 'desc']], // Default sorting: First column (index 0), descending
+                    destroy: true,
+                    initComplete: function() {
+                    var $table = $('#version-history-table');
+                    $table.wrap('<div class="table-responsive" style="clear:both;"></div>');
+                    $table.css('width', '100%');
+                    }
+                });
+            });
+        });

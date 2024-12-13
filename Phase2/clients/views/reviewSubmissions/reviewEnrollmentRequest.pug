@@ -1,0 +1,176 @@
+extends ../layout
+
+block content
+    include ../forms/includes/formFieldsRenderer.pug
+
+    .container#review-page(style='min-height:80vh')
+        - let status = submission.ReviewInfo.ReviewStatus
+
+        if(status === 'approved')
+            - status = 'Approved'
+        else if(status === 'rejected')
+            - status = 'Rejected'
+        else
+            - status = ''
+
+        .page-heading.mt-5.mb-5
+            h1 Registry Service Provider Enrollment Request #{status ? "- " + status : ""}
+
+        if(submission.ReviewInfo.ReviewStatus !== 'pending')
+            .p-3
+                h2.mb-3 Review Details
+                .p-3
+                    p
+                        strong.pe-2 Review Status:
+                        | !{submission.ReviewInfo.ReviewStatus}
+                    if roles.includes('Onboarding_manager')
+                        p
+                            strong.pe-2 Reviewer Username:
+                            | !{submission.ReviewInfo.Reviewer.Username}
+                    - let statusDateTime = new Date(parseInt(submission.ReviewInfo.StatusStartingTime, 10))
+                    p
+                        strong.pe-2 Date Reviewed:
+                        | !{statusDateTime.toLocaleString()}
+                    if(submission.ReviewInfo.ReviewStatus == 'rejected')
+                        p
+                            strong.pe-2 Rejection Reason:
+                            | !{submission.ReviewInfo.Notes}
+
+        .card.mb-5
+            h2.card-header Request Details 
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Contact Information
+                    .px-2
+                        each val, key in submission.EnrollmentRequest
+                            p
+                                strong.pe-2 !{key}
+                                | !{val}
+
+        if roles.includes('Onboarding_manager') && submission.ReviewInfo.ReviewStatus == "pending"
+            .review-buttons.p-4.mb-5
+                - let status = submission.ReviewInfo.ReviewStatus
+                if(status == "rejected" || status == "pending")
+                    a.btn.btn-lg.submitBtn(href='*', data-action='accept', data-bs-toggle='modal', data-bs-target='#exampleModal') Acknowledge Request
+                if(status == "approved" || status == "pending")
+                    a.btn.btn-lg.btn-link(href='#', data-action='defer', data-bs-toggle='modal', data-bs-target='#exampleModal') Defer Request
+
+    // Modal
+    div.modal.fade(id='exampleModal', tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        div.modal-dialog
+            div.modal-content
+                div.modal-header
+                    h5.modal-title#exampleModalLabel Review Confirmation
+                    button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+                div.modal-body
+                    p.confirm-msg
+                        | Are you sure you want to 
+                        strong.request-decision
+                        |  this enrollment request?
+                    .row.reject-data.d-none
+                        .col-12
+                            // RenderComponent imported from includes/formFieldsRenderer.pug
+                            +RenderComponent({
+                                "Type": "TextArea",
+                                "Key": "Notes",
+                                "Label": "Rejection Reason",
+                                'Validation': {
+                                    "Required": true
+                                }
+                            })
+                div.modal-footer
+                    button.btn.btn-lg.navigateBtn.mb-2(type='button', data-bs-dismiss='modal', value='Cancel') Cancel
+                    button.btn.btn-lg.btn-primary.submitBtn.mb-2(type='submit', name='SubmitType', value='Submit', data-action='', data-submission-id=submission._id) Confirm
+    
+
+block scripts
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+    script.
+        // Handle modal content change based on button click
+        document.querySelectorAll('.review-buttons .btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                
+                const action = e.currentTarget.getAttribute('data-action');
+                document.querySelector('.modal-footer .submitBtn').setAttribute('data-action', action);
+                
+                const rejectData = document.querySelector('.reject-data');
+                const confirmMsgStatus = document.querySelector('.request-decision');
+
+                confirmMsgStatus.textContent = action
+                if (action === 'accept') {
+                    rejectData.classList.add('d-none')
+                } else if (action === 'defer') {
+                    rejectData.classList.remove('d-none')
+                }
+            });
+        });
+
+        document.querySelectorAll('.modal-footer .btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                
+                const action = e.currentTarget.getAttribute('data-action');
+                const submissionId = e.currentTarget.getAttribute('data-submission-id');
+                const rejectData = document.querySelector('.reject-data');
+
+                if (action === 'accept') {
+                    fetch('/review-enrollment-requests/submission/' + submissionId + '/accept')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                if (data.redirect) {
+                                    window.location.href = data.redirect;
+                                } else {
+                                    console.error('Error:', data.error); // Log any error message if available
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error during POST request:', error);
+                        });
+                } else if (action === 'defer') {
+                    if(rejectData.querySelector('#Notes').checkValidity()){
+                        fetch('/review-enrollment-requests/submission/' + submissionId + '/decline', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json' // Add this line
+                            },
+                            body: JSON.stringify({
+                                Notes: document.querySelector('#Notes').value
+                            })
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                if (data.redirect) {
+                                    window.location.href = data.redirect;
+                                } else {
+                                    console.error('Error:', data.error); // Log any error message if available
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error during POST request:', error);
+                        });
+                    }else{
+                        rejectData.querySelector('#Notes').classList.add('is-invalid');
+                    }
+                    
+                }
+            });
+        });
+
+        document.querySelectorAll('.form-control').forEach(formControl => {
+            formControl.addEventListener('input', (e) => {
+                e.target.classList.remove('is-invalid');
+            })
+        })

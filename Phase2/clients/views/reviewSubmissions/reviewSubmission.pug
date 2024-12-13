@@ -1,0 +1,151 @@
+extend ../layout
+
+block content
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css')
+
+    .container#review-page(style='min-height:80vh')
+        .page-heading.mt-5.mb-5
+            h1 Network Entry Submission #{submission.ReviewInfo.ReviewStatus ? "- " + submission.ReviewInfo.ReviewStatus : ""}
+            
+            div.d-flex.gap-4
+                a.btn.btn-lg.addBtn(href=(`/forms/gccn-network-entry-submission/1?tsp=${submission._id}`), alt='Edit Network Entry Submission')
+                    span.visually-hidden Edit Network Entry Submission
+                    | Edit 
+                    i.fa.fa-pencil.ms-1
+                if !{TSPVersions} && !{TSPVersions}.length > 0
+                    a.btn.btn-lg.addBtn(href='#', data-bs-toggle='modal', data-bs-target='#versionModal', alt='View Version History')
+                        span.visually-hidden View Version History
+                        i.fa.fa-history
+        if(submission.ReviewInfo.ReviewStatus !== 'Submitted')
+            .p-3
+                h2.mb-3 Review Information
+                .p-3
+                    <p><strong class="pe-2">Review Status:</strong> !{submission.ReviewInfo.ReviewStatus}</p>
+                    if roles.includes('Registry_reviewer')
+                        <p><strong class="pe-2">Reviewer Username:</strong> !{submission.ReviewInfo.Reviewer.Username}</p>
+                    - let statusDateTime = new Date(parseInt(submission.ReviewInfo?.StatusStartingTime, 10))
+                    <p><strong class="pe-2">Date Reviewed:</strong> !{statusDateTime.toLocaleString()}</p>
+
+        .card.mb-5
+            h2.card-header Participating Entity Information
+            .row.card-content.p-4
+                .col.card-content-item
+                    h3.mb-3 Organization Details
+                    .px-2
+                        each val, key in submission.TSPInformation
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                
+                .col.card-content-item
+                    h3.mb-3 Organization Address
+                    .px-2
+                        each val, key in submission.TSPContacts  
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        .card.mb-5
+            h2.card-header Submitter
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Contact Information
+                    .px-2
+                        each val, key in submission.Submitter
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        if submission.TSPServices.length > 0
+            .card.mb-5
+                h2.card-header Services
+                .p-4
+                    .accordion#servicesAccordion
+                        each service, i in submission.TSPServices
+                            .accordion-item
+                                h2.accordion-header(id='heading' + i)
+                                    button.accordion-button(type='button', data-bs-toggle='collapse', data-bs-target='#collapse' + i, aria-expanded=i === 0 ? 'true' : 'false', aria-controls='collapse#{i}', class=i === 0 ? '' : 'collapsed')
+                                        | #{service['Name:']}
+                                .accordion-collapse.collapse(id='collapse' + i, aria-labelledby='heading' + i, data-bs-parent='#servicesAccordion', class=i === 0 ? 'show' : '')
+                                    .row.accordion-body
+                                        .col.card-content-item
+                                            h4.mb-3 Service Details
+                                            .px-2
+                                            each val, key in service
+                                                <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                                        .col.card-content-item
+                                            h4.mb-3 Service Operations Agent
+                                            .px-2
+                                            each val, key in submission.ServiceOpsAgents[i]
+                                                <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        if(roles.includes('Registry_reviewer') && submission.ReviewInfo.ReviewStatus === 'Submitted')
+            .review-buttons.p-4.mb-5
+                    a.btn.btn-lg.submitBtn(href='/review-submissions/submission/' + submission._id + '/accept') Accept Submission
+                    a.btn.btn-lg.btn-link(href='/review-submissions/submission/' + submission._id + '/decline') Reject Submission
+    // Modal for version history
+    .modal.fade#versionModal(tabindex='-1', role='dialog', aria-labelledby='versionModalLabel', aria-hidden='true')
+        .modal-dialog(role='document', style='max-width: 800px;')
+            .modal-content
+                .modal-header
+                    h5.modal-title#versionModalLabel Select A Version to View From The Table
+                    button.btn.close(type='button', data-bs-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    table#version-history-table.display
+
+block scripts
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+  script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+  script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js')
+  script. 
+    $(document).ready(function() {
+        var selectedVersionData = null;
+
+        // Initialize the version history table when the modal is shown
+        $('#versionModal').on('shown.bs.modal', function () {
+            $('#version-history-table').DataTable({
+                data: !{TSPVersions},
+                columns: [
+                    { 
+                        title: "Version", 
+                        data: "TSLVersion" 
+                    },
+                    { 
+                        title: "Last Updated", 
+                        data: "ListIssueDateTime",
+                        render: function(data, type, row, meta) {
+                            if (type === 'display' || type === 'filter') {
+                                const date = new Date(data);
+                                return new Intl.DateTimeFormat('en-US', {
+                                    month: '2-digit',
+                                    day: '2-digit',
+                                    year: '2-digit',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true
+                                }).format(date).replace(',', ' -');
+                            }
+                            return data; // Return raw data for sorting and other operations
+                        }
+                    },
+                    { 
+                        title: "Actions",
+                        data: null,
+                        orderable: false, // Disable ordering for this column
+                        className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            if (type === 'display') {
+                                // Assuming the row object contains a `link` property with the target URL
+                                const link = `?version=${data.TSLVersion}`; 
+                                return `<button class="btn addBtn btn-md" onclick="window.location.href='${link}'">View Version</button>`;
+                            }
+                            return null;
+                        }
+                    }
+                ],
+                order: [[0, 'desc']], // Default sorting: First column (index 0), descending
+                destroy: true,
+                initComplete: function() {
+                    var $table = $('#version-history-table');
+                    $table.wrap('<div class="table-responsive" style="clear:both;"></div>');
+                    $table.css('width', '100%');
+                }
+            });
+        });
+    });
+                

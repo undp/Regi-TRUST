@@ -1,0 +1,14 @@
+{
+  "realm": "RegiTRUST",
+  "realmAdminEmail": "REVIEWERS DISTIBUTION GROUP EMAIL",
+  "auth-server-url": "https://auth.regitrust.axyom.co/",
+  "ssl-required": "external",
+  "resource": "RegiTRUST_Client",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "SECRET"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0,
+  "policy-enforcer": {}
+}
