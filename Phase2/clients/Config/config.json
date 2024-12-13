@@ -1,0 +1,33 @@
+{
+  "Client" : {
+    "hostname": "https://clients.regitrust.axyom.co"
+  },
+  "MongoDB": {
+    "hostname": "127.0.0.1",
+    "PORT": "27017",
+    "dbName": "GCCN",
+    "options": {}
+  },
+  "TRAIN": {
+    "baseUrl": "https://tfm.regitrust.axyom.co",
+    "trustListRoutes": "/ttfm/api/v1/regitrust",
+    "trustList": "/trustlist",
+    "trustListVersions": "/history/testFW.zm.regitrust.axyom.co",
+    "trustListDetailed": "/testFW.zm.regitrust.axyom.co",
+    "tsp": "/tsp",
+    "tspVersions": "/history/testFW.zm.regitrust.axyom.co",
+    "tspDetail": "/testFW.zm.regitrust.axyom.co/",
+    "verifier": "/atvtrain_vc/api/v1/gccn/verifier",
+    "trustFramework": "/testFW.zm.regitrust.axyom.co"
+  },
+  "Notifications": {
+    "host": "SMTP HOST",
+    "port": 25,
+    "username": "SMTP USERNAME",
+    "password": "SMTP PASSWORD"
+  },
+  "reCaptcha": {
+    "siteKey": "RECAPTCHA SITE KEY",
+    "secret": "RECAPTCHA SECRET"
+  }
+}

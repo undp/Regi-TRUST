@@ -1,0 +1,88 @@
+extends ../layout  
+
+block content
+  //- import functions and mixins used to render form components
+  include includes/formFieldsRenderer.pug
+
+  .container(style="min-height: 82.6vh")
+    h1.mt-md-5.mb-md-5.mt-sm-4.mb-sm-4.mt-3.mb-3 Trust Service Framework
+    .row
+      .col.col-xl
+    if currentStep==formJSON.FormSections.length
+      .text-center.p-5
+        h3 Thank you! The data has been submitted.
+    else
+      form#network-entry.mt-3( action='/forms/gccn-framework/' + currentStep, method='POST')
+        #invalid-message.card.mb-5(style='display:none;margin:auto;')
+          h2.card-header Missing Required Fields 
+          .card-content.p-4
+            p We are unable to submit your form. You are missing required fields in these sections: 
+            ul
+              each page, i in validation
+                if page === 'false'
+                  li= `Section ${i+1}: ${formJSON.FormSections[i].SectionName}`
+            input(type='text', style='visibility:hidden;', disabled, required)
+        each component in formJSON.FormSections[currentStep-1].Fields
+          .row
+            .col.col-xl-8
+              //- RenderComponent imported from includes/formFieldsRenderer.pug          
+              +RenderComponent(component)
+        each step,i in formJSON.FormSections
+          if(i < formJSON.FormSections.length - 1)
+            input.form-validation(type='hidden' name=`validation[${i}]` id='validation_'+i value=(validation[i]))
+        .form-buttons.mb-4.col.col-xl-8
+          .form-buttons-right(style='order:2')
+            if currentStep == formJSON.FormSections.length-1
+              button#submit.btn.btn-lg.submitBtn.mb-2(type='submit', name='SubmitType', value='Submit') Submit
+          
+  
+block scripts
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js')
+  script.
+    $('form').validate({
+      errorClass: 'is-invalid',
+      focusInvalid: false,
+      invalidHandler: function(event, validator) {
+        if(validator.submitButton?.value === 'Next' || validator.submitButton?.value === 'Submit') {
+          if (validator.numberOfInvalids()) {
+            var element = validator.errorList[0].element;
+            element.focus();
+            element.scrollIntoView({behavior: 'smooth', block: 'center'});
+          }
+        }
+      }
+    })
+
+    $('#submit').click(function(evt) {
+      let formIsValid = $('.form-validation').filter(field => field.value === 'false').length === 0
+      if(!formIsValid) {
+        evt.preventDefault()
+        $('#invalid-message').css('display', 'inline-block')
+        $('#invalid-message').find('input').attr('disabled', false)
+      }
+    })
+
+    const checkPageValid = () => {
+      $('#validation_#{currentStep-1}').val($('form').get(0).reportValidity() ? 'true' : 'false')
+    }
+
+    const dontValidate = () => {
+      $('form').validate().settings.ignore = '*'
+    }
+
+    function navigateValidation () {
+      checkPageValid()
+      
+      if(this.value !== 'Next')
+        dontValidate()
+    }
+
+    $('.progress-nav').click(navigateValidation)
+
+    $('.navigateBtn').click(navigateValidation)
+
+    var tooltipList = [];
+    $('.tooltip-icon').each((i, icon)=>tooltipList.push(new bootstrap.Popover(icon)));
+    if($(window).width()<576)
+      $('.step-count').each((i, icon)=>tooltipList.push(new bootstrap.Popover(icon)));

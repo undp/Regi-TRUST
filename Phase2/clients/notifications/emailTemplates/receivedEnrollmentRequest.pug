@@ -1,0 +1,7 @@
+html(lang='en')
+    body     
+        h1 Regi-Trust Registry Network
+        h2=`${isReviewer ? 'A new Registry Service Provider Enrollment request was submitted for' : 'We have received your enrollment request for'} ${entityName}`
+        p 
+            a(href=submissionReviewLink) Click here
+            span  to review this request.

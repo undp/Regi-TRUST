@@ -1,0 +1,132 @@
+extend ../layout
+
+block content
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css')
+    .container#review-page(style='min-height:80vh')
+        .page-heading.mt-5.mb-5.d-flex.justify-content-between.align-items-center
+            div
+                h1.mb-0 Network Entry
+                span.ml-2.mb-5.align-content-end.text-muted.text-uppercase.font-weight-bold Current Version: !{selectedRecord.version}
+                span.mx-3 |
+                a.ml-auto(href='#', data-bs-toggle='modal', data-bs-target='#versionModal', alt='View Version History')
+                    span View Version History
+                    //- i.fa.fa-history
+
+
+        .card.mb-5
+            h2.card-header Participating Entity Information
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Organization Details
+                    .px-2
+                        each val, key in json.TSPInformation
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                
+                .card-content-item
+                    h3.mb-3 Organization Address
+                    .px-2
+                        each val, key in json.TSPContacts  
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        .card.mb-5
+            h2.card-header Submitter
+            .card-content.p-4
+                .card-content-item
+                    h3.mb-3 Contact Information
+                    .px-2
+                        each val, key in json.Submitter
+                            <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+        if json.TSPServices.length > 0
+            .card.mb-5
+                h2.card-header Services
+                .p-4
+                    .accordion#servicesAccordion
+                        each service, i in json.TSPServices
+                            .accordion-item
+                                h2.accordion-header(id='heading' + i)
+                                    button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#collapse' + i, aria-expanded='false', aria-controls='collapse#{i}')
+                                        | #{service['Name:']}
+                                .accordion-collapse.collapse(id='collapse' + i, aria-labelledby='heading' + i, data-bs-parent='#servicesAccordion')
+                                    .row.accordion-body
+                                        .col.card-content-item
+                                            h4.mb-3 Service Details
+                                            .px-2
+                                            each val, key in service
+                                                <p><strong class="pe-2">!{key}</strong> !{val}</p>
+                                        .col.card-content-item
+                                            h4.mb-3 Service Operations Agent
+                                            .px-2
+                                            each val, key in json.ServiceOpsAgents[i]
+                                                <p><strong class="pe-2">!{key}</strong> !{val}</p>
+
+    // Modal for version history
+    .modal.fade#versionModal(tabindex='-1', role='dialog', aria-labelledby='versionModalLabel', aria-hidden='true')
+        .modal-dialog(role='document', style='max-width: 800px;')
+            .modal-content
+                .modal-header
+                    h5.modal-title#versionModalLabel Version History
+                    button.btn.close(type='button', data-bs-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    table#version-history-table.display
+
+block scripts
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js')
+    script.
+        $(document).ready(function() {
+            var selectedVersionData = null;
+            // Initialize the version history table when the modal is shown
+            $('#versionModal').on('shown.bs.modal', function () {
+                $('#version-history-table').DataTable({
+                    data: !{tspHistory},
+                    columns: [
+                        { 
+                            title: "Version", 
+                            data: "TSPVersion",
+                        },
+                        { 
+                            title: "Last Updated", 
+                            data: "LastUpdate",
+                            render: function(data, type, row, meta) {
+                                if (type === 'display' || type === 'filter') {
+                                    const date = new Date(data);
+                                    return new Intl.DateTimeFormat('en-US', {
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        year: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: true
+                                    }).format(date).replace(',', ' -');
+                                }
+                                return data; // Return raw data for sorting and other operations
+                            }
+                        },
+                        { 
+                            title: "Actions",
+                            data: null,
+                            orderable: false, // Disable ordering for this column
+                            className: 'text-center',
+                            render: function(data, type, row, meta) {
+                                if (type === 'display') {
+                                    // Assuming the row object contains a `link` property with the target URL
+                                    const link = window.location.pathname + '?version=' + data.TSPVersion; 
+                                    return `<button class="btn addBtn btn-md" onclick="window.location.href='${link}'">View Version</button>`;
+                                }
+                                return null;
+                            }
+                        }
+                    ],
+                    order: [[0, 'desc']], // Default sorting: First column (index 0), descending
+                    destroy: true,
+                    initComplete: function() {
+                    var $table = $('#version-history-table');
+                    $table.wrap('<div class="table-responsive" style="clear:both;"></div>');
+                    $table.css('width', '100%');
+                    }
+                });
+            });
+        });

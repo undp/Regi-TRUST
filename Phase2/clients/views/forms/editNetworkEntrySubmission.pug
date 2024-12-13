@@ -1,0 +1,262 @@
+extends ../layout  
+
+block content
+  link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css')
+  link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css')
+  //- import functions and mixins used to render form components
+  include includes/formFieldsRenderer.pug
+
+  .container
+    h1.mt-md-5.mb-md-5.mt-sm-4.mb-sm-4.mt-3.mb-3 
+      if showAddServiceForm==false
+        | Edit Network Entry Submission
+      else
+        | Service Information
+    if showAddServiceForm==false
+      .row
+        .col.col-xl
+          ul#progressbar
+            each section,i in formJSON.FormSections
+              - var step = i + 1
+              - var classList = step==currentStep ? ['p-1', 'active'] : ['p-1', 'complete']
+              if i < (formJSON.FormSections.length - 1)
+                li(class=classList)
+                  - invalidPage = validation[i] === 'false'
+                  button.btn.btn-link.progress-nav(type='submit' class=(invalidPage ? 'invalid' : '') form='network-entry' name='RedirectPage' value=step disabled=(step > visited))
+                    .text-center
+                      span.step-count(data-bs-toggle='tooltip' data-bs-placement='top' data-bs-html='true' title=`Step ${step}: ${section.SectionName}`)=step
+                      br 
+                      span.step-description.d-none.d-sm-inline=section.SectionName
+          .step-description__outside.text-center.d-block.d-sm-none=`Step ${currentStep}: ${formJSON.FormSections[currentStep-1].SectionName}`
+          if showAddServiceForm
+            a.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') &lsaquo; Back to services
+    if currentStep==formJSON.FormSections.length
+      .text-center.p-5
+      h3 Thank you! The data has been submitted.
+    else
+      if currentStep==3 && showAddServiceForm==false
+        .row.text-center.my-5
+          .col 
+              table#servicesTable.display
+              button#btn_addService.btn.addBtn
+                i.fa.fa-plus.me-2 
+                | Add Service
+            
+        .row
+          form#network-entry.mt-3( action=`/forms/gccn-network-entry-submission/${currentStep}${showAddServiceForm ? '?redirectPage='+currentStep : ''}`, method='POST')
+            .form-buttons.col
+              .form-buttons-left(style='order:1')
+                  button.btn.btn-lg.navigateBtn.mb-2(type='button', onclick=(`window.location.href='/forms/gccn-network-entry-submission/${currentStep-1}'`)) &lsaquo; Previous
+                  button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Cancel') Cancel
+              .form-buttons-right(style='order:2')
+                  button.btn.btn-lg.submitBtn.mb-2(type='submit', name='SubmitType', value='Save') Save and Exit
+      else
+        form#network-entry.mt-3( action=`/forms/gccn-network-entry-submission/${currentStep}${showAddServiceForm ? '?redirectPage='+currentStep : ''}`, method='POST')
+          #invalid-message.card.mb-5(style='display:none;margin:auto;')
+            h2.card-header Missing Required Fields 
+            .card-content.p-4
+              p We are unable to submit your form. You are missing required fields in these sections: 
+              ul
+                each page, i in validation
+                  if page === 'false'
+                    li= `Section ${i+1}: ${formJSON.FormSections[i].SectionName}`
+              input(type='text', style='visibility:hidden;', disabled, required)
+          each component in formJSON.FormSections[currentStep-1].Fields
+            .row
+              .col.col-xl-8
+                //- RenderComponent imported from includes/formFieldsRenderer.pug          
+                +RenderComponent(component)
+          each step,i in formJSON.FormSections
+            if(i < formJSON.FormSections.length - 1)
+              input.form-validation(type='hidden' name=`validation[${i}]` id='validation_'+i value=(validation[i]))
+          .form-buttons.mb-4.col.col-xl-8
+            .form-buttons-left
+              if currentStep != 1
+                button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Previous') &lsaquo; Previous
+                if showAddServiceForm
+                  button.btn.btn-lg.navigateBtn.mb-2(type='button', onclick='window.location.href="/forms/gccn-network-entry-submission/3"') Cancel
+                else
+                  button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Cancel') Cancel
+            .form-buttons-right
+              if currentStep != formJSON.FormSections.length-1
+                button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Next' style='order:2') Next &rsaquo;
+              -let isFormValid = !validation.includes('false')
+              button.btn.btn-lg.submitBtn.mb-2(type='submit', name='SubmitType', value='Save', disabled=!isFormValid) Save and Exit
+        
+
+block scripts
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js')
+  script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js')
+  script.
+    $(document).ready(function() {
+      let services = !{JSON.stringify(formData)}.TrustServiceProvider?.TSPServices?.TSPService;
+
+      if (services && services.length > 0) {
+        // Create a DataTable directly
+        $('#servicesTable').DataTable({
+          data: services, // Provide the array of objects
+          columns: [
+            { title: "Service Name", data: "ServiceInformation.ServiceName.Name" },
+            { 
+              title: "Service Type", 
+                data: "ServiceInformation.AdditionalServiceInformation.ServiceIssuedCredentialTypes.CredentialType", 
+                render : function(data, type, row) {
+                  if (Array.isArray(data)) {
+                    return data.filter(item => item.trim() !== '');
+                  }
+                  return data.split(', ').filter(item => item != '').join(', ');
+                }
+            },
+            { 
+              title: "Service Credentials", 
+              data: "ServiceInformation.ServiceTypeIdentifier", 
+              render : function(data, type, row) {
+                return data ? data : '';
+              }
+            },
+            {
+              title: "Actions",
+              data: null, // Actions column doesn't directly map to data
+              render: function(data, type, row, meta) {
+                return `
+                  <div class="d-flex justify-content-center gap-2">
+                    <button 
+                        class="btn addBtn border-0" 
+                        onclick="window.location.href='/forms/gccn-network-entry-submission/!{currentStep}/edit-service?index=${meta.row}'">
+                      <i class="fa fa-pencil"></i>
+                    </button>
+                    <button 
+                        class="btn btn-sm btn-link removeBtn"  
+                        onclick="window.location.href='/forms/gccn-network-entry-submission/!{currentStep}/remove-service?index=${meta.row}'">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>
+                    </button>
+                  </div>
+                `;
+              }
+            }
+          ]
+        });
+      }
+
+      $('#btn_addService').click(function() {
+        window.location.href = '/forms/gccn-network-entry-submission/#{currentStep}/add-service';
+      });
+    });
+
+  script.
+    // if edit service form, load saved data
+    if (#{isEditing}) {
+      let service = !{JSON.stringify(formData)}.TrustServiceProvider?.TSPServices?.TSPService[#{serviceIndex}];
+      
+      function populateFields(data, parentKey = '') {
+        for (let key in data) {
+          if (data.hasOwnProperty(key)) {
+            let fullKey = parentKey ? `${parentKey}[${key}]` : key;
+            
+            if (typeof data[key] === 'object' && !Array.isArray(data[key])) {
+              // Recursively handle nested objects
+              populateFields(data[key], fullKey);
+            } else {
+              // Find the input field with the corresponding name and set its value
+              let field = document.getElementById(`${fullKey}`);
+              if (field) {
+                field.value = data[key];
+              }
+            }
+          }
+        }
+      }
+      
+      if (service) {
+        populateFields(service, 'TrustServiceProvider[TSPServices][TSPService][0]');
+      }
+    }
+
+    // handle 'Add element' and 'Remove element' buttons click for editgrid component
+    var editGridTemplates = {};
+    $('.edit-grid-container').each(function(i, container) {
+      
+      $(container).find('.removeBtn').click(function() {
+        this.closest('.edit-grid-object').remove();
+      });
+
+      var template = $(container.firstElementChild).clone(true)[0];
+      editGridTemplates[container.id] = template;
+
+      $(container).find('.addBtn').click(function() {
+        var insertIndex = container.childElementCount == 1 ? 0 : parseInt($(container).find('.edit-grid-object').last().attr('data-index')) + 1;
+        
+        
+        var inserted = container.insertBefore($(template).clone(true)[0], container.lastElementChild);
+        inserted.dataset.index = insertIndex;
+        
+        var inputs = $(inserted).find('input,select,textarea').each(function() {
+          var id=this.id.split(/[\[\]]/);
+          id = id.filter(key => key !== '');
+          id[id.length - 2]=insertIndex;
+          id = id.map((key, i) => {
+            if(i > 0)
+              key = `[${key}]`
+
+            return key
+          })
+
+          id = id.join('')
+          this.id=id;
+          this.name=id;
+          this.value = '';
+          this.previousElementSibling.setAttribute('for', id);
+        });
+      });
+    });
+
+    $('form').validate({
+      errorClass: 'is-invalid',
+      focusInvalid: false,
+      invalidHandler: function(event, validator) {
+        if(validator.submitButton?.value === 'Next' || validator.submitButton?.value === 'Submit') {
+          if (validator.numberOfInvalids()) {
+            var element = validator.errorList[0].element;
+            element.focus();
+            element.scrollIntoView({behavior: 'smooth', block: 'center'});
+          }
+        }
+      }
+    })
+
+    $('#submit').click(function(evt) {
+      let formIsValid = $('.form-validation').filter(field => field.value === 'false').length === 0
+      if(!formIsValid) {
+        evt.preventDefault()
+        $('#invalid-message').css('display', 'inline-block')
+        $('#invalid-message').find('input').attr('disabled', false)
+      }
+    })
+
+    const checkPageValid = () => {
+      $('#validation_#{currentStep-1}').val($('form').get(0).reportValidity() ? 'true' : 'false')
+    }
+
+    const dontValidate = () => {
+      $('form').validate().settings.ignore = '*'
+    }
+
+    function navigateValidation () {
+      checkPageValid()
+      
+      if(this.value !== 'Next')
+        dontValidate()
+    }
+
+    $('.progress-nav').click(navigateValidation)
+
+    $('.navigateBtn[type="submit"]').click(navigateValidation)
+
+    var tooltipList = [];
+    $('.tooltip-icon').each((i, icon)=>tooltipList.push(new bootstrap.Popover(icon)));
+    if($(window).width()<576)
+      $('.step-count').each((i, icon)=>tooltipList.push(new bootstrap.Popover(icon)));

@@ -1,14 +1,2 @@
-
-
-## Regi-TRUST Phase 2 
-
-### Folder Structure
-
-Phase2 
-   |
-   |- tfm
-   |- zm
-   |- ns
-   |- auth
-   |- clients
-  
+# GCCNTrustRegistryNetwork
+Node Version Used: 16.14.0
