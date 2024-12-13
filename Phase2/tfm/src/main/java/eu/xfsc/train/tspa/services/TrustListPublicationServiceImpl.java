@@ -85,6 +85,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+import com.mongodb.client.model.Collation;
 
 @Service
 public class TrustListPublicationServiceImpl implements ITrustListPublicationService {
@@ -270,7 +271,13 @@ public class TrustListPublicationServiceImpl implements ITrustListPublicationSer
 				query.append("FrameworkInformation.TSLVersion", version);
 			}
 
-			Document result = collection.find(query).sort(sort).first();
+			Document result = collection.find(query)
+				.sort(sort)
+				.collation(Collation.builder()
+					.locale("en")
+					.numericOrdering(true)
+					.build())
+				.first();
 
 			if (result == null) {
 				throw new FileEmptyException("VERSION_NOT_FOUND. Trust framework " + frameworkName + " does not have version " + version);
