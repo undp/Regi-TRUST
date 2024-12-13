@@ -1,0 +1,1072 @@
+2024-12-03T11:21:09.301+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 31012 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-12-03T11:21:09.308+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-12-03T11:21:09.310+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T11:21:09.379+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-03T11:21:09.381+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-03T11:21:11.163+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-12-03T11:21:11.286+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 114 ms. Found 1 MongoDB repository interface.
+2024-12-03T11:21:12.248+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-12-03T11:21:12.268+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T11:21:12.269+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-12-03T11:21:12.390+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T11:21:12.393+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3010 ms
+2024-12-03T11:21:13.734+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/21.0.4+8-LTS-274"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, streamFactoryFactory=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@52627f13], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@7c1950a3, com.mongodb.Jep395RecordCodecProvider@2a22c133, com.mongodb.KotlinCodecProvider@69eac09b]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:26003], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@28b1a052], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-12-03T11:21:13.776+01:00  INFO 31012 --- [trust-framework-administration-authority] [cluster-ClusterId{value='674edb9965651a7cd60814a3', description='null'}-localhost:26003] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:26003, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=31671100}
+2024-12-03T11:21:13.962+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-03T11:21:14.532+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2024-12-03T11:21:14.580+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] e.xfsc.train.tspa.config.SecurityConfig  : reached security check
+2024-12-03T11:21:14.624+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7298985e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@351d2703, org.springframework.security.web.context.SecurityContextHolderFilter@12d2badd, org.springframework.security.web.header.HeaderWriterFilter@48ea9e9d, org.springframework.web.filter.CorsFilter@59299e69, org.springframework.security.web.authentication.logout.LogoutFilter@2b75977, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@6461073e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25b5c126, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@26fadca1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75194f19, org.springframework.security.web.session.SessionManagementFilter@18f7bcb7, org.springframework.security.web.access.ExceptionTranslationFilter@63aff935, org.springframework.security.web.access.intercept.AuthorizationFilter@2e6fb8fe]
+2024-12-03T11:21:15.265+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 16003 (http) with context path ''
+2024-12-03T11:21:15.278+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : ---------------------------------- Well-Known VC is genrating ----------------------------
+2024-12-03T11:21:15.291+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issuer : did:web:essif.iao.fraunhofer.de
+2024-12-03T11:21:15.294+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject ID : did:web:essif.iao.fraunhofer.de 
+2024-12-03T11:21:15.294+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject Origin :https://essif.iao.fraunhofer.de
+2024-12-03T11:21:15.295+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issue Date of well-known : 2024-12-03T11:21:15+01:00
+2024-12-03T11:21:15.296+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : wkvmethod did:web:essif.iao.fraunhofer.de#owner
+2024-12-03T11:21:16.418+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.utils.VCUtil          : Creating / Overwriting file in '/tmp/train-tspa/well-known/' with 'did-configuration.json'
+2024-12-03T11:21:16.422+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Started TspaApplication in 7.72 seconds (process running for 9.169)
+2024-12-03T11:21:34.245+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T11:21:34.246+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T11:21:34.249+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-03T11:21:35.474+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:21:35.476+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:21:35.477+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:21:35.478+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:21:35.543+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- GET SIMPLIFIED TRUSTLIST ---------------
+2024-12-03T11:21:35.544+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:21:35.632+01:00 ERROR 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Error fetching simplified trustlist from database for framework 'testFW.zm.regitrust.axyom.co' and version 'null'
+
+eu.xfsc.train.tspa.exceptions.FileEmptyException: FRAMEWORK_NOT_FOUND. No trustlist found for framework testFW.zm.regitrust.axyom.co
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:262)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:250)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController$$SpringCGLIB$$0.getSimplifiedTrustList(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2024-12-03T11:21:35.654+01:00 ERROR 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Failed to fetch simplified trustlist: 
+
+eu.xfsc.train.tspa.exceptions.FileEmptyException: FRAMEWORK_NOT_FOUND. No trustlist found for framework testFW.zm.regitrust.axyom.co
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSimplifiedTLfromDB(TrustListPublicationServiceImpl.java:262)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSimplifiedTrustList(TrustListPublicationController.java:250)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController$$SpringCGLIB$$0.getSimplifiedTrustList(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2024-12-03T11:21:51.814+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:21:51.815+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:21:51.816+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:21:51.817+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:21:51.831+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : All entries in the trust list collection have been erased.
+2024-12-03T11:22:06.019+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:22:06.020+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:22:06.020+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:22:06.021+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:22:06.030+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------
+2024-12-03T11:22:06.031+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : schemes received: {
+    "otherFrameworks": [
+        testFW.zm.regitrust.axyom.co
+    ]
+}
+2024-12-03T11:22:07.463+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/status} :
+2024-12-03T11:22:07.464+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-03T11:22:07.472+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-03T11:22:07.473+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] eu.xfsc.train.tspa.utils.TSPAUtil        : Nothing found in store folder: \tmp\train-tspa\store\trust-lists
+2024-12-03T11:22:07.508+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:22:07.577+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:22:07.579+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Zone Manger PUT Endpoint: https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/schemes
+2024-12-03T11:22:07.579+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Request : Request{method=PUT, url=https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/schemes}
+2024-12-03T11:22:08.423+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/schemes} :
+2024-12-03T11:22:08.425+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-03T11:22:08.425+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Endpoint for URL URI: https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/trust-list
+2024-12-03T11:22:09.405+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/trust-list} :
+2024-12-03T11:22:09.406+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-03T11:22:24.494+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:22:24.496+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:22:24.496+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:22:24.497+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:22:24.500+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : debug--------------- GET SIMPLIFIED TRUSTLIST ---------------
+2024-12-03T11:22:24.501+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:26:57.698+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:26:57.699+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:26:57.699+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:26:57.700+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:26:57.704+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : --------------- GET SPECIFIC TSP ---------------
+2024-12-03T11:26:57.705+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, TSP ID: 2, version: 1
+2024-12-03T11:26:57.717+01:00 ERROR 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Failed to fetch specific TSP: 
+
+eu.xfsc.train.tspa.exceptions.FileEmptyException: Version 1 for TSP 2 not found.
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.getSingleTSP(TrustListPublicationServiceImpl.java:545)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController.getSpecificTSP(TrustListPublicationController.java:371)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController$$SpringCGLIB$$0.getSpecificTSP(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2024-12-03T11:27:05.206+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:27:05.207+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:27:05.208+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:27:05.208+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:27:05.303+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:27:08.815+01:00  WARN 31012 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-03T11:27:08.816+01:00  WARN 31012 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-03T11:27:08.817+01:00  WARN 31012 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-03T11:27:13.533+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:27:13.534+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:27:13.534+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:27:13.535+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:27:13.538+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : --------------- GET SPECIFIC TSP ---------------
+2024-12-03T11:27:13.539+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, TSP ID: 2, version: 1
+2024-12-03T11:28:23.681+01:00  INFO 31012 --- [trust-framework-administration-authority] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-12-03T11:28:23.850+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 31012 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-12-03T11:28:23.851+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-12-03T11:28:23.852+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T11:28:24.681+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-12-03T11:28:24.706+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 1 MongoDB repository interface.
+2024-12-03T11:28:24.859+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-12-03T11:28:24.861+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T11:28:24.861+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-12-03T11:28:24.916+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T11:28:24.917+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1057 ms
+2024-12-03T11:28:25.176+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/21.0.4+8-LTS-274"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, streamFactoryFactory=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@1f8c26fc], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@7c1950a3, com.mongodb.Jep395RecordCodecProvider@2a22c133, com.mongodb.KotlinCodecProvider@69eac09b]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:26003], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@101f508], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-12-03T11:28:25.181+01:00  INFO 31012 --- [trust-framework-administration-authority] [cluster-ClusterId{value='674edd4965651a7cd60814a7', description='null'}-localhost:26003] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:26003, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3197500}
+2024-12-03T11:28:25.201+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-03T11:28:25.332+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2024-12-03T11:28:25.349+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] e.xfsc.train.tspa.config.SecurityConfig  : reached security check
+2024-12-03T11:28:25.356+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2319c83b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4031d6f2, org.springframework.security.web.context.SecurityContextHolderFilter@78027254, org.springframework.security.web.header.HeaderWriterFilter@23a6c968, org.springframework.web.filter.CorsFilter@17e7ba28, org.springframework.security.web.authentication.logout.LogoutFilter@442ce645, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@a408a4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4dad44c7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@58552993, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@37a66158, org.springframework.security.web.session.SessionManagementFilter@4947c646, org.springframework.security.web.access.ExceptionTranslationFilter@c8733a0, org.springframework.security.web.access.intercept.AuthorizationFilter@1268bd29]
+2024-12-03T11:28:25.568+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 16003 (http) with context path ''
+2024-12-03T11:28:25.589+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : ---------------------------------- Well-Known VC is genrating ----------------------------
+2024-12-03T11:28:25.601+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issuer : did:web:essif.iao.fraunhofer.de
+2024-12-03T11:28:25.602+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject ID : did:web:essif.iao.fraunhofer.de 
+2024-12-03T11:28:25.603+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject Origin :https://essif.iao.fraunhofer.de
+2024-12-03T11:28:25.603+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issue Date of well-known : 2024-12-03T11:28:25+01:00
+2024-12-03T11:28:25.605+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : wkvmethod did:web:essif.iao.fraunhofer.de#owner
+2024-12-03T11:28:25.647+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.utils.VCUtil          : Creating / Overwriting file in '/tmp/train-tspa/well-known/' with 'did-configuration.json'
+2024-12-03T11:28:25.650+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Started TspaApplication in 1.875 seconds (process running for 438.396)
+2024-12-03T11:28:25.655+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-12-03T11:32:29.000+01:00  INFO 31012 --- [trust-framework-administration-authority] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-12-03T11:32:29.155+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 31012 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-12-03T11:32:29.156+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-12-03T11:32:29.157+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T11:32:29.713+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-12-03T11:32:29.730+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 1 MongoDB repository interface.
+2024-12-03T11:32:29.834+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-12-03T11:32:29.836+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T11:32:29.837+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-12-03T11:32:29.875+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T11:32:29.876+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 713 ms
+2024-12-03T11:32:30.038+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/21.0.4+8-LTS-274"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, streamFactoryFactory=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@4bf0c180], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@7c1950a3, com.mongodb.Jep395RecordCodecProvider@2a22c133, com.mongodb.KotlinCodecProvider@69eac09b]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:26003], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@32df565b], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-12-03T11:32:30.042+01:00  INFO 31012 --- [trust-framework-administration-authority] [cluster-ClusterId{value='674ede3e65651a7cd60814a8', description='null'}-localhost:26003] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:26003, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2330300}
+2024-12-03T11:32:30.058+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-03T11:32:30.154+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2024-12-03T11:32:30.172+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] e.xfsc.train.tspa.config.SecurityConfig  : reached security check
+2024-12-03T11:32:30.178+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ba441e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b309e1d, org.springframework.security.web.context.SecurityContextHolderFilter@61f94171, org.springframework.security.web.header.HeaderWriterFilter@7e84b575, org.springframework.web.filter.CorsFilter@50e18b5c, org.springframework.security.web.authentication.logout.LogoutFilter@534d1fe2, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@702de209, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a2ad756, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31dee87b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f4316e3, org.springframework.security.web.session.SessionManagementFilter@44b1a65e, org.springframework.security.web.access.ExceptionTranslationFilter@7f4e82ca, org.springframework.security.web.access.intercept.AuthorizationFilter@293a420d]
+2024-12-03T11:32:30.311+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 16003 (http) with context path ''
+2024-12-03T11:32:30.317+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : ---------------------------------- Well-Known VC is genrating ----------------------------
+2024-12-03T11:32:30.321+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issuer : did:web:essif.iao.fraunhofer.de
+2024-12-03T11:32:30.322+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject ID : did:web:essif.iao.fraunhofer.de 
+2024-12-03T11:32:30.322+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject Origin :https://essif.iao.fraunhofer.de
+2024-12-03T11:32:30.322+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issue Date of well-known : 2024-12-03T11:32:30+01:00
+2024-12-03T11:32:30.324+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : wkvmethod did:web:essif.iao.fraunhofer.de#owner
+2024-12-03T11:32:30.352+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.utils.VCUtil          : Creating / Overwriting file in '/tmp/train-tspa/well-known/' with 'did-configuration.json'
+2024-12-03T11:32:30.354+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Started TspaApplication in 1.274 seconds (process running for 683.1)
+2024-12-03T11:32:30.358+01:00  INFO 31012 --- [trust-framework-administration-authority] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-12-03T11:32:37.471+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T11:32:37.472+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T11:32:37.474+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T11:32:38.352+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:32:38.353+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:32:38.354+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:32:38.355+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:32:38.359+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- GET SIMPLIFIED TRUSTLIST ---------------
+2024-12-03T11:32:38.360+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:32:47.768+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:32:47.769+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:32:47.769+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:32:47.770+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:32:47.791+01:00 ERROR 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Error adding/updating TSP for framework testFW.zm.regitrust.axyom.co
+
+eu.xfsc.train.tspa.exceptions.PropertiesAccessException: TSP 2 already exists.
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.addTSPToTrustList(TrustListPublicationServiceImpl.java:434)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController.addTSPToTrustList(TrustListPublicationController.java:334)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController$$SpringCGLIB$$0.addTSPToTrustList(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2024-12-03T11:32:47.809+01:00 ERROR 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Failed to add TSP to trustlist: 
+
+eu.xfsc.train.tspa.exceptions.PropertiesAccessException: Failed to create TSP: TSP 2 already exists.
+	at eu.xfsc.train.tspa.services.TrustListPublicationServiceImpl.addTSPToTrustList(TrustListPublicationServiceImpl.java:495)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController.addTSPToTrustList(TrustListPublicationController.java:334)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at eu.xfsc.train.tspa.controller.TrustListPublicationController$$SpringCGLIB$$0.addTSPToTrustList(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2024-12-03T11:32:57.458+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:32:57.459+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:32:57.460+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:32:57.460+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:32:57.517+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:33:03.784+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:33:03.786+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:33:03.786+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:33:03.787+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:33:03.789+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : debug--------------- GET SIMPLIFIED TRUSTLIST ---------------
+2024-12-03T11:33:03.790+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:33:49.498+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:33:49.499+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:33:49.499+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:33:49.500+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:33:49.511+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : Deleted XML file: testFW.zm.regitrust.axyom.co.xml
+2024-12-03T11:33:49.511+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : All entries in the trust list collection have been erased.
+2024-12-03T11:33:54.708+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:33:54.709+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:33:54.710+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:33:54.710+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:33:54.713+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------
+2024-12-03T11:33:54.713+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : schemes received: {
+    "otherFrameworks": [
+        testFW.zm.regitrust.axyom.co
+    ]
+}
+2024-12-03T11:33:55.558+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/status} :
+2024-12-03T11:33:55.559+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-03T11:33:55.561+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-03T11:33:55.561+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] eu.xfsc.train.tspa.utils.TSPAUtil        : Nothing found in store folder: \tmp\train-tspa\store\trust-lists
+2024-12-03T11:33:55.565+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:33:55.591+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:33:55.593+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Zone Manger PUT Endpoint: https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/schemes
+2024-12-03T11:33:55.594+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Request : Request{method=PUT, url=https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/schemes}
+2024-12-03T11:33:56.435+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/schemes} :
+2024-12-03T11:33:56.436+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-03T11:33:56.437+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Endpoint for URL URI: https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/trust-list
+2024-12-03T11:33:57.328+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testFW.zm.regitrust.axyom.co/trust-list} :
+2024-12-03T11:33:57.330+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-03T11:34:02.737+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:02.738+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:02.738+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:02.739+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:02.741+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-03T11:34:02.742+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "999956233",
+        "TSLType": "http://TRAIN/TrstSvc/TrustedList/TSLType/federation1-POC",
+        "ListIssueDateTime": "2024-11-10T09:56:27.6258094",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testFW.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22",
+                        "PostalCode": "10110",
+                        "CountryName": "ID"
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "The applicable legal framework for the present trusted list is regulated by\n        the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    }
+}
+2024-12-03T11:34:02.762+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-03T11:34:02.775+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 2
+2024-12-03T11:34:02.776+01:00  WARN 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-03T11:34:02.777+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:34:06.228+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:06.229+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:06.229+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:06.229+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:06.231+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : debug--------------- GET SIMPLIFIED TRUSTLIST ---------------
+2024-12-03T11:34:06.232+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:34:12.705+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:12.706+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:12.707+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:12.708+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:12.710+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : debug--------------- GET TRUSTLIST (XML) ---------------
+2024-12-03T11:34:12.711+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:34:12.712+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Stored Type: INTERNAL
+2024-12-03T11:34:12.712+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-03T11:34:12.721+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] eu.xfsc.train.tspa.utils.TSPAUtil        : Found file, it exists!
+2024-12-03T11:34:12.722+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Local store; fetching trustlist testFW.zm.regitrust.axyom.co from /tmp/train-tspa/store/trust-lists/
+2024-12-03T11:34:17.353+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:17.354+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:17.354+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:17.355+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:17.356+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : --------------- GET TRUSTLIST VERSIONS ---------------
+2024-12-03T11:34:30.999+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:31.000+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:31.000+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:31.001+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:31.047+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:34:36.299+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:36.300+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:36.301+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:36.301+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:36.329+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:34:43.494+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:43.495+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:43.496+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:43.496+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:43.520+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testFW.zm.regitrust.axyom.co
+2024-12-03T11:34:46.453+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:46.454+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:46.455+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:46.455+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:46.457+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : --------------- GET TRUSTLIST VERSIONS ---------------
+2024-12-03T11:34:49.402+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:34:49.402+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:34:49.403+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:34:49.404+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:34:49.405+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : debug--------------- GET TRUSTLIST (XML) ---------------
+2024-12-03T11:34:49.406+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
+2024-12-03T11:34:49.406+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Stored Type: INTERNAL
+2024-12-03T11:34:49.407+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-03T11:34:49.408+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] eu.xfsc.train.tspa.utils.TSPAUtil        : Found file, it exists!
+2024-12-03T11:34:49.408+01:00  INFO 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Local store; fetching trustlist testFW.zm.regitrust.axyom.co from /tmp/train-tspa/store/trust-lists/
+2024-12-03T11:35:08.508+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:35:08.509+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:35:08.509+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:35:08.510+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:35:08.513+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- GET TRUSTLIST (XML) ---------------
+2024-12-03T11:35:08.513+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: 4
+2024-12-03T11:35:08.514+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Stored Type: INTERNAL
+2024-12-03T11:35:19.585+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:35:19.586+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:35:19.586+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:35:19.587+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:35:19.588+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- GET TRUSTLIST (XML) ---------------
+2024-12-03T11:35:19.589+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: 3
+2024-12-03T11:35:19.589+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Stored Type: INTERNAL
+2024-12-03T11:35:30.551+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{GCCN={roles=[Registry_submitter]}, RegiTRUST_Client={roles=[Registry_submitter]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-03T11:35:30.552+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : GCCN Roles:[Registry_submitter]
+2024-12-03T11:35:30.553+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_submitter]
+2024-12-03T11:35:30.553+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_submitter]
+2024-12-03T11:35:30.555+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : debug--------------- GET SIMPLIFIED TRUSTLIST ---------------
+2024-12-03T11:35:30.555+01:00 DEBUG 31012 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Requested framework name: testFW.zm.regitrust.axyom.co, version: null
