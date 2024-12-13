@@ -651,3 +651,2739 @@ Caused by: java.net.ConnectException: Connection refused: getsockopt
 2024-12-13T11:26:17.976+01:00  INFO 27796 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.utils.VCUtil          : Creating / Overwriting file in '/tmp/train-tspa/well-known/' with 'did-configuration.json'
 2024-12-13T11:26:17.979+01:00  INFO 27796 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Started TspaApplication in 2.479 seconds (process running for 105.056)
 2024-12-13T11:26:17.985+01:00  INFO 27796 --- [trust-framework-administration-authority] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-12-13T14:02:39.128+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Starting TspaApplication using Java 21.0.4 with PID 26652 (C:\Regi-TRUST\Phase2\tfm\target\classes started by vargas in C:\Regi-TRUST)
+2024-12-13T14:02:39.131+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Running with Spring Boot v3.2.2, Spring v6.1.3
+2024-12-13T14:02:39.134+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-13T14:02:39.223+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-12-13T14:02:39.224+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-12-13T14:02:41.113+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-12-13T14:02:41.227+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 1 MongoDB repository interface.
+2024-12-13T14:02:42.483+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 16003 (http)
+2024-12-13T14:02:42.512+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-13T14:02:42.513+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-12-13T14:02:42.709+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-13T14:02:42.712+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3485 ms
+2024-12-13T14:02:44.633+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/21.0.4+8-LTS-274"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, streamFactoryFactory=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@1e9b71af], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@220c1016, com.mongodb.Jep395RecordCodecProvider@1d5de2d4, com.mongodb.KotlinCodecProvider@384b721d]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:26003], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@7d186ab2], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-12-13T14:02:44.682+01:00  INFO 26652 --- [trust-framework-administration-authority] [cluster-ClusterId{value='675c3074ea537e2a8809d771', description='null'}-localhost:26003] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:26003, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=37964800}
+2024-12-13T14:02:44.920+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-12-13T14:02:45.885+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2024-12-13T14:02:45.984+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [restartedMain] e.xfsc.train.tspa.config.SecurityConfig  : reached security check
+2024-12-13T14:02:46.070+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@304430c4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@69ca4833, org.springframework.security.web.context.SecurityContextHolderFilter@1c9ff787, org.springframework.security.web.header.HeaderWriterFilter@1bda3567, org.springframework.web.filter.CorsFilter@5743c7d5, org.springframework.security.web.authentication.logout.LogoutFilter@14c2b893, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@5d9c757a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@690e14f0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@397419d4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@657b8a76, org.springframework.security.web.session.SessionManagementFilter@402f9720, org.springframework.security.web.access.ExceptionTranslationFilter@14c50560, org.springframework.security.web.access.intercept.AuthorizationFilter@51435e9e]
+2024-12-13T14:02:47.014+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 16003 (http) with context path ''
+2024-12-13T14:02:47.033+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : ---------------------------------- Well-Known VC is genrating ----------------------------
+2024-12-13T14:02:47.047+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issuer : did:web:essif.iao.fraunhofer.de
+2024-12-13T14:02:47.050+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject ID : did:web:essif.iao.fraunhofer.de 
+2024-12-13T14:02:47.052+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Credential subject Origin :https://essif.iao.fraunhofer.de
+2024-12-13T14:02:47.052+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : Issue Date of well-known : 2024-12-13T14:02:47+01:00
+2024-12-13T14:02:47.054+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [restartedMain] e.x.t.t.w.WellKnownConfiguration         : wkvmethod did:web:essif.iao.fraunhofer.de#owner
+2024-12-13T14:02:48.855+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.utils.VCUtil          : Creating / Overwriting file in '/tmp/train-tspa/well-known/' with 'did-configuration.json'
+2024-12-13T14:02:48.860+01:00  INFO 26652 --- [trust-framework-administration-authority] [restartedMain] eu.xfsc.train.tspa.TspaApplication       : Started TspaApplication in 10.728 seconds (process running for 12.037)
+2024-12-13T14:02:59.660+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13T14:02:59.661+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-13T14:02:59.663+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-13T14:03:00.797+01:00 ERROR 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.e.CentralControllerAdvisory      : InvalidBearerTokenException, An error occurred while attempting to decode the Jwt: Jwt expired at 2024-12-13T10:49:59Z
+2024-12-13T14:03:00.813+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.oauth2.server.resource.InvalidBearerTokenException: An error occurred while attempting to decode the Jwt: Jwt expired at 2024-12-13T10:49:59Z]
+2024-12-13T14:03:31.509+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:03:31.510+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:03:31.511+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:03:31.618+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Deleted XML file: testlocal2.zm.regitrust.axyom.co.xml
+2024-12-13T14:03:31.619+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : All entries in the trust list collection have been erased.
+2024-12-13T14:03:41.853+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:03:41.854+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:03:41.855+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:03:41.876+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------
+2024-12-13T14:03:41.877+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : schemes received: {
+    "otherFrameworks": [
+        testlocal2.zm.regitrust.axyom.co
+    ]
+}
+2024-12-13T14:03:43.294+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/status} :
+2024-12-13T14:03:43.294+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:03:43.303+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-13T14:03:43.304+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] eu.xfsc.train.tspa.utils.TSPAUtil        : Nothing found in store folder: \tmp\train-tspa\store\trust-lists
+2024-12-13T14:03:43.332+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:03:43.397+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:03:43.399+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Zone Manger PUT Endpoint: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes
+2024-12-13T14:03:43.400+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Request : Request{method=PUT, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes}
+2024-12-13T14:03:44.232+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes} :
+2024-12-13T14:03:44.233+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:03:44.234+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Endpoint for URL URI: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list
+2024-12-13T14:03:45.152+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list} :
+2024-12-13T14:03:45.153+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:03:51.570+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:03:51.572+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:03:51.572+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:03:51.575+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:03:51.576+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:03:51.604+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:05:50.884+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 2
+2024-12-13T14:05:58.991+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:05:58.996+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:07.487+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:07.488+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:07.489+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:07.492+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:07.493+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:07.504+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:07.513+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 3
+2024-12-13T14:06:07.514+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:07.515+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:08.461+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:08.462+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:08.462+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:08.465+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:08.465+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:08.477+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:08.487+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 4
+2024-12-13T14:06:08.488+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:08.490+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:09.247+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:09.248+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:09.249+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:09.251+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:09.252+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:09.263+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:09.272+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 5
+2024-12-13T14:06:09.272+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:09.274+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:09.990+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:09.991+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:09.991+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:09.993+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:09.994+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:10.004+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:10.013+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 6
+2024-12-13T14:06:10.014+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:10.015+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:10.717+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:10.718+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:10.718+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:10.720+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:10.721+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:10.731+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:10.739+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 7
+2024-12-13T14:06:10.740+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:10.741+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:11.489+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:11.490+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:11.490+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:11.493+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:11.494+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:11.504+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:11.513+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 8
+2024-12-13T14:06:11.516+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:11.517+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:12.157+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:12.157+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:12.157+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:12.160+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:12.161+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:12.170+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:12.178+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 9
+2024-12-13T14:06:12.179+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:12.180+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:12.965+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:12.967+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:12.967+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:12.969+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:12.969+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:12.978+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:12.986+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:06:12.986+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:12.987+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:13.874+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:13.875+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:13.876+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:13.879+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:13.879+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:13.887+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:13.896+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:06:13.897+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:13.898+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:19.399+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:19.400+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:19.401+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:19.402+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:19.403+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:19.412+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:19.421+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:06:19.421+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:19.422+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:22.884+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:22.884+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:22.885+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:22.893+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : Deleted XML file: testlocal2.zm.regitrust.axyom.co.xml
+2024-12-13T14:06:22.894+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : All entries in the trust list collection have been erased.
+2024-12-13T14:06:25.635+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:25.636+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:25.637+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:25.640+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------
+2024-12-13T14:06:25.640+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : schemes received: {
+    "otherFrameworks": [
+        testlocal2.zm.regitrust.axyom.co
+    ]
+}
+2024-12-13T14:06:26.023+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:06:26.024+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:06:26.025+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:06:26.435+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/status} :
+2024-12-13T14:06:26.437+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:06:26.437+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-13T14:06:26.438+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] eu.xfsc.train.tspa.utils.TSPAUtil        : Nothing found in store folder: \tmp\train-tspa\store\trust-lists
+2024-12-13T14:06:26.441+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:26.467+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:26.467+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Zone Manger PUT Endpoint: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes
+2024-12-13T14:06:26.468+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Request : Request{method=PUT, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes}
+2024-12-13T14:06:27.296+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes} :
+2024-12-13T14:06:27.297+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:06:27.297+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Endpoint for URL URI: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list
+2024-12-13T14:06:28.197+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list} :
+2024-12-13T14:06:28.198+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:06:31.572+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:31.572+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:31.572+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:31.574+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:31.574+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:31.582+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:31.593+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 2
+2024-12-13T14:06:31.593+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:31.594+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:32.435+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:32.436+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:32.436+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:32.439+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:32.439+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:32.448+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:32.456+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 3
+2024-12-13T14:06:32.456+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:32.457+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:33.087+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:33.088+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:33.088+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:33.091+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:33.091+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:33.099+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:33.107+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 4
+2024-12-13T14:06:33.108+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:33.108+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:33.786+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:33.787+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:33.787+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:33.789+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:33.790+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:33.797+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:33.805+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 5
+2024-12-13T14:06:33.806+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:33.807+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:34.397+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:34.398+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:34.399+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:34.403+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:34.404+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:34.412+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:34.419+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 6
+2024-12-13T14:06:34.420+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:34.421+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:35.066+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:35.067+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:35.068+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:35.070+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:35.070+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:35.078+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:35.085+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 7
+2024-12-13T14:06:35.085+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:35.086+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:36.072+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:36.072+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:36.073+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:36.076+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:36.076+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:36.085+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:06:36.094+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 8
+2024-12-13T14:06:36.094+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:06:36.095+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:06:48.802+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:06:48.803+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:06:48.804+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:06:48.806+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:06:48.806+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:06:48.813+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:07:40.364+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 9
+2024-12-13T14:07:40.365+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:07:40.367+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:07:45.307+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:07:45.307+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:07:45.308+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:07:45.310+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:07:45.311+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:07:45.320+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:08:32.390+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:08:32.392+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:08:32.395+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:08:36.678+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:08:36.679+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:08:36.680+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:08:36.682+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:08:36.682+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:08:36.691+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:17.128+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:09:17.129+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:17.129+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:21.304+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:21.306+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:21.306+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:21.313+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Deleted XML file: testlocal2.zm.regitrust.axyom.co.xml
+2024-12-13T14:09:21.313+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : All entries in the trust list collection have been erased.
+2024-12-13T14:09:25.063+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:25.063+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:25.064+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:25.065+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------
+2024-12-13T14:09:25.066+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : schemes received: {
+    "otherFrameworks": [
+        testlocal2.zm.regitrust.axyom.co
+    ]
+}
+2024-12-13T14:09:25.485+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:09:25.486+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:09:25.486+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:09:25.893+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/status} :
+2024-12-13T14:09:25.894+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:09:25.895+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-13T14:09:25.896+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] eu.xfsc.train.tspa.utils.TSPAUtil        : Nothing found in store folder: \tmp\train-tspa\store\trust-lists
+2024-12-13T14:09:25.899+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:25.921+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:25.922+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Zone Manger PUT Endpoint: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes
+2024-12-13T14:09:25.923+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Request : Request{method=PUT, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes}
+2024-12-13T14:09:26.754+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes} :
+2024-12-13T14:09:26.755+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:09:26.755+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Endpoint for URL URI: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list
+2024-12-13T14:09:27.682+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list} :
+2024-12-13T14:09:27.683+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:09:38.856+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:38.858+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:38.858+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:38.860+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:38.861+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:38.869+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:38.877+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 2
+2024-12-13T14:09:38.878+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:38.879+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:42.475+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:42.476+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:42.477+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:42.479+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:42.479+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:42.488+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:42.495+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 3
+2024-12-13T14:09:42.495+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:42.496+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:43.142+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:43.143+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:43.143+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:43.145+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:43.146+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:43.155+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:43.162+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 4
+2024-12-13T14:09:43.163+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:43.164+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:43.758+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:43.759+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:43.759+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:43.761+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:43.762+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:43.769+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:43.775+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 5
+2024-12-13T14:09:43.775+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:43.776+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:44.394+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:44.395+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:44.395+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:44.397+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:44.398+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:44.408+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:44.417+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 6
+2024-12-13T14:09:44.418+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:44.419+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:45.034+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:45.035+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:45.036+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:45.037+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:45.038+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:45.046+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:45.054+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 7
+2024-12-13T14:09:45.054+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:45.056+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:45.996+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:45.997+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:45.998+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:46.000+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:46.001+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:46.009+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:46.017+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 8
+2024-12-13T14:09:46.018+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:46.018+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:50.552+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:50.553+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:50.554+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:50.556+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:50.557+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:50.565+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:09:50.571+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 9
+2024-12-13T14:09:50.572+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:09:50.573+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:09:55.213+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:09:55.214+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:09:55.214+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:09:55.216+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:09:55.217+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "10",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:09:55.223+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:11:58.834+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:12:16.491+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:12:36.770+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:14:12.752+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:14:12.753+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:14:12.753+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:14:12.756+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:14:12.757+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:14:12.765+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:14:27.139+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:14:27.141+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:14:27.141+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:15:31.135+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:15:31.136+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:31.136+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:35.496+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:35.498+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:35.498+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:35.507+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : Deleted XML file: testlocal2.zm.regitrust.axyom.co.xml
+2024-12-13T14:15:35.507+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-5] e.x.t.t.c.TrustListPublicationController : All entries in the trust list collection have been erased.
+2024-12-13T14:15:39.854+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:39.855+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:39.856+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:39.858+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : debug--------------- PUBLISH TRUSTLIST (from XML template) ---------------
+2024-12-13T14:15:39.858+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.x.t.t.c.TrustListPublicationController : schemes received: {
+    "otherFrameworks": [
+        testlocal2.zm.regitrust.axyom.co
+    ]
+}
+2024-12-13T14:15:40.697+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/status} :
+2024-12-13T14:15:40.699+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:15:40.700+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : Local store; Configuration.
+2024-12-13T14:15:40.700+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] eu.xfsc.train.tspa.utils.TSPAUtil        : Nothing found in store folder: \tmp\train-tspa\store\trust-lists
+2024-12-13T14:15:40.704+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:40.733+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:40.734+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Zone Manger PUT Endpoint: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes
+2024-12-13T14:15:40.735+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Request : Request{method=PUT, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes}
+2024-12-13T14:15:41.601+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/schemes} :
+2024-12-13T14:15:41.603+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:15:41.603+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Endpoint for URL URI: https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list
+2024-12-13T14:15:42.502+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Response Response{protocol=http/1.1, code=200, message=OK, url=https://zm.regitrust.axyom.co/names/testlocal2.zm.regitrust.axyom.co/trust-list} :
+2024-12-13T14:15:42.503+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-7] e.xfsc.train.tspa.services.ZoneManager   : Response Code: 200
+2024-12-13T14:15:44.716+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:44.717+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:44.718+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:44.720+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:44.720+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:44.728+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:44.737+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 2
+2024-12-13T14:15:44.737+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:44.738+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:45.770+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:45.771+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:45.772+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:45.773+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:45.774+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:45.781+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:45.788+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 3
+2024-12-13T14:15:45.789+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:45.790+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:46.328+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:46.328+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:46.329+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:46.331+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:46.331+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:46.339+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:46.345+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 4
+2024-12-13T14:15:46.346+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:46.347+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-9] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:46.892+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:46.893+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:46.894+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:46.896+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:46.897+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:46.905+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:46.910+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 5
+2024-12-13T14:15:46.911+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:46.911+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-10] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:47.421+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:47.422+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:47.422+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:47.424+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:47.425+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:47.431+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:47.439+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 6
+2024-12-13T14:15:47.440+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:47.440+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-1] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:47.975+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:47.976+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:47.976+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:47.978+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:47.979+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:47.987+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:47.993+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 7
+2024-12-13T14:15:47.994+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:47.994+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-3] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:15:48.983+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:15:48.984+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:15:48.985+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:15:48.987+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:15:48.988+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:15:48.996+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:15:49.003+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 8
+2024-12-13T14:15:49.004+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:15:49.004+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-2] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:16:15.051+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:16:15.051+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:16:15.052+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:16:15.054+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:16:15.054+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:16:15.062+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:18:14.170+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 9
+2024-12-13T14:18:14.172+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:18:14.188+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-4] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:18:16.470+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:18:16.471+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:18:16.472+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:18:16.474+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:18:16.474+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:18:16.482+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:18:44.929+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:18:44.930+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:18:44.930+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-6] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:18:49.294+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RESOURCE_ACCESS_CLAIM:{RegiTRUST_Client={roles=[Registry_admin]}, account={roles=[manage-account, manage-account-links, view-profile]}}
+2024-12-13T14:18:49.295+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : RegiTRUST Roles:[Registry_admin]
+2024-12-13T14:18:49.295+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.xfsc.train.tspa.config.SecurityConfig  : Final grantedAuthorities:[Registry_admin]
+2024-12-13T14:18:49.297+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : debug--------------- UPDATE SCHEME INFORMATION IN TRUSTLIST ---------------
+2024-12-13T14:18:49.298+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] e.x.t.t.c.TrustListPublicationController : Received trust list object: {
+    "FrameworkInformation": {
+        "TSLVersion": "0",
+        "ListIssueDateTime": "2024-12-10T19:44:44.322Z",
+        "NextUpdate": "2030-12-31T00:00:00Z",
+        "FrameworkName": {
+            "Name": "testlocal2.zm.regitrust.axyom.co"
+        },
+        "FrameworkOperatorName": {
+            "Name": "Federation 1"
+        },
+        "TSLType": "https://test.com",
+        "FrameworkOperatorAddress": {
+            "PostalAddresses": {
+                "PostalAddress": [
+                    {
+                        "StreetAddress": "Gedung Kementerian Kesehatan",
+                        "Locality": "Jakarta22222222",
+                        "State": "",
+                        "PostalCode": "10110",
+                        "CountryName": ""
+                    }
+                ]
+            },
+            "ElectronicAddress": {
+                "URI": "mailto:contact@kemkes.go.id"
+            }
+        },
+        "FrameworkInformationURI": {
+            "URI": "https://www.kemkes.go.id/haj-health-credentials"
+        },
+        "FrameworkTypeCommunityRules": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeTerritory": "ID",
+        "PolicyOrLegalNotice": {
+            "TSLLegalNotice": "This trust list is regulated by the legal framework established by the Indonesian Government."
+        },
+        "DistributionPoints": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "SchemeExtensions": {
+            "URI": "https://www.kemkes.go.id/haj-health-rules"
+        },
+        "PointersToOtherTSL": [
+            {
+                "URI": null
+            }
+        ]
+    },
+    "validation": [
+        "true"
+    ],
+    "SubmitType": "Submit"
+}
+2024-12-13T14:18:49.306+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Set the properties for the Object mapper
+2024-12-13T14:19:12.862+01:00 DEBUG 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : Trustlist version updated to 10
+2024-12-13T14:19:12.863+01:00  WARN 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : No simplified TSPs found in this trustlist
+2024-12-13T14:19:12.863+01:00  INFO 26652 --- [trust-framework-administration-authority] [http-nio-16003-exec-8] .x.t.t.s.TrustListPublicationServiceImpl : New XML trust list is created in local store  and DB. Framework name: testlocal2.zm.regitrust.axyom.co
+2024-12-13T14:20:41.982+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:20:41.983+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:20:41.983+01:00  WARN 26652 --- [trust-framework-administration-authority] [OkHttp ConnectionPool] okhttp3.OkHttpClient                     : A connection to https://zm.regitrust.axyom.co/ was leaked. Did you forget to close a response body? To see where this was allocated, set the OkHttpClient logger level to FINE: Logger.getLogger(OkHttpClient.class.getName()).setLevel(Level.FINE);
+2024-12-13T14:22:24.889+01:00  INFO 26652 --- [trust-framework-administration-authority] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
