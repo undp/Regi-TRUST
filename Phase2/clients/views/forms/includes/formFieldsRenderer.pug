@@ -23,8 +23,10 @@
     }
   }
 
-  function addValidationAttribute(component, attributes){
-    if(component.Validation && component.Validation.Required)
+  function addValidationAttribute(component, attributes, inputType=null){
+    if (inputType === 'checkbox')
+      attributes['data-group-required'] = true;
+    else if(component.Validation && component.Validation.Required)
       attributes.required = 'required';
   }
 
@@ -100,8 +102,10 @@ mixin RenderCheckBox(field)
   fieldset.mb-4
     +RenderLegend(field)
     - var valContainer = {}
+    - var attributes = {};
     - addSavedData(field, valContainer)
-    .container-object
+    - addValidationAttribute(field, attributes, 'checkbox');
+    .container-object&attributes(attributes)
       input(type='hidden', value=null, name=field.Key+'[]')
       each value in field.Values
         - valIdNum++
@@ -113,13 +117,15 @@ mixin RenderRadio(field)
   fieldset.mb-4
       +RenderLegend(field)
       - var valContainer = {}
+      - var attributes = {}
       - addSavedData(field, valContainer)
+      - addValidationAttribute(field, attributes);
       .container-object
-        each value in field.Values
-          -valIdNum++
+        each value, index in field.Values
+          - valIdNum++
           .form-radio
-              input.form-radio-input(type='radio', value=value.Value, id='rb-val-'+valIdNum, name=field.Key, checked=(valContainer.value===value.Value))
-              label.form-radio-label(for='rb-val-'+valIdNum)=value.Label
+            input.form-radio-input(type='radio', value=value.Value, id='rb-val-'+valIdNum, name=field.Key, checked=(valContainer.value === value.Value || (!valContainer.value && index === 0) ? 'checked' : null))&attributes(attributes)
+            label.form-radio-label(for='rb-val-'+valIdNum)= value.Label
 
 mixin RenderSelect(field) 
   .mb-4

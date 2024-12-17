@@ -8,42 +8,39 @@ var getSubmissionFormat = require('../../data/submissionFormatting/submissionFor
 const { notifyEnrollmentRequestReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService');
 const { Submitter } = require('../../data/MongoDB/TSPSchema');
+var roles = require('../../Auth/roles');
 
-router.get('/', checkAuthorized(['Onboarding_manager']), async (req, res) => {
+router.get('/', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res) => {
     let status = req.query.status ? req.query.status : 'pending'
     let filter = { "ReviewInfo.ReviewStatus": status !== 'all' ? status : { "$ne": "in progress" } }
 
-    let roles = getRoles(req)    
-    if(!roles.includes('Onboarding_manager')) {
-        filter = { 'Submitter': getUserId(req) }
-        status = 'all'
-    }
-
+    let currentRoles = getRoles(req)    
     let submissions = await EnrollModel.find(filter)
 
     res.render('./reviewSubmissions/reviewEnrollmentRequests', { 
         selectedTab: status, 
         submissions: JSON.stringify(submissions),
-        title: 'Submissions: ' + (status.charAt(0).toUpperCase() + status.slice(1)),
-        currentNavigationName: roles.includes('Onboarding_manager') ? 'Review Submissions' : 'My Submissions',
-        roles: roles })
+        title: 'Enrollments: ' + (status.charAt(0).toUpperCase() + status.slice(1)),
+        currentNavigationName: 'Review Enrollment Requests',
+        roles: currentRoles })
 })
 
-router.get('/submission/:id', async (req, res, next) => {
+router.get('/submission/:id', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res, next) => {
     let submission = await EnrollModel.findById(req.params.id)
     
-    let roles = getRoles(req)
+    let currentRoles = getRoles(req)
 
     submission = await getSubmissionFormat.mongoToReview(submission, "enroll")  
+    console.log(submission)
 
     res.render('./reviewSubmissions/reviewEnrollmentRequest', {
         submission: submission,
         title: 'Review Submission',
-        currentNavigationName: roles.includes('Onboarding_manager') ? 'Review Submissions' : 'My Submissions',
+        currentNavigationName: 'Review Enrollment Requests',
         roles: getRoles(req) })
 })
 
-router.get('/submission/:id/accept', checkAuthorized(['Onboarding_manager']), async (req, res) => {     
+router.get('/submission/:id/accept', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res) => {     
     let submission = await EnrollModel.findById(req.params.id)
     let isReviewed = await submitReview(req.params.id, getUserId(req), "approved")
 
@@ -52,7 +49,7 @@ router.get('/submission/:id/accept', checkAuthorized(['Onboarding_manager']), as
             submission_id: req.params.id,
             roles: getRoles(req),
             title: 'Review Error',
-            currentNavigationName: 'Review Submissions'
+            currentNavigationName: 'Review Enrollment Requests',
         })
     else {
         submission = submission.toJSON();
@@ -69,7 +66,7 @@ router.get('/submission/:id/accept', checkAuthorized(['Onboarding_manager']), as
     })
 })
 
-router.post('/submission/:id/decline', checkAuthorized(['Onboarding_manager']), async (req, res) => {    
+router.post('/submission/:id/decline', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res) => {    
     let submission = await EnrollModel.findById(req.params.id)
     let isReviewed = await submitReview(req.params.id, getUserId(req), "rejected", req.body.Notes);    
 
@@ -78,7 +75,7 @@ router.post('/submission/:id/decline', checkAuthorized(['Onboarding_manager']), 
             submission_id: req.params.id,
             roles: getRoles(req),
             title: 'Review Error',
-            currentNavigationName: 'Review Submissions'
+            currentNavigationName: 'Review Enrollment Requests',
         })
 
     else {      

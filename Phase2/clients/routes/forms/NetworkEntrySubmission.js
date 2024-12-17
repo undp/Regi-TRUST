@@ -7,8 +7,9 @@ var { SubmissionModel } = require('../../data/MongoDB/mongoose');
 var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewSubmission, notifySubmissionUpdated } = require('../../notifications/emailService')
 var trainApi = require('../../data/TRAIN/trainApiService');
+const roles = require('../../Auth/roles');
 
-router.get('/', checkAuthorized(['Registry_submitter', 'Registry_reviewer']), function(req, res) {
+router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), function(req, res) {
     req.session.sessionData = null
     req.session.submitted = null
 
@@ -16,7 +17,7 @@ router.get('/', checkAuthorized(['Registry_submitter', 'Registry_reviewer']), fu
 })
 
 /* GET form page. */
-router.get('/:step', checkAuthorized(['Registry_submitter', 'Registry_reviewer']), async function (req, res, next) {
+router.get('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async function (req, res, next) {
     let step = parseInt(req.params['step']);
     let tsp = req.query.tsp;
     let version = req.query.version;
@@ -60,8 +61,8 @@ router.get('/:step', checkAuthorized(['Registry_submitter', 'Registry_reviewer']
         sessionData.visited = formJSON.FormSections.length
     }
 
-    let roles = getRoles(req)
-    if(!roles.includes('Registry_submitter') && !sessionData.editing) {
+    let currentRoles = getRoles(req)
+    if(!(currentRoles.includes(roles.SUBMITTER) || currentRoles.includes(roles.ADMIN)) && !sessionData.editing) {
         req.session.sessionData = null
         let err = new Error('Forbidden')
         err.status = 403
@@ -100,15 +101,15 @@ router.get('/:step', checkAuthorized(['Registry_submitter', 'Registry_reviewer']
         formData: sessionData.formData,
         isEditing: false,
         serviceIndex: 0,
-        currentNavigationName: getNavigationName(roles, sessionData.editing),
+        currentNavigationName: getNavigationName(currentRoles, sessionData.editing),
         title: sessionData.editing ? 'Edit Submission' : 'Submit Network Entry',
-        roles: roles,
+        roles: currentRoles,
         tspDetails: tspDetails
     });
 });
 
 /* GET form page. */
-router.get('/:step/add-service', checkAuthorized(['Registry_submitter', 'Registry_reviewer']), async function (req, res, next) {
+router.get('/:step/add-service', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async function (req, res, next) {
     let step = parseInt(req.params['step']);
     let sessionData = req.session.sessionData;
     if (!sessionData) {
@@ -120,15 +121,18 @@ router.get('/:step/add-service', checkAuthorized(['Registry_submitter', 'Registr
     }
     
     res.render('./forms/networkEntrySubmission' , {
+        isEditing: false,
+        serviceIndex: 0,
         showAddServiceForm: true,
         currentStep: step,
         formJSON: formJSON,
+        formData: sessionData.formData,
         roles: getRoles(req),
         validation: sessionData.formData.validation,
     });
 });
 
-router.get('/:step/edit-service', checkAuthorized(['Registry_submitter', 'Registry_reviewer']), (req, res, next) => {
+router.get('/:step/edit-service', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), (req, res, next) => {
     let step = parseInt(req.params['step']);
     let sessionData = req.session.sessionData;
 
@@ -167,7 +171,7 @@ router.get('/:step/remove-service', (req, res) => {
 });
 
 /* Post form page. */
-router.post('/:step', checkAuthorized(['Registry_submitter','Registry_reviewer']), async function (req, res, next) {
+router.post('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async function (req, res, next) {
     let step = parseInt(req.params['step']);
     
     let sessionData = req.session.sessionData;
@@ -179,8 +183,8 @@ router.post('/:step', checkAuthorized(['Registry_submitter','Registry_reviewer']
         req.session.sessionData = sessionData;
     }
 
-    let roles = getRoles(req)
-    if(!roles.includes('Registry_submitter') && !sessionData.editing) {
+    let currentRoles = getRoles(req)
+    if(!(currentRoles.includes(roles.SUBMITTER) || currentRoles.includes(roles.ADMIN)) && !sessionData.editing) {
         req.session.sessionData = null
         let err = new Error('Forbidden')
         err.status = 403
@@ -221,9 +225,9 @@ router.post('/:step', checkAuthorized(['Registry_submitter','Registry_reviewer']
 
                     if(!req.session.submitted)
                         return res.render('./forms/submissionError',{
-                            roles: getRoles(req),
+                            roles: currentRoles,
                             title: 'Submission Error',
-                            currentNavigationName: getNavigationName(roles, sessionData.editing)
+                            currentNavigationName: getNavigationName(currentRoles, sessionData.editing)
                         })
 
                     else {
@@ -241,12 +245,12 @@ router.post('/:step', checkAuthorized(['Registry_submitter','Registry_reviewer']
 
                 if(!req.session.submitted)
                     return res.render('./forms/submissionError', {
-                        roles: getRoles(req),
+                        roles: currentRoles,
                         title: 'Submission Error',
-                        currentNavigationName: getNavigationName(roles, sessionData.editing)
+                        currentNavigationName: getNavigationName(currentRoles, sessionData.editing)
                     })
 
-                else if(roles.includes('Registry_reviewer')) {
+                else if(currentRoles.includes(roles.REVIEWER)) {
                     const submitterEmail = formData.TrustServiceProvider.SubmitterInfo?.SubmitterAddress?.ElectronicAddress.URI
                     const entityName = formData.TrustServiceProvider.TSPInformation.TSPName.Name
                     const submissionId = formData.TrustServiceProvider.TSPID                  
@@ -270,12 +274,12 @@ router.post('/:step', checkAuthorized(['Registry_submitter','Registry_reviewer']
     res.redirect('/forms/gccn-network-entry-submission/' + nextStep);
 });
 
-const getNavigationName = (roles, editing) => {
+const getNavigationName = (currentRoles, editing) => {
     let navName
 
-    if (roles.includes('Registry_submitter')) {
+    if (currentRoles.includes(roles.SUBMITTER) || currentRoles.includes(roles.REVIEWER) || currentRoles.includes(roles.ADMIN)) {
         if (editing) {
-            if (roles.includes('Registry_reviewer'))
+            if (currentRoles.includes(roles.REVIEWER))
                 navName = 'Review Submissions'
 
             else navName = 'My Submissions'

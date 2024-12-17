@@ -7,7 +7,7 @@ block content
 		div.d-flex.justify-content-between.align-items-center.mt-5.mb-5
 			h1.mt-5.mb-5 Network Entry Submissions
 
-		if roles.includes('Registry_reviewer')
+		if roles.includes('Registry_reviewer') || roles.includes('Registry_admin')
 			ul.nav.nav-tabs.mb-3
 				li.nav-item
 					- const isNewActive = selectedTab === "new"

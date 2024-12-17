@@ -9,6 +9,7 @@ var { checkAuthorized, getRoles, getUserId } = require('../../Auth/keycloak');
 var { EnrollModel } = require('../../data/MongoDB/mongoose');
 var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewEnrollmentRequest } = require('../../notifications/emailService');
+const roles = require('../../Auth/roles');
 
 const reCaptcha = require('../../Config/config.json').reCaptcha
 
@@ -128,9 +129,9 @@ router.post('/:step', async function (req, res, next) {
 const getNavigationName = (roles) => {
     let navName
 
-    if (roles.includes('Registry_submitter')) {
+    if (roles.includes(roles.SUBMITTER)) {
         // if (editing) {
-        //     if (roles.includes('Registry_reviewer'))
+        //     if (roles.includes(roles.REVIEWER))
         //         navName = 'Review Submissions'
 
         //     else navName = 'My Submissions'

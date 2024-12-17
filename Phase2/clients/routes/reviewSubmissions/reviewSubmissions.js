@@ -7,8 +7,9 @@ var { checkAuthorized, getRoles, getUserId, getAuthorization } = require('../../
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 const { notifySubmissionReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService')
+const roles = require('../../Auth/roles');
 
-router.get('/', checkAuthorized(['Registry_reviewer', 'Registry_submitter']), async (req, res) => {
+router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res) => {
     let status = req.query.status ? req.query.status : 'new'
     switch(status){
         case 'new': status = "Submitted"; break;
@@ -20,8 +21,8 @@ router.get('/', checkAuthorized(['Registry_reviewer', 'Registry_submitter']), as
     
     let filter = status === 'All' ? {} : { "ReviewInfo.ReviewStatus": status }
 
-    let roles = getRoles(req)    
-    if(!roles.includes('Registry_reviewer')) {
+    let currentRoles = getRoles(req)    
+    if(currentRoles.includes(roles.SUBMITTER)) {
         filter = { 'Submitter.User_id': getUserId(req).User_id }
         status = 'All'
     }
@@ -31,17 +32,16 @@ router.get('/', checkAuthorized(['Registry_reviewer', 'Registry_submitter']), as
     res.render('./reviewSubmissions/reviewSubmissionsList', { 
         selectedTab: req.query.status || 'new', 
         submissions: JSON.stringify(submissions),
-        title: 'Submissions: ' + (status.charAt(0).toUpperCase() + status.slice(1)),
-        currentNavigationName: roles.includes('Registry_reviewer') ? 'Review Submissions' : 'My Submissions',
-        roles: roles })
+        title: currentRoles.includes(roles.REVIEWER) || currentRoles.includes(roles.ADMIN) ? 'Review Submissions' : 'My Submissions',
+        roles: currentRoles })
 })
 
-router.get('/submission/:id', checkAuthorized(['Registry_reviewer', 'Registry_submitter']), async (req, res, next) => {
+router.get('/submission/:id', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
     let submission = await SubmissionModel.findOne({ "TrustServiceProvider.TSPID": req.params.id })
     if (!submission) {
         submission = await SubmissionModel.findOne({ "_id": req.params.id })
     }
-    let roles = getRoles(req)
+    let currentRoles = getRoles(req)
 
     const TSPVersions = await trainApi.getTspHistory(req.params.id, req.session.accessToken)        
 
@@ -50,13 +50,13 @@ router.get('/submission/:id', checkAuthorized(['Registry_reviewer', 'Registry_su
     res.render('./reviewSubmissions/reviewSubmission', {
         submission: submission,
         title: 'Review Submission',
-        currentNavigationName: roles.includes('Registry_reviewer') ? 'Review Submissions' : 'My Submissions',
-        roles: getRoles(req),
+        currentNavigationName: currentRoles.includes(roles.REVIEWER) ? 'Review Submissions' : 'My Submissions',
+        roles: currentRoles,
         TSPVersions: JSON.stringify(TSPVersions)
     })
 })
 
-router.get('/submission/:id/accept', checkAuthorized(['Registry_reviewer']), async (req, res) => {    
+router.get('/submission/:id/accept', checkAuthorized([roles.REVIEWER, roles.ADMIN]), async (req, res) => {    
     let accepted = true
     let submission = await SubmissionModel.findById(req.params.id)
 
@@ -88,7 +88,7 @@ router.get('/submission/:id/accept', checkAuthorized(['Registry_reviewer']), asy
     res.redirect('/review-submissions/')
 })
 
-router.get('/submission/:id/decline', checkAuthorized(['Registry_reviewer']), async (req, res) => {    
+router.get('/submission/:id/decline', checkAuthorized([roles.REVIEWER, roles.ADMIN]), async (req, res) => {    
     let declined = await submitReview(req.params.id, getUserId(req), "Rejected")
     let submission = await SubmissionModel.findById(req.params.id)
 
@@ -110,10 +110,10 @@ router.get('/submission/:id/decline', checkAuthorized(['Registry_reviewer']), as
     res.redirect('/review-submissions/')
 })
 
-router.get('/submission/:id/edit', checkAuthorized(['Registry_reviewer', 'Registry_submitter']), async (req, res, next) => {
+router.get('/submission/:id/edit', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
     let submission = await SubmissionModel.findById(req.params.id)
 
-    if(!getRoles(req).includes('Registry_reviewer') && submission.Submitter.User_id !== getUserId(req).User_id) {
+    if(!(getRoles(req).includes(roles.REVIEWER) || getRoles(req).includes(roles.ADMIN)) && submission.Submitter.User_id !== getUserId(req).User_id) {
         let err = new Error('Forbidden')
         err.status = 403
         return next(err)

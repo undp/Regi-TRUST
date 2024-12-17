@@ -53,10 +53,19 @@ html(lang='en')
 
                   if (roles.includes('Onboarding_manager')) {
                     roleBasedItems.push(
-                      { Name: 'Network Entries', Url: '/network-entries/list' },
                       { Name: 'Review Enrollment Requests', Url: '/review-enrollment-requests' }
                     );
                   }
+
+                  if (roles.includes('Registry_admin')) {
+                    roleBasedItems.push(
+                      { Name: 'Network Entries', Url: '/network-entries/list' },
+                      { Name: 'Submit Network Entry', Url: '/forms/gccn-network-entry-submission' },
+                      { Name: 'Review Submissions', Url: '/review-submissions' },
+                      { Name: 'Review Enrollment Requests', Url: '/review-enrollment-requests' }
+                    );
+                  }
+
 
                   // Consolidate and avoid duplicates
                   addUniqueItems(items, roleBasedItems);

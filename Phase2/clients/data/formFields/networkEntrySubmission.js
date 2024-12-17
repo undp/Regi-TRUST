@@ -141,17 +141,17 @@ module.exports = {
                             "Values": [
                                 {
                                     "Label": "Issuer (TSP)",
-                                    "Value": "Issuer"
+                                    "Value": "Issuer",
+                                    "Validation": {
+                                        "Required": true
+                                    }
                                 },
                                 {
                                     "Label": "Registry Administrator (TSPA)",
                                     "Value": "Registry Administrator"
                                 }
                             ],
-                            "Tooltip": "Select the role that best applies to the participating entity/organization.",
-                            "Validation": {
-                                "Required": true
-                            }
+                            "Tooltip": "Select the role that best applies to the participating entity/organization."
                         },
                         {
                             "Type": "Text",
@@ -336,7 +336,10 @@ module.exports = {
                                     "Values": [
                                         {
                                             "Label": "Vaccination",
-                                            "Value": "Vaccination"
+                                            "Value": "Vaccination",
+                                            "Validation": {
+                                                "Required": true
+                                            }
                                         },
                                         {
                                             "Label": "Test",
@@ -356,9 +359,6 @@ module.exports = {
                                         }
                                     ],
                                     "Tooltip": "Select the types of credentials issued by the issuers listed in the trust registry.",
-                                    "Validation": {
-                                        "Required": true
-                                    }
                                 },
                                 {
                                     "Type": "Wrapper",
@@ -375,21 +375,27 @@ module.exports = {
                                                     "Values": [
                                                         {
                                                             "Label": "Smart Health Card",
-                                                            "Value": "SHC"
+                                                            "Value": "SHC",
+                                                            "Validation": {
+                                                                "Required": true
+                                                            }
                                                         },
                                                         {
                                                             "Label": "HAJ",
-                                                            "Value": "HajCredential"
+                                                            "Value": "HajCredential",
+                                                            "Validation": {
+                                                                "Required": true
+                                                            }
                                                         },
                                                         {
                                                             "Label": "etc.",
-                                                            "Value": "ETC"
+                                                            "Value": "ETC",
+                                                            "Validation": {
+                                                                "Required": true
+                                                            }
                                                         },
                                                     ],
-                                                    "Tooltip": "Set of public keys, X509 certificates, URLs or technical format used.",
-                                                    "Validation": {
-                                                        "Required": true
-                                                    }
+                                                    "Tooltip": "Set of public keys, X509 certificates, URLs or technical format used."
                                                 }
                                             ]
                                         },

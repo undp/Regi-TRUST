@@ -23,7 +23,7 @@ block content
                     p
                         strong.pe-2 Review Status:
                         | !{submission.ReviewInfo.ReviewStatus}
-                    if roles.includes('Onboarding_manager')
+                    if roles.includes('Onboarding_manager') || roles.includes('Registry_admin')
                         p
                             strong.pe-2 Reviewer Username:
                             | !{submission.ReviewInfo.Reviewer.Username}
@@ -47,7 +47,7 @@ block content
                                 strong.pe-2 !{key}
                                 | !{val}
 
-        if roles.includes('Onboarding_manager') && submission.ReviewInfo.ReviewStatus == "pending"
+        if (roles.includes('Onboarding_manager') || roles.includes('Registry_admin')) && submission.ReviewInfo.ReviewStatus == "pending"
             .review-buttons.p-4.mb-5
                 - let status = submission.ReviewInfo.ReviewStatus
                 if(status == "rejected" || status == "pending")
