@@ -16,14 +16,14 @@ block content
 
         .card.mb-5
             h2.card-header Participating Entity Information
-            .card-content.p-4
-                .card-content-item
+            .row.card-content.p-4
+                .col.card-content-item
                     h3.mb-3 Organization Details
                     .px-2
                         each val, key in json.TSPInformation
                             <p><strong class="pe-2">!{key}</strong> !{val}</p>
                 
-                .card-content-item
+                .col.card-content-item
                     h3.mb-3 Organization Address
                     .px-2
                         each val, key in json.TSPContacts  
@@ -46,9 +46,9 @@ block content
                         each service, i in json.TSPServices
                             .accordion-item
                                 h2.accordion-header(id='heading' + i)
-                                    button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#collapse' + i, aria-expanded='false', aria-controls='collapse#{i}')
+                                    button.accordion-button(type='button', data-bs-toggle='collapse', data-bs-target='#collapse' + i, aria-expanded=i === 0 ? 'true' : 'false', aria-controls='collapse#{i}', class=i === 0 ? '' : 'collapsed')
                                         | #{service['Name:']}
-                                .accordion-collapse.collapse(id='collapse' + i, aria-labelledby='heading' + i, data-bs-parent='#servicesAccordion')
+                                .accordion-collapse.collapse(id='collapse' + i, aria-labelledby='heading' + i, data-bs-parent='#servicesAccordion', class=i === 0 ? 'show' : '')
                                     .row.accordion-body
                                         .col.card-content-item
                                             h4.mb-3 Service Details

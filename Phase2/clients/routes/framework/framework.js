@@ -5,9 +5,10 @@ var { getRoles, checkAuthorized } = require('../../Auth/keycloak')
 
 var trainApi = require('../../data/TRAIN/trainApiService');
 const { jsonToDetailPage } = require('../../data/submissionFormatting/submissionFormatting');
+const roles = require('../../Auth/roles')
 
 /* GET list of all entries (table) page. */
-router.get('/details', async (req, res, next) => {
+router.get('/details', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
     let error
     let version = req.query.version;
     

@@ -5,7 +5,7 @@ block content
 	.container(style='min-height:80vh;')
 		h1.mt-5.mb-5 Registry Service Provider Enrollment Requests
 
-		if roles.includes('Onboarding_manager')
+		if roles.includes('Onboarding_manager') || roles.includes('Registry_admin')
 			ul.nav.nav-tabs.mb-3
 				li.nav-item
 					- const isNewActive = selectedTab === "pending"

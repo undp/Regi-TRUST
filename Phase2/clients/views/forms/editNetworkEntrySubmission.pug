@@ -28,8 +28,8 @@ block content
                       br 
                       span.step-description.d-none.d-sm-inline=section.SectionName
           .step-description__outside.text-center.d-block.d-sm-none=`Step ${currentStep}: ${formJSON.FormSections[currentStep-1].SectionName}`
-          if showAddServiceForm
-            a.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') &lsaquo; Back to services
+      if showAddServiceForm
+        a.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') &lsaquo; Back to services
     if currentStep==formJSON.FormSections.length
       .text-center.p-5
       h3 Thank you! The data has been submitted.
@@ -73,10 +73,10 @@ block content
             .form-buttons-left
               if currentStep != 1
                 button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Previous') &lsaquo; Previous
-                if showAddServiceForm
-                  button.btn.btn-lg.navigateBtn.mb-2(type='button', onclick='window.location.href="/forms/gccn-network-entry-submission/3"') Cancel
-                else
-                  button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Cancel') Cancel
+              if showAddServiceForm
+                button.btn.btn-lg.navigateBtn.mb-2(type='button', onclick='window.location.href="/forms/gccn-network-entry-submission/3"') Cancel
+              else
+                button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Cancel') Cancel
             .form-buttons-right
               if currentStep != formJSON.FormSections.length-1
                 button.btn.btn-lg.navigateBtn.mb-2(type='submit', name='SubmitType', value='Next' style='order:2') Next &rsaquo;
@@ -218,14 +218,43 @@ block scripts
       errorClass: 'is-invalid',
       focusInvalid: false,
       invalidHandler: function(event, validator) {
-        if(validator.submitButton?.value === 'Next' || validator.submitButton?.value === 'Submit') {
+        if(validator.submitButton?.value === 'Next' || validator.submitButton?.value === 'Submit' || validator.submitButton?.value === 'Save') {
           if (validator.numberOfInvalids()) {
             var element = validator.errorList[0].element;
             element.focus();
             element.scrollIntoView({behavior: 'smooth', block: 'center'});
           }
         }
-      }
+      },
+      errorPlacement: function(error, element) {
+        // Place the error message after the radio group container
+        if (element.is(':radio') || element.is(':checkbox')) {
+          error.insertAfter(element.closest('.container-object'));
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      rules: {
+        'TrustServiceProvider[TSPServices][TSPService][0][ServiceInformation][AdditionalServiceInformation][ServiceIssuedCredentialTypes][CredentialType][]': {
+          required: function(element) {
+            const group = $(element).closest('[data-group-required]');
+            if (group.length > 0) {
+              const checkboxes = group.find('input[type="checkbox"]');
+              const checked = checkboxes.filter(':checked').length > 0;
+              
+              if (!checked) {
+                // Add the invalid class to all checkboxes in the group
+                checkboxes.addClass('is-invalid');
+              } else {
+                // Remove invalid class if at least one checkbox is checked
+                checkboxes.removeClass('is-invalid');
+              }
+              return !checked;
+            }
+            return false;
+          }
+        }
+      },
     })
 
     $('#submit').click(function(evt) {

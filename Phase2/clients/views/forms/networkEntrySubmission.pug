@@ -33,8 +33,8 @@ block content
                     br 
                     span.step-description.d-none.d-sm-inline=section.SectionName
         .step-description__outside.text-center.d-block.d-sm-none=`Step ${currentStep}: ${formJSON.FormSections[currentStep-1].SectionName}`
-        if showAddServiceForm
-          a.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') &lsaquo; Back to services
+    if showAddServiceForm
+      a.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') &lsaquo; Back to services
     if currentStep==formJSON.FormSections.length
       .text-center.p-5
         h3 Thank you! The data has been submitted.
@@ -73,7 +73,7 @@ block content
           each step,i in formJSON.FormSections
             if(i < formJSON.FormSections.length - 1)
               input.form-validation(type='hidden' name=`validation[${i}]` id='validation_'+i value=(validation[i]))
-          .form-buttons.mb-4.col.col-xl-8(class=showAddServiceForm ? 'm-auto' : '')
+          .form-buttons.mb-4.col.col-xl-8
             .form-buttons-left(style='order:1')
               if currentStep == formJSON.FormSections.length-1
                 button.btn.btn-lg.navigateBtn.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') Cancel
@@ -99,66 +99,70 @@ block scripts
   script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js')
   script.
     $(document).ready(function() {
-      let services = !{JSON.stringify(formData)}.TrustServiceProvider?.TSPServices?.TSPService;
+      const formData = !{JSON.stringify(formData)};
+      if(formData){
+        let services = formData?.TrustServiceProvider?.TSPServices?.TSPService;
 
-          if (services && services.length > 0) {
-            // Initialize the DataTable
-            $('#servicesTable').DataTable({
-              data: services,
-              columns: [
-                { title: "Service Name", data: "ServiceInformation.ServiceName.Name" },
-                { 
-                  title: "Service Type", 
-                  data: "ServiceInformation.AdditionalServiceInformation.ServiceIssuedCredentialTypes.CredentialType",
-                  render: function(data) { 
-                    if (Array.isArray(data)) {
-                      return data.filter(item => item.trim() !== '');
-                    }
-                    return data ? data.split(', ').filter(item => item != '').join(', ') : '';
+        if (services && services.length > 0) {
+          // Initialize the DataTable
+          $('#servicesTable').DataTable({
+            data: services,
+            columns: [
+              { title: "Service Name", data: "ServiceInformation.ServiceName.Name" },
+              { 
+                title: "Service Type", 
+                data: "ServiceInformation.AdditionalServiceInformation.ServiceIssuedCredentialTypes.CredentialType",
+                render: function(data) { 
+                  if (Array.isArray(data)) {
+                    return data.filter(item => item.trim() !== '');
                   }
-                },
-                { 
-                  title: "Service Credentials", 
-                  data: "ServiceInformation.ServiceTypeIdentifier",
-                  render: function(data) { return data ? data : ''; }
-                },
-                {
-                  title: "Actions",
-                  data: null,
-                  render: function(data, type, row, meta) {
-                    return `
-                      <div class="d-flex justify-content-center gap-2">
-                        <button 
-                            class="btn addBtn border-0" 
-                            onclick="window.location.href='/forms/gccn-network-entry-submission/!{currentStep}/edit-service?index=${meta.row}'">
-                          <i class="fa fa-pencil"></i>
-                        </button>
-                        <button 
-                            class="btn btn-sm btn-link removeBtn"  
-                            onclick="window.location.href='/forms/gccn-network-entry-submission/!{currentStep}/remove-service?index=${meta.row}'">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                          </svg>
-                        </button>
-                      </div>
-                    `;
-                  }
+                  return data ? data.split(', ').filter(item => item != '').join(', ') : '';
                 }
-              ]
-            });
-          }
-
-          $('#btn_addService').click(function() {
-            window.location.href = '/forms/gccn-network-entry-submission/#{currentStep}/add-service';
+              },
+              { 
+                title: "Service Credentials", 
+                data: "ServiceInformation.ServiceTypeIdentifier",
+                render: function(data) { return data ? data : ''; }
+              },
+              {
+                title: "Actions",
+                data: null,
+                render: function(data, type, row, meta) {
+                  return `
+                    <div class="d-flex justify-content-center gap-2">
+                      <button 
+                          class="btn addBtn border-0" 
+                          onclick="window.location.href='/forms/gccn-network-entry-submission/!{currentStep}/edit-service?index=${meta.row}'">
+                        <i class="fa fa-pencil"></i>
+                      </button>
+                      <button 
+                          class="btn btn-sm btn-link removeBtn"  
+                          onclick="window.location.href='/forms/gccn-network-entry-submission/!{currentStep}/remove-service?index=${meta.row}'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  `;
+                }
+              }
+            ]
           });
+        }
+
+        $('#btn_addService').click(function() {
+          window.location.href = '/forms/gccn-network-entry-submission/#{currentStep}/add-service';
+        });
+      }
     });
 
 
   script.
     // if edit service form, load saved data
+    const formData = !{JSON.stringify(formData)};
     if (#{isEditing}) {
-      let service = !{JSON.stringify(formData)}.TrustServiceProvider?.TSPServices?.TSPService[#{serviceIndex}];
+      let service = formData?.TrustServiceProvider?.TSPServices?.TSPService[#{serviceIndex}];
       
       function populateFields(data, parentKey = '') {
         for (let key in data) {
@@ -227,14 +231,43 @@ block scripts
       errorClass: 'is-invalid',
       focusInvalid: false,
       invalidHandler: function(event, validator) {
-        if(validator.submitButton?.value === 'Next' || validator.submitButton?.value === 'Submit') {
+        if(validator.submitButton?.value === 'Next' || validator.submitButton?.value === 'Submit' || validator.submitButton?.value === 'Edit') {
           if (validator.numberOfInvalids()) {
             var element = validator.errorList[0].element;
             element.focus();
             element.scrollIntoView({behavior: 'smooth', block: 'center'});
           }
         }
-      }
+      },
+      errorPlacement: function(error, element) {
+        // Place the error message after the radio group container
+        if (element.is(':radio') || element.is(':checkbox')) {
+          error.insertAfter(element.closest('.container-object'));
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      rules: {
+        'TrustServiceProvider[TSPServices][TSPService][0][ServiceInformation][AdditionalServiceInformation][ServiceIssuedCredentialTypes][CredentialType][]': {
+          required: function(element) {
+            const group = $(element).closest('[data-group-required]');
+            if (group.length > 0) {
+              const checkboxes = group.find('input[type="checkbox"]');
+              const checked = checkboxes.filter(':checked').length > 0;
+              
+              if (!checked) {
+                // Add the invalid class to all checkboxes in the group
+                checkboxes.addClass('is-invalid');
+              } else {
+                // Remove invalid class if at least one checkbox is checked
+                checkboxes.removeClass('is-invalid');
+              }
+              return !checked;
+            }
+            return false;
+          }
+        }
+      },
     })
 
     $('#submit').click(function(evt) {
