@@ -1,0 +1,710 @@
+{
+	"info": {
+		"_postman_id": "8f9d414f-873c-4784-877b-fc66ce94dec0",
+		"name": "TFM - RegiTRUST phase 2",
+		"description": "Trust Framework Manager (TFM) API - TRAIN component for Regi-TRUST project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38006108",
+		"_collection_link": "https://planetary-resonance-762470.postman.co/workspace/Team-Workspace~06f3a6bd-a458-4ce8-8c8d-3b201e908bbe/collection/38006108-8f9d414f-873c-4784-877b-fc66ce94dec0?action=share&source=collection_link&creator=38006108"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "getSubmitterToken - Axyom Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json() ;\r",
+									"access_token = jsonData.access_token\r",
+									"pm.environment.set(\"access_token\", access_token);\r",
+									"id_token = jsonData.id_token\r",
+									"pm.environment.set(\"id_token\", id_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{Submitter}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{SubmitterPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{KeycloakClient}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{KeycloakClientSecret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{KeycloakURL}}/realms/{{KeycloakRealm}}/protocol/openid-connect/token",
+							"host": [
+								"{{KeycloakURL}}"
+							],
+							"path": [
+								"realms",
+								"{{KeycloakRealm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReviewerToken - Axyom Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json() ;\r",
+									"access_token = jsonData.access_token\r",
+									"pm.environment.set(\"access_token\", access_token);\r",
+									"id_token = jsonData.id_token\r",
+									"pm.environment.set(\"id_token\", id_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{Reviewer}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{ReviewerPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{KeycloakClient}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{KeycloakClientSecret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{KeycloakURL}}/realms/{{KeycloakRealm}}/protocol/openid-connect/token",
+							"host": [
+								"{{KeycloakURL}}"
+							],
+							"path": [
+								"realms",
+								"{{KeycloakRealm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRegistryAdminToken - Axyom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json() ;\r",
+									"access_token = jsonData.access_token\r",
+									"pm.environment.set(\"access_token\", access_token);\r",
+									"id_token = jsonData.id_token\r",
+									"pm.environment.set(\"id_token\", id_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{RegistryAdmin}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{RegistryAdminPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{KeycloakClient}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{KeycloakClientSecret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{KeycloakURL}}/realms/{{KeycloakRealm}}/protocol/openid-connect/token",
+							"host": [
+								"{{KeycloakURL}}"
+							],
+							"path": [
+								"realms",
+								"{{KeycloakRealm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trust List",
+			"item": [
+				{
+					"name": "DELETE ALL RECORDS IN DB AND LOCAL STORE - just for testing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/nowayback",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"nowayback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create trust list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otherFrameworks\": [\r\n        {{trustframework}}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/trustlist/{{trustframework}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"trustlist",
+								"{{trustframework}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create trust list",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"otherFrameworks\": [\r\n        {{trustframework}}\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/trustlist/{{trustframework}}",
+									"host": [
+										"{{TFMDomain}}"
+									],
+									"path": [
+										"ttfm",
+										"api",
+										"v1",
+										"regitrust",
+										"trustlist",
+										"{{trustframework}}"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer error=\"insufficient_scope\", error_description=\"The request requires higher privileges than provided by the access token.\", error_uri=\"https://tools.ietf.org/html/rfc6750#section-3.1\""
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Dec 2024 17:02:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Trust List Operator",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FrameworkInformation\": {\r\n        \"TSLVersion\": \"9\",\r\n        \"ListIssueDateTime\": \"2024-12-10T19:44:44.322Z\",\r\n        \"NextUpdate\": \"2030-12-31T00:00:00Z\",\r\n        \"FrameworkName\": {\r\n            \"Name\": \"testFW.zm.regitrust.axyom.co\"\r\n        },\r\n        \"FrameworkOperatorName\": {\r\n            \"Name\": \"Federation 1\"\r\n        },\r\n        \"TSLType\": \"https://test.com\",\r\n        \"FrameworkOperatorAddress\": {\r\n            \"PostalAddresses\": {\r\n                \"PostalAddress\": [\r\n                    {\r\n                        \"StreetAddress\": \"Gedung Kementerian Kesehatan\",\r\n                        \"Locality\": \"Jakarta22\",\r\n                        \"State\": \"\",\r\n                        \"PostalCode\": \"10110\",\r\n                        \"CountryName\": \"\"\r\n                    }\r\n                ]\r\n            },\r\n            \"ElectronicAddress\": {\r\n                \"URI\": \"mailto:contact@kemkes.go.id\"\r\n            }\r\n        },\r\n        \"FrameworkInformationURI\": {\r\n            \"URI\": \"https://www.kemkes.go.id/haj-health-credentials\"\r\n        },\r\n        \"FrameworkTypeCommunityRules\": {\r\n            \"URI\": \"https://www.kemkes.go.id/haj-health-rules\"\r\n        },\r\n        \"SchemeTerritory\": \"ID\",\r\n        \"PolicyOrLegalNotice\": {\r\n            \"TSLLegalNotice\": \"This trust list is regulated by the legal framework established by the Indonesian Government.\"\r\n        },\r\n        \"DistributionPoints\": {\r\n            \"URI\": \"https://www.kemkes.go.id/haj-health-rules\"\r\n        },\r\n        \"SchemeExtensions\": {\r\n            \"URI\": \"https://www.kemkes.go.id/haj-health-rules\"\r\n        },\r\n        \"PointersToOtherTSL\": [\r\n            {\r\n                \"URI\": null\r\n            }\r\n        ]\r\n    },\r\n    \"validation\": [\r\n        \"true\"\r\n    ],\r\n    \"SubmitType\": \"Submit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/trustlist/{{trustframework}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"trustlist",
+								"{{trustframework}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch simplified Trust List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/trustlist/{{trustframework}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"trustlist",
+								"{{trustframework}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Trust List XML",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/trustlist/xml/{{trustframework}}?version=3",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"trustlist",
+								"xml",
+								"{{trustframework}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Trust List of versions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/trustlist/history/{{trustframework}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"trustlist",
+								"history",
+								"{{trustframework}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trust Service Providers - TSP",
+			"item": [
+				{
+					"name": "Create TSP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"TSPID\": \"{{TSPID}}\",\r\n  \"TSPVersion\": \"doesn't matter, it will be overwritten\",\r\n  \"TSPCurrentStatus\": \"active\",\r\n  \"LastUpdate\": \"doesn't matter, it will be overwritten\",\r\n  \"TSPInformation\": {\r\n    \"TSPName\": {\r\n      \"Name\": \"Hospital with ID {{TSPID}}\"\r\n    },\r\n    \"TSPType\": \"Issuer\",\r\n    \"TrustFrameworkName\": {\r\n      \"Name\": \"{{trustframework}}\"\r\n    },\r\n    \"TSPRole\": \"Issuer\",\r\n    \"TSPLegalName\": {\r\n      \"Name\": \"Hospital 1\"\r\n    },\r\n    \"TSPTradeName\": {\r\n      \"Name\": \"Hospital 1\"\r\n    },\r\n    \"TSPEntityIdentifierList\": {\r\n            \"TSPEntityIdentifier\": [\r\n            {\r\n            \"Type\": \"vLEI\",\r\n            \"Value\": \"LEICode ISO 17442\"\r\n            },\r\n            {\r\n            \"Type\": \"VAT\",\r\n            \"Value\": \"12345678\"\r\n            }\r\n            ]\r\n        },\r\n    \"TSPCertificationLists\":{\r\n        \r\n            \"TSPCertification\": [\r\n                {\r\n                \"Type\": \"ISO\",\r\n                \"Value\": \"ISO 17442\"\r\n                }\r\n            ]\r\n                 \r\n    },\r\n    \"TSPAddress\": {\r\n      \"PostalAddresses\": [\r\n          {\r\n            \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n            \"StreetAddress2\": \"Kav. 4-9\",\r\n            \"PostalCode\": \"12950\",\r\n            \"Locality\": \"Jakarta\",\r\n            \"State\": \"ID\",\r\n            \"CountryName\": \"ID\"\r\n          }\r\n        ],\r\n      \"ElectronicAddress\": {\r\n        \"URI\": \"https://www.kemkes.go.id\"\r\n      }\r\n    },\r\n    \"TSPInformationURI\": {\r\n      \"URI\": \"https://www.kemkes.go.id/haj-health-credential\"\r\n    },\r\n    \"TSPQualifierList\": [\r\n        {\r\n          \"Name\": \"GICS Code\",\r\n          \"Value\": \"7890123\",\r\n          \"QualifierURI\": \"https://kemkes.go.id/gics-code\"\r\n        }\r\n      ],\r\n    \"OtherTSL\": \"https://kemkes.go.id/other-tsl\"\r\n  },\r\n  \"SubmitterInfo\": {\r\n    \"SubmitterName\": {\r\n      \"Name\": \"Agency Name 1\"\r\n    },\r\n    \"SubmitterAddress\": {\r\n      \"PostalAddresses\": [\r\n          {\r\n            \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n            \"StreetAddress2\": \"Kav. 4-9\",\r\n            \"PostalCode\": \"12950\",\r\n            \"Locality\": \"Jakarta\",\r\n            \"State\": \"ID\",\r\n            \"CountryName\": \"ID\"\r\n          }\r\n        ],\r\n      \"ElectronicAddress\": {\r\n        \"URI\": \"https://www.kemkes.go.id\"\r\n      }\r\n    }\r\n  },\r\n  \"TSPServices\": {\r\n    \"TSPService\" : [\r\n      {\r\n        \"ServiceInformation\": {\r\n          \"ServiceTypeIdentifier\": \"did:Web:haj.jakarta.health\",\r\n          \"ServiceName\": {\r\n            \"Name\": \"Hospital 1 Haj Health Credential Service\"\r\n          },\r\n          \"ServiceDigitalIdentity\": {\r\n            \"DigitalId\":               {\r\n                \"Value\": \"did:Web:hospital1.health.com\",\r\n                \"KeyType\": \"DID\"\r\n              }\r\n          }, \r\n          \"ServiceStatus\": \"https://kemkes.go.id/ServiceStatus/active\",\r\n          \"StatusStartingTime\": \"2025-10-01T00:00:00Z\",\r\n          \"SchemeServiceDefinition\": \"https://github.com/kemkes/haj-health-credential\",\r\n          \"ServiceSupplyPoint\": \"https://kemkes.go.id/masterlist.html\",\r\n          \"ServiceDefinitionURI\": \"https://www.example-description-required\",\r\n          \"AdditionalServiceInformation\": {\r\n            \"ServiceIssuedCredentialTypes\": {\r\n                \"CredentialType\": \"HajCredential\"\r\n            },\r\n            \"ServiceGovernanceURI\": \"https://kemkes.go.id/legal-content\",\r\n            \"ServiceBusinessRulesURI\": \"https://kemkes.go.id/business-rules\"\r\n          }\r\n        },\r\n        \"OpsAgentInfo\": {\r\n          \"OpsAgentName\": {\r\n            \"Name\": \"Agency Name 1\"\r\n          },\r\n          \"OpsAgentAddress\": {\r\n            \"PostalAddresses\": [\r\n                {\r\n                  \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n                  \"StreetAddress2\": \"Kav. 4-9\",\r\n                  \"Locality\": \"Jakarta\",\r\n                  \"State\": \"ID\",\r\n                  \"CountryName\": \"ID\"\r\n                }\r\n              ],\r\n            \"ElectronicAddress\": {\r\n              \"URI\": \"https://www.kemkes.go.id\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/tsp/{{trustframework}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"tsp",
+								"{{trustframework}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch TSP History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/tsp/history/{{trustframework}}/{{TSPID}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"tsp",
+								"history",
+								"{{trustframework}}",
+								"{{TSPID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch single TSP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/tsp/{{trustframework}}/{{TSPID}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"tsp",
+								"{{trustframework}}",
+								"{{TSPID}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update TSP",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"TSPID\": \"{{TSPID}}\",\r\n  \"TSPVersion\": \"\",\r\n  \"TSPCurrentStatus\": \"inactive\",\r\n  \"LastUpdate\": \"2020-11-04T11:55:11.951221500\",\r\n  \"TSPInformation\": {\r\n    \"TSPName\": {\r\n      \"Name\": \"TSP with ID {{TSPID}} name changed\"\r\n    },\r\n    \"TSPType\": \"Issuer\",\r\n    \"TrustFrameworkName\": {\r\n      \"Name\": \"hospital.health.credential.issuers\"\r\n    },\r\n    \"TSPRole\": \"Issuer\",\r\n    \"TSPLegalName\": {\r\n      \"Name\": \"Hospital 1\"\r\n    },\r\n    \"TSPTradeName\": {\r\n      \"Name\": \"Hospital 1\"\r\n    },\r\n    \"TSPEntityIdentifierList\": {\r\n        \"TSPEntityIdentifier\":[\r\n        {\r\n          \"Type\": \"vLEI\",\r\n          \"Value\": \"LEICode ISO 17442\"\r\n        }\r\n      ]}, \r\n    \"TSPCertificationLists\":{\r\n        \"TSPCertification\":[\r\n        {\r\n          \"Type\": \"ISO\",\r\n          \"Value\": \"ISO 17442\"\r\n        }\r\n      ]\r\n    },\r\n    \"TSPAddress\": {\r\n      \"PostalAddresses\": [\r\n          {\r\n            \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n            \"StreetAddress2\": \"Kav. 4-9\",\r\n            \"PostalCode\": \"12950\",\r\n            \"Locality\": \"Jakarta\",\r\n            \"State\": \"ID\",\r\n            \"CountryName\": \"ID\"\r\n          }\r\n        ],\r\n      \"ElectronicAddress\": {\r\n        \"URI\": \"https://www.kemkes.go.id\"\r\n      }\r\n    },\r\n    \"TSPInformationURI\": {\r\n      \"URI\": \"https://www.kemkes.go.id/haj-health-credential\"\r\n    },\r\n    \"TSPQualifierList\": [\r\n        {\r\n          \"Name\": \"GICS Code\",\r\n          \"Value\": \"7890123\",\r\n          \"QualifierURI\": \"https://kemkes.go.id/gics-code\"\r\n        }\r\n      ],\r\n    \"OtherTSL\": \"https://kemkes.go.id/other-tsl\"\r\n  },\r\n  \"SubmitterInfo\": {\r\n    \"SubmitterName\": {\r\n      \"Name\": \"Agency Name 1\"\r\n    },\r\n    \"SubmitterAddress\": {\r\n      \"PostalAddresses\": [\r\n          {\r\n            \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n            \"StreetAddress2\": \"Kav. 4-9\",\r\n            \"PostalCode\": \"12950\",\r\n            \"Locality\": \"Jakarta\",\r\n            \"State\": \"ID\",\r\n            \"CountryName\": \"ID\"\r\n          }\r\n        ],\r\n      \"ElectronicAddress\": {\r\n        \"URI\": \"https://www.kemkes.go.id\"\r\n      }\r\n    }\r\n  },\r\n  \"TSPServices\": {\r\n    \"TSPService\" : [\r\n      {\r\n        \"ServiceInformation\": {\r\n          \"ServiceTypeIdentifier\": \"did:Web:haj.jakarta.health\",\r\n          \"ServiceName\": {\r\n            \"Name\": \"Hospital 1 Haj Health Credential Service\"\r\n          },\r\n          \"ServiceDigitalIdentity\": {\r\n            \"DigitalId\":               {\r\n                \"Value\": \"did:Web:hospital1.health.com\",\r\n                \"KeyType\": \"DID\"\r\n              }\r\n          }, \r\n          \"ServiceStatus\": \"https://kemkes.go.id/ServiceStatus/active\",\r\n          \"StatusStartingTime\": \"2025-10-01T00:00:00Z\",\r\n          \"SchemeServiceDefinition\": \"https://github.com/kemkes/haj-health-credential\",\r\n          \"ServiceSupplyPoint\": \"https://kemkes.go.id/masterlist.html\",\r\n          \"ServiceDefintionURI\": \"https://www.example-description-required\",\r\n          \"AdditionalServiceInformation\": {\r\n            \"ServiceIssuedCredentialTypes\": {\r\n                \"CredentialType\": \"HajCredential\"\r\n            },\r\n            \"ServiceGovernanceURI\": \"https://kemkes.go.id/legal-content\",\r\n            \"ServiceBusinessRulesURI\": \"https://kemkes.go.id/business-rules\"\r\n          }\r\n        },\r\n        \"OpsAgentInfo\": {\r\n          \"OpsAgentName\": {\r\n            \"Name\": \"Agency Name 1\"\r\n          },\r\n          \"OpsAgentAddress\": {\r\n            \"PostalAddresses\": [\r\n                {\r\n                  \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n                  \"StreetAddress2\": \"Kav. 4-9\",\r\n                  \"Locality\": \"Jakarta\",\r\n                  \"State\": \"ID\",\r\n                  \"CountryName\": \"ID\"\r\n                }\r\n              ],\r\n            \"ElectronicAddress\": {\r\n              \"URI\": \"https://www.kemkes.go.id\"\r\n            }\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/regitrust/tsp/{{trustframework}}/{{TSPID}}",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"regitrust",
+								"tsp",
+								"{{trustframework}}",
+								"{{TSPID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ONLY FOR TESTING",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TSPAddress\": {\r\n      \"PostalAddresses\": [\r\n          {\r\n            \"StreetAddress1\": \"Jl. Rasuna Said\",\r\n            \"StreetAddress2\": \"Kav. 4-9\",\r\n            \"PostalCode\": \"12950\",\r\n            \"Locality\": \"Jakarta\",\r\n            \"State\": \"ID\",\r\n            \"CountryName\": \"ID\"\r\n          }\r\n        ],\r\n      \"ElectronicAddress\": {\r\n        \"URI\": \"https://www.kemkes.go.id\"\r\n      }\r\n    },\r\n    \"TSPQualifierList\": [\r\n        {\r\n          \"Name\": \"GICS Code\",\r\n          \"Value\": \"7890123\",\r\n          \"QualifierURI\": \"https://kemkes.go.id/gics-code\"\r\n        }\r\n      ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TFMDomain}}/ttfm/api/v1/test",
+							"host": [
+								"{{TFMDomain}}"
+							],
+							"path": [
+								"ttfm",
+								"api",
+								"v1",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

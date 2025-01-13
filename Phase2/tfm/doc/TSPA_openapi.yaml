@@ -1,0 +1,721 @@
+openapi: 3.0.0
+info:
+  description: |
+    Trust Framewrok Manager (TFM) API - TRAIN component for Regi-TRUST project
+  version: 1.0.0
+  title: UNDP Regitrust phase 2 - TRAIN TSPA (TFM)
+  contact:
+    email: juan.vargas@iao.fraunhofer.de
+
+
+paths:
+
+  /ttfm/api/v1/regitrust/trustlist/{TrustFrameworkName}:
+    post:
+      tags:
+        - Trust List
+      summary: Initialize a TL. Creates and publishes a Trust List with no TSPs but only trust framework operator information (taken from a template from the backend)
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+            example: testFramework.tfm.regitrust.axyom.co
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                otherFrameworks: 
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    ["testFramework.tfm.regitrust.axyom.co, otherTestFramework.tfm.regitrust.axyom.co"]
+
+
+      responses:
+        '200':
+          description: successful operation
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Operator details could not be updated.
+
+    patch:
+      tags:
+        - Trust List
+      summary: Update only the Trust List's operator related information, not the TSPs it contains. It triggers a TL version update.
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemeInformation'
+      responses:
+        '200':
+          description: successful operation
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Operator details could not be updated.
+
+
+  
+    get:
+      tags:
+        - Trust List
+      summary: Fetch a specific or the latest version of a Trust List
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+            example: testFW.zm.regitrust.axyom.co
+        - name: version
+          in: query
+          description: if not provided, the latest version will be provided
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimplifiedTrustList'
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+
+  /ttfm/api/v1/regitrust/trustlist/xml/{TrustFrameworkName}:
+    get:
+      tags:
+        - Trust List
+      summary: Fetch the current Trust List version in XML format
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+            example: testFW.zm.regitrust.axyom.co            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+
+  /ttfm/api/v1/regitrust/trustlist/history/{TrustFrameworkName}:
+    get:
+      tags:
+        - Trust List
+      summary: Fetch ordered list of Trust List versions for a Trust Framework
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+            example: testFW.zm.regitrust.axyom.co
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trustFrameworkName:
+                    type: string
+                  trustListVersions: 
+                    type: array
+                    items: 
+                      type: string 
+                    example:
+                      - "version1_id_number"
+                      - "version2_id_number"
+                      - "version3_id_number"
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+
+
+  /ttfm/api/v1/regitrust/tsp/{TrustFrameworkName}:
+    post:
+      tags:
+        - Trust Service Providers - TSP
+      summary: Create a specific TSP in the Trust List asociated with TrustFrameworkName. 
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrustServiceProviderDetails'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustServiceProviderDetails'
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+          
+  /ttfm/api/v1/regitrust/tsp/history/{TrustFrameworkName}/{tspId}:
+    get:
+      tags:
+        - Trust Service Providers - TSP
+      summary: Fetch ordered list of a versions of a specific TSP
+      parameters:
+
+        - name: TrustFrameworkName
+          in: path
+          description: TrustFramework Pointer of Member Countries in the form of domain name
+          required: true
+          schema:
+            type: string
+        - name: tspId
+          in: path
+          description: tsp unique identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tspId:
+                    type: string
+                  tspName:
+                    type: string
+                  tpsVersions: 
+                    type: array
+                    items: 
+                      type: string  
+                    example:
+                      - "version1_id_number"
+                      - "version2_id_number"
+                      - "version3_id_number"
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+
+  /ttfm/api/v1/regitrust/tsp/{TrustFrameworkName}/{tspId}:
+    get:
+      tags:
+        - Trust Service Providers - TSP
+      summary: Fetch a specific or the latest version a specific TSP
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: TrustFramework Pointer of Member Countries in the form of domain name
+          required: true
+          schema:
+            type: string
+        - name: tspId
+          in: path
+          description: unique TSP identifer 
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          description: If omitted, the latest version of the TSP will be responded
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustServiceProviderDetails'
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+
+    patch:
+      tags:
+        - Trust Service Providers - TSP
+      summary: Update a specific TSP information. Triggers a new TSP version as well as a new Trust List version.
+      parameters:
+        - name: TrustFrameworkName
+          in: path
+          description: Trust Framework name in the form of domain name
+          required: true
+          schema:
+            type: string
+        - name: tspId
+          in: path
+          description: unique TSP identifer 
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrustServiceProviderDetails'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustServiceProviderDetails'
+        '500':
+          description: Internal TRAIN service error
+        '404':
+          description: Trust list with scheme name TrustFrameworkName was not found
+
+
+security:
+  - Bearer: []
+  
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+
+  schemas:
+    SimplifiedTrustList: 
+      type: object
+      description: "This is not a full trust list as it does not contain the details of TSP, only their ids and names"
+      properties:
+        schemeInformation:
+          $ref: '#/components/schemas/SchemeInformation'    
+        listOfTspId:
+          $ref: '#/components/schemas/ListOfTspId'
+
+    SchemeInformation:
+      type: object
+      properties:
+        TSLVersion:
+          type: string
+        ListIssueDateTime:
+          type: string
+          format: date-time
+        NextUpdate:
+          type: string
+          format: date-time
+        SchemeName:
+          type: object
+          properties:
+            Name:
+              type: string
+        SchemeOperatorName:
+          type: object
+          properties:
+            Name:
+              type: string
+        TSLType:
+          type: string
+        SchemeOperatorAddress:
+          type: object
+          properties:
+            PostalAddresses:
+              type: object
+              properties:
+                PostalAddress:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      StreetAddress:
+                        type: string
+                      Locality:
+                        type: string
+                      State:
+                        type: string
+                      PostalCode:
+                        type: string
+                      CountryName:
+                        type: string
+            ElectronicAddress:
+              type: object
+              properties:
+                URI:
+                  type: string
+        SchemeInformationURI:
+          type: object
+          properties:
+            URI:
+              type: string
+        SchemeTypeCommunityRules:
+          type: object
+          properties:
+            URI:
+              type: string
+        SchemeTerritory:
+          type: string
+        PolicyOrLegalNotice:
+          type: object
+          properties:
+            TSLLegalNotice:
+              type: string
+        DistributionPoints:
+          type: object
+          properties:
+            URI:
+              type: string
+        SchemeExtensions:
+          type: object
+          properties:
+            URI:
+              type: string
+        PointersToOtherTSL:
+          type: array
+          items:
+            type: object
+            properties:
+              URI:
+                type: string
+                    
+    ListOfTspId: 
+      type: array
+      items:
+        type: object
+        properties:
+          TSPId:
+            type: string
+          TSPName:
+            type: string
+          TSPVersion:
+            type: string
+
+    TrustServiceProviderDetails:
+      type: object
+      properties:
+        TSPID:
+          type: string
+        TSPVersion:
+          type: string
+        TSPCurrentStatus:
+          type: string
+        LastUpdate:
+          type: string
+        TSPInformation:
+          type: object
+          properties:
+            TSPName:
+              type: object
+              properties:
+                Name:
+                  type: string
+            TSPType:
+              type: string
+            TrustFrameworkName:
+              type: object
+              properties:
+                Name:
+                  type: string
+            TSPRole:
+              type: string
+            TSPLegalName:
+              type: object
+              properties:
+                Name:
+                  type: string
+            TSPTradeName:
+              type: object
+              properties:
+                Name:
+                  type: string
+            TSPEntityIdentifierList:
+              type: object
+              properties:
+                TSPEntityIdentifier:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Type:
+                        type: string
+                      Value:
+                        type: string
+            TSPCertificationLists:
+              type: object
+              properties:
+                TSPCertification:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Type:
+                        type: string
+                      Value:
+                        type: string
+            TSPAddress:
+              type: object
+              properties:
+                PostalAddresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      StreetAddress1:
+                        type: string
+                      StreetAddress2:
+                        type: string
+                      PostalCode:
+                        type: string
+                      Locality:
+                        type: string
+                      State:
+                        type: string
+                      CountryName:
+                        type: string
+                ElectronicAddress:
+                  type: object
+                  properties:
+                    URI:
+                      type: string
+            TSPInformationURI:
+              type: object
+              properties:
+                URI:
+                  type: string
+            TSPQualifierList:
+              type: array
+              items:
+                type: object
+                properties:
+                  Name:
+                    type: string
+                  Value:
+                    type: string
+                  QualifierURI:
+                    type: string
+            OtherTSL:
+              type: string
+        SubmitterInfo:
+          type: object
+          properties:
+            SubmitterName:
+              type: object
+              properties:
+                Name:
+                  type: string
+            SubmitterAddress:
+              type: object
+              properties:
+                PostalAddresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      StreetAddress1:
+                        type: string
+                      StreetAddress2:
+                        type: string
+                      PostalCode:
+                        type: string
+                      Locality:
+                        type: string
+                      State:
+                        type: string
+                      CountryName:
+                        type: string
+                ElectronicAddress:
+                  type: object
+                  properties:
+                    URI:
+                      type: string
+        TSPServices:
+          type: array
+          items:
+            type: object
+            properties:
+              TSPService:
+                type: object
+                properties:
+                  ServiceInformation:
+                    type: object
+                    properties:
+                      ServiceTypeIdentifier:
+                        type: string
+                      ServiceName:
+                        type: object
+                        properties:
+                          Name:
+                            type: string
+                      ServiceDigitalIdentity:
+                        type: object
+                        properties:
+                          DigitalId:
+                            type: object
+                            properties:
+                              Value:
+                                type: string
+                              KeyType:
+                                type: string
+                      ServiceStatus:
+                        type: string
+                      StatusStartingTime:
+                        type: string
+                        format: date-time
+                      SchemeServiceDefinition:
+                        type: string
+                      ServiceSupplyPoint:
+                        type: string
+                      ServiceDefinitionURI:
+                        type: string
+                      AdditionalServiceInformation:
+                        type: object
+                        properties:
+                          ServiceIssuedCredentialTypes:
+                            type: object
+                            properties:
+                              CredentialType:
+                                type: string
+                          ServiceGovernanceURI:
+                            type: string
+                          ServiceBusinessRulesURI:
+                            type: string
+                  OpsAgentInfo:
+                    type: object
+                    properties:
+                      OpsAgentName:
+                        type: object
+                        properties:
+                          Name:
+                            type: string
+                      OpsAgentAddress:
+                        type: object
+                        properties:
+                          PostalAddresses:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                StreetAddress1:
+                                  type: string
+                                StreetAddress2:
+                                  type: string
+                                Locality:
+                                  type: string
+                                State:
+                                  type: string
+                                CountryName:
+                                  type: string
+                              ElectronicAddress:
+                                type: object
+                                properties:
+                                  URI:
+                                    type: string
+
+    TSPService: 
+      type: object
+      properties: 
+        ServiceCurrentStatus: 
+          type: string
+        StatusStartingTime: 
+          type: string
+        ServiceName: 
+          type: string
+        ServiceTypeIdentifier: 
+          type: string
+        ServiceSupplyPoint: 
+          type: string
+        ServiceDefinitionURI: 
+          type: string
+        ServiceDigitalIdentity: 
+          type: object
+          properties: 
+            Value: 
+              type: string
+            KeyType: 
+              type: string
+        AdditionalServiceInformation: 
+          type: object
+          properties: 
+            ServiceIssuedCredentialTypes: 
+              type: array
+              items: 
+                type: object
+                properties: 
+                  CredentialType: 
+                    type: string
+            ServiceGovernanceURI: 
+              type: string
+            ServiceBusinessRulesURI: 
+              type: string
+        OpsAgent: 
+          type: object
+          properties: 
+            Name: 
+              type: string
+            Address: 
+              type: object
+              properties: 
+                ElectronicAddress: 
+                  type: string
+                PostalAddress: 
+                  type: object
+                  properties: 
+                    StreetAddress1: 
+                      type: string
+                    StreetAddress2: 
+                      type: string
+                    City: 
+                      type: string
+                    State: 
+                      type: string
+                    Country: 
+                      type: string
+                    PostalCode: 
+                      type: string
+
+
+    
+  
+
+externalDocs:
+  description: About TRAIN
+  url: https://train.trust-scheme.de/info
+servers:
+  - url: https://tfm.regitrust.axyom.co
