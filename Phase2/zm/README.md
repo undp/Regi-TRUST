@@ -7,7 +7,7 @@ Documentation is still being simplified to match the needs of Phase 2...
 - [Architecture](#architecture)
 - [Build guide](#build-guide)
 - [REST API](./docs/ZM_openapi.yaml)
-- [Postman collection](./docs/ZM_RegiTRUST_phase_2_postman_collection.json)
+- [Postman collection](./docs/ZM_RegiTrust_phase_2_postman_collection.json)
 - [Licence](./LICENSE)
 - [Acknowledgement](#authors-and-acknowledgment)
 
@@ -31,43 +31,7 @@ The implementation was done based on [LIGHTest zone manager](https://github.com/
 
 ### System overview
 
-```plantuml
-@startuml
-
-actor :TFM:
-actor :DNS-Server:
-actor :NSD:
-
-actor :User:
-actor :Developer:
-
-actor :Keycloak:
-
-package "Zone Manager:repo" as ZM {
-    component "ZM Server"
-    component "ZM UI"
-    database "Sqlite"
-    file "Zone File"
-    interface REST
-}
-
-
-Developer    --|> User
-TFM         --|> User
-User         -->  "ZM Server": requests
-
-User         -->  Keycloak: fetch token to \n\
-authenticate to ZM Server
-
-"ZM Server"  -- REST
-"ZM Server"  --> "DNS-Server"
-"ZM Server" --> "Sqlite"
-"ZM Server" --> "Zone File"
-"NSD"        --|> "DNS-Server"
-
-
-@enduml
-```
+![here](./docs/architecture.png)
 
 The zone manager is meant to have the TSPA as its only client. The TSPA can perform CRUD operations
 in relation to Trust Frameworks and Trust Lists. The Zone Manager takes every operation request and
@@ -84,9 +48,6 @@ In the case of creation of Trust List DID, the process is similar with only diff
 DID are stored as URI type records in the database as well as in the zone file.
 
 This is repeated every time a CRUD operation in relation to Trust Framework URLs and Trust List DIDs.
-
-The current Zone Manager implementation includes a simple UI that allows the administrator to visualize
-the zone data. See the [user interface folder](ui)
 
 ## Build guide
 
