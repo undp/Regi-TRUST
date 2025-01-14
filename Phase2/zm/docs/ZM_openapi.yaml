@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: ZM - RegiTRUST phase 2
+  version: 1.0.0
+  description: API specification for ZM - RegiTRUST phase 2
+
+servers:
+  - url: 'https://zm.regitrust.axyom.co'
+
+paths:
+  /view-zone:
+    get:
+      tags:
+        - DNS Zone Manager
+      summary: View Zone
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /status:
+    get:
+      tags:
+        - DNS Zone Manager
+      summary: Status Check
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Status response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /names/{trustframework}/schemes:
+    put:
+      tags:
+        - DNS Zone Manager
+      summary: Add Trust Framework
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: trustframework
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemes:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '204':
+          description: Successfully added Trust Framework
+
+  /names/{trustframework}/trust-list:
+    put:
+      tags:
+        - DNS Zone Manager
+      summary: Add URL to Trust List
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: trustframework
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+      responses:
+        '204':
+          description: Successfully added URL to Trust List
+
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
