@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "1e262d5e-e47c-4e49-a9da-edecd9206fb2",
+    "name": "ZM - RegiTRUST phase 2 (manual copy)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4880687"
+  },
+  "item": [
+    {
+      "name": "view-zone",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "***************",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{ZMDomain}}/view-zone",
+          "host": ["{{ZMDomain}}"],
+          "path": ["view-zone"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "status",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "***************",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{ZMDomain}}/status",
+          "host": ["{{ZMDomain}}"],
+          "path": ["status"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add TF",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ZM_KEY}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"schemes\":[{{trustframework}}]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{ZMDomain}}/names/{{trustframework}}/schemes",
+          "host": ["{{ZMDomain}}"],
+          "path": ["names", "{{trustframework}}", "schemes"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add URL",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ZM_KEY}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"url\":\"https://url-for-{{trustframework}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{ZMDomain}}/names/{{trustframework}}/trust-list",
+          "host": ["{{ZMDomain}}"],
+          "path": ["names", "{{trustframework}}", "trust-list"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get keycloak baerer token - Essif FhG",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "gccnreviewer",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "gccnreviewer",
+              "type": "text"
+            },
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "******************************",
+              "type": "text"
+            },
+            {
+              "key": "scope",
+              "value": "openid",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "gccn-registry",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://essif.iao.fraunhofer.de/auth/realms/gccn/protocol/openid-connect/token",
+          "protocol": "https",
+          "host": ["essif", "iao", "fraunhofer", "de"],
+          "path": [
+            "auth",
+            "realms",
+            "gccn",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
