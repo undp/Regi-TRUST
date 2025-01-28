@@ -1,0 +1,675 @@
+<TrustServiceStatusList>
+	<FrameworkInformation>
+		<TSLVersion>9</TSLVersion>
+		<TSLType>https://test.com</TSLType>
+		<ListIssueDateTime>2025-01-25T01:16:25.183312081</ListIssueDateTime>
+		<NextUpdate>2030-12-31T00:00:00Z</NextUpdate>
+		<FrameworkName>
+			<Name>testFW.zm.regitrust.axyom.co</Name>
+		</FrameworkName>
+		<FrameworkOperatorName>
+			<Name>Federation 1</Name>
+		</FrameworkOperatorName>
+		<FrameworkOperatorAddress>
+			<PostalAddresses>
+				<PostalAddress>
+					<StreetAddress>Gedung Kementerian Kesehatan</StreetAddress>
+					<Locality>Jakarta22</Locality>
+					<PostalCode>10110</PostalCode>
+					<CountryName/>
+				</PostalAddress>
+			</PostalAddresses>
+			<ElectronicAddress>
+				<URI>mailto:contact@kemkes.go.id</URI>
+			</ElectronicAddress>
+		</FrameworkOperatorAddress>
+		<FrameworkInformationURI>
+			<URI>https://www.kemkes.go.id/haj-health-credentials</URI>
+		</FrameworkInformationURI>
+		<FrameworkTypeCommunityRules>
+			<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+		</FrameworkTypeCommunityRules>
+		<SchemeTerritory>ID</SchemeTerritory>
+		<PolicyOrLegalNotice>
+			<TSLLegalNotice>This trust list is regulated by the legal framework established by the Indonesian Government.</TSLLegalNotice>
+		</PolicyOrLegalNotice>
+		<DistributionPoints>
+			<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+		</DistributionPoints>
+		<SchemeExtensions>
+			<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+		</SchemeExtensions>
+		<PointersToOtherTSL/>
+	</FrameworkInformation>
+	<TrustServiceProviderList>
+		<TrustServiceProvider>
+			<TSPID>6760ca3dacd0bdc9eca231d4</TSPID>
+			<TSPVersion>1</TSPVersion>
+			<TSPCurrentStatus>new</TSPCurrentStatus>
+			<LastUpdate>2024-12-17T00:48:48.731909262</LastUpdate>
+			<TSPInformation>
+				<TSPName>
+					<Name>Premier Jatinegara Hospital</Name>
+				</TSPName>
+				<TSPType>Issuer</TSPType>
+				<TSPRole>Issuer</TSPRole>
+				<TSPLegalName>
+					<Name>Premier Jatinegara Hospital</Name>
+				</TSPLegalName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<Type>JCI</Type>
+						<Value>JID087653487</Value>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPCertificationLists>
+					<TSPCertification>
+						<Type>ISO</Type>
+						<Value>ISO9873458</Value>
+					</TSPCertification>
+				</TSPCertificationLists>
+				<TSPAddress>
+					<ElectronicAddress>
+						<URI>info@rspremierjatinegara.com</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Jakarta</Locality>
+						<CountryName>Indonesia</CountryName>
+						<PostalCode>13310</PostalCode>
+						<State>ID</State>
+						<StreetAddress1>Jl Raya Jatinegara Timur </StreetAddress1>
+						<StreetAddress2>no. 85-87</StreetAddress2>
+					</PostalAddresses>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI>https://www.rspremierjatinegara.com/en/jatinegara/hubungi-kami</URI>
+				</TSPInformationURI>
+				<OtherTSL/>
+			</TSPInformation>
+			<SubmitterInfo>
+				<SubmitterName>
+					<Name>Department of Compliance</Name>
+				</SubmitterName>
+				<SubmitterAddress>
+					<ElectronicAddress>
+						<URI>info@rspremierjatinegara.com</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Jakarta</Locality>
+						<CountryName>Indonesia</CountryName>
+						<PostalCode>13310</PostalCode>
+						<State>ID</State>
+						<StreetAddress1>Jl Raya Jatinegara Timur no. 85-87</StreetAddress1>
+						<StreetAddress2/>
+					</PostalAddresses>
+				</SubmitterAddress>
+			</SubmitterInfo>
+			<TSPServices>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Vaccination</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Vaccination Services</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>did:Web:haj.jakarta.health</Value>
+								<KeyType>DID</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1734394949611</StatusStartingTime>
+						<ServiceSupplyPoint>https://www.rspremierjatinegara.com</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://www.rspremierjatinegara.com</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://www.rspremierjatinegara.com</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.rspremierjatinegara.com</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Dr. Irene Andrijono</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>ijkk@rspremierjatinegara.com</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Jakarta</Locality>
+								<CountryName>Indonesia</CountryName>
+								<PostalCode>13310</PostalCode>
+								<State>ID</State>
+								<StreetAddress1>Jl Raya Jatinegara Timur no. 86-88</StreetAddress1>
+								<StreetAddress2/>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Recovery</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Recovery Services</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>did:Web:haj.jakarta.health</Value>
+								<KeyType>DID</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1734394949611</StatusStartingTime>
+						<ServiceSupplyPoint>https://www.rspremierjatinegara.com</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://www.rspremierjatinegara.com</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://www.rspremierjatinegara.com</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.rspremierjatinegara.com</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Dr. Irene Andrijono</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>ijkk@rspremierjatinegara.com</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Jakarta</Locality>
+								<CountryName>Indonesia</CountryName>
+								<PostalCode>13310</PostalCode>
+								<State>ID</State>
+								<StreetAddress1>Jl Raya Jatinegara Timur no. 86-88</StreetAddress1>
+								<StreetAddress2/>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+			</TSPServices>
+		</TrustServiceProvider>
+		<TrustServiceProvider>
+			<TSPID>6760cb5aacd0bdc9eca2322f</TSPID>
+			<TSPVersion>1</TSPVersion>
+			<TSPCurrentStatus>new</TSPCurrentStatus>
+			<LastUpdate>2024-12-17T00:53:04.295076266</LastUpdate>
+			<TSPInformation>
+				<TSPName>
+					<Name>Kaiser Permenante California</Name>
+				</TSPName>
+				<TSPType>Issuer</TSPType>
+				<TSPRole>Issuer</TSPRole>
+				<TSPLegalName>
+					<Name>Kaiser Permenante Inc.</Name>
+				</TSPLegalName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<Type>NPI</Type>
+						<Value>1952476665</Value>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPCertificationLists>
+					<TSPCertification>
+						<Type>California License Number</Type>
+						<Value>030000052</Value>
+					</TSPCertification>
+				</TSPCertificationLists>
+				<TSPAddress>
+					<ElectronicAddress>
+						<URI>info@kp.org</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Sacramento</Locality>
+						<CountryName>United States</CountryName>
+						<PostalCode>95825</PostalCode>
+						<State>CA</State>
+						<StreetAddress1>2025 Morse Ave</StreetAddress1>
+						<StreetAddress2/>
+					</PostalAddresses>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI>https://healthy.kaiserpermanente.org/northern-california/facilities/sacramento-medical-center-100330</URI>
+				</TSPInformationURI>
+				<OtherTSL/>
+			</TSPInformation>
+			<SubmitterInfo>
+				<SubmitterName>
+					<Name>John Doe</Name>
+				</SubmitterName>
+				<SubmitterAddress>
+					<ElectronicAddress>
+						<URI>john_doe@kp.org</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Sacramento</Locality>
+						<CountryName>United States</CountryName>
+						<PostalCode>95825</PostalCode>
+						<State>CA</State>
+						<StreetAddress1>2025 Morse Ave</StreetAddress1>
+						<StreetAddress2/>
+					</PostalAddresses>
+				</SubmitterAddress>
+			</SubmitterInfo>
+			<TSPServices>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Vaccination</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Vaccination Services</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>https://healthy.kaiserpermanente.org</Value>
+								<KeyType>x509 Certificate</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1734394949611</StatusStartingTime>
+						<ServiceSupplyPoint>https://healthy.kaiserpermanente.org/northern-california/facilities/sacramento-medical-center-100330/departments/infectious-diseases-dlp-104564</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://healthy.kaiserpermanente.org/northern-california/facilities/sacramento-medical-center-100330/departments/infectious-diseases-dlp-104564</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://healthy.kaiserpermanente.org</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://healthy.kaiserpermanente.org</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>John Doe</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>John_doe@kp.org</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Sacramento</Locality>
+								<CountryName>United States</CountryName>
+								<PostalCode>95825</PostalCode>
+								<State>CA</State>
+								<StreetAddress1>2025 Morse Ave</StreetAddress1>
+								<StreetAddress2/>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Recovery</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Vaccination Services</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>https://healthy.kaiserpermanente.org</Value>
+								<KeyType>x509 Certificate</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1734394949611</StatusStartingTime>
+						<ServiceSupplyPoint>https://healthy.kaiserpermanente.org/northern-california/facilities/sacramento-medical-center-100330/departments/infectious-diseases-dlp-104564</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://healthy.kaiserpermanente.org/northern-california/facilities/sacramento-medical-center-100330/departments/infectious-diseases-dlp-104564</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://healthy.kaiserpermanente.org</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://healthy.kaiserpermanente.org</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>John Doe</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>John_doe@kp.org</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Sacramento</Locality>
+								<CountryName>United States</CountryName>
+								<PostalCode>95825</PostalCode>
+								<State>CA</State>
+								<StreetAddress1>2025 Morse Ave</StreetAddress1>
+								<StreetAddress2/>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+			</TSPServices>
+		</TrustServiceProvider>
+		<TrustServiceProvider>
+			<TSPID>677d4abd7ea8ab2cdeaaddca</TSPID>
+			<TSPVersion>3</TSPVersion>
+			<TSPCurrentStatus>new</TSPCurrentStatus>
+			<LastUpdate>2025-01-07T16:35:19.591352100</LastUpdate>
+			<TSPInformation>
+				<TSPName>
+					<Name>Test MOH Trinidad</Name>
+				</TSPName>
+				<TSPType>Issuer</TSPType>
+				<TSPRole>Issuer</TSPRole>
+				<TSPLegalName>
+					<Name>Ministry of Health</Name>
+				</TSPLegalName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<Type>ISO</Type>
+						<Value>12345</Value>
+					</TSPEntityIdentifier>
+					<TSPEntityIdentifier>
+						<Type>ISO</Type>
+						<Value>678910</Value>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPCertificationLists>
+					<TSPCertification>
+						<Type>LEI </Type>
+						<Value>254900ZH0KAYO683UE85</Value>
+					</TSPCertification>
+				</TSPCertificationLists>
+				<TSPAddress>
+					<ElectronicAddress>
+						<URI>epi@health.gov.tt</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Port-of-Spain</Locality>
+						<CountryName>Trinidad & Tobago</CountryName>
+						<PostalCode>101002</PostalCode>
+						<State>101002</State>
+						<StreetAddress1>4-6 Queen’s Park East</StreetAddress1>
+						<StreetAddress2/>
+					</PostalAddresses>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI>https://health.gov.tt/</URI>
+				</TSPInformationURI>
+				<OtherTSL/>
+			</TSPInformation>
+			<SubmitterInfo>
+				<SubmitterName>
+					<Name>Agent for Trinidad and Tobago MOH</Name>
+				</SubmitterName>
+				<SubmitterAddress>
+					<ElectronicAddress>
+						<URI>epi@health.gov.tt</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Port-of-Spain</Locality>
+						<CountryName>Trinidad & Tobago</CountryName>
+						<PostalCode>101002</PostalCode>
+						<State>Port-of-Spain</State>
+						<StreetAddress1>4-6 Queen’s Park East</StreetAddress1>
+						<StreetAddress2/>
+					</PostalAddresses>
+				</SubmitterAddress>
+			</SubmitterInfo>
+			<TSPServices>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Vaccination</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>The Expanded Programme on Immunization</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6</Value>
+								<KeyType>x509 Certificate</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1736208014563</StatusStartingTime>
+						<ServiceSupplyPoint>https://health.gov.tt/~healthgov/services/vaccines-and-immunization#</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://health.gov.tt/~healthgov/services/vaccines-and-immunization#</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, ETC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://health.gov.tt/%7Ehealthgov/services/vaccines-and-immunization/FAQs#WherecanIgetimmunized</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.vaccinesafetynet.org/</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Information Contact</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>epi@health.gov.tt</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality> East Port of Spain</Locality>
+								<CountryName>Trinidad & Tobago</CountryName>
+								<PostalCode>101002</PostalCode>
+								<State> East Port of Spain</State>
+								<StreetAddress1>4-6 Queen's Park</StreetAddress1>
+								<StreetAddress2/>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Vaccination</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>MOH Public Health Facilities</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6</Value>
+								<KeyType>x509 Certificate</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1736208014563</StatusStartingTime>
+						<ServiceSupplyPoint>https://1.health.gov.tt/health-facilities</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://health.gov.tt/~healthgov/services/vaccines-and-immunization#</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, ETC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://health.gov.tt/%7Ehealthgov/services/vaccines-and-immunization/FAQs#WherecanIgetimmunized</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.vaccinesafetynet.org/</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Information Contact</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>epi@health.gov.tt</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality> East Port of Spain</Locality>
+								<CountryName>Trinidad & Tobago</CountryName>
+								<PostalCode>101002</PostalCode>
+								<State> East Port of Spain</State>
+								<StreetAddress1>4-6 Queen's Park</StreetAddress1>
+								<StreetAddress2/>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+			</TSPServices>
+		</TrustServiceProvider>
+		<TrustServiceProvider>
+			<TSPID>677ffd160633d2bc02855003</TSPID>
+			<TSPVersion>1</TSPVersion>
+			<TSPCurrentStatus>new</TSPCurrentStatus>
+			<LastUpdate>2025-01-09T16:49:10.172477104</LastUpdate>
+			<TSPInformation>
+				<TSPName>
+					<Name>Public Health Agency of Canada</Name>
+				</TSPName>
+				<TSPType>Issuer</TSPType>
+				<TSPRole>Issuer</TSPRole>
+				<TSPLegalName>
+					<Name>Public Health Agency of Canada</Name>
+				</TSPLegalName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<Type>Canadian Government Agency Identifier</Type>
+						<Value>PHAC</Value>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPCertificationLists>
+					<TSPCertification>
+						<Type>ISO</Type>
+						<Value>9001 2008</Value>
+					</TSPCertification>
+				</TSPCertificationLists>
+				<TSPAddress>
+					<ElectronicAddress>
+						<URI>PHAC_Web_Mail@phac-aspc.gc.ca</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Ottawa</Locality>
+						<CountryName>Canada</CountryName>
+						<PostalCode> Regi-TRUST Demo UNDP Regi-TRUST Demo UNDP 100% 12 B22 ON K1A 0K9 ON K1A 0K9 Turn on screen reader support To enable screen reader support, press ⌘+Option+Z To learn about keyboard shortcuts, press ⌘slash</PostalCode>
+						<State>Ontario</State>
+						<StreetAddress1>130 Colonnade Rd</StreetAddress1>
+						<StreetAddress2>A.L. 6501H</StreetAddress2>
+					</PostalAddresses>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI>https://www.canada.ca/en/public-health.html</URI>
+				</TSPInformationURI>
+				<OtherTSL/>
+			</TSPInformation>
+			<SubmitterInfo>
+				<SubmitterName>
+					<Name>Lucy Yang</Name>
+				</SubmitterName>
+				<SubmitterAddress>
+					<ElectronicAddress>
+						<URI>lucy@phc.ca</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>M6J2V9</Locality>
+						<CountryName>Canada</CountryName>
+						<PostalCode>M6J2V9</PostalCode>
+						<State>Ontario</State>
+						<StreetAddress1>388 Crawford Street</StreetAddress1>
+						<StreetAddress2/>
+					</PostalAddresses>
+				</SubmitterAddress>
+			</SubmitterInfo>
+			<TSPServices>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Vaccination</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Canada Health Vaccines and Immunization</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>00:c9:22:69:31:8a:d6:6c:ea:da:c3:</Value>
+								<KeyType>x509 Certificate</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1736440302021</StatusStartingTime>
+						<ServiceSupplyPoint>https://www.canada.ca/en/public-health/services/vaccine-supply.html</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://www.canada.ca/en/public-health/services/immunization-vaccines.html</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://www.canada.ca/en/public-health.html</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.canada.ca/en/public-health/services/canadian-immunization-guide.html</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Lucy</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>lucy@phc.ca</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Ottawa</Locality>
+								<CountryName>Canada</CountryName>
+								<PostalCode>K1A 0K9</PostalCode>
+								<State>Ontario</State>
+								<StreetAddress1>130 Colonnade Rd</StreetAddress1>
+								<StreetAddress2>A.L. 6501H</StreetAddress2>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+			</TSPServices>
+		</TrustServiceProvider>
+		<TrustServiceProvider>
+			<TSPID>67943b4aa7a51f5de49f57a7</TSPID>
+			<TSPVersion>1</TSPVersion>
+			<TSPCurrentStatus>new</TSPCurrentStatus>
+			<LastUpdate>2025-01-25T01:16:25.130175782</LastUpdate>
+			<TSPInformation>
+				<TSPName>
+					<Name>test</Name>
+				</TSPName>
+				<TSPType>Issuer</TSPType>
+				<TSPRole>Issuer</TSPRole>
+				<TSPLegalName>
+					<Name>Hospital name 2 test test</Name>
+				</TSPLegalName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<Type>vLEI</Type>
+						<Value>LEICode ISO 17442</Value>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPCertificationLists>
+					<TSPCertification>
+						<Type>ISO</Type>
+						<Value>ISO 17442</Value>
+					</TSPCertification>
+				</TSPCertificationLists>
+				<TSPAddress>
+					<ElectronicAddress>
+						<URI>info@kemkes.go.id</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Jakarta</Locality>
+						<CountryName>Indonesia</CountryName>
+						<PostalCode>12950</PostalCode>
+						<State>ID</State>
+						<StreetAddress1>Jl. Rasuna Said</StreetAddress1>
+						<StreetAddress2>Kav. 4-9</StreetAddress2>
+					</PostalAddresses>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI>https://example.com</URI>
+				</TSPInformationURI>
+				<OtherTSL/>
+			</TSPInformation>
+			<SubmitterInfo>
+				<SubmitterName>
+					<Name>alder</Name>
+				</SubmitterName>
+				<SubmitterAddress>
+					<ElectronicAddress>
+						<URI>morenoalder98@gmail.com</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>95678</Locality>
+						<CountryName>United States</CountryName>
+						<PostalCode>95678</PostalCode>
+						<State>California</State>
+						<StreetAddress1>2220 cemo circle apt 5235</StreetAddress1>
+						<StreetAddress2>Suite 300</StreetAddress2>
+					</PostalAddresses>
+				</SubmitterAddress>
+			</SubmitterInfo>
+			<TSPServices/>
+		</TrustServiceProvider>
+	</TrustServiceProviderList>
+</TrustServiceStatusList>
