@@ -380,7 +380,7 @@
 					</ElectronicAddress>
 					<PostalAddresses>
 						<Locality>Port-of-Spain</Locality>
-						<CountryName>Trinidad & Tobago</CountryName>
+						<CountryName>Trinidad-Tobago</CountryName>
 						<PostalCode>101002</PostalCode>
 						<State>101002</State>
 						<StreetAddress1>4-6 Queen’s Park East</StreetAddress1>
@@ -402,7 +402,7 @@
 					</ElectronicAddress>
 					<PostalAddresses>
 						<Locality>Port-of-Spain</Locality>
-						<CountryName>Trinidad & Tobago</CountryName>
+						<CountryName>Trinidad-Tobago</CountryName>
 						<PostalCode>101002</PostalCode>
 						<State>Port-of-Spain</State>
 						<StreetAddress1>4-6 Queen’s Park East</StreetAddress1>
@@ -445,7 +445,7 @@
 							</ElectronicAddress>
 							<PostalAddresses>
 								<Locality> East Port of Spain</Locality>
-								<CountryName>Trinidad & Tobago</CountryName>
+								<CountryName>Trinidad-Tobago</CountryName>
 								<PostalCode>101002</PostalCode>
 								<State> East Port of Spain</State>
 								<StreetAddress1>4-6 Queen's Park</StreetAddress1>
@@ -488,7 +488,7 @@
 							</ElectronicAddress>
 							<PostalAddresses>
 								<Locality> East Port of Spain</Locality>
-								<CountryName>Trinidad & Tobago</CountryName>
+								<CountryName>Trinidad-Tobago</CountryName>
 								<PostalCode>101002</PostalCode>
 								<State> East Port of Spain</State>
 								<StreetAddress1>4-6 Queen's Park</StreetAddress1>
