@@ -1,4 +1,4 @@
-# Regi-TRUST Phase 2 - Example Trust Lists
+# Regi-TRUST Phase 2 - Trust List Examples
 
 ## Trust Framework Manager and Trust Lists
 
