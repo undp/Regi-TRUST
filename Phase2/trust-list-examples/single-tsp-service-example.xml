@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrustServiceStatusList>
+	<FrameworkInformation>
+		<TSLVersion>3</TSLVersion>
+		<TSLType>https://test.com</TSLType>
+		<ListIssueDateTime>2024-12-17T00:48:48.765362577</ListIssueDateTime>
+		<NextUpdate>2030-12-31T00:00:00Z</NextUpdate>
+		<FrameworkName>
+			<Name>testFW.zm.regitrust.axyom.co</Name>
+		</FrameworkName>
+		<FrameworkOperatorName>
+			<Name>Federation 1</Name>
+		</FrameworkOperatorName>
+		<FrameworkOperatorAddress>
+			<PostalAddresses>
+				<PostalAddress>
+					<StreetAddress>Gedung Kementerian Kesehatan</StreetAddress>
+					<Locality>Jakarta22</Locality>
+					<PostalCode>10110</PostalCode>
+					<CountryName></CountryName>
+				</PostalAddress>
+			</PostalAddresses>
+			<ElectronicAddress>
+				<URI>mailto:contact@kemkes.go.id</URI>
+			</ElectronicAddress>
+		</FrameworkOperatorAddress>
+		<FrameworkInformationURI>
+			<URI>https://www.kemkes.go.id/haj-health-credentials</URI>
+		</FrameworkInformationURI>
+		<FrameworkTypeCommunityRules>
+			<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+		</FrameworkTypeCommunityRules>
+		<SchemeTerritory>ID</SchemeTerritory>
+		<PolicyOrLegalNotice>
+			<TSLLegalNotice>This trust list is regulated by the legal framework established by the Indonesian Government.</TSLLegalNotice>
+		</PolicyOrLegalNotice>
+		<DistributionPoints>
+			<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+		</DistributionPoints>
+		<SchemeExtensions>
+			<URI>https://www.kemkes.go.id/haj-health-rules</URI>
+		</SchemeExtensions>
+		<PointersToOtherTSL/>
+	</FrameworkInformation>
+	<TrustServiceProviderList>
+		<TrustServiceProvider>
+			<TSPID>6760ca3dacd0bdc9eca231d4</TSPID>
+			<TSPVersion>1</TSPVersion>
+			<TSPCurrentStatus>new</TSPCurrentStatus>
+			<LastUpdate>2024-12-17T00:48:48.731909262</LastUpdate>
+			<TSPInformation>
+				<TSPName>
+					<Name>Premier Jatinegara Hospital</Name>
+				</TSPName>
+				<TSPType>Issuer</TSPType>
+				<TSPRole>Issuer</TSPRole>
+				<TSPLegalName>
+					<Name>Premier Jatinegara Hospital</Name>
+				</TSPLegalName>
+				<TSPEntityIdentifierList>
+					<TSPEntityIdentifier>
+						<Type>JCI</Type>
+						<Value>JID087653487</Value>
+					</TSPEntityIdentifier>
+				</TSPEntityIdentifierList>
+				<TSPCertificationLists>
+					<TSPCertification>
+						<Type>ISO</Type>
+						<Value>ISO9873458</Value>
+					</TSPCertification>
+				</TSPCertificationLists>
+				<TSPAddress>
+					<ElectronicAddress>
+						<URI>info@rspremierjatinegara.com</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Jakarta</Locality>
+						<CountryName>Indonesia</CountryName>
+						<PostalCode>13310</PostalCode>
+						<State>ID</State>
+						<StreetAddress1>Jl Raya Jatinegara Timur </StreetAddress1>
+						<StreetAddress2>no. 85-87</StreetAddress2>
+					</PostalAddresses>
+				</TSPAddress>
+				<TSPInformationURI>
+					<URI>https://www.rspremierjatinegara.com/en/jatinegara/hubungi-kami</URI>
+				</TSPInformationURI>
+				<OtherTSL></OtherTSL>
+			</TSPInformation>
+			<SubmitterInfo>
+				<SubmitterName>
+					<Name>Department of Compliance</Name>
+				</SubmitterName>
+				<SubmitterAddress>
+					<ElectronicAddress>
+						<URI>info@rspremierjatinegara.com</URI>
+					</ElectronicAddress>
+					<PostalAddresses>
+						<Locality>Jakarta</Locality>
+						<CountryName>Indonesia</CountryName>
+						<PostalCode>13310</PostalCode>
+						<State>ID</State>
+						<StreetAddress1>Jl Raya Jatinegara Timur no. 85-87</StreetAddress1>
+						<StreetAddress2></StreetAddress2>
+					</PostalAddresses>
+				</SubmitterAddress>
+			</SubmitterInfo>
+			<TSPServices>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Vaccination</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Vaccination Services</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>did:Web:haj.jakarta.health</Value>
+								<KeyType>DID</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1734394949611</StatusStartingTime>
+						<ServiceSupplyPoint>https://www.rspremierjatinegara.com</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://www.rspremierjatinegara.com</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://www.rspremierjatinegara.com</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.rspremierjatinegara.com</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Dr. Irene Andrijono</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>ijkk@rspremierjatinegara.com</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Jakarta</Locality>
+								<CountryName>Indonesia</CountryName>
+								<PostalCode>13310</PostalCode>
+								<State>ID</State>
+								<StreetAddress1>Jl Raya Jatinegara Timur no. 86-88</StreetAddress1>
+								<StreetAddress2></StreetAddress2>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+				<TSPService>
+					<ServiceInformation>
+						<ServiceTypeIdentifier>Recovery</ServiceTypeIdentifier>
+						<ServiceName>
+							<Name>Recovery Services</Name>
+						</ServiceName>
+						<ServiceDigitalIdentity>
+							<DigitalId>
+								<Value>did:Web:haj.jakarta.health</Value>
+								<KeyType>DID</KeyType>
+							</DigitalId>
+						</ServiceDigitalIdentity>
+						<ServiceStatus>https://kemkes.go.id/ServiceStatus/active</ServiceStatus>
+						<StatusStartingTime>1734394949611</StatusStartingTime>
+						<ServiceSupplyPoint>https://www.rspremierjatinegara.com</ServiceSupplyPoint>
+						<ServiceDefinitionURI>https://www.rspremierjatinegara.com</ServiceDefinitionURI>
+						<AdditionalServiceInformation>
+							<ServiceIssuedCredentialTypes>
+								<CredentialType>, SHC</CredentialType>
+							</ServiceIssuedCredentialTypes>
+							<ServiceGovernanceURI>https://www.rspremierjatinegara.com</ServiceGovernanceURI>
+							<ServiceBusinessRulesURI>https://www.rspremierjatinegara.com</ServiceBusinessRulesURI>
+						</AdditionalServiceInformation>
+					</ServiceInformation>
+					<OpsAgentInfo>
+						<OpsAgentName>
+							<Name>Dr. Irene Andrijono</Name>
+						</OpsAgentName>
+						<OpsAgentAddress>
+							<ElectronicAddress>
+								<URI>ijkk@rspremierjatinegara.com</URI>
+							</ElectronicAddress>
+							<PostalAddresses>
+								<Locality>Jakarta</Locality>
+								<CountryName>Indonesia</CountryName>
+								<PostalCode>13310</PostalCode>
+								<State>ID</State>
+								<StreetAddress1>Jl Raya Jatinegara Timur no. 86-88</StreetAddress1>
+								<StreetAddress2></StreetAddress2>
+							</PostalAddresses>
+						</OpsAgentAddress>
+					</OpsAgentInfo>
+				</TSPService>
+			</TSPServices>
+		</TrustServiceProvider>
+	</TrustServiceProviderList>
+</TrustServiceStatusList>
