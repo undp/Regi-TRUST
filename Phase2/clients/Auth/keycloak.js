@@ -1,9 +1,10 @@
 var OidcHelper = require('openid-client-helper')
 var jwt = require('jsonwebtoken')
-const config = require('../Config/config.json')
 const keycloak = require('../Config/keycloak.json')
 const client = require('../Config/config.json').Client
 const  axios = require('axios')
+const qs = require('qs')
+const roleNames = require('../Config/config.json').roleNames
 
 const realmUrl = keycloak['auth-server-url'] + 'realms/' + keycloak['realm']
 const adminUrl = keycloak['auth-server-url'] + 'admin/realms/' + keycloak['realm']
@@ -21,6 +22,12 @@ const clientMetadata = {
     client_secret: keycloak['credentials']['secret'],
     redirect_uri: clientUrl + 'auth/callback/',
     post_logout_redirect_uri: clientUrl
+}
+
+const serviceUserMetadata = {
+    grant_type: 'client_credentials',
+    client_id: keycloak['resource'],
+    client_secret: keycloak['credentials']['secret']
 }
 
 const OidcHelperParams = {
@@ -58,6 +65,24 @@ const _getAuthTokenDecoded = (req) => {
 
     return jwt.decode(userAuthz?.tokenSet?.access_token)
 }
+
+const getServiceUserToken = async (access_token) => {
+    let options = {
+        method: 'POST',
+        url: issuerMetadata.token_endpoint,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + access_token
+        },
+        data: qs.stringify(serviceUserMetadata)
+    }
+
+    let token = await axios(options)
+        .then(res => res.data.access_token)
+        .catch(err => console.error(err))
+
+    return token;
+};
 
 const getAccessToken = (req) => {
     const userAuthz = req ? getAuthorization({ req }) : null;
@@ -137,12 +162,36 @@ const _getUsersByRole = async (role, clientId, adminToken) => {
 
     return users
 }
+const _getUserById = async (id, adminToken) => {
+    let options = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + adminToken
+        },
+        url: adminUrl + `/users/${id}`
+    }
 
-const getReviewerEmails = async (reviewer_type = 'Registry_reviewer', adminToken) => {
-    // let clientId = await _getClientId(clientMetadata.client_id, adminToken);    
-    let users = await _getUsersByRole("Registry_reviewer", "8c1d3780-36da-4146-bbd0-9c02c29fa4b9", adminToken)    
+    let users = await axios(options)
+        .then(res => res.data)
+        .catch(err => console.error(err))
+
+    return users
+}
+
+const getReviewerEmails = async (reviewer_type = roleNames.REVIEWER, serviceUserToken) => {
+    let clientId = await _getClientId(clientMetadata.client_id, serviceUserToken);    
+    let users = await _getUsersByRole(reviewer_type, clientId, serviceUserToken)
 
     return users?.filter(user => user.email).map(user => user.email)
+}
+
+const getSubmitterEmail = async (submitterId, serviceUserToken) => {
+    let user = await _getUserById(submitterId, serviceUserToken)
+
+    console.log(user)
+
+    return user.email;
 }
 
 module.exports = {
@@ -155,9 +204,11 @@ module.exports = {
     getClient,
     getAuthorization,
     getAccessToken,
+    getServiceUserToken,
     getClaims,
     getWWWAuthenticateHeaderAttributes,
     getReviewerEmails,
+    getSubmitterEmail,
     getRoles,
     getUserId
 }

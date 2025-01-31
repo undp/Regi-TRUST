@@ -6,10 +6,10 @@ var formJSON = require('../../data/formFields/framework');
 var { checkAuthorized, getRoles } = require('../../Auth/keycloak');
 
 const trainApi = require('../../data/TRAIN/trainApiService');
-var roles = require('../../Auth/roles');
+var roleNames = require('../../Config/config.json').roleNames;
 
 /* GET enroll form page. */
-router.get('/:step', checkAuthorized([roles.ADMIN]), async function (req, res) {
+router.get('/:step', checkAuthorized([roleNames.ADMIN]), async function (req, res) {
     let step = parseInt(req.params['step']);
 
     let roles = getRoles(req);
@@ -49,7 +49,7 @@ router.get('/:step', checkAuthorized([roles.ADMIN]), async function (req, res) {
 });
 
 /* Post TSP enrollmment request. */
-router.post('/:step', checkAuthorized([roles.ADMIN]),  async function (req, res, next) {   
+router.post('/:step', checkAuthorized([roleNames.ADMIN]),  async function (req, res, next) {   
     let sessionData = req.session.sessionData;
     
     if (!sessionData) {

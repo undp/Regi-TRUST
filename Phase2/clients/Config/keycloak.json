@@ -1,9 +1,9 @@
 {
   "realm": "RegiTRUST",
-  "realmAdminEmail": "REVIEWERS DISTIBUTION GROUP EMAIL",
-  "auth-server-url": "https://auth.regitrust.axyom.co/",
+  "realmAdminEmail": "admin-email",
+  "auth-server-url": "keycloak-server-url",
   "ssl-required": "external",
-  "resource": "RegiTRUST_Client",
+  "resource": "keycloak-client",
   "verify-token-audience": true,
   "credentials": {
     "secret": "SECRET"

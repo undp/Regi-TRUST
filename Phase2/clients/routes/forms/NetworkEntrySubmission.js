@@ -7,9 +7,9 @@ var { SubmissionModel } = require('../../data/MongoDB/mongoose');
 var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewSubmission, notifySubmissionUpdated } = require('../../notifications/emailService')
 var trainApi = require('../../data/TRAIN/trainApiService');
-const roles = require('../../Auth/roles');
+const { roleNames } = require('../../Config/config.json');
 
-router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), function(req, res) {
+router.get('/', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), function(req, res) {
     req.session.sessionData = null
     req.session.submitted = null
 
@@ -17,7 +17,7 @@ router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]),
 })
 
 /* GET form page. */
-router.get('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async function (req, res, next) {
+router.get('/:step', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async function (req, res, next) {
     let step = parseInt(req.params['step']);
     let tsp = req.query.tsp;
     let version = req.query.version;
@@ -62,7 +62,7 @@ router.get('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADM
     }
 
     let currentRoles = getRoles(req)
-    if(!(currentRoles.includes(roles.SUBMITTER) || currentRoles.includes(roles.ADMIN)) && !sessionData.editing) {
+    if(!(currentRoles.includes(roleNames.SUBMITTER) || currentRoles.includes(roleNames.ADMIN)) && !sessionData.editing) {
         req.session.sessionData = null
         let err = new Error('Forbidden')
         err.status = 403
@@ -109,7 +109,7 @@ router.get('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADM
 });
 
 /* GET form page. */
-router.get('/:step/add-service', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async function (req, res, next) {
+router.get('/:step/add-service', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async function (req, res, next) {
     let step = parseInt(req.params['step']);
     let sessionData = req.session.sessionData;
     if (!sessionData) {
@@ -132,7 +132,7 @@ router.get('/:step/add-service', checkAuthorized([roles.SUBMITTER, roles.REVIEWE
     });
 });
 
-router.get('/:step/edit-service', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), (req, res, next) => {
+router.get('/:step/edit-service', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), (req, res, next) => {
     let step = parseInt(req.params['step']);
     let sessionData = req.session.sessionData;
 
@@ -171,7 +171,7 @@ router.get('/:step/remove-service', (req, res) => {
 });
 
 /* Post form page. */
-router.post('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async function (req, res, next) {
+router.post('/:step', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async function (req, res, next) {
     let step = parseInt(req.params['step']);
     
     let sessionData = req.session.sessionData;
@@ -184,7 +184,7 @@ router.post('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.AD
     }
 
     let currentRoles = getRoles(req)
-    if(!(currentRoles.includes(roles.SUBMITTER) || currentRoles.includes(roles.ADMIN)) && !sessionData.editing) {
+    if(!(currentRoles.includes(roleNames.SUBMITTER) || currentRoles.includes(roleNames.ADMIN)) && !sessionData.editing) {
         req.session.sessionData = null
         let err = new Error('Forbidden')
         err.status = 403
@@ -233,7 +233,7 @@ router.post('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.AD
                     else {
                         const entityName = formData.TrustServiceProvider.TSPInformation.TSPName.Name
                         const submissionId = formData.TrustServiceProvider.TSPID
-                        notifyNewSubmission(entityName, submissionId, req.session.accessToken)
+                        notifyNewSubmission(entityName, submissionId, req.session.serviceUserToken)
                     }
                 }
                 
@@ -250,7 +250,7 @@ router.post('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.AD
                         currentNavigationName: getNavigationName(currentRoles, sessionData.editing)
                     })
 
-                else if(currentRoles.includes(roles.REVIEWER)) {
+                else if(currentRoles.includes(roleNames.REVIEWER)) {
                     const submitterEmail = formData.TrustServiceProvider.SubmitterInfo?.SubmitterAddress?.ElectronicAddress.URI
                     const entityName = formData.TrustServiceProvider.TSPInformation.TSPName.Name
                     const submissionId = formData.TrustServiceProvider.TSPID                  
@@ -277,9 +277,9 @@ router.post('/:step', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.AD
 const getNavigationName = (currentRoles, editing) => {
     let navName
 
-    if (currentRoles.includes(roles.SUBMITTER) || currentRoles.includes(roles.REVIEWER) || currentRoles.includes(roles.ADMIN)) {
+    if (currentRoles.includes(roleNames.SUBMITTER) || currentRoles.includes(roleNames.REVIEWER) || currentRoles.includes(roleNames.ADMIN)) {
         if (editing) {
-            if (currentRoles.includes(roles.REVIEWER))
+            if (currentRoles.includes(roleNames.REVIEWER))
                 navName = 'Review Submissions'
 
             else navName = 'My Submissions'

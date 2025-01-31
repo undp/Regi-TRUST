@@ -1,12 +1,14 @@
 const nodemailer = require('nodemailer')
 const smtp = require('../Config/config.json').Notifications
+const client = require('../Config/config.json').Client
 const realmAdminEmail = require('../Config/keycloak.json').realmAdminEmail
 const pug = require('pug')
-const { getReviewerEmails } = require('../Auth/keycloak')
+const { getReviewerEmails, getSubmitterEmail, getServiceUserToken } = require('../Auth/keycloak')
 const fs = require('fs')
+const roleNames = require('../Config/config.json').roleNames
 
 const templatePath = './notifications/emailTemplates/'
-const linkBaseUrl = process.env.DNS || `http://localhost:${process.env.PORT}/`
+const linkBaseUrl = client.hostname
 const reviewLink = linkBaseUrl + 'review-submissions/submission/'
 const reviewEnrollmentLink = linkBaseUrl + 'review-enrollment-requests/submission/'
 
@@ -40,7 +42,7 @@ const notifyNewSubmission = async (entityName, submissionId, accessToken) => {
     const submissionReviewLink = reviewLink + submissionId
     const html = pug.renderFile(templatePath + 'receivedSubmission.pug', { entityName, submissionReviewLink })
 
-    const reviewerEmails = [realmAdminEmail]//await getReviewerEmails(null, accessToken)
+    const reviewerEmails = await getReviewerEmails(undefined, accessToken)
     reviewerEmails?.forEach(toAddr => {
         const message = {
             from: 'svcemailservice@symsoftsolutions.com',
@@ -64,7 +66,7 @@ const notifyNewEnrollmentRequest = async (submitterEmail, entityName, submission
         html
     };
 
-    const reviewerEmails = [realmAdminEmail]//await getReviewerEmails("Onboarding_manager", accessToken)
+    const reviewerEmails = await getReviewerEmails(roleNames.ONBOARDING_MANAGER, accessToken)
     reviewerEmails?.forEach(toAddr => {
         message.to = toAddr;
         transport.sendMail(message, mailCallback)
@@ -92,9 +94,12 @@ const notifySubmissionUpdated = (submitterEmail, entityName, submissionId) => {
     transport.sendMail(message, mailCallback)
 }
 
-const notifySubmissionReviewed = (submitterEmail, entityName, reviewStatus, submissionId) => {
+const notifySubmissionReviewed = async (submitterId, entityName, reviewStatus, submissionId) => {
     const submissionReviewLink = reviewLink + submissionId
     const html = pug.renderFile(templatePath + 'submissionReviewed.pug', { entityName, reviewStatus, submissionReviewLink })
+    
+    const accessToken = await getServiceUserToken()
+    const submitterEmail = await getSubmitterEmail(submitterId, accessToken)
 
     const message = {
         from: 'svcemailservice@symsoftsolutions.com',
@@ -117,15 +122,8 @@ const notifyEnrollmentRequestReviewed = async (submitterEmail, entityName, revie
         subject: `Enrollment Request Reviewed`,
         html
     }
-
-    transport.sendMail(message, mailCallback)
     
-    /**************Notify Realm Administrator******************* */
-    if(reviewStatus == "Approved"){
-        message.to = realmAdminEmail
-        message.subject = `A Reviewer has ${reviewStatus} an Enrollment Request`,
-        message.html = pug.renderFile(templatePath + 'enrollmentRequestReviewed.pug', { entityName, reviewStatus, submissionReviewLink, isAdmin: true })
-        
+    if(reviewStatus == "Approved"){        
         transport.sendMail(message, mailCallback)
     }
 }

@@ -7,9 +7,9 @@ var { checkAuthorized, getRoles, getUserId, getAuthorization } = require('../../
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 const { notifySubmissionReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService')
-const roles = require('../../Auth/roles');
+const { roleNames } = require('../../Config/config.json');
 
-router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res) => {
+router.get('/', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res) => {
     let status = req.query.status ? req.query.status : 'new'
     switch(status){
         case 'new': status = "Submitted"; break;
@@ -22,7 +22,7 @@ router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]),
     let filter = status === 'All' ? {} : { "ReviewInfo.ReviewStatus": status }
 
     let currentRoles = getRoles(req)    
-    if(currentRoles.includes(roles.SUBMITTER)) {
+    if(currentRoles.includes(roleNames.SUBMITTER)) {
         filter = { 'Submitter.User_id': getUserId(req).User_id }
         status = 'All'
     }
@@ -32,11 +32,11 @@ router.get('/', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]),
     res.render('./reviewSubmissions/reviewSubmissionsList', { 
         selectedTab: req.query.status || 'new', 
         submissions: JSON.stringify(submissions),
-        title: currentRoles.includes(roles.REVIEWER) || currentRoles.includes(roles.ADMIN) ? 'Review Submissions' : 'My Submissions',
+        title: currentRoles.includes(roleNames.REVIEWER) || currentRoles.includes(roleNames.ADMIN) ? 'Review Submissions' : 'My Submissions',
         roles: currentRoles })
 })
 
-router.get('/submission/:id', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
+router.get('/submission/:id', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res, next) => {
     let submission = await SubmissionModel.findOne({ "TrustServiceProvider.TSPID": req.params.id })
     if (!submission) {
         submission = await SubmissionModel.findOne({ "_id": req.params.id })
@@ -50,13 +50,13 @@ router.get('/submission/:id', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, 
     res.render('./reviewSubmissions/reviewSubmission', {
         submission: submission,
         title: 'Review Submission',
-        currentNavigationName: currentRoles.includes(roles.REVIEWER) ? 'Review Submissions' : 'My Submissions',
+        currentNavigationName: currentRoles.includes(roleNames.REVIEWER) ? 'Review Submissions' : 'My Submissions',
         roles: currentRoles,
         TSPVersions: JSON.stringify(TSPVersions)
     })
 })
 
-router.get('/submission/:id/accept', checkAuthorized([roles.REVIEWER, roles.ADMIN]), async (req, res) => {    
+router.get('/submission/:id/accept', checkAuthorized([roleNames.REVIEWER, roleNames.ADMIN]), async (req, res) => {    
     let accepted = true
     let submission = await SubmissionModel.findById(req.params.id)
 
@@ -79,16 +79,16 @@ router.get('/submission/:id/accept', checkAuthorized([roles.REVIEWER, roles.ADMI
         })
 
     else {
-        const submitterEmail = submission.TrustServiceProvider.SubmitterInfo?.SubmitterAddress?.ElectronicAddress?.URI || submission.Submitter.Username
+        const submitterId = submission.Submitter.User_id
         const entityName = submission.TrustServiceProvider.TSPInformation.TSPName.Name
         const submissionId = submission.TrustServiceProvider.TSPID
-        notifySubmissionReviewed(submitterEmail, entityName, 'Accepted and Published', submissionId)
+        notifySubmissionReviewed(submitterId, entityName, 'Accepted and Published', submissionId)
     } 
 
     res.redirect('/review-submissions/')
 })
 
-router.get('/submission/:id/decline', checkAuthorized([roles.REVIEWER, roles.ADMIN]), async (req, res) => {    
+router.get('/submission/:id/decline', checkAuthorized([roleNames.REVIEWER, roleNames.ADMIN]), async (req, res) => {    
     let declined = await submitReview(req.params.id, getUserId(req), "Rejected")
     let submission = await SubmissionModel.findById(req.params.id)
 
@@ -101,19 +101,19 @@ router.get('/submission/:id/decline', checkAuthorized([roles.REVIEWER, roles.ADM
         })
 
         else {
-            const submitterEmail = submission.TrustServiceProvider.SubmitterInfo?.SubmitterAddress?.ElectronicAddress?.URI || submission.Submitter.Username
+            const submitterId = submission.Submitter.User_id
             const entityName = submission.TrustServiceProvider.TSPInformation.TSPName.Name
             const submissionId = submission.TrustServiceProvider.TSPID
-            notifySubmissionReviewed(submitterEmail, entityName, 'Declined', submissionId)
+            notifySubmissionReviewed(submitterId, entityName, 'Declined', submissionId)
         } 
     
     res.redirect('/review-submissions/')
 })
 
-router.get('/submission/:id/edit', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
+router.get('/submission/:id/edit', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res, next) => {
     let submission = await SubmissionModel.findById(req.params.id)
 
-    if(!(getRoles(req).includes(roles.REVIEWER) || getRoles(req).includes(roles.ADMIN)) && submission.Submitter.User_id !== getUserId(req).User_id) {
+    if(!(getRoles(req).includes(roleNames.REVIEWER) || getRoles(req).includes(roleNames.ADMIN)) && submission.Submitter.User_id !== getUserId(req).User_id) {
         let err = new Error('Forbidden')
         err.status = 403
         return next(err)

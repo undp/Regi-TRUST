@@ -8,9 +8,9 @@ var getSubmissionFormat = require('../../data/submissionFormatting/submissionFor
 const { notifyEnrollmentRequestReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService');
 const { Submitter } = require('../../data/MongoDB/TSPSchema');
-var roles = require('../../Auth/roles');
+var roleNames = require('../../Config/config.json').roleNames;
 
-router.get('/', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res) => {
+router.get('/', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res) => {
     let status = req.query.status ? req.query.status : 'pending'
     let filter = { "ReviewInfo.ReviewStatus": status !== 'all' ? status : { "$ne": "in progress" } }
 
@@ -25,7 +25,7 @@ router.get('/', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async 
         roles: currentRoles })
 })
 
-router.get('/submission/:id', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res, next) => {
+router.get('/submission/:id', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res, next) => {
     let submission = await EnrollModel.findById(req.params.id)
     
     let currentRoles = getRoles(req)
@@ -40,7 +40,7 @@ router.get('/submission/:id', checkAuthorized([roles.ONBOARDING_MANAGER, roles.A
         roles: getRoles(req) })
 })
 
-router.get('/submission/:id/accept', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res) => {     
+router.get('/submission/:id/accept', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res) => {     
     let submission = await EnrollModel.findById(req.params.id)
     let isReviewed = await submitReview(req.params.id, getUserId(req), "approved")
 
@@ -66,7 +66,7 @@ router.get('/submission/:id/accept', checkAuthorized([roles.ONBOARDING_MANAGER, 
     })
 })
 
-router.post('/submission/:id/decline', checkAuthorized([roles.ONBOARDING_MANAGER, roles.ADMIN]), async (req, res) => {    
+router.post('/submission/:id/decline', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res) => {    
     let submission = await EnrollModel.findById(req.params.id)
     let isReviewed = await submitReview(req.params.id, getUserId(req), "rejected", req.body.Notes);    
 

@@ -9,7 +9,7 @@ var { checkAuthorized, getRoles, getUserId } = require('../../Auth/keycloak');
 var { EnrollModel } = require('../../data/MongoDB/mongoose');
 var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewEnrollmentRequest } = require('../../notifications/emailService');
-const roles = require('../../Auth/roles');
+const { roleNames } = require('../../Config/config.json');
 
 const reCaptcha = require('../../Config/config.json').reCaptcha
 
@@ -109,13 +109,13 @@ router.post('/:step', async function (req, res, next) {
             return res.render('./forms/submissionError',{
                 roles: getRoles(req),
                 title: 'Submission Error',
-                currentNavigationName: getNavigationName(roles)
+                currentNavigationName: getNavigationName(getRoles(req))
             })
         } else {
             const submitterEmail = formData.TrustServiceProvider.SubmitterInfo.Address.ElectronicAddress;
             const entityName = formData.TrustServiceProvider.SubmitterInfo.AgencyName;
             const submissionId = formData.TrustServiceProvider.UID;
-            notifyNewEnrollmentRequest(submitterEmail, entityName, submissionId, req.session.accessToken)
+            notifyNewEnrollmentRequest(submitterEmail, entityName, submissionId, req.session.serviceUserToken)
         }
     }else if(req.body.RedirectPage)
         nextStep = req.body.RedirectPage
@@ -129,7 +129,7 @@ router.post('/:step', async function (req, res, next) {
 const getNavigationName = (roles) => {
     let navName
 
-    if (roles.includes(roles.SUBMITTER)) {
+    if (roles.includes(roleNames.SUBMITTER)) {
         // if (editing) {
         //     if (roles.includes(roles.REVIEWER))
         //         navName = 'Review Submissions'
