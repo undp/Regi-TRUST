@@ -3,15 +3,13 @@
 var express = require('express');
 var router = express.Router();
 var EnrollModel = require('../../data/MongoDB/mongoose').EnrollModel;
-var { checkAuthorized, getRoles, getUserId, getAuthorization, getReviewerEmails } = require('../../Auth/keycloak');
+var { checkAuthorized, getRoles, getUserId } = require('../../Auth/keycloak');
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting');
-const { notifyEnrollmentRequestReviewed } = require('../../notifications/emailService');
-const trainApi = require('../../data/TRAIN/trainApiService');
-const { Submitter } = require('../../data/MongoDB/TSPSchema');
-var roleNames = require('../../Config/config.json').roleNames;
+const { notifyEnrollmentRequestApproved } = require('../../notifications/emailService');
+var { roleNames, enrollmentReviewStatuses } = require('../../Config/config.json');
 
 router.get('/', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res) => {
-    let status = req.query.status ? req.query.status : 'pending'
+    let status = req.query.status ? req.query.status : enrollmentReviewStatuses.PENDING
     let filter = { "ReviewInfo.ReviewStatus": status !== 'all' ? status : { "$ne": "in progress" } }
 
     let currentRoles = getRoles(req)    
@@ -22,27 +20,26 @@ router.get('/', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN])
         submissions: JSON.stringify(submissions),
         title: 'Enrollments: ' + (status.charAt(0).toUpperCase() + status.slice(1)),
         currentNavigationName: 'Review Enrollment Requests',
-        roles: currentRoles })
+        roles: currentRoles ,
+        statuses: enrollmentReviewStatuses})
 })
 
 router.get('/submission/:id', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res, next) => {
     let submission = await EnrollModel.findById(req.params.id)
     
-    let currentRoles = getRoles(req)
-
     submission = await getSubmissionFormat.mongoToReview(submission, "enroll")  
-    console.log(submission)
 
     res.render('./reviewSubmissions/reviewEnrollmentRequest', {
         submission: submission,
         title: 'Review Submission',
         currentNavigationName: 'Review Enrollment Requests',
-        roles: getRoles(req) })
+        roles: getRoles(req) ,
+        statuses: enrollmentReviewStatuses})
 })
 
 router.get('/submission/:id/accept', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res) => {     
     let submission = await EnrollModel.findById(req.params.id)
-    let isReviewed = await submitReview(req.params.id, getUserId(req), "approved")
+    let isReviewed = await submitReview(req.params.id, getUserId(req), enrollmentReviewStatuses.APPROVED);
 
     if(!isReviewed)
         return res.render('./reviewSubmissions/reviewError', {
@@ -56,8 +53,7 @@ router.get('/submission/:id/accept', checkAuthorized([roleNames.ONBOARDING_MANAG
         
         const submitterEmail = submission.TrustServiceProvider.SubmitterInfo.Address.ElectronicAddress
         const entityName = submission.TrustServiceProvider.SubmitterInfo.AgencyName
-        const submissionId = submission.TrustServiceProvider.UID
-        notifyEnrollmentRequestReviewed(submitterEmail, entityName, 'Approved', submissionId)
+        notifyEnrollmentRequestApproved(submitterEmail, entityName)
     } 
 
     res.json({
@@ -67,8 +63,7 @@ router.get('/submission/:id/accept', checkAuthorized([roleNames.ONBOARDING_MANAG
 })
 
 router.post('/submission/:id/decline', checkAuthorized([roleNames.ONBOARDING_MANAGER, roleNames.ADMIN]), async (req, res) => {    
-    let submission = await EnrollModel.findById(req.params.id)
-    let isReviewed = await submitReview(req.params.id, getUserId(req), "rejected", req.body.Notes);    
+    let isReviewed = await submitReview(req.params.id, getUserId(req), enrollmentReviewStatuses.REJECTED, req.body.Notes);    
 
     if(!isReviewed)
         return res.render('./reviewSubmissions/reviewError', {
@@ -77,13 +72,6 @@ router.post('/submission/:id/decline', checkAuthorized([roleNames.ONBOARDING_MAN
             title: 'Review Error',
             currentNavigationName: 'Review Enrollment Requests',
         })
-
-    else {      
-        const submitterEmail = submission.TrustServiceProvider.SubmitterInfo.Address.ElectronicAddress
-        const entityName = submission.TrustServiceProvider.SubmitterInfo.AgencyName
-        const submissionId = submission.TrustServiceProvider.UID
-        notifyEnrollmentRequestReviewed(submitterEmail, entityName, 'Rejected', submissionId)
-    } 
 
     res.json({
         success: true,

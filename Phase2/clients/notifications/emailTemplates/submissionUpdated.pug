@@ -1,9 +1,14 @@
 html(lang='en')
     body     
-        h1 Regi-Trust Registry Network
-        h2 Changes were made to your registry entry submission by a reviewer
-        p=`Your registry entry submission for ${entityName} was altered by a registry reviewer after their initial review.`
-        h2 Next steps:
-        p 
-            a(href=submissionReviewLink) Click here
-            span  to view these changes or make any necessary updates.
+        if isSubmitterEdit 
+            p A submission for #{entityName} has been updated.
+            p 
+                a(href=submissionReviewLink) Click here
+                span  to view these changes or make any updates.
+        else 
+            p Your network entry submission for #{entityName} was modified by a registry reviewer.
+            p 
+                a(href=submissionReviewLink) Click here
+                span  to view these changes or make any necessary updates.
+        br
+        p RegiTrust

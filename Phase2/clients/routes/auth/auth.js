@@ -8,7 +8,7 @@ router.get('/callback/', (req, res, next) => {
         
 }, async (req, res) => {
     req.session.accessToken = await getAccessToken(req);
-    req.session.serviceUserToken = await getServiceUserToken(req.session.accessToken);
+    req.session.serviceUserToken = await getServiceUserToken();
     res.redirect(req.session.returnTo)
 })
 

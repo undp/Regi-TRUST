@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 
-  .container
+  .container(style='flex: 1;')
     h1.mt-md-5.mb-md-5.mt-sm-4.mb-sm-4.mt-3.mb-3 There was an error while submitting your decision.
     p Please review the submission and try again.
     a.btn.submitBtn.mb-5(href=`/review-submissions/submission/${submission_id}`) Return

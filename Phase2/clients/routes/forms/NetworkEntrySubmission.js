@@ -7,7 +7,7 @@ var { SubmissionModel } = require('../../data/MongoDB/mongoose');
 var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewSubmission, notifySubmissionUpdated } = require('../../notifications/emailService')
 var trainApi = require('../../data/TRAIN/trainApiService');
-const { roleNames } = require('../../Config/config.json');
+const { roleNames, networkSubmissionStatuses } = require('../../Config/config.json');
 
 router.get('/', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), function(req, res) {
     req.session.sessionData = null
@@ -25,25 +25,25 @@ router.get('/:step', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, r
     let tspDetails = null;
     let sessionData = req.session.sessionData;
 
-    let pendingTSP = req.query.tsp;
-
     //if edit form, get tsp details to populate the forms
-    if((tsp && version) || pendingTSP) {
-        if(pendingTSP) {
-            tspDetails = await SubmissionModel.findById(pendingTSP)
-        }else{
-            tspDetails = await trainApi.getTspDetail(tsp, version ? version : null)
-        }
+    if(version || tsp) {
         sessionData = {
             formData: {
                 validation: formJSON.FormSections.map(() => 'true').slice(1),
-                TrustServiceProvider: tspDetails.TrustServiceProvider,
-                ReviewInfo: tspDetails.ReviewInfo,
-                Submitter: tspDetails.Submitter
             },
             visited: 1,
             editing: true
         };
+
+        if(version) {
+            tspDetails = await trainApi.getTspDetail(tsp, version ? version : null, req.session.accessToken)
+            sessionData.formData.TrustServiceProvider = tspDetails
+        }else{
+            tspDetails = await SubmissionModel.findById(tsp)
+            sessionData.formData.TrustServiceProvider = tspDetails.TrustServiceProvider
+            sessionData.formData.ReviewInfo = tspDetails.ReviewInfo
+            sessionData.formData.Submitter = tspDetails.Submitter
+        }
     }
         
     if (!sessionData) {
@@ -126,7 +126,6 @@ router.get('/:step/add-service', checkAuthorized([roleNames.SUBMITTER, roleNames
         showAddServiceForm: true,
         currentStep: step,
         formJSON: formJSON,
-        formData: sessionData.formData,
         roles: getRoles(req),
         validation: sessionData.formData.validation,
     });
@@ -250,11 +249,19 @@ router.post('/:step', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, 
                         currentNavigationName: getNavigationName(currentRoles, sessionData.editing)
                     })
 
-                else if(currentRoles.includes(roleNames.REVIEWER)) {
-                    const submitterEmail = formData.TrustServiceProvider.SubmitterInfo?.SubmitterAddress?.ElectronicAddress.URI
+                else{
+                    let submitterId = formData.Submitter?.User_id
+                    if(!submitterId){
+                        let localRecord = await SubmissionModel.findOne({ 'TrustServiceProvider.TSPID': formData.TrustServiceProvider.TSPID })
+                        submitterId = localRecord.Submitter.User_id
+                    }
                     const entityName = formData.TrustServiceProvider.TSPInformation.TSPName.Name
                     const submissionId = formData.TrustServiceProvider.TSPID                  
-                    notifySubmissionUpdated(submitterEmail, entityName, submissionId)
+                    if (currentRoles.includes(roleNames.REVIEWER) || currentRoles.includes(roleNames.ADMIN)){
+                        notifySubmissionUpdated(submitterId, entityName, submissionId, false)
+                    }else if(currentRoles.includes(roleNames.SUBMITTER)){
+                        notifySubmissionUpdated(submitterId, entityName, submissionId, true)
+                    }
                 }
             }
 
@@ -339,8 +346,12 @@ async function updateSubmission(formData) {
         const updateTime = Date.now().toString()
         formData.ReviewInfo = {
             SubmittedDateTime: updateTime,
-            ReviewStatus: "Submitted",
+            ReviewStatus: networkSubmissionStatuses.PENDING,
             StatusStartDateTime: updateTime
+        }
+        formData.Submitter = {
+            Username: submission.Submitter.Username,
+            User_id: submission.Submitter.User_id
         }
         submission.overwrite(formData)
         await submission.save()
@@ -379,7 +390,7 @@ async function submitForm(formData, submitter) {
         
         const reviewInfo = {
             SubmittedDateTime: submittedTime,
-            ReviewStatus: "Submitted",
+            ReviewStatus: networkSubmissionStatuses.PENDING,
             StatusStartDateTime: submittedTime
         }
 

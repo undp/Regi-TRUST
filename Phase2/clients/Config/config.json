@@ -35,5 +35,15 @@
     "REVIEWER": "Registry_reviewer",
     "ONBOARDING_MANAGER": "Onboarding_manager",
     "ADMIN": "Registry_admin"
+  },
+  "enrollmentReviewStatuses": {
+    "PENDING": "pending",
+    "APPROVED": "approved",
+    "REJECTED": "rejected"
+  },
+  "networkSubmissionStatuses": {
+    "PENDING": "Submitted",
+    "APPROVED": "Accepted and Published",
+    "REJECTED": "Rejected"
   }
 }

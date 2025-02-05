@@ -2,20 +2,20 @@ extend ../layout
 
 block content
 	link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css')
-	.container(style='min-height:80vh;')
+	.container(style='flex: 1;')
 		h1.mt-5.mb-5 Registry Service Provider Enrollment Requests
 
 		if roles.includes('Onboarding_manager') || roles.includes('Registry_admin')
 			ul.nav.nav-tabs.mb-3
 				li.nav-item
-					- const isNewActive = selectedTab === "pending"
-					a(class=("nav-link" + (isNewActive ? " active": "")) aria-current=(isNewActive ? "page" : "") href="/review-enrollment-requests/?status=pending") New 
+					- const isNewActive = selectedTab === statuses.PENDING
+					a(class=("nav-link" + (isNewActive ? " active": "")) aria-current=(isNewActive ? "page" : "") href=`/review-enrollment-requests/?status=${statuses.PENDING}`) New 
 				li.nav-item
-					- const isAcceptedActive = selectedTab === "approved"
-					a(class=("nav-link" + (isAcceptedActive ? " active" : "")) aria-current=(isAcceptedActive ? "page" : "") href="/review-enrollment-requests/?status=approved") Acknowledged
+					- const isAcceptedActive = selectedTab === statuses.APPROVED
+					a(class=("nav-link" + (isAcceptedActive ? " active" : "")) aria-current=(isAcceptedActive ? "page" : "") href=`/review-enrollment-requests/?status=${statuses.APPROVED}`) Acknowledged
 				li.nav-item 
-					- const isRejectedActive = selectedTab === "rejected"
-					a(class=("nav-link" + (isRejectedActive ? " active" : "")) aria-current=(isRejectedActive ? "page" : "") href="/review-enrollment-requests/?status=rejected") Deferred 
+					- const isRejectedActive = selectedTab === statuses.REJECTED
+					a(class=("nav-link" + (isRejectedActive ? " active" : "")) aria-current=(isRejectedActive ? "page" : "") href=`/review-enrollment-requests/?status=${statuses.REJECTED}`) Deferred 
 				li.nav-item 
 					- const isAllActive = selectedTab === "all"
 					a(class=("nav-link" + (isAllActive ? " active" : "")) aria-current=(isAllActive ? "page" : "") href="/review-enrollment-requests/?status=all") All

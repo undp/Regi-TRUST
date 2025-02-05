@@ -3,7 +3,7 @@ extends ../layout
 block content
   link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css')
   link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css')
-  .container.mb-5(style='min-height:80vh;')
+  .container.mb-5(style='flex: 1;')
     div.d-flex.justify-content-between.align-items-center.mt-5.mb-5
       div
         h1.mb-0 Network Entries
@@ -23,7 +23,7 @@ block content
     .modal-dialog(role='document', style='max-width: 800px;')
       .modal-content
         .modal-header
-          h5.modal-title#versionModalLabel Select A Version to View From The Table
+          h5.modal-title#versionModalLabel Select A Trust List Version to View
           button.btn.close(type='button', data-bs-dismiss='modal', aria-label='Close')
             span(aria-hidden='true') &times;
         .modal-body

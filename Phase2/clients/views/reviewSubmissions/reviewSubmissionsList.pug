@@ -3,24 +3,24 @@ extend ../layout
 block content
 	link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css')
 	link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css')
-	.container(style='min-height:80vh;')
+	.container(style='flex: 1;')
 		div.d-flex.justify-content-between.align-items-center.mt-5.mb-5
 			h1.mt-5.mb-5 Network Entry Submissions
 
 		if roles.includes('Registry_reviewer') || roles.includes('Registry_admin')
 			ul.nav.nav-tabs.mb-3
 				li.nav-item
-					- const isNewActive = selectedTab === "new"
-					a(class=("nav-link" + (isNewActive ? " active": "")) aria-current=(isNewActive ? "page" : "") href="/review-submissions/?status=new") New 
+					- const isNewActive = selectedTab === statuses.PENDING
+					a(class=("nav-link" + (isNewActive ? " active": "")) aria-current=(isNewActive ? "page" : "") href=`/review-submissions/?status=${statuses.PENDING}`) New 
 				li.nav-item
-					- const isAcceptedActive = selectedTab === "accepted"
-					a(class=("nav-link" + (isAcceptedActive ? " active" : "")) aria-current=(isAcceptedActive ? "page" : "") href="/review-submissions/?status=accepted") Accepted 
+					- const isAcceptedActive = selectedTab === statuses.APPROVED
+					a(class=("nav-link" + (isAcceptedActive ? " active" : "")) aria-current=(isAcceptedActive ? "page" : "") href=`/review-submissions/?status=${statuses.APPROVED}`) Accepted 
 				li.nav-item 
-					- const isRejectedActive = selectedTab === "rejected"
-					a(class=("nav-link" + (isRejectedActive ? " active" : "")) aria-current=(isRejectedActive ? "page" : "") href="/review-submissions/?status=rejected") Rejected 
+					- const isRejectedActive = selectedTab === statuses.REJECTED
+					a(class=("nav-link" + (isRejectedActive ? " active" : "")) aria-current=(isRejectedActive ? "page" : "") href=`/review-submissions/?status=${statuses.REJECTED}`) Rejected 
 				li.nav-item 
 					- const isAllActive = selectedTab === "all"
-					a(class=("nav-link" + (isAllActive ? " active" : "")) aria-current=(isAllActive ? "page" : "") href="/review-submissions/?status=all") All
+					a(class=("nav-link" + (isAllActive ? " active" : "")) aria-current=(isAllActive ? "page" : "") href=`/review-submissions/?status=all`) All
 		.hello
 			table#submissions-table.display
 
@@ -46,9 +46,15 @@ block scripts
 				type: "custom-date",
 				render: (data, type, row, meta) => {
 					const date = new Date(parseInt(data, 10))
-
-					return date.toLocaleString()
+					return date.toLocaleString([], { 
+						year: 'numeric', 
+						month: '2-digit', 
+						day: '2-digit', 
+						hour: '2-digit', 
+						minute: '2-digit' 
+					})
 				}
+			
 			},
 			{
 				title: "Review Status",
@@ -63,13 +69,6 @@ block scripts
 				render: function(data, type, row) {
 					return data || ''; 
 			  }
-			})
-
-		if("#{selectedTab}" === "all")
-			columns.push({
-				title: "Review Status",
-				data: "ReviewInfo.ReviewStatus",
-				defaultContent: "Accepted and Published"
 			})
 
 		$.fn.dataTable.ext.type.order['custom-date-pre'] = function (date) {

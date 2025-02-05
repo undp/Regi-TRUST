@@ -3,23 +3,15 @@
 var express = require('express');
 var router = express.Router();
 var SubmissionModel = require('../../data/MongoDB/mongoose').SubmissionModel;
-var { checkAuthorized, getRoles, getUserId, getAuthorization } = require('../../Auth/keycloak');
+var { checkAuthorized, getRoles, getUserId } = require('../../Auth/keycloak');
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 const { notifySubmissionReviewed } = require('../../notifications/emailService');
 const trainApi = require('../../data/TRAIN/trainApiService')
-const { roleNames } = require('../../Config/config.json');
+const { roleNames, networkSubmissionStatuses } = require('../../Config/config.json');
 
 router.get('/', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res) => {
-    let status = req.query.status ? req.query.status : 'new'
-    switch(status){
-        case 'new': status = "Submitted"; break;
-        case 'all': status = "All"; break;
-        case 'accepted': status = "Accepted and Published"; break;
-        case 'rejected': status = "Rejected"; break;
-        default: status = 'Submitted'; break;
-    }
-    
-    let filter = status === 'All' ? {} : { "ReviewInfo.ReviewStatus": status }
+    let status = req.query.status ? req.query.status : networkSubmissionStatuses.PENDING
+    let filter = status === 'all' ? {} : { "ReviewInfo.ReviewStatus": status }
 
     let currentRoles = getRoles(req)    
     if(currentRoles.includes(roleNames.SUBMITTER)) {
@@ -30,29 +22,42 @@ router.get('/', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNa
     let submissions = await SubmissionModel.find(filter)
 
     res.render('./reviewSubmissions/reviewSubmissionsList', { 
-        selectedTab: req.query.status || 'new', 
+        currentNavigationName: currentRoles.includes(roleNames.REVIEWER) || currentRoles.includes(roleNames.ADMIN) ? 'Review Submissions' : 'My Submissions',
+        selectedTab: req.query.status || networkSubmissionStatuses.PENDING, 
         submissions: JSON.stringify(submissions),
         title: currentRoles.includes(roleNames.REVIEWER) || currentRoles.includes(roleNames.ADMIN) ? 'Review Submissions' : 'My Submissions',
-        roles: currentRoles })
+        roles: currentRoles ,
+        statuses: networkSubmissionStatuses})
 })
 
 router.get('/submission/:id', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res, next) => {
-    let submission = await SubmissionModel.findOne({ "TrustServiceProvider.TSPID": req.params.id })
-    if (!submission) {
-        submission = await SubmissionModel.findOne({ "_id": req.params.id })
-    }
     let currentRoles = getRoles(req)
-
     const TSPVersions = await trainApi.getTspHistory(req.params.id, req.session.accessToken)        
 
-    submission = await getSubmissionFormat.mongoToReview(submission)    
+    // By default, show the latest updated version
+    let submission = await SubmissionModel.findOne({
+        $or: [
+            { "TrustServiceProvider.TSPID": req.params.id },
+            { "_id": req.params.id }
+        ]
+    });
+    let localRecord = submission;
+    // else if version is queried, show that version
+    if(req.query.version) {
+        submission = await trainApi.getTspDetail(req.params.id, req.query.version, req.session.accessToken)
+    }
+
+    submission = await getSubmissionFormat.mongoToReview(submission)
 
     res.render('./reviewSubmissions/reviewSubmission', {
         submission: submission,
         title: 'Review Submission',
         currentNavigationName: currentRoles.includes(roleNames.REVIEWER) ? 'Review Submissions' : 'My Submissions',
         roles: currentRoles,
-        TSPVersions: JSON.stringify(TSPVersions)
+        TSPVersions: JSON.stringify(TSPVersions),
+        currentVersion: req.query.version ? req.query.version : submission.ReviewInfo.ReviewStatus == networkSubmissionStatuses.APPROVED ? Math.max(...TSPVersions.versions.map(v => parseInt(v.TSPVersion, 10))) : null,
+        statuses: networkSubmissionStatuses,
+        hasPendingVersion: localRecord.ReviewInfo.ReviewStatus == networkSubmissionStatuses.PENDING
     })
 })
 
@@ -67,7 +72,7 @@ router.get('/submission/:id/accept', checkAuthorized([roleNames.REVIEWER, roleNa
     
     const isPublished = await trainApi.getTspDetail(submission.TrustServiceProvider.TSPID, null, req.session.accessToken);
 
-    accepted = await submitReview(req.params.id, getUserId(req), "Accepted and Published")
+    accepted = await submitReview(req.params.id, getUserId(req), networkSubmissionStatuses.APPROVED)
     accepted = accepted ? await trainApi.postRegistryEntry(submission, req.session.accessToken, isPublished) : accepted
 
     if(!accepted)
@@ -82,14 +87,14 @@ router.get('/submission/:id/accept', checkAuthorized([roleNames.REVIEWER, roleNa
         const submitterId = submission.Submitter.User_id
         const entityName = submission.TrustServiceProvider.TSPInformation.TSPName.Name
         const submissionId = submission.TrustServiceProvider.TSPID
-        notifySubmissionReviewed(submitterId, entityName, 'Accepted and Published', submissionId)
+        notifySubmissionReviewed(submitterId, entityName, networkSubmissionStatuses.APPROVED, submissionId)
     } 
 
     res.redirect('/review-submissions/')
 })
 
 router.get('/submission/:id/decline', checkAuthorized([roleNames.REVIEWER, roleNames.ADMIN]), async (req, res) => {    
-    let declined = await submitReview(req.params.id, getUserId(req), "Rejected")
+    let declined = await submitReview(req.params.id, getUserId(req), networkSubmissionStatuses.REJECTED)
     let submission = await SubmissionModel.findById(req.params.id)
 
     if(!declined)
@@ -104,7 +109,7 @@ router.get('/submission/:id/decline', checkAuthorized([roleNames.REVIEWER, roleN
             const submitterId = submission.Submitter.User_id
             const entityName = submission.TrustServiceProvider.TSPInformation.TSPName.Name
             const submissionId = submission.TrustServiceProvider.TSPID
-            notifySubmissionReviewed(submitterId, entityName, 'Declined', submissionId)
+            notifySubmissionReviewed(submitterId, entityName, networkSubmissionStatuses.REJECTED, submissionId)
         } 
     
     res.redirect('/review-submissions/')

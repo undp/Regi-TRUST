@@ -1,3 +1,5 @@
+var SubmissionModel = require('../../data/MongoDB/mongoose').SubmissionModel;
+
 const formatDate = (date) => {
     const options = { 
         year: 'numeric', 
@@ -48,15 +50,27 @@ const mongoToForm = (submission) => {
 //Each key and value formatted as labels and values as they will appear on screen
 // Object format:
 //   { Formatted Field Label : Formatted Field Value }
-const mongoToReview = (submission, formType = "network") => {
+const mongoToReview = async (submission, formType = "network") => {
     //Review Information section
-    const ReviewInfo = submission.ReviewInfo
+    let ReviewInfo = submission.ReviewInfo
+    if(!ReviewInfo) {
+        let localSubmission = await SubmissionModel.findOne({ "TrustServiceProvider.TSPID": submission.TSPID }).select('ReviewInfo')
+        ReviewInfo = localSubmission.ReviewInfo
+    }
 
-    return Object.assign(jsonToDetailPage(submission, formType), { ReviewInfo })
+    let SubmitterInfo = submission.Submitter
+    if(formType !== "enroll"){
+        if(!SubmitterInfo) {
+            let localSubmission = await SubmissionModel.findOne({ "TrustServiceProvider.TSPID": submission.TSPID }).select('Submitter')
+            SubmitterInfo = localSubmission.Submitter
+        }
+    }
+
+    return Object.assign(jsonToDetailPage(submission, formType), { ReviewInfo, SubmitterInfo })
 }
 
 const jsonToDetailPage = (json, formType = "network") => {
-    const _id = json && json._id ? json._id : null;   
+    const _id = json && json._id ? json._id : json.TSPID ? json.TSPID : null;   
 
     switch(formType) {
         case "framework":
@@ -150,10 +164,7 @@ const jsonToDetailPage = (json, formType = "network") => {
                 let opsAgent = service.OpsAgentInfo
 
                 return Object.assign( { "Name:": opsAgent.OpsAgentName.Name }, buildAddressViewFormat(opsAgent.OpsAgentAddress))
-            })
-
-            console.log(json);
-            
+            })            
             
             json = json.SubmitterInfo
 

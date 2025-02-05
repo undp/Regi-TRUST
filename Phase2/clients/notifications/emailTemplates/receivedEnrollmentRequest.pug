@@ -1,7 +1,11 @@
 html(lang='en')
     body     
-        h1 Regi-Trust Registry Network
-        h2=`${isReviewer ? 'A new Registry Service Provider Enrollment request was submitted for' : 'We have received your enrollment request for'} ${entityName}`
-        p 
-            a(href=submissionReviewLink) Click here
-            span  to review this request.
+        if isReviewer
+            p A new Trust Service Provider Enrollment request has been received for #{entityName}.
+            p 
+                a(href=submissionReviewLink) Click here
+                span  to review this request.
+        else
+            p Your enrollment request for #{entityName} is under review. You will be notified if approved.
+        br
+        p RegiTrust

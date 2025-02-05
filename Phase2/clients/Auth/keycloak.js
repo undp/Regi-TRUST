@@ -66,13 +66,12 @@ const _getAuthTokenDecoded = (req) => {
     return jwt.decode(userAuthz?.tokenSet?.access_token)
 }
 
-const getServiceUserToken = async (access_token) => {
+const getServiceUserToken = async () => {
     let options = {
         method: 'POST',
         url: issuerMetadata.token_endpoint,
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Bearer " + access_token
         },
         data: qs.stringify(serviceUserMetadata)
     }
@@ -188,8 +187,6 @@ const getReviewerEmails = async (reviewer_type = roleNames.REVIEWER, serviceUser
 
 const getSubmitterEmail = async (submitterId, serviceUserToken) => {
     let user = await _getUserById(submitterId, serviceUserToken)
-
-    console.log(user)
 
     return user.email;
 }

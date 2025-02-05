@@ -1,11 +1,10 @@
 const nodemailer = require('nodemailer')
 const smtp = require('../Config/config.json').Notifications
 const client = require('../Config/config.json').Client
-const realmAdminEmail = require('../Config/keycloak.json').realmAdminEmail
 const pug = require('pug')
 const { getReviewerEmails, getSubmitterEmail, getServiceUserToken } = require('../Auth/keycloak')
 const fs = require('fs')
-const roleNames = require('../Config/config.json').roleNames
+const { roleNames, networkSubmissionStatuses } = require('../Config/config.json')
 
 const templatePath = './notifications/emailTemplates/'
 const linkBaseUrl = client.hostname
@@ -27,7 +26,6 @@ const mailCallback = (err, info) => {
         console.error(err)
 
     else {
-        console.log(info)
         logNotification(info.envelope.to[0])
     }
 }
@@ -35,7 +33,13 @@ const mailCallback = (err, info) => {
 const logNotification = (recipient) => {
     const line = `\n${new Date().toLocaleString()} -- Email sent to ${recipient}`
     
-    fs.appendFile('./logs/emailNotifLog.txt', line, err => { if(err) console.error(err) })
+    fs.mkdir('./logs', { recursive: true }, (err) => {
+        if (err) return console.error('Error creating log directory:', err);
+
+        fs.appendFile('./logs/emailNotifLog.txt', line, { flag: 'a' }, (err) => {
+            if (err) console.error('Error writing to log:', err);
+        });
+    });
 }
 
 const notifyNewSubmission = async (entityName, submissionId, accessToken) => {
@@ -43,89 +47,133 @@ const notifyNewSubmission = async (entityName, submissionId, accessToken) => {
     const html = pug.renderFile(templatePath + 'receivedSubmission.pug', { entityName, submissionReviewLink })
 
     const reviewerEmails = await getReviewerEmails(undefined, accessToken)
-    reviewerEmails?.forEach(toAddr => {
-        const message = {
-            from: 'svcemailservice@symsoftsolutions.com',
-            to: toAddr,
-            subject: `New Submission from ${entityName}`,
-            html
-        }
+    const message = {
+        from: smtp.username,
+        subject: `[RegiTrust] New Submission from ${entityName}`,
+        html
+    }
+    for (const toAddr of reviewerEmails) {
+        message.to = toAddr;
+        try {
+            await new Promise((resolve, reject) => {
+                transport.sendMail(message, (error, info) => {
+                    mailCallback(error, info);
 
-        transport.sendMail(message, mailCallback)
-    })
+                    if (error) return reject(error);
+                    resolve(info);
+                });
+            });
+        } catch (error) {
+            console.error("Error sending email to", toAddr, error);
+        }
+    }
 }
 
 const notifyNewEnrollmentRequest = async (submitterEmail, entityName, submissionId, accessToken) => {
     const submissionReviewLink = reviewEnrollmentLink + submissionId
     html = pug.renderFile(templatePath + 'receivedEnrollmentRequest.pug', { entityName, submissionReviewLink, isReviewer: true })
 
+    accessToken = await getServiceUserToken()
+
     /********************message to reviewers********************/
     let message = {
-        from: 'svcemailservice@symsoftsolutions.com',
-        subject: `New Enrollment Request from ${entityName}`,
+        from: smtp.username,
+        subject: `[RegiTrust] New Enrollment Request from ${entityName}`,
         html
     };
 
-    const reviewerEmails = await getReviewerEmails(roleNames.ONBOARDING_MANAGER, accessToken)
-    reviewerEmails?.forEach(toAddr => {
+    const reviewerEmails = await getReviewerEmails(roleNames.ONBOARDING_MANAGER, accessToken);
+    for (const toAddr of reviewerEmails) {
         message.to = toAddr;
-        transport.sendMail(message, mailCallback)
-    })
+        try {
+            await new Promise((resolve, reject) => {
+                transport.sendMail(message, (error, info) => {
+                    mailCallback(error, info);
+
+                    if (error) return reject(error);
+                    resolve(info);
+                });
+            });
+        } catch (error) {
+            console.error("Error sending email to", toAddr, error);
+        }
+    }
 
     /********************message to submitter********************/
     message.to = submitterEmail,
-    message.subject = `Enrollment Request from ${entityName} Confirmation`,
+    message.subject = `[RegiTrust] Enrollment Request from ${entityName} Confirmation`,
     message.html = pug.renderFile(templatePath + 'receivedEnrollmentRequest.pug', { entityName, submissionReviewLink, isReviewer: false });
 
     transport.sendMail(message, mailCallback)
 }
 
-const notifySubmissionUpdated = (submitterEmail, entityName, submissionId) => {
+const notifySubmissionUpdated = async (submitterId, entityName, submissionId, isSubmitterEdit) => {
     const submissionReviewLink = reviewLink + submissionId
-    const html = pug.renderFile(templatePath + 'submissionUpdated.pug', { entityName, submissionReviewLink })
+    const html = pug.renderFile(templatePath + 'submissionUpdated.pug', { entityName, submissionReviewLink, isSubmitterEdit })
+
+    const accessToken = await getServiceUserToken()
+    const submitterEmail = await getSubmitterEmail(submitterId, accessToken)
 
     const message = {
-        from: 'svcemailservice@symsoftsolutions.com',
+        from: smtp.username,
         to: submitterEmail,
-        subject: 'A Reviewer has Made Changes to Your Submission',
         html
     }
 
-    transport.sendMail(message, mailCallback)
+    if(!isSubmitterEdit) {
+        message.subject = `[RegiTrust] A Reviewer has Made Changes to Your Submission`;
+        transport.sendMail(message, mailCallback)
+    }else{
+        message.subject = `[RegiTrust] A Submission has been Updated`
+        const accessToken = await getServiceUserToken()
+        const reviewerEmails = await getReviewerEmails(roleNames.REVIEWER, accessToken)
+        for (const toAddr of reviewerEmails) {
+            message.to = toAddr;
+            try {
+                await new Promise((resolve, reject) => {
+                    transport.sendMail(message, (error, info) => {
+                        mailCallback(error, info);
+
+                        if (error) return reject(error);
+                        resolve(info);
+                    });
+                });
+            } catch (error) {
+                console.error("Error sending email to", toAddr, error);
+            }
+        }
+    }
 }
 
 const notifySubmissionReviewed = async (submitterId, entityName, reviewStatus, submissionId) => {
     const submissionReviewLink = reviewLink + submissionId
-    const html = pug.renderFile(templatePath + 'submissionReviewed.pug', { entityName, reviewStatus, submissionReviewLink })
+    const html = pug.renderFile(templatePath + 'submissionReviewed.pug', { entityName, isApproved: reviewStatus == networkSubmissionStatuses.APPROVED, submissionReviewLink })
     
     const accessToken = await getServiceUserToken()
     const submitterEmail = await getSubmitterEmail(submitterId, accessToken)
 
     const message = {
-        from: 'svcemailservice@symsoftsolutions.com',
+        from: smtp.username,
         to: submitterEmail,
-        subject: `A Reviewer has ${reviewStatus} Your Submission`,
+        subject: `[RegiTrust] A Reviewer has ${reviewStatus} Your Submission`,
         html
     }
 
     transport.sendMail(message, mailCallback)
 }
 
-const notifyEnrollmentRequestReviewed = async (submitterEmail, entityName, reviewStatus, submissionId) => {
-    const submissionReviewLink = reviewEnrollmentLink + submissionId
-    html = pug.renderFile(templatePath + 'enrollmentRequestReviewed.pug', { entityName, reviewStatus, submissionReviewLink, isAdmin: false })
+const notifyEnrollmentRequestApproved = async (submitterEmail, entityName) => {
+    html = pug.renderFile(templatePath + 'enrollmentRequestApproved.pug', { entityName })
 
     /**************Notify Submitter********************** */
     const message = {
-        from: 'svcemailservice@symsoftsolutions.com',
+        from: smtp.username,
         to: submitterEmail,
-        subject: `Enrollment Request Reviewed`,
+        subject: `[RegiTrust] Enrollment Request has Been Reviewed`,
         html
     }
     
-    if(reviewStatus == "Approved"){        
-        transport.sendMail(message, mailCallback)
-    }
+    transport.sendMail(message, mailCallback)
 }
 
-module.exports = { notifyNewSubmission, notifyNewEnrollmentRequest, notifySubmissionUpdated, notifySubmissionReviewed, notifyEnrollmentRequestReviewed }
+module.exports = { notifyNewSubmission, notifyNewEnrollmentRequest, notifySubmissionUpdated, notifySubmissionReviewed, notifyEnrollmentRequestApproved }
