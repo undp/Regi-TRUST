@@ -5,10 +5,10 @@ var { getRoles, checkAuthorized } = require('../../Auth/keycloak')
 var getSubmissionFormat = require('../../data/submissionFormatting/submissionFormatting')
 
 var trainApi = require('../../data/TRAIN/trainApiService');
-var roles = require('../../Auth/roles')
+var roleNames = require('../../Config/config.json').roleNames;
 
 /* GET list of all entries (table) page. */
-router.get('/list', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
+router.get('/list', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res, next) => {
     let error
     let version = req.query.version;
     
@@ -41,7 +41,7 @@ router.get('/list', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMI
 });
 
 /* Get details of one entry */
-router.get('/details/:TSPID', checkAuthorized([roles.SUBMITTER, roles.REVIEWER, roles.ADMIN]), async (req, res, next) => {
+router.get('/details/:TSPID', checkAuthorized([roleNames.SUBMITTER, roleNames.REVIEWER, roleNames.ADMIN]), async (req, res, next) => {
     let error
     let selectedRecord = {id: req.params.TSPID, version: req.query.version}
     

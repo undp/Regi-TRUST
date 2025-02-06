@@ -2,14 +2,12 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios')
-
 var formJSON = require('../../data/formFields/enroll');
-var { checkAuthorized, getRoles, getUserId } = require('../../Auth/keycloak');
+var { getRoles } = require('../../Auth/keycloak');
 
 var { EnrollModel } = require('../../data/MongoDB/mongoose');
-var submissionFormat = require('../../data/submissionFormatting/submissionFormatting');
 var { notifyNewEnrollmentRequest } = require('../../notifications/emailService');
-const roles = require('../../Auth/roles');
+const { roleNames, enrollmentReviewStatuses } = require('../../Config/config.json');
 
 const reCaptcha = require('../../Config/config.json').reCaptcha
 
@@ -46,11 +44,8 @@ router.get('/:step', function (req, res) {
     res.render('./forms/enroll', {
         isOnEnrollmentPage: true,
         currentStep: step,
-        // visited: sessionData.visited,
         validation: sessionData.formData.validation,
         formJSON: formJSON,
-        // formData: sessionData.formData,
-        // currentNavigationName: getNavigationName(roles, sessionData.editing),
         currentNavigationName: getNavigationName(roles),
         title: 'Trust Service Provider Enrollment',
         roles: roles,
@@ -109,13 +104,13 @@ router.post('/:step', async function (req, res, next) {
             return res.render('./forms/submissionError',{
                 roles: getRoles(req),
                 title: 'Submission Error',
-                currentNavigationName: getNavigationName(roles)
+                currentNavigationName: getNavigationName(getRoles(req))
             })
         } else {
             const submitterEmail = formData.TrustServiceProvider.SubmitterInfo.Address.ElectronicAddress;
             const entityName = formData.TrustServiceProvider.SubmitterInfo.AgencyName;
             const submissionId = formData.TrustServiceProvider.UID;
-            notifyNewEnrollmentRequest(submitterEmail, entityName, submissionId, req.session.accessToken)
+            notifyNewEnrollmentRequest(submitterEmail, entityName, submissionId, req.session.serviceUserToken)
         }
     }else if(req.body.RedirectPage)
         nextStep = req.body.RedirectPage
@@ -127,34 +122,11 @@ router.post('/:step', async function (req, res, next) {
 });
 
 const getNavigationName = (roles) => {
-    let navName
-
-    if (roles.includes(roles.SUBMITTER)) {
-        // if (editing) {
-        //     if (roles.includes(roles.REVIEWER))
-        //         navName = 'Review Submissions'
-
-        //     else navName = 'My Submissions'
-        // }
-
-        /* else*/ navName = 'Submit Enrollment Request'
-    }
-
-    else navName = 'Review Enrollment Requests'
-
-    return navName
+    return roles.includes(roleNames.SUBMITTER) ? 'Submit Enrollment Request' : 'Review Enrollment Requests'
 }
 
 async function submitForm(formData) {
     let isGoodSubmission = true
-    
-    // try {
-    //     formData = submissionFormat.formToMongo(formData, "enrollmentRequest");
-    // } catch (err) {
-    //     console.error(err)
-    //     isGoodSubmission = false
-    // }
-
 
     if (isGoodSubmission) {
         const submittedTime = Date.now().toString()
@@ -165,7 +137,7 @@ async function submitForm(formData) {
         
         const reviewInfo = {
             SubmittedDateTime: submittedTime,
-            ReviewStatus: "pending",
+            ReviewStatus: enrollmentReviewStatuses.PENDING,
             StatusStartDateTime: submittedTime
         }
 

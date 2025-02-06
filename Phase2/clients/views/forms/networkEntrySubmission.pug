@@ -6,38 +6,39 @@ block content
   //- import functions and mixins used to render form components
   include includes/formFieldsRenderer.pug
 
-  .container
+  .container(style='flex: 1;')
     h1.mt-md-5.mb-md-5.mt-sm-4.mb-sm-4.mt-3.mb-3 
       if showAddServiceForm==false
         | Network Entry Submission
       else
         | Service Information
-    .row.justify-content-center
-      .col-xl-8
-        ul#progressbar
-          each section,i in formJSON.FormSections
-            - var step = i+1
-            - var classList = step==currentStep ? ['p-1', 'active'] : step<currentStep ? ['p-1', 'complete'] : ['p-1']
-            li(class=classList)
-              - invalidPage = validation[i] === 'false'
-              if currentStep==3
-                button.btn.btn-link(type='button' class=(invalidPage ? 'invalid' : '') onclick=(`window.location.href='/forms/gccn-network-entry-submission/${step}'`) disabled=(step > visited))
-                  .text-center
-                    span.step-count(data-bs-toggle='tooltip' data-bs-placement='top' data-bs-html='true' title=`Step ${step}: ${section.SectionName}`)=step
-                    br 
-                    span.step-description.d-none.d-sm-inline=section.SectionName
-              else 
-                button.btn.btn-link.progress-nav(type='submit' class=(invalidPage ? 'invalid' : '') form='network-entry' name='RedirectPage' value=step disabled=(step > visited))
-                  .text-center
-                    span.step-count(data-bs-toggle='tooltip' data-bs-placement='top' data-bs-html='true' title=`Step ${step}: ${section.SectionName}`)=step
-                    br 
-                    span.step-description.d-none.d-sm-inline=section.SectionName
-        .step-description__outside.text-center.d-block.d-sm-none=`Step ${currentStep}: ${formJSON.FormSections[currentStep-1].SectionName}`
+    if currentStep!=formJSON.FormSections.length
+      .row.justify-content-center
+        .col-xl-8
+          ul#progressbar
+            each section,i in formJSON.FormSections
+              - var step = i+1
+              - var classList = step==currentStep ? ['p-1', 'active'] : step<currentStep ? ['p-1', 'complete'] : ['p-1']
+              li(class=classList)
+                - invalidPage = validation[i] === 'false'
+                if currentStep==3
+                  button.btn.btn-link(type='button' class=(invalidPage ? 'invalid' : '') onclick=(`window.location.href='/forms/gccn-network-entry-submission/${step}'`) disabled=(step > visited))
+                    .text-center
+                      span.step-count(data-bs-toggle='tooltip' data-bs-placement='top' data-bs-html='true' title=`Step ${step}: ${section.SectionName}`)=step
+                      br 
+                      span.step-description.d-none.d-sm-inline=section.SectionName
+                else 
+                  button.btn.btn-link.progress-nav(type='submit' class=(invalidPage ? 'invalid' : '') form='network-entry' name='RedirectPage' value=step disabled=(step > visited))
+                    .text-center
+                      span.step-count(data-bs-toggle='tooltip' data-bs-placement='top' data-bs-html='true' title=`Step ${step}: ${section.SectionName}`)=step
+                      br 
+                      span.step-description.d-none.d-sm-inline=section.SectionName
+          .step-description__outside.text-center.d-block.d-sm-none=`Step ${currentStep}: ${formJSON.FormSections[currentStep-1].SectionName}`
     if showAddServiceForm
       a.mb-2(type="button" onclick='window.location.href="/forms/gccn-network-entry-submission/3"') &lsaquo; Back to services
     if currentStep==formJSON.FormSections.length
       .text-center.p-5
-        h3 Thank you! The data has been submitted.
+        h3 Thank you! Your network entry has been submitted.
     else
       if currentStep==3 && showAddServiceForm==false
         .row.text-center.my-5

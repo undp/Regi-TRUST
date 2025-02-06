@@ -1,13 +1,14 @@
 var router = require('express').Router()
-var { checkAuthorized, authorize, redirect, deauthorize, getAccessToken } = require('../../Auth/keycloak')
+var { checkAuthorized, authorize, redirect, deauthorize, getAccessToken, getServiceUserToken } = require('../../Auth/keycloak')
 
 router.get('/', authorize())
 
 router.get('/callback/', (req, res, next) => {
     redirect()(req, res, next)
         
-}, (req, res) => {
-    req.session.accessToken = getAccessToken(req);
+}, async (req, res) => {
+    req.session.accessToken = await getAccessToken(req);
+    req.session.serviceUserToken = await getServiceUserToken();
     res.redirect(req.session.returnTo)
 })
 

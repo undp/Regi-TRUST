@@ -4,13 +4,13 @@ block content
   //- import functions and mixins used to render form components
   include includes/formFieldsRenderer.pug
 
-  .container(style="min-height: 82.6vh")
+  .container(style="flex: 1;")
     h1.mt-md-5.mb-md-5.mt-sm-4.mb-sm-4.mt-3.mb-3 Trust Service Provider Enrollment
     .row
       .col.col-xl
     if currentStep==formJSON.FormSections.length
       .text-center.p-5
-        h3 Thank you! The data has been submitted.
+        h3 Thank you! Your enrollment request has been been submitted.
     else
       form#network-entry.mt-3( action='/enroll/' + currentStep, method='POST')
         #invalid-message.card.mb-5(style='display:none;margin:auto;')

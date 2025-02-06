@@ -3,18 +3,18 @@ extends ../layout
 block content
     include ../forms/includes/formFieldsRenderer.pug
 
-    .container#review-page(style='min-height:80vh')
+    .container#review-page(style='flex: 1')
         - let status = submission.ReviewInfo.ReviewStatus
 
-        if(status === 'approved')
+        if(status === statuses.APPROVED)
             - status = 'Approved'
-        else if(status === 'rejected')
+        else if(status === statuses.REJECTED)
             - status = 'Rejected'
         else
             - status = ''
 
         .page-heading.mt-5.mb-5
-            h1 Registry Service Provider Enrollment Request #{status ? "- " + status : ""}
+            h1 Trust Service Provider Enrollment Request #{status ? "- " + status : ""}
 
         if(submission.ReviewInfo.ReviewStatus !== 'pending')
             .p-3
@@ -31,7 +31,7 @@ block content
                     p
                         strong.pe-2 Date Reviewed:
                         | !{statusDateTime.toLocaleString()}
-                    if(submission.ReviewInfo.ReviewStatus == 'rejected')
+                    if(submission.ReviewInfo.ReviewStatus == statuses.REJECTED)
                         p
                             strong.pe-2 Rejection Reason:
                             | !{submission.ReviewInfo.Notes}
@@ -47,12 +47,12 @@ block content
                                 strong.pe-2 !{key}
                                 | !{val}
 
-        if (roles.includes('Onboarding_manager') || roles.includes('Registry_admin')) && submission.ReviewInfo.ReviewStatus == "pending"
+        if (roles.includes('Onboarding_manager') || roles.includes('Registry_admin')) && submission.ReviewInfo.ReviewStatus == statuses.PENDING
             .review-buttons.p-4.mb-5
                 - let status = submission.ReviewInfo.ReviewStatus
-                if(status == "rejected" || status == "pending")
+                if(status == statuses.REJECTED || status == statuses.PENDING)
                     a.btn.btn-lg.submitBtn(href='*', data-action='accept', data-bs-toggle='modal', data-bs-target='#exampleModal') Acknowledge Request
-                if(status == "approved" || status == "pending")
+                if(status == statuses.APPROVED || status == statuses.PENDING)
                     a.btn.btn-lg.btn-link(href='#', data-action='defer', data-bs-toggle='modal', data-bs-target='#exampleModal') Defer Request
 
     // Modal

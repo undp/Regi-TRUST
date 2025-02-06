@@ -1,7 +1,8 @@
 html(lang='en')
     body     
-        h1 Regi-Trust Registry Network
-        h2 Your registry entry has been !{reviewStatus}
-        p=`Your registry entry submission for ${entityName} was ${reviewStatus} by a registry reviewer${reviewStatus === 'Accepted and Published' ? ' and the entry was added to the registry' : ''}. `
+        p Your network entry for #{entityName} was #{isApproved ? 'approved' : 'declined'}. by a registry reviewer #{isApproved ? 'and has been added to the registry' : ''}.
+        p
             a(href=submissionReviewLink) Click here
             span  to view the submission.
+        br
+        p RegiTrust

@@ -1,11 +1,11 @@
 {
   "Client" : {
-    "hostname": "https://clients.regitrust.axyom.co"
+    "hostname": "https://clients.regitrust.axyom.co/"
   },
   "MongoDB": {
     "hostname": "127.0.0.1",
     "PORT": "27017",
-    "dbName": "GCCN",
+    "dbName": "DBNAME",
     "options": {}
   },
   "TRAIN": {
@@ -21,13 +21,29 @@
     "trustFramework": "/testFW.zm.regitrust.axyom.co"
   },
   "Notifications": {
-    "host": "SMTP HOST",
+    "host": "SMTP Host",
     "port": 25,
-    "username": "SMTP USERNAME",
-    "password": "SMTP PASSWORD"
+    "username": "USER",
+    "password": "PASSWORD"
   },
   "reCaptcha": {
-    "siteKey": "RECAPTCHA SITE KEY",
-    "secret": "RECAPTCHA SECRET"
+    "siteKey": "SITEKEY",
+    "secret": "SECRET"
+  },
+  "roleNames": {
+    "SUBMITTER": "Registry_submitter",
+    "REVIEWER": "Registry_reviewer",
+    "ONBOARDING_MANAGER": "Onboarding_manager",
+    "ADMIN": "Registry_admin"
+  },
+  "enrollmentReviewStatuses": {
+    "PENDING": "pending",
+    "APPROVED": "approved",
+    "REJECTED": "rejected"
+  },
+  "networkSubmissionStatuses": {
+    "PENDING": "Submitted",
+    "APPROVED": "Accepted and Published",
+    "REJECTED": "Rejected"
   }
 }

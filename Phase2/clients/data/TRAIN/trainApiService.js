@@ -40,7 +40,7 @@ const getTspHistory = async (tspid = '', token) => {
     })
         .then(res => res.data)
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             return null;
         });
 
@@ -54,7 +54,7 @@ const getTspDetail = async (tspid, version = null,token) => {
     })     
         .then(res => res.data)
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             return null;
         });
 
